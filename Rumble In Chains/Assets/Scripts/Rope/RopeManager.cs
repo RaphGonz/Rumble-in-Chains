@@ -32,7 +32,6 @@ public class RopeManager : MonoBehaviour
             listRopePoints.Add(point.GetComponent<RopePoint>());
             position.x += stickLength;
         }
-
     }
 
     // Update is called once per frame
@@ -47,7 +46,6 @@ public class RopeManager : MonoBehaviour
     {
         SimulatePoints();
         DisplayPoints();
-
     }
 
     void SimulatePoints()
@@ -55,8 +53,8 @@ public class RopeManager : MonoBehaviour
         for (int i = 1; i < pointNumber; i++)
         {
             Vector2 positionBeforeUpdate = listRopePoints[i].position;
-            listRopePoints[i].position += (listRopePoints[i].position - listRopePoints[i].previousPosition);
-            listRopePoints[i].position += Vector2.down * gravity * Time.deltaTime * Time.deltaTime;
+            listRopePoints[i].TranslatePosition(listRopePoints[i].position - listRopePoints[i].previousPosition);
+            listRopePoints[i].TranslatePosition(Vector2.down * gravity * Time.deltaTime * Time.deltaTime);
             listRopePoints[i].previousPosition = positionBeforeUpdate;
         }
 
@@ -66,10 +64,10 @@ public class RopeManager : MonoBehaviour
             Vector2 stickDirection = (listRopePoints[i].position - listRopePoints[i + 1].position).normalized;
             if (!(i == 0))
             {
-                listRopePoints[i].position = stickCenter + stickDirection * stickLength / 2;
+                listRopePoints[i].SetPosition(stickCenter + stickDirection * stickLength / 2);
             }
             
-            listRopePoints[i+1].position = stickCenter - stickDirection * stickLength / 2;
+            listRopePoints[i+1].SetPosition(stickCenter - stickDirection * stickLength / 2);
         }
     }
 

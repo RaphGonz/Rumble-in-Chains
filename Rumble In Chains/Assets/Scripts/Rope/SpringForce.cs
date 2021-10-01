@@ -79,7 +79,7 @@ public class SpringForce : MonoBehaviour
         }
 
 
-        forceModifier.force = 0.5f * newForce + 0.5f * actualForce;
+        forceModifier.force = newForce;
 
         //Vector2 leftPoint = (leftStick.transform.position + transform.position) / 2;
         //Vector2 rightPoint = (rightStick.transform.position + transform.position) / 2;

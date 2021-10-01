@@ -5,13 +5,22 @@ using UnityEngine;
 public class RopePoint : MonoBehaviour
 {
 
+    private RopePointCollider ropePointCollider;
+
     public Vector2 position;
     public Vector2 previousPosition;
+
+
+    public bool topDirectionLocked = false;
+    public bool bottomDirectionLocked = false;
+    public bool leftDirectionLocked = false;
+    public bool rightDirectionLocked = false;
 
     public bool onContact = false;
 
     public void Start()
     {
+        ropePointCollider = GetComponent<RopePointCollider>();
         previousPosition = transform.position;
         position = transform.position;
     }
@@ -23,22 +32,28 @@ public class RopePoint : MonoBehaviour
 
     public void Actualise()
     {
-        if (!onContact)
-        {
-            transform.position = position;
-        }
+        Vector2 movement = position - new Vector2(transform.position.x, transform.position.y);
+
+        ropePointCollider.UpdateCollisions(ref movement);
+
+        transform.position += new Vector3(movement.x, movement.y, 0);
+        position = transform.position;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    public void Move(Vector2 translatePosition)
     {
-        onContact = true;
-        print("contact");
+        position += translatePosition;
+        transform.Translate(translatePosition);
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+
+    public void TranslatePosition(Vector2 positionChange)
     {
-        onContact = false;
+        position += positionChange;
     }
 
-
+    public void SetPosition(Vector2 newPosition)
+    {
+        position = newPosition;
+    }
 }

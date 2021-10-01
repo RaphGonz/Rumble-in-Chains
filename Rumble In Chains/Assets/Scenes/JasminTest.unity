@@ -152,9 +152,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f38a1b41bc0d9a4498b30b9985c2a8b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointNumber: 5
-  stickLength: 1
-  gravity: 10
+  pointNumber: 20
+  stickLength: 0.3
+  gravity: 20
   pointPrefab: {fileID: 612620891362580031, guid: 71eb96d79afb104458f557bc4ec99680,
     type: 3}
   leftCharacter: {fileID: 0}
@@ -184,7 +184,7 @@ GameObject:
   - component: {fileID: 690413253}
   - component: {fileID: 690413252}
   - component: {fileID: 690413254}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -283,6 +283,255 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!1001 &1546749105
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 102425254944191220, guid: 32dbbc62593fbd645926251d4cda1c32,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 102425254944191220, guid: 32dbbc62593fbd645926251d4cda1c32,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.5944216
+      objectReference: {fileID: 0}
+    - target: {fileID: 102425254944191220, guid: 32dbbc62593fbd645926251d4cda1c32,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.0912172
+      objectReference: {fileID: 0}
+    - target: {fileID: 102425254944191220, guid: 32dbbc62593fbd645926251d4cda1c32,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -11.348666
+      objectReference: {fileID: 0}
+    - target: {fileID: 102425254944191220, guid: 32dbbc62593fbd645926251d4cda1c32,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 102425254944191220, guid: 32dbbc62593fbd645926251d4cda1c32,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 102425254944191220, guid: 32dbbc62593fbd645926251d4cda1c32,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 102425254944191220, guid: 32dbbc62593fbd645926251d4cda1c32,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 102425254944191220, guid: 32dbbc62593fbd645926251d4cda1c32,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 102425254944191220, guid: 32dbbc62593fbd645926251d4cda1c32,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 102425254944191220, guid: 32dbbc62593fbd645926251d4cda1c32,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 102425254944191221, guid: 32dbbc62593fbd645926251d4cda1c32,
+        type: 3}
+      propertyPath: m_Name
+      value: SpringRope
+      objectReference: {fileID: 0}
+    - target: {fileID: 102425254953381231, guid: 32dbbc62593fbd645926251d4cda1c32,
+        type: 3}
+      propertyPath: springConstant
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 102425254953381231, guid: 32dbbc62593fbd645926251d4cda1c32,
+        type: 3}
+      propertyPath: dampingConstant
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 102425254953381231, guid: 32dbbc62593fbd645926251d4cda1c32,
+        type: 3}
+      propertyPath: frictionConstant
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 102425254953381231, guid: 32dbbc62593fbd645926251d4cda1c32,
+        type: 3}
+      propertyPath: initialStretchingLeft
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 102425254953381231, guid: 32dbbc62593fbd645926251d4cda1c32,
+        type: 3}
+      propertyPath: initialStretchingRight
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 102425254953381232, guid: 32dbbc62593fbd645926251d4cda1c32,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 102425255679210987, guid: 32dbbc62593fbd645926251d4cda1c32,
+        type: 3}
+      propertyPath: springConstant
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 102425255679210987, guid: 32dbbc62593fbd645926251d4cda1c32,
+        type: 3}
+      propertyPath: dampingConstant
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 102425255679210987, guid: 32dbbc62593fbd645926251d4cda1c32,
+        type: 3}
+      propertyPath: frictionConstant
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 102425255679210987, guid: 32dbbc62593fbd645926251d4cda1c32,
+        type: 3}
+      propertyPath: initialStretchingLeft
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 102425255679210987, guid: 32dbbc62593fbd645926251d4cda1c32,
+        type: 3}
+      propertyPath: initialStretchingRight
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 102425255975987909, guid: 32dbbc62593fbd645926251d4cda1c32,
+        type: 3}
+      propertyPath: springConstant
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 102425255975987909, guid: 32dbbc62593fbd645926251d4cda1c32,
+        type: 3}
+      propertyPath: dampingConstant
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 102425255975987909, guid: 32dbbc62593fbd645926251d4cda1c32,
+        type: 3}
+      propertyPath: frictionConstant
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 102425255975987909, guid: 32dbbc62593fbd645926251d4cda1c32,
+        type: 3}
+      propertyPath: initialStretchingLeft
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 102425255975987909, guid: 32dbbc62593fbd645926251d4cda1c32,
+        type: 3}
+      propertyPath: initialStretchingRight
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 102425255990372665, guid: 32dbbc62593fbd645926251d4cda1c32,
+        type: 3}
+      propertyPath: springConstant
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 102425255990372665, guid: 32dbbc62593fbd645926251d4cda1c32,
+        type: 3}
+      propertyPath: dampingConstant
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 102425255990372665, guid: 32dbbc62593fbd645926251d4cda1c32,
+        type: 3}
+      propertyPath: frictionConstant
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 102425255990372665, guid: 32dbbc62593fbd645926251d4cda1c32,
+        type: 3}
+      propertyPath: initialStretchingLeft
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 102425255990372665, guid: 32dbbc62593fbd645926251d4cda1c32,
+        type: 3}
+      propertyPath: initialStretchingRight
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 102425255999965087, guid: 32dbbc62593fbd645926251d4cda1c32,
+        type: 3}
+      propertyPath: springConstant
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 102425255999965087, guid: 32dbbc62593fbd645926251d4cda1c32,
+        type: 3}
+      propertyPath: dampingConstant
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 102425255999965087, guid: 32dbbc62593fbd645926251d4cda1c32,
+        type: 3}
+      propertyPath: frictionConstant
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 102425255999965087, guid: 32dbbc62593fbd645926251d4cda1c32,
+        type: 3}
+      propertyPath: initialStretchingLeft
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 102425255999965087, guid: 32dbbc62593fbd645926251d4cda1c32,
+        type: 3}
+      propertyPath: initialStretchingRight
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 102425256573338829, guid: 32dbbc62593fbd645926251d4cda1c32,
+        type: 3}
+      propertyPath: springConstant
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 102425256573338829, guid: 32dbbc62593fbd645926251d4cda1c32,
+        type: 3}
+      propertyPath: dampingConstant
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 102425256573338829, guid: 32dbbc62593fbd645926251d4cda1c32,
+        type: 3}
+      propertyPath: frictionConstant
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 102425256573338829, guid: 32dbbc62593fbd645926251d4cda1c32,
+        type: 3}
+      propertyPath: initialStretchingLeft
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 102425256573338829, guid: 32dbbc62593fbd645926251d4cda1c32,
+        type: 3}
+      propertyPath: initialStretchingRight
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 102425256661119621, guid: 32dbbc62593fbd645926251d4cda1c32,
+        type: 3}
+      propertyPath: springConstant
+      value: 600
+      objectReference: {fileID: 0}
+    - target: {fileID: 102425256661119621, guid: 32dbbc62593fbd645926251d4cda1c32,
+        type: 3}
+      propertyPath: dampingConstant
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 102425256661119621, guid: 32dbbc62593fbd645926251d4cda1c32,
+        type: 3}
+      propertyPath: frictionConstant
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 102425256661119621, guid: 32dbbc62593fbd645926251d4cda1c32,
+        type: 3}
+      propertyPath: initialStretchingLeft
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 102425256661119621, guid: 32dbbc62593fbd645926251d4cda1c32,
+        type: 3}
+      propertyPath: initialStretchingRight
+      value: 1.2
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 32dbbc62593fbd645926251d4cda1c32, type: 3}
 --- !u!1 &1884604418
 GameObject:
   m_ObjectHideFlags: 0
@@ -377,7 +626,7 @@ GameObject:
   - component: {fileID: 2020844700}
   - component: {fileID: 2020844699}
   - component: {fileID: 2020844698}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -476,72 +725,3 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &4056465612244933873
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4056465610846597740, guid: df281b532aa77c844a5eb91ffc6c800a,
-        type: 3}
-      propertyPath: m_Name
-      value: SpringRopeV2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4056465610846597743, guid: df281b532aa77c844a5eb91ffc6c800a,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4056465610846597743, guid: df281b532aa77c844a5eb91ffc6c800a,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -1.4011663
-      objectReference: {fileID: 0}
-    - target: {fileID: 4056465610846597743, guid: df281b532aa77c844a5eb91ffc6c800a,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.20650502
-      objectReference: {fileID: 0}
-    - target: {fileID: 4056465610846597743, guid: df281b532aa77c844a5eb91ffc6c800a,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -14.885381
-      objectReference: {fileID: 0}
-    - target: {fileID: 4056465610846597743, guid: df281b532aa77c844a5eb91ffc6c800a,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4056465610846597743, guid: df281b532aa77c844a5eb91ffc6c800a,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4056465610846597743, guid: df281b532aa77c844a5eb91ffc6c800a,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4056465610846597743, guid: df281b532aa77c844a5eb91ffc6c800a,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4056465610846597743, guid: df281b532aa77c844a5eb91ffc6c800a,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4056465610846597743, guid: df281b532aa77c844a5eb91ffc6c800a,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4056465610846597743, guid: df281b532aa77c844a5eb91ffc6c800a,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: df281b532aa77c844a5eb91ffc6c800a, type: 3}
