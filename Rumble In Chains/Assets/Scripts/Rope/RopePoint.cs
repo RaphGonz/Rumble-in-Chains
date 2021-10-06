@@ -10,12 +10,6 @@ public class RopePoint : MonoBehaviour
     public Vector2 position;
     public Vector2 previousPosition;
 
-
-    public bool topDirectionLocked = false;
-    public bool bottomDirectionLocked = false;
-    public bool leftDirectionLocked = false;
-    public bool rightDirectionLocked = false;
-
     public bool onContact = false;
 
     public void Start()

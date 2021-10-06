@@ -14,6 +14,8 @@ public class RopePointCollider : MonoBehaviour
     public float rayLength = 0.1f;
     public float boundsExtension = 0.001f;
 
+    private bool collisionTest = false;
+
 
     private float sqrt2 = 1.4142135f;
 
@@ -30,16 +32,25 @@ public class RopePointCollider : MonoBehaviour
 
     public void UpdateCollisions(ref Vector2 movement)
     {
+        collisionTest = false;
         UpdateBounds();
-        LeftCollsion(ref movement);
-        RightCollsion(ref movement);
-        TopCollsion(ref movement);
-        BottomCollsion(ref movement);
 
+        Vector2 position = transform.position;
+        XAxisCollision(ref movement, ref position);
+        YAxisCollision(ref movement, ref position);
+
+        if (!collisionTest)
+        {
+            movementCollision(ref movement);
+        }
+        
+        /*
         BottomLeftCollsion(ref movement);
         BottomRightCollsion(ref movement);
         TopLeftCollsion(ref movement);
         TopRightCollsion(ref movement);
+        */
+
     }
 
 
@@ -49,74 +60,41 @@ public class RopePointCollider : MonoBehaviour
         bounds.Expand(boundsExtension);
     }
 
-    private void LeftCollsion(ref Vector2 movement)
+    private void XAxisCollision(ref Vector2 movement, ref Vector2 position)
     {
-        Vector2 origin = new Vector2(bounds.min.x, transform.position.y);
-        Vector2 direction = new Vector2(-1, 0);
-
-        movement = DetectCollision(origin, direction, movement);
-    }
-
-    private void RightCollsion(ref Vector2 movement)
-    {
-        Vector2 origin = new Vector2(bounds.max.x, transform.position.y);
+        float length = Vector2.Dot(new Vector2(1, 0), movement);
         Vector2 direction = new Vector2(1, 0);
+        if (length < 0)
+        {
+            direction.x *= -1;
+            length = -length;
+        }
+        Vector2 origin = new Vector2(transform.position.x + direction.x * (bounds.max.x - bounds.min.x) / 2, transform.position.y + direction.y * (bounds.max.y - bounds.min.y) / 2);
 
-        movement = DetectCollision(origin, direction, movement);
+        movement = DetectCollision(origin, direction, length, movement);
+        position.x += movement.x;
     }
 
-    private void TopCollsion(ref Vector2 movement)
+    private void YAxisCollision(ref Vector2 movement, ref Vector2 position)
     {
-        Vector2 origin = new Vector2(transform.position.x, bounds.max.y);
+        float length = Vector2.Dot(new Vector2(0, 1), movement);
         Vector2 direction = new Vector2(0, 1);
 
-        movement = DetectCollision(origin, direction, movement);
+        if (length < 0)
+        {
+            direction.y *= -1;
+            length = -length;
+        }
+        Vector2 origin = new Vector2(transform.position.x + direction.x * (bounds.max.x - bounds.min.x) / 2, transform.position.y + direction.y * (bounds.max.y - bounds.min.y) / 2);
+
+        movement = DetectCollision(origin, direction, length, movement);
+        position.y += movement.y;
     }
 
-    private void BottomCollsion(ref Vector2 movement)
+    private void movementCollision(ref Vector2 movement)
     {
-        Vector2 origin = new Vector2(transform.position.x, bounds.min.y);
-        Vector2 direction = new Vector2(0, -1);
-
-        movement = DetectCollision(origin, direction, movement);
-    }
-
-    private void BottomLeftCollsion(ref Vector2 movement)
-    {
-        float x = (bounds.min.x - transform.position.x) * 1 / sqrt2 + transform.position.x;
-        float y = (bounds.min.y - transform.position.y) * 1 / sqrt2 + transform.position.y;
-        Vector2 origin = new Vector2(x, y);
-        Vector2 direction = new Vector2(-1, -1);
-
-        movement = DetectCollision(origin, direction, movement);
-    }
-
-    private void BottomRightCollsion(ref Vector2 movement)
-    {
-        float x = (bounds.max.x - transform.position.x) * 1 / sqrt2 + transform.position.x;
-        float y = (bounds.min.y - transform.position.y) * 1 / sqrt2 + transform.position.y;
-        Vector2 origin = new Vector2(x, y);
-        Vector2 direction = new Vector2(1, -1);
-
-        movement = DetectCollision(origin, direction, movement);
-    }
-
-    private void TopLeftCollsion(ref Vector2 movement)
-    {
-        float x = (bounds.min.x - transform.position.x) * 1 / sqrt2 + transform.position.x;
-        float y = (bounds.max.y - transform.position.y) * 1 / sqrt2 + transform.position.y;
-        Vector2 origin = new Vector2(x, y);
-        Vector2 direction = new Vector2(-1, 1);
-
-        movement = DetectCollision(origin, direction, movement);
-    }
-
-    private void TopRightCollsion(ref Vector2 movement)
-    {
-        float x = (bounds.max.x - transform.position.x) * 1 / sqrt2 + transform.position.x;
-        float y = (bounds.max.y - transform.position.y) * 1 / sqrt2 + transform.position.y;
-        Vector2 origin = new Vector2(x, y);
-        Vector2 direction = new Vector2(1, 1);
+        Vector2 direction = movement.normalized;
+        Vector2 origin = new Vector2(transform.position.x + direction.x * (bounds.max.x - bounds.min.x) / 2, transform.position.y + direction.y * (bounds.max.y - bounds.min.y) / 2);
 
         movement = DetectCollision(origin, direction, movement);
     }
@@ -144,6 +122,34 @@ public class RopePointCollider : MonoBehaviour
         if (hit)
         {
             movement += (hit.distance - length) * direction;
+            collisionTest = true;
+        }
+
+        return movement;
+    }
+
+    private Vector2 DetectCollision(Vector2 origin, Vector2 direction, float length, Vector2 movement)
+    {
+        RayInfo ray;
+        ray.origin = origin;
+        ray.direction = direction;
+        ray.distance = length;
+
+        RaycastHit2D hit;
+
+        if (length > 0)
+        {
+            hit = Raycast(ray, mask);
+        }
+        else
+        {
+            hit = new RaycastHit2D();
+        }
+
+        if (hit)
+        {
+            movement += (hit.distance - length) * direction;
+            collisionTest = true;
         }
 
         return movement;

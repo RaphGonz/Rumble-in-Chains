@@ -66,7 +66,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 102425254953381228}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.90442157, y: -3.5612173, z: 11.348666}
+  m_LocalPosition: {x: 0.9, y: -3.5612173, z: 11.348666}
   m_LocalScale: {x: 1, y: 0.3, z: 1}
   m_Children: []
   m_Father: {fileID: 102425254944191220}
@@ -194,11 +194,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d0107c2617a76e47bc9e2f418afa022, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  springConstant: 100
-  frictionConstant: 20
+  springConstant: 300
+  frictionConstant: 5
   dampingConstant: 0.2
-  initialStretchingLeft: 1
-  initialStretchingRight: 1
+  initialStretchingLeft: 1.2
+  initialStretchingRight: 1.2
   leftStick: {fileID: 102425255679210984}
   rightStick: {fileID: 102425256661119618}
 --- !u!1 &102425255679210984
@@ -358,11 +358,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d0107c2617a76e47bc9e2f418afa022, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  springConstant: 100
-  frictionConstant: 20
+  springConstant: 300
+  frictionConstant: 5
   dampingConstant: 0.2
-  initialStretchingLeft: 1
-  initialStretchingRight: 1
+  initialStretchingLeft: 1.2
+  initialStretchingRight: 1.2
   leftStick: {fileID: 102425256573338826}
   rightStick: {fileID: 102425254953381228}
 --- !u!1 &102425255975987904
@@ -522,11 +522,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d0107c2617a76e47bc9e2f418afa022, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  springConstant: 100
-  frictionConstant: 20
+  springConstant: 300
+  frictionConstant: 5
   dampingConstant: 0.2
-  initialStretchingLeft: 1
-  initialStretchingRight: 1
+  initialStretchingLeft: 1.2
+  initialStretchingRight: 1.2
   leftStick: {fileID: 102425256661119618}
   rightStick: {fileID: 0}
 --- !u!1 &102425255990372662
@@ -686,11 +686,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d0107c2617a76e47bc9e2f418afa022, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  springConstant: 100
-  frictionConstant: 20
+  springConstant: 300
+  frictionConstant: 5
   dampingConstant: 0.2
-  initialStretchingLeft: 1
-  initialStretchingRight: 1
+  initialStretchingLeft: 1.2
+  initialStretchingRight: 1.2
   leftStick: {fileID: 102425255999965082}
   rightStick: {fileID: 102425256573338826}
 --- !u!1 &102425255999965082
@@ -850,11 +850,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d0107c2617a76e47bc9e2f418afa022, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  springConstant: 100
-  frictionConstant: 20
+  springConstant: 300
+  frictionConstant: 5
   dampingConstant: 0.2
-  initialStretchingLeft: 1
-  initialStretchingRight: 1
+  initialStretchingLeft: 1.2
+  initialStretchingRight: 1.2
   leftStick: {fileID: 0}
   rightStick: {fileID: 102425255990372662}
 --- !u!1 &102425256573338826
@@ -1014,11 +1014,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d0107c2617a76e47bc9e2f418afa022, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  springConstant: 100
-  frictionConstant: 20
+  springConstant: 300
+  frictionConstant: 5
   dampingConstant: 0.2
-  initialStretchingLeft: 1
-  initialStretchingRight: 1
+  initialStretchingLeft: 1.2
+  initialStretchingRight: 1.2
   leftStick: {fileID: 102425255990372662}
   rightStick: {fileID: 102425255679210984}
 --- !u!1 &102425256661119618
@@ -1178,10 +1178,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d0107c2617a76e47bc9e2f418afa022, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  springConstant: 100
+  springConstant: 600
   frictionConstant: 20
-  dampingConstant: 0.2
-  initialStretchingLeft: 1
-  initialStretchingRight: 1
+  dampingConstant: 0.4
+  initialStretchingLeft: 1.2
+  initialStretchingRight: 1.2
   leftStick: {fileID: 102425254953381228}
   rightStick: {fileID: 102425255975987904}
