@@ -17,8 +17,6 @@ public class RopePointCollider : MonoBehaviour
     private bool collisionTest = false;
 
 
-    private float sqrt2 = 1.4142135f;
-
     public LayerMask mask;
     
     void Start()
@@ -36,8 +34,12 @@ public class RopePointCollider : MonoBehaviour
         UpdateBounds();
 
         Vector2 position = transform.position;
+
+
         XAxisCollision(ref movement, ref position);
         YAxisCollision(ref movement, ref position);
+
+
 
         if (!collisionTest)
         {

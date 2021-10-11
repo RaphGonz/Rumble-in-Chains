@@ -21,7 +21,7 @@ public class PlayerLeft : Player
         }
         else if (Input.GetKey(KeyCode.Z))
         {
-            position += new Vector2(0, deplacementUnit + 2 * gravity * Time.deltaTime * Time.deltaTime);
+            position += new Vector2(0, deplacementUnit);
         }
     }
 }

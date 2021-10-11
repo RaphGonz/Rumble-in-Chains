@@ -22,7 +22,7 @@ public class PlayerRight : Player
         }
         else if (Input.GetKey(KeyCode.UpArrow))
         {
-            position += new Vector2(0, deplacementUnit + 2 * gravity * Time.deltaTime * Time.deltaTime);
+            position += new Vector2(0, deplacementUnit);
         }
     }
 

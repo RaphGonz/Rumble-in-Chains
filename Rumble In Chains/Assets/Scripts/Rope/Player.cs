@@ -5,11 +5,13 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public Vector2 position;
+    public Vector2 positionBeforeCollider;
+
     public Vector2 previousPosition;
 
     protected RopePointCollider ropePointCollider;
 
-    protected float deplacementUnit = 0.1f;
+    public float deplacementUnit = 0.1f;
     public float gravity = 100;
 
     protected void Start()
@@ -17,16 +19,23 @@ public class Player : MonoBehaviour
         ropePointCollider = GetComponent<RopePointCollider>();
         previousPosition = transform.position;
         position = transform.position;
+        positionBeforeCollider = transform.position;
     }
 
     public void Actualise()
     {
-        Vector2 movement = position - new Vector2(transform.position.x, transform.position.y);
+        transform.position = position;
+    }
+
+    public void UpdateCollisions()
+    {
+
+        Vector2 movement = position - new Vector2(positionBeforeCollider.x, positionBeforeCollider.y);
 
         ropePointCollider.UpdateCollisions(ref movement);
 
-        transform.position += new Vector3(movement.x, movement.y, 0);
-        position = transform.position;
+        position = new Vector3(movement.x + positionBeforeCollider.x, movement.y + positionBeforeCollider.y, 0);
+        positionBeforeCollider = position;
     }
 
     public void Move(Vector2 translatePosition)
@@ -55,6 +64,8 @@ public class Player : MonoBehaviour
         InputManager();
 
         TranslatePosition(Vector2.down * gravity * Time.deltaTime * Time.deltaTime);
+        //super jeu video
+
         //TranslatePosition(position - previousPosition);
     }
 }

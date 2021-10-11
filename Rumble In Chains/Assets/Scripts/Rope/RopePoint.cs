@@ -8,6 +8,8 @@ public class RopePoint : MonoBehaviour
     private RopePointCollider ropePointCollider;
 
     public Vector2 position;
+    public Vector2 positionBeforeCollider;
+
     public Vector2 previousPosition;
 
     public bool onContact = false;
@@ -17,6 +19,7 @@ public class RopePoint : MonoBehaviour
         ropePointCollider = GetComponent<RopePointCollider>();
         previousPosition = transform.position;
         position = transform.position;
+        positionBeforeCollider = transform.position;
     }
 
     private void Update()
@@ -26,12 +29,18 @@ public class RopePoint : MonoBehaviour
 
     public void Actualise()
     {
-        Vector2 movement = position - new Vector2(transform.position.x, transform.position.y);
+        transform.position = position;
+    }
+
+
+    public void UpdateCollisions()
+    {
+        Vector2 movement = position - new Vector2(positionBeforeCollider.x, positionBeforeCollider.y);
 
         ropePointCollider.UpdateCollisions(ref movement);
 
-        transform.position += new Vector3(movement.x, movement.y, 0);
-        position = transform.position;
+        position = new Vector3(movement.x + positionBeforeCollider.x, movement.y + positionBeforeCollider.y, 0);
+        positionBeforeCollider = position;
     }
 
     public void Move(Vector2 translatePosition)

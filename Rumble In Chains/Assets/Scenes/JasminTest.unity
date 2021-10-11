@@ -136,9 +136,9 @@ GameObject:
   - component: {fileID: 82213382}
   - component: {fileID: 82213383}
   - component: {fileID: 82213384}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RightPlayer
-  m_TagString: Untagged
+  m_TagString: RopePoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -151,7 +151,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 82213379}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8, y: -3, z: 0}
+  m_LocalPosition: {x: 7, y: -2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 533875886}
@@ -199,7 +199,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7,
     type: 3}
-  m_Color: {r: 0, g: 0.03812504, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.9054732, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -266,8 +266,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0}
+  positionBeforeCollider: {x: 0, y: 0}
   previousPosition: {x: 0, y: 0}
-  gravity: 1000
+  deplacementUnit: 0.15
+  gravity: 300
 --- !u!1 &129127087
 GameObject:
   m_ObjectHideFlags: 0
@@ -298,10 +300,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointNumber: 20
-  stickLength: 0.3
-  playerPointStickLength: 0.7
+  stickLength: 0.25
+  playerPointStickLength: 0
   gravity: 20
-  playerRopePointRatio: 0.8
+  simulationLoopIterations: 3
+  playerRopePointRatio: 0
   pointPrefab: {fileID: 612620891362580031, guid: 71eb96d79afb104458f557bc4ec99680,
     type: 3}
   leftCharacter: {fileID: 1559682547}
@@ -476,9 +479,9 @@ GameObject:
   - component: {fileID: 1559682550}
   - component: {fileID: 1559682551}
   - component: {fileID: 1559682552}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LeftPlayer
-  m_TagString: Untagged
+  m_TagString: RopePoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -491,7 +494,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1559682547}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -3, z: 0}
+  m_LocalPosition: {x: 0, y: -2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 533875886}
@@ -606,8 +609,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0}
+  positionBeforeCollider: {x: 0, y: 0}
   previousPosition: {x: 0, y: 0}
-  gravity: 1000
+  deplacementUnit: 0.15
+  gravity: 300
 --- !u!1 &1884604418
 GameObject:
   m_ObjectHideFlags: 0
