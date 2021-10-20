@@ -1,0 +1,5 @@
+<<<<<<< HEAD
+﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":true,"audioPlay":false,"sceneViewState":{"m_AlwaysRefresh":false,"showFog":true,"showSkybox":true,"showFlares":true,"showImageEffects":true,"showParticleSystems":true,"showVisualEffectGraphs":true,"m_FxEnabled":true},"in2DMode":true,"pivot":{"x":4.160508155822754,"y":2.676142454147339,"z":-103.73943328857422},"rotation":{"x":0.0,"y":0.0,"z":0.0,"w":1.0},"size":9.244823455810547,"orthographic":true}
+=======
+﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":true,"audioPlay":false,"sceneViewState":{"m_AlwaysRefresh":false,"showFog":true,"showSkybox":true,"showFlares":true,"showImageEffects":true,"showParticleSystems":true,"showVisualEffectGraphs":true,"m_FxEnabled":true},"in2DMode":true,"pivot":{"x":1.5780749320983887,"y":0.035909056663513187,"z":-0.10321279615163803},"rotation":{"x":0.0,"y":0.0,"z":0.0,"w":1.0},"size":8.7098388671875,"orthographic":true}
+>>>>>>> Raphael_Platformer

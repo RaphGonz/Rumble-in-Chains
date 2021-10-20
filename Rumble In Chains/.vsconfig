@@ -1,0 +1,13 @@
+﻿{
+  "version": "1.0",
+<<<<<<< HEAD
+  "components": [ 
+    "Microsoft.VisualStudio.Workload.ManagedGame"
+  ]
+} 
+=======
+  "components": [
+    "Microsoft.VisualStudio.Workload.ManagedGame"
+  ]
+}
+>>>>>>> Raphael_Platformer
