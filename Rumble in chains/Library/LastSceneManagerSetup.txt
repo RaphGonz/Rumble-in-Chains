@@ -1,5 +1,5 @@
 sceneSetups:
-- path: D:/projets unity/IHM-Platformer/IHM Platformer/Assets/Scenes/Game.unity
+- path: Assets/Scenes/FlorentinTest.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0

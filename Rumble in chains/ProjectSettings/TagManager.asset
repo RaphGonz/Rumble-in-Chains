@@ -4,6 +4,7 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - RopePoint
   - Platform
   layers:
   - Default
@@ -12,18 +13,18 @@ TagManager:
   - 
   - Water
   - UI
+  - Rope
+  - Wall
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
   - Player1
   - Player2
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
   - 
   - 
   - 

@@ -45,7 +45,6 @@ public class InputController : MonoBehaviour
         {
             movement.y = 0;
             jumping = false;
-            Debug.Log("oui");
             jumpFramesCounter = maxJumpFramesCounter;
         }
         transform.Translate(movement);
