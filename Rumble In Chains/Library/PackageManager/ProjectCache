@@ -5,16 +5,26 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
+<<<<<<< HEAD
       ticks: 637703317798821868
     m_Hash: 1584356593
+=======
+      ticks: 637695653261571083
+    m_Hash: 2274089048
+>>>>>>> Jasmin
   m_LockFileStatus:
     m_FilePath: C:/Users/raphg/Desktop/Jeux/Unity/Rumble-in-Chains/Rumble In Chains/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
+<<<<<<< HEAD
       ticks: 637703317798831841
     m_Hash: 1130423807
+=======
+      ticks: 637695653261581065
+    m_Hash: 1317913032
+>>>>>>> Jasmin
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_PackageAssets:

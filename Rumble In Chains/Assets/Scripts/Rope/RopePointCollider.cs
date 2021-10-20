@@ -19,7 +19,7 @@ public class RopePointCollider : MonoBehaviour
 
     public LayerMask mask;
     
-    void Start()
+    void Awake()
     {
         pointCollider = GetComponent<Collider2D>();
         ropePoint = GetComponent<RopePoint>();
