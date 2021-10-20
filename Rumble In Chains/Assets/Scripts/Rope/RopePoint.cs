@@ -14,7 +14,7 @@ public class RopePoint : MonoBehaviour
 
     public bool onContact = false;
 
-    public void Start()
+    public void Awake()
     {
         ropePointCollider = GetComponent<RopePointCollider>();
         previousPosition = transform.position;
