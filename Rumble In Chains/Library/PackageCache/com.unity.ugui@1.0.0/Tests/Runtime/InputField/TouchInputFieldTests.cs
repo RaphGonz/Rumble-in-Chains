@@ -184,13 +184,10 @@ namespace InputfieldTests
         }
 
         [UnityTest]
-<<<<<<< HEAD
-=======
         [UnityPlatform(exclude = new[]
         {
             RuntimePlatform.Android // case 1338327
         })]
->>>>>>> Raphael_Platformer
         public IEnumerator FocusOpensTouchScreenKeyboard()
         {
             if (!TouchScreenKeyboard.isSupported)

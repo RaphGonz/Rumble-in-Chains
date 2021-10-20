@@ -167,20 +167,12 @@ namespace UnityEngine.UI
             m_PerformingLayoutUpdate = true;
 
             m_LayoutRebuildQueue.Sort(s_SortLayoutFunction);
-<<<<<<< HEAD
-            var layoutRebuildQueueCount = m_LayoutRebuildQueue.Count;
-=======
->>>>>>> Raphael_Platformer
 
             for (int i = 0; i <= (int)CanvasUpdate.PostLayout; i++)
             {
                 UnityEngine.Profiling.Profiler.BeginSample(m_CanvasUpdateProfilerStrings[i]);
 
-<<<<<<< HEAD
-                for (int j = 0; j < layoutRebuildQueueCount; j++)
-=======
                 for (int j = 0; j < m_LayoutRebuildQueue.Count; j++)
->>>>>>> Raphael_Platformer
                 {
                     var rebuild = m_LayoutRebuildQueue[j];
                     try
@@ -196,11 +188,7 @@ namespace UnityEngine.UI
                 UnityEngine.Profiling.Profiler.EndSample();
             }
 
-<<<<<<< HEAD
-            for (int i = 0; i < layoutRebuildQueueCount; ++i)
-=======
             for (int i = 0; i < m_LayoutRebuildQueue.Count; ++i)
->>>>>>> Raphael_Platformer
                 m_LayoutRebuildQueue[i].LayoutComplete();
 
             m_LayoutRebuildQueue.Clear();
@@ -215,18 +203,10 @@ namespace UnityEngine.UI
 
             m_PerformingGraphicUpdate = true;
 
-<<<<<<< HEAD
-            var graphicRebuildQueueCount = m_GraphicRebuildQueue.Count;
-            for (var i = (int)CanvasUpdate.PreRender; i < (int)CanvasUpdate.MaxUpdateValue; i++)
-            {
-                UnityEngine.Profiling.Profiler.BeginSample(m_CanvasUpdateProfilerStrings[i]);
-                for (var k = 0; k < graphicRebuildQueueCount; k++)
-=======
             for (var i = (int)CanvasUpdate.PreRender; i < (int)CanvasUpdate.MaxUpdateValue; i++)
             {
                 UnityEngine.Profiling.Profiler.BeginSample(m_CanvasUpdateProfilerStrings[i]);
                 for (var k = 0; k < m_GraphicRebuildQueue.Count; k++)
->>>>>>> Raphael_Platformer
                 {
                     try
                     {
@@ -242,11 +222,7 @@ namespace UnityEngine.UI
                 UnityEngine.Profiling.Profiler.EndSample();
             }
 
-<<<<<<< HEAD
-            for (int i = 0; i < graphicRebuildQueueCount; ++i)
-=======
             for (int i = 0; i < m_GraphicRebuildQueue.Count; ++i)
->>>>>>> Raphael_Platformer
                 m_GraphicRebuildQueue[i].GraphicUpdateComplete();
 
             m_GraphicRebuildQueue.Clear();

@@ -53,11 +53,6 @@ public class ButtonTests : IPrebuildSetup
 #endif
     }
 
-<<<<<<< HEAD
-    #region Press
-
-=======
->>>>>>> Raphael_Platformer
     [Test]
     public void PressShouldCallClickHandler()
     {
@@ -90,11 +85,6 @@ public class ButtonTests : IPrebuildSetup
         Assert.False(called);
     }
 
-<<<<<<< HEAD
-    #endregion
-
-    #region Submit
-=======
     [Test]
     public void SelectShouldHoldThePreviousStateAfterDisablingAndEnabling()
     {
@@ -108,7 +98,6 @@ public class ButtonTests : IPrebuildSetup
         button.enabled = true;
         Assert.True(button.isStateSelected, "Expected selected state to be true");
     }
->>>>>>> Raphael_Platformer
 
     [Test]
     public void SubmitShouldCallClickHandler()
@@ -142,13 +131,6 @@ public class ButtonTests : IPrebuildSetup
         Assert.False(called);
     }
 
-<<<<<<< HEAD
-    #endregion
-
-    #region Submit Transition
-
-=======
->>>>>>> Raphael_Platformer
     [UnityTest]
     public IEnumerator SubmitShouldTransitionToPressedStateAndBackToNormal()
     {
@@ -166,9 +148,4 @@ public class ButtonTests : IPrebuildSetup
 
         Assert.True(button.isStateNormal);
     }
-<<<<<<< HEAD
-
-    #endregion
-=======
->>>>>>> Raphael_Platformer
 }
