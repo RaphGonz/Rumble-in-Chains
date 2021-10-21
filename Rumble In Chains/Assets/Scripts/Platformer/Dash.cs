@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Dash : MonoBehaviour
 {
+    public PlayerController playerController;
+
     private Vector2 dashDirection;
 
     private float timeStartDash;
@@ -24,14 +26,14 @@ public class Dash : MonoBehaviour
 
     public void StartDash(Vector2 dashDirection)
     {
-        if (PlayerController.instance.canDash)
+        if (playerController.canDash)
         {
             if (dashDirection == new Vector2(0, 0))
             {
                 dashDirection = Vector2.right;
             }
-            PlayerController.instance.onDash = true;
-            PlayerController.instance.canDash = false;
+            playerController.onDash = true;
+            playerController.canDash = false;
             this.dashDirection = dashDirection;
             timeStartDash = Time.time;
         }
@@ -43,21 +45,21 @@ public class Dash : MonoBehaviour
 
         if (currentTime < timeFreezeOnDash)
         {
-            PlayerController.instance.velocity = new Vector2(0, 0);
+            playerController.velocity = new Vector2(0, 0);
         }
         else if (currentTime < timeFreezeOnDash + timeInsideDash)
         {
-            PlayerController.instance.velocity = GetCurrentDashSpeed() * dashDirection;
+            playerController.velocity = GetCurrentDashSpeed() * dashDirection;
         }
 
         else if (currentTime < timeFreezeOnDash + timeInsideDash + timeDecelerationAfterDash)
         {
-            PlayerController.instance.velocity = dashDirection * PlayerController.instance.actualMaxSpeed;
+            playerController.velocity = dashDirection * playerController.actualMaxSpeed;
         }
 
         else
         {
-            PlayerController.instance.onDash = false;
+            playerController.onDash = false;
         }
     }
 

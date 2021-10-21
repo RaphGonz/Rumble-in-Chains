@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerCollider : MonoBehaviour
 {
-
+    public PlayerController playerController;
     Collider2D playerCollider;
     Bounds bounds;
 
@@ -81,7 +81,7 @@ public class PlayerCollider : MonoBehaviour
                 }
                 i--;
             }
-            PlayerController.instance.MoveX(distanceRaycast * i/24);
+            playerController.MoveX(distanceRaycast * i/24);
         }
     }
     private void DiagonalsLeftCollision(float length) 
@@ -106,7 +106,7 @@ public class PlayerCollider : MonoBehaviour
                 }
                 i--;
             }
-            PlayerController.instance.MoveX(distanceRaycast * i/24);
+            playerController.MoveX(distanceRaycast * i/24);
         }
     }
 
@@ -161,13 +161,13 @@ public class PlayerCollider : MonoBehaviour
         if (hit)
         {
 
-            PlayerController.instance.GroundTouched();
+            playerController.GroundTouched();
         }
         else
         {
-            if (PlayerController.instance.jumpCount == 2)
+            if (playerController.jumpCount == 2)
             {
-                PlayerController.instance.jumpCount--;
+                playerController.jumpCount--;
             }
         }
     }
@@ -204,23 +204,23 @@ public class PlayerCollider : MonoBehaviour
 
         if (movement.y < 0)
         {
-            PlayerController.instance.bottomDirectionLocked = false;
+            playerController.bottomDirectionLocked = false;
             hitDown = DetectCollision(bottomLeftPoint, bottomRightPoint, Vector2.down, Vector2.Dot(Vector2.down, movement), numberOfRays);
         }
         else
         {
-            PlayerController.instance.topDirectionLocked = false;
+            playerController.topDirectionLocked = false;
             hitUp = DetectCollision(topRightPoint, topLeftPoint, Vector2.up, movement.y, numberOfRays);
         }
 
         if (movement.x < 0)
         {
-            PlayerController.instance.leftDirectionLocked = false;
+            playerController.leftDirectionLocked = false;
             hitLeft = DetectCollision(bottomLeftPoint, topLeftPoint, Vector2.left, -movement.x, numberOfRays);
         }
         else
         {
-            PlayerController.instance.rightDirectionLocked = false;
+            playerController.rightDirectionLocked = false;
             hitRight = DetectCollision(bottomRightPoint, topRightPoint, Vector2.right, movement.x, numberOfRays);
         }
 
@@ -229,27 +229,27 @@ public class PlayerCollider : MonoBehaviour
         if (hitDown)
         {
             movement.y += (-hitDown.distance + Vector2.Dot(Vector2.down, movement));
-            PlayerController.instance.velocity.y = 0;
-            PlayerController.instance.bottomDirectionLocked = true;
+            playerController.velocity.y = 0;
+            playerController.bottomDirectionLocked = true;
 
         }
         else if (hitUp)
         {
             movement.y += (hitUp.distance - movement.y);
-            PlayerController.instance.velocity.y = 0;
-            PlayerController.instance.topDirectionLocked = true;
+            playerController.velocity.y = 0;
+            playerController.topDirectionLocked = true;
         }
         if (hitLeft)
         {
             movement.x += (-hitLeft.distance - movement.x);
-            PlayerController.instance.velocity.x = 0;
-            PlayerController.instance.leftDirectionLocked = true;
+            playerController.velocity.x = 0;
+            playerController.leftDirectionLocked = true;
         }
         else if (hitRight)
         {
             movement.x += (hitLeft.distance - movement.x);
-            PlayerController.instance.velocity.x = 0;
-            PlayerController.instance.rightDirectionLocked = true;
+            playerController.velocity.x = 0;
+            playerController.rightDirectionLocked = true;
         }
 
         CanJump();
@@ -296,8 +296,8 @@ public class PlayerCollider : MonoBehaviour
 
 
             movement += (hit.distance - length) * direction;
-            PlayerController.instance.velocity.y = 0;
-            PlayerController.instance.velocity.x = 0;
+            playerController.velocity.y = 0;
+            playerController.velocity.x = 0;
 
 
             if (down)
@@ -315,7 +315,7 @@ public class PlayerCollider : MonoBehaviour
                     newPos = new Vector2(bounds.max.x - diagonalHitMovement, bounds.max.y);
                 }
 
-                movement = newPos - new Vector2(PlayerController.instance.transform.position.x, PlayerController.instance.transform.position.y);
+                movement = newPos - new Vector2(playerController.transform.position.x, playerController.transform.position.y);
             }
             
 
