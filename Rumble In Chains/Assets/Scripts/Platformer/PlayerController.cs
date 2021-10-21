@@ -11,8 +11,8 @@ public class PlayerController : MonoBehaviour
     private PlayerCollider playerCollider;
     private Dash dashManager;
     private Jump jumpManager;
-    
 
+    public Vector2 positionBeforeCollider;
 
     public Vector2 position;
     private Vector2 lastPosition;
@@ -68,6 +68,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         position = transform.position;
+        positionBeforeCollider = transform.position;
         actualMaxSpeed = walkSpeed;
         playerCollider = GetComponent<PlayerCollider>();
         dashManager = GetComponent<Dash>();
@@ -103,7 +104,10 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            velocity.y += gravity * Time.deltaTime;
+            if (velocity.y > -maxYspeed)
+            {
+                velocity.y += gravity * Time.deltaTime;
+            }
             
         }
 
@@ -160,11 +164,12 @@ public class PlayerController : MonoBehaviour
 
     public void UpdatePositionInRegardsOfCollision() //Modif la prochaine positions en fonctions des colliders qu'on touche, pour qu'on en sorte
     {
-        Vector2 movement = position - new Vector2(transform.position.x, transform.position.y);
+        Vector2 movement = position - new Vector2(positionBeforeCollider.x, positionBeforeCollider.y);
 
         playerCollider.UpdateCollisions(ref movement);
 
-        position = new Vector2(transform.position.x + movement.x, transform.position.y + movement.y);
+        position = new Vector3(movement.x + positionBeforeCollider.x, movement.y + positionBeforeCollider.y, 0);
+        positionBeforeCollider = position;
     }
 
     

@@ -290,7 +290,7 @@ public class PlayerCollider : MonoBehaviour
                 hit = DetectCollision(topRightPoint, direction, length);
             }
         }
-
+        /*
         if (hit)
         {
 
@@ -320,5 +320,6 @@ public class PlayerCollider : MonoBehaviour
             
 
         }
+        */
     }
 }
