@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,7 +6,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 
-    public static PlayerController instance;
+    
 
     private PlayerCollider playerCollider;
     private Dash dashManager;
@@ -61,17 +62,7 @@ public class PlayerController : MonoBehaviour
 
     int i = 0;
 
-    private void Awake()
-    {
-        if (instance == null)
-        {
-            instance = this;
-        }
-        else
-        {
-            Destroy(this);
-        }
-    }
+   
 
     // Start is called before the first frame update
     void Start()
@@ -83,12 +74,18 @@ public class PlayerController : MonoBehaviour
         jumpManager = GetComponent<Jump>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ApplyNewPosition()
+    {
+        transform.position = position;
+    }
+
+    // Pour mettre à jour la position et la velocity du player
+    public void UpdatePlayerVelocityAndPosition()
     {
  
-        UpdateVelocity();
-        UpdatePosition();
+        UpdateVelocity(); //ça modifie le vecteur velocité
+        UpdatePosition(); //ca calcule la prochaine position idéal (sans collider)
+        UpdatePositionInRegardsOfCollision();
         
     }
 
@@ -155,20 +152,25 @@ public class PlayerController : MonoBehaviour
         */
     }
 
-    private void UpdatePosition()
+    private void UpdatePosition() //Positions idéales
     {
         position += velocity * Time.deltaTime;
 
+    }
+
+    public void UpdatePositionInRegardsOfCollision() //Modif la prochaine positions en fonctions des colliders qu'on touche, pour qu'on en sorte
+    {
         Vector2 movement = position - new Vector2(transform.position.x, transform.position.y);
 
         playerCollider.UpdateCollisions(ref movement);
 
         position = new Vector2(transform.position.x + movement.x, transform.position.y + movement.y);
-
-        transform.position = position;
     }
 
-   
+    
+
+
+
 
     /*
     public void MoveRight()
@@ -231,6 +233,11 @@ public class PlayerController : MonoBehaviour
         {
             return (-proportionalDecelerationX * velocity.x + flatDecelerationX);
         }
+    }
+
+    internal void SetPosition(Vector2 newPosition)
+    {
+        position = newPosition;
     }
 
     public void GroundTouched()

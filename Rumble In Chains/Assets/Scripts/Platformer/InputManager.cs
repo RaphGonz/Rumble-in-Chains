@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
-    PlayerController player;
+    PlayerController playerController;
 
     public int playerNumber = 1;
 
@@ -16,7 +16,7 @@ public class InputManager : MonoBehaviour
 
     void Start()
     {
-        player = GetComponent<PlayerController>();
+        playerController = GetComponent<PlayerController>();
         Mathf.Clamp(playerNumber, 1, 2);
     }
 
@@ -30,7 +30,7 @@ public class InputManager : MonoBehaviour
         
         if(direction.x != 0)
         {
-            player.MoveX(Mathf.Sign(direction.x)); //On donne la direction 
+            playerController.MoveX(Mathf.Sign(direction.x)); //On donne la direction 
         }
         
 
@@ -67,21 +67,23 @@ public class InputManager : MonoBehaviour
 
         if (Input.GetButtonDown("A" + playerNumber))
         {
-            player.Jump();
+            print("A pressed");
+            playerController.Jump();
         }
         if (Input.GetButtonDown("X" + playerNumber))
         {
-            player.Dash(direction);
+            print("A pressed");
+            playerController.Dash(direction);
         }
         if (Input.GetButtonDown("B" + playerNumber))
         {
             print("B pressed");
-            player.Sprint();
+            playerController.Sprint();
         }
         if (Input.GetButtonUp("B" + playerNumber))
         {
             print("B released");
-            player.StopSprinting();
+            playerController.StopSprinting();
         }
         
 
@@ -106,9 +108,9 @@ public class InputManager : MonoBehaviour
         bool end = false;
         while(j > 0 && !end)
         {
-            if (player.jumpCount > 0)
+            if (playerController.jumpCount > 0)
             {
-                player.Jump();
+                playerController.Jump();
                 end = true;
             }
             j--;

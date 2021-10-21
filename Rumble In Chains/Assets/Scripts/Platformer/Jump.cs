@@ -11,7 +11,7 @@ using UnityEngine;
 
 public class Jump : MonoBehaviour
 {
-
+    public PlayerController playerController;
 
     [SerializeField] private float jumpForce;
     [SerializeField] private Vector2 wallJumpDirection;
@@ -41,7 +41,7 @@ public class Jump : MonoBehaviour
             StartFirstJump();
         }
 
-        else if (PlayerController.instance.onGrab) //moche mais fait le job, j'utiliserai plutot un getter dans PlayerController pour faire propre #Raphael
+        else if (playerController.onGrab) //moche mais fait le job, j'utiliserai plutot un getter dans PlayerController pour faire propre #Raphael
         {
             StartWallJump();
         }
@@ -69,7 +69,7 @@ public class Jump : MonoBehaviour
         }
         else
         {
-            PlayerController.instance.onJump = false;
+            playerController.onJump = false;
         }
     }
 
@@ -86,20 +86,20 @@ public class Jump : MonoBehaviour
      */
     private void StartFirstJump()
     {
-        PlayerController.instance.jumpCount--;
-        PlayerController.instance.onJump = true;
+        playerController.jumpCount--;
+        playerController.onJump = true;
 
         jumpCount--;
         onFirstJump = true;
-        PlayerController.instance.velocity.y = jumpForce;
+        playerController.velocity.y = jumpForce;
         variableJumpForce = jumpForce;
         timeStartJump = Time.time;
     }
 
     private void StartSecondJump()
     {
-        PlayerController.instance.jumpCount--;
-        PlayerController.instance.onJump = true;
+        playerController.jumpCount--;
+        playerController.onJump = true;
 
         jumpCount--;
         onFirstJump = false;
@@ -110,9 +110,9 @@ public class Jump : MonoBehaviour
 
     private void StartWallJump()
     {
-        PlayerController.instance.onJump = true;
+        playerController.onJump = true;
 
-        if (PlayerController.instance.grabDirectionx >= 0)
+        if (playerController.grabDirectionx >= 0)
         {
             wallJumpDirection = new Vector2(-1, 0);
         }
@@ -135,12 +135,12 @@ public class Jump : MonoBehaviour
         if (Time.time - timeStartJump > timeDurationJump)
         {
             onFirstJump = false;
-            PlayerController.instance.onJump = false;
+            playerController.onJump = false;
             jumpReleased = false;
         }
         else
         {
-            PlayerController.instance.velocity.y = variableJumpForce;
+            playerController.velocity.y = variableJumpForce;
         }
 
         if (jumpReleased && Time.time - timeStartJump > timeDurationJump * 0.5f)
@@ -154,11 +154,11 @@ public class Jump : MonoBehaviour
         if (Time.time - timeStartJump > timeDurationJump)
         {
             onSecondJump = false;
-            PlayerController.instance.onJump = false;
+            playerController.onJump = false;
         }
         else
         {
-            PlayerController.instance.velocity.y = jumpForce * 0.7f;
+            playerController.velocity.y = jumpForce * 0.7f;
         }
     }
 
@@ -167,11 +167,11 @@ public class Jump : MonoBehaviour
         if (Time.time - timeStartJump > timeDurationJump)
         {
             onWallJump = false;
-            PlayerController.instance.onJump = false;
+            playerController.onJump = false;
         }
         else
         {
-            PlayerController.instance.velocity = new Vector2(wallJumpDirection.x * wallJumpForce.x, wallJumpForce.y);
+            playerController.velocity = new Vector2(wallJumpDirection.x * wallJumpForce.x, wallJumpForce.y);
         }
     }
 }
