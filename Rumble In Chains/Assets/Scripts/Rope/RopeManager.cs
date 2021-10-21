@@ -218,7 +218,7 @@ public class RopeManager : MonoBehaviour
     }
     
 
-    
+    /*
     private void LeftComputePosition()
     {
         float modifierCoefficient = 1f;
@@ -286,7 +286,7 @@ public class RopeManager : MonoBehaviour
         //positionsRight[1] = (stickCenterLeft + stickDirectionLeft * stickLength * (1 - modifierCoefficient));
         positionsRight[0] = (stickCenterLeft - stickDirectionLeft * stickLength * modifierCoefficient);
     }
-
+    */
     
 
     void DisplayPoints()

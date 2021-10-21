@@ -45,7 +45,7 @@ public class RopeForceManager : MonoBehaviour
 
     Vector2 startPosition = new Vector2(5, 10);
 
-    void Start()
+    void Awake()
     {
 
         leftPlayer = leftCharacter.GetComponent<Player>();
@@ -53,10 +53,12 @@ public class RopeForceManager : MonoBehaviour
 
         startPosition = leftPlayer.position;
 
-        listRopePoints = new List<RopePoint>();
-        listAllRopePoints = new List<RopePoint>();
-        listForces = new List<Vector2>();
-        listVelocities = new List<Vector2>();
+        listRopePoints = new List<RopePoint>(pointNumber);
+        listAllRopePoints = new List<RopePoint>(pointNumber + 2);
+        listForces = new List<Vector2>(pointNumber + 2);
+        listVelocities = new List<Vector2>(pointNumber + 2);
+
+        
 
         Vector2 position = startPosition;
 
@@ -68,6 +70,7 @@ public class RopeForceManager : MonoBehaviour
         {
             GameObject point = Instantiate(pointPrefab, position, Quaternion.Euler(0, 0, 0));
             listRopePoints.Add(point.GetComponent<RopePoint>());
+            listAllRopePoints.Add(point.GetComponent<RopePoint>());
             listForces.Add(new Vector2(0, 0));
             listVelocities.Add(new Vector2(0, 0));
             position.x += stickLength;
@@ -103,17 +106,17 @@ public class RopeForceManager : MonoBehaviour
     void SimulatePoints()
     {
         Vector2 positionBeforeUpdateLeft = leftPlayer.transform.position;
-        UpdatePlayerLeft();
+        //UpdatePlayerLeft();
         leftPlayer.previousPosition = positionBeforeUpdateLeft;
 
         Vector2 positionBeforeUpdateRight = rightPlayer.transform.position;
-        UpdatePlayerRight();
+        //UpdatePlayerRight();
         rightPlayer.previousPosition = positionBeforeUpdateRight;
 
 
         for (int i = 0; i < pointNumber + 2; i++)
         {
-            listForces[i] = new Vector2(0,0);
+            listForces[i].Set(0, 0);
         }
 
         ComputePosition();
@@ -121,8 +124,10 @@ public class RopeForceManager : MonoBehaviour
         for (int i = 0; i < pointNumber + 2; i++)
         {
             //listRopePoints[i].TranslatePosition((listRopePoints[i].position - listRopePoints[i].previousPosition) * 0.9f);
-            listForces[i] += Vector2.down * gravity * Time.deltaTime * Time.deltaTime;
+            listForces[i] += Vector2.down * gravity;
         }
+
+
 
         for (int i = 0; i < pointNumber + 2; i++)
         {
@@ -141,19 +146,19 @@ public class RopeForceManager : MonoBehaviour
         //leftPlayer.UpdateCollisions();
         //listAllRopePoints[1].UpdateCollisions();
 
-        Vector2 rightVector = (listRopePoints[1].position - listRopePoints[0].position);
+        Vector2 rightVector = (listAllRopePoints[1].position - listAllRopePoints[0].position);
         float rightStretching = rightVector.magnitude;
         Vector2 rightDirection = rightVector.normalized;
 
         float springForce = springConstant * (rightStretching - initialStretchingLeft);
 
         float frictionForce = 0;
-        //float frictionForce = frictionConstant * (Vector2.Dot((listVelocities[currentIndice + 1] - listVelocities[currentIndice - 1]), rightVector) / rightStretching);
+        frictionForce = frictionConstant * (Vector2.Dot((listVelocities[1] - listVelocities[0]), rightVector) / rightStretching);
 
 
         Vector2 totalSpringForce = (springForce + frictionForce) * rightDirection;
 
-        Vector2 dampingForce = -dampingConstant * listVelocities[0] * listVelocities[0] * listVelocities[0].normalized;
+        Vector2 dampingForce = -dampingConstant * listVelocities[0].magnitude * listVelocities[0].magnitude * listVelocities[0].normalized;
 
 
         listForces[0] += totalSpringForce + dampingForce;
@@ -161,13 +166,14 @@ public class RopeForceManager : MonoBehaviour
         //leftPlayer.UpdateCollisions();
 
 
-        for (int i = 1; i < pointNumber; i++)
+        for (int i = 1; i < pointNumber + 1; i++)
         {
             //listAllRopePoints[i].UpdateCollisions();
             //listAllRopePoints[i + 1].UpdateCollisions();
             
 
             ComputeSpringForce(i);
+            //Debug.Log(i);
 
             //listRopePoints[i].UpdateCollisions();
             //listRopePoints[i + 1].UpdateCollisions();
@@ -177,19 +183,19 @@ public class RopeForceManager : MonoBehaviour
         //rightPlayer.UpdateCollisions();
 
 
-        rightVector = (listRopePoints[pointNumber].position - listRopePoints[pointNumber+1].position);
+        rightVector = (listAllRopePoints[pointNumber].position - listAllRopePoints[pointNumber+1].position);
         rightStretching = rightVector.magnitude;
         rightDirection = rightVector.normalized;
 
         springForce = springConstant * (rightStretching - initialStretchingLeft);
 
         frictionForce = 0;
-        //float frictionForce = frictionConstant * (Vector2.Dot((listVelocities[currentIndice + 1] - listVelocities[currentIndice - 1]), rightVector) / rightStretching);
+        frictionForce = frictionConstant * (Vector2.Dot((listVelocities[pointNumber] - listVelocities[pointNumber + 1]), rightVector) / rightStretching);
 
 
         totalSpringForce = (springForce + frictionForce) * rightDirection;
 
-        dampingForce = -dampingConstant * listVelocities[pointNumber + 1] * listVelocities[pointNumber + 1] * listVelocities[pointNumber + 1].normalized;
+        dampingForce = -dampingConstant * listVelocities[pointNumber + 1].magnitude * listVelocities[pointNumber + 1].magnitude * listVelocities[pointNumber + 1].normalized;
 
 
         listForces[pointNumber + 1] += totalSpringForce + dampingForce;
@@ -206,32 +212,45 @@ public class RopeForceManager : MonoBehaviour
         Vector2 leftDirection = leftVector.normalized;
 
         float springForce = springConstant * (leftStretching - initialStretchingLeft);
-        float frictionForce = frictionConstant * (Vector2.Dot((listVelocities[currentIndice - 1] - listVelocities[currentIndice + 1]), leftVector) / leftStretching);
+
+        float frictionForce = 0;
+        if (Mathf.Abs(leftStretching) > 0)
+        {
+            frictionForce = frictionConstant * (Vector2.Dot((listVelocities[currentIndice - 1] - listVelocities[currentIndice]), leftVector) / leftStretching);
+        }
+        
 
         Vector2 totalSpringForce = (springForce + frictionForce) * leftDirection;
 
-        Vector2 dampingForce = -dampingConstant * listVelocities[currentIndice] * listVelocities[currentIndice] * listVelocities[currentIndice].normalized;
+        Vector2 dampingForce = -dampingConstant * listVelocities[currentIndice].magnitude * listVelocities[currentIndice].magnitude * listVelocities[currentIndice].normalized;
 
 
         listForces[currentIndice] += totalSpringForce + dampingForce;
-        
 
 
+        //
         Vector2 rightVector = (listAllRopePoints[currentIndice + 1].position - listAllRopePoints[currentIndice].position);
+
         float rightStretching = rightVector.magnitude;
         Vector2 rightDirection = rightVector.normalized;
 
-        springForce = springConstant * (rightStretching - initialStretchingLeft);
+        springForce = springConstant * (rightStretching - initialStretchingRight);
 
-        frictionForce = frictionConstant * (Vector2.Dot((listVelocities[currentIndice + 1] - listVelocities[currentIndice - 1]), rightVector) / rightStretching);
+        if (Mathf.Abs(rightStretching) > 0)
+        {
+            frictionForce = frictionConstant * (Vector2.Dot((listVelocities[currentIndice + 1] - listVelocities[currentIndice]), rightVector) / rightStretching);
+        }
+            
 
 
         totalSpringForce = (springForce + frictionForce) * rightDirection;
 
-        dampingForce = -dampingConstant * listVelocities[currentIndice] * listVelocities[currentIndice] * listVelocities[currentIndice].normalized;
+        dampingForce = -dampingConstant * listVelocities[currentIndice].magnitude * listVelocities[currentIndice].magnitude * listVelocities[currentIndice].normalized;
 
 
         listForces[currentIndice] += totalSpringForce + dampingForce;
+
+        
     }
 
 

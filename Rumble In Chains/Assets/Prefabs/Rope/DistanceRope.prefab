@@ -370,7 +370,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f38a1b41bc0d9a4498b30b9985c2a8b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointNumber: 20
+  pointNumber: 15
+  storageLength: 4
+  initialStorage: 2
   stickLength: 0.25
   playerPointStickLength: 0
   gravity: 20
