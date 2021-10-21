@@ -86,10 +86,10 @@ public class Jump : MonoBehaviour
      */
     private void StartFirstJump()
     {
-        playerController.jumpCount--;
+        //playerController.jumpCount--;
         playerController.onJump = true;
 
-        jumpCount--;
+        //jumpCount--; //inutile donc commenté
         onFirstJump = true;
         playerController.velocity.y = jumpForce;
         variableJumpForce = jumpForce;
@@ -98,10 +98,10 @@ public class Jump : MonoBehaviour
 
     private void StartSecondJump()
     {
-        playerController.jumpCount--;
+        //playerController.jumpCount--;
         playerController.onJump = true;
 
-        jumpCount--;
+        //jumpCount--; inutile donc commenté
         onFirstJump = false;
         onWallJump = false;
         onSecondJump = true;

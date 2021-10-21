@@ -94,7 +94,7 @@ public class PlayerController : MonoBehaviour
     private void UpdateVelocity()
     {
 
-        Vector2 deceleration = new Vector2(ComputeDecelerationX(), 0);
+        Vector2 deceleration = new Vector2(ComputeDecelerationX(), 0); //Vecteur vertical ! Possible de faire une deceleration sur y aussi, a tester
 
         // pas de gravité pendant le dash
         if (onDash)
@@ -103,8 +103,9 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            velocity.y += gravity * Time.deltaTime;
-            
+            print("A");
+            velocity.y += gravity * Time.deltaTime; //On ajoute tout le temps sans limiter
+            velocity.y = Mathf.Clamp(velocity.y, -30, 30); //Donc on limite ici
         }
 
         if (onJump)
