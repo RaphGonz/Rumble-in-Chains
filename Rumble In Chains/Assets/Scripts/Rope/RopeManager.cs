@@ -100,7 +100,7 @@ public class RopeManager : MonoBehaviour
 
     void Update()
     {
-        
+        TestInput();
 
         for (int i = 0; i < simulationLoopIterations; i++)
         {
@@ -336,28 +336,28 @@ public class RopeManager : MonoBehaviour
     }
 
 
-    /*
+    
     private void TestInput()
     {
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetButtonDown("RB1"))
         {
             AddRopeLeft();
         }
-        else if (Input.GetKeyDown(KeyCode.E))
+        else if (Input.GetButtonDown("LB1"))
         {
             ReduceRopeLeft();
         }
 
-        if (Input.GetKeyDown(KeyCode.Keypad1))
+        if (Input.GetButtonDown("RB2"))
         {
             AddRopeRight();
         }
-        else if (Input.GetKeyDown(KeyCode.Keypad2))
+        else if (Input.GetButtonDown("LB2"))
         {
             ReduceRopeRight();
         }
     }
-    */
+    
 
     private void ReduceRopeLeft()
     {

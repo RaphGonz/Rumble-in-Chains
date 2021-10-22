@@ -95,7 +95,7 @@ public class PlayerController : MonoBehaviour
     private void UpdateVelocity()
     {
 
-        Vector2 deceleration = new Vector2(ComputeDecelerationX(), 0);
+        Vector2 deceleration = new Vector2(ComputeDecelerationX(), 0); //Vecteur vertical ! Possible de faire une deceleration sur y aussi, a tester
 
         // pas de gravité pendant le dash
         if (onDash)
