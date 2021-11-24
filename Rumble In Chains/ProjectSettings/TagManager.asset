@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - RopePoint
+  - Point1
+  - Point2
   layers:
   - Default
   - TransparentFX
@@ -23,8 +25,8 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
+  - Player1
+  - Player2
   - 
   - 
   - 

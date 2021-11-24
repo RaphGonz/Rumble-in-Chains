@@ -1,0 +1,62 @@
+{
+  "Attacks": [
+    { // 1st attack
+      "prelag": 8,
+      "postlag": 10,
+      "hitboxes": [
+        {
+          "damage": 8,
+          "expulsionX": 0.5,
+          "expulsionY": 0.5,
+          "type": "sphere",
+          "radius": 8,
+          "centerX": 8,
+          "centerY": 8,
+          "startUpTiming": 8,
+          "durationOfHitbox": 8
+        },
+        {
+          "damage": 10,
+          "expulsionX": 1.5,
+          "expulsionY":  1.5,
+          "type": "capsule",
+          "centerOfTheFirstSphereX": 8,
+          "centerOfTheFirstSphereY": 8,
+          "centerOfTheSecondSphereX": 10,
+          "centerOfTheSecondSphereY": 10,
+          "startUpTiming": 10,
+          "durationOfHitbox": 10
+        }
+      ]
+    },
+    { // 2nd attack
+      "prelag": 8,
+      "postlag": 10,
+      "hitboxes": [
+        {
+          "damage": 8,
+          "expulsionX": 0.5,
+          "expulsionY": 0.5,
+          "type": "sphere",
+          "radius": 8,
+          "centerX": 8,
+          "centerY": 8,
+          "startUpTiming": 8,
+          "durationOfHitbox": 8
+        },
+        {
+          "damage": 10,
+          "expulsionX": 1.5,
+          "expulsionY": 1.5,
+          "type": "capsule",
+          "centerOfTheFirstSphereX": 8,
+          "centerOfTheFirstSphereY": 8,
+          "centerOfTheSecondSphereX": 10,
+          "centerOfTheSecondSphereY": 10,
+          "startUpTiming": 10,
+          "durationOfHitbox": 10
+        }
+      ]
+    }
+  ]
+}

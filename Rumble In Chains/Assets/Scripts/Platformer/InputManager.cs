@@ -13,6 +13,9 @@ public class InputManager : MonoBehaviour
 
     public float deadZone;
 
+    [SerializeField]
+    CharacterController characterController;
+
 
     void Start()
     {
@@ -84,6 +87,11 @@ public class InputManager : MonoBehaviour
         {
             print("B released");
             playerController.StopSprinting();
+        }
+        if (Input.GetButtonDown("Y" + playerNumber))
+        {
+            print("Y pressed");
+            characterController.Attack(AttackType.Jab);
         }
         
 
