@@ -7,11 +7,14 @@ public class CharacterController : MonoBehaviour //!!!
 {
     private float _damages = 0;
     private float _weight;
+    private float _points = 0; //public pour le moment
 
     private int _attackFrame = 0;
-    private LayerMask enemyMask;
+    public LayerMask enemyMask;
     public float Damages { get; }
     public float Weight { get; }
+
+    public float Points { get => _points; set { _points = value; print(_points); } }
 
     #region Attacks
     public int AttackFrame { get; set; }
@@ -49,7 +52,10 @@ public class CharacterController : MonoBehaviour //!!!
         hitboxList.Add(hitbox1);
         Jab = new Attack(4, 4, hitboxList);
         
-        enemyMask = this.gameObject.name.Equals("Player1") ? LayerMask.GetMask("Player2") : LayerMask.GetMask("Player1");
+        enemyMask = this.gameObject.layer == 17 ? LayerMask.GetMask("Player2") : LayerMask.GetMask("Player1"); //17 c'est la layer Player1 : a voir comment faire ça proprepement sans int
+
+        
+
     }
 
     // Update is called once per frame
@@ -115,7 +121,7 @@ public class CharacterController : MonoBehaviour //!!!
                         {
                             hit = true;
                             collider.gameObject.GetComponent<CharacterController>().TakeDamages(hitboxSphere.Damage); // changer le get component : l'adversaire est unique on peut donc le faire au start
-                            collider.gameObject.GetComponent<CharacterController>().Expel(hitbox.Expulsion);
+                            Expel(hitbox.Expulsion);
                             // en vrai, vu qu'il y a un seul character controller adverse, il suffit de get en début de partie le character controller de l'adversaire
                         }
 

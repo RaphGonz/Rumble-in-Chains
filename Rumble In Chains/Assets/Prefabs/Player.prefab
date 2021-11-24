@@ -11,8 +11,10 @@ GameObject:
   - component: {fileID: 5899132421662591187}
   - component: {fileID: 5899132421662591186}
   - component: {fileID: 5899132421662591194}
+  - component: {fileID: -4906896824598484616}
   - component: {fileID: 5899132421662591193}
   - component: {fileID: 2966433189847347344}
+  - component: {fileID: -3414843495647307070}
   - component: {fileID: 5899132421662591199}
   - component: {fileID: 5899132421662591198}
   - component: {fileID: 5899132421662591197}
@@ -99,7 +101,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -115,6 +117,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!50 &-4906896824598484616
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5899132421662591185}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 1
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!114 &5899132421662591193
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -129,6 +152,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerNumber: 1
   deadZone: 0.5
+  characterController: {fileID: -3414843495647307070}
 --- !u!114 &2966433189847347344
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,6 +165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 701df67f3545e71409c781c8f154d78c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  positionBeforeCollider: {x: 0, y: 0}
   position: {x: 0, y: 0}
   velocity: {x: 0, y: 0}
   bottomDirectionLocked: 0
@@ -165,6 +190,24 @@ MonoBehaviour:
   timeDivider: 0.001
   onDash: 0
   canDash: 1
+--- !u!114 &-3414843495647307070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5899132421662591185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04adf9824a04c1b4c83e87b2828a0f50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyMask:
+    serializedVersion: 2
+    m_Bits: 0
+  myInputController: {fileID: 5899132421662591193}
+  myPlayerController: {fileID: 2966433189847347344}
+  opponentController: {fileID: 0}
 --- !u!114 &5899132421662591199
 MonoBehaviour:
   m_ObjectHideFlags: 0
