@@ -202,7 +202,7 @@ public class CharacterController : MonoBehaviour //!!!
         }
         invincible = false;
         print("coroutine ended");
-        gameObject.GetComponent<InputManager>().coroutineStarted = false;
+        //gameObject.GetComponent<InputManager>().coroutineStarted = false;
     }
 
     void OnDrawGizmos()
