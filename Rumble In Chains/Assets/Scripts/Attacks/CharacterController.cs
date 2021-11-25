@@ -19,10 +19,13 @@ public class CharacterController : MonoBehaviour //!!!
 
     bool hit = false; //Sert a savoir si j'ai touché quelque chose ou non : a rattacher a chaque hitbox
 
-    private bool invincible = false;
+    public bool invincible = false; //Nombre de frame invicibilité de base, en plus après avoir été stunned
+                                     //A equilibrer et faire varier avec les percentages
     [SerializeField]
-    int baseTimeInvincibleInFrames = 10; //Nombre de frame invicibilité de base, en plus après avoir été stunned
-                                         //A equilibrer et faire varier avec les percentages
+    float maxFramesInvincibility = 1000;
+    float framesInvicibility = 0;
+
+    public bool recovering = false;
 
 
     #region Attacks
@@ -71,16 +74,27 @@ public class CharacterController : MonoBehaviour //!!!
     // Update is called once per frame
     void Update()
     {
-       
+
         if (CurrentAttack != null)
         {
             CheckHitboxes(CurrentAttack);
+        }
+        if (recovering)
+        {
+            framesInvicibility++;
+            if(framesInvicibility > maxFramesInvincibility)
+            {
+                recovering = false;
+                invincible = false;
+                framesInvicibility = 0;
+            }
         }
     }
 
 
     public void TakePourcentages(float pourcentage)
     {
+
         if (!invincible)
         {
             _pourcentages += pourcentage;
@@ -88,7 +102,7 @@ public class CharacterController : MonoBehaviour //!!!
             //print(_pourcentages);
             //UIController.Instance.ChangePercentages(this.gameObject.name.Equals("Player1") ? 1 : 2, _damages);
         }
-
+        print(invincible);
     }
 
     void CheckHitboxes(Attack attack)
@@ -137,12 +151,12 @@ public class CharacterController : MonoBehaviour //!!!
                         //Si j'ai touché quelque chose et que je n'avais rien touché avant
                         if (collider != null && !hit)
                         {
-                            print("hit reussi");
+                            
                             hit = true;
                             collider.gameObject.GetComponent<CharacterController>().TakePourcentages(hitboxSphere.Damage); // changer le get component : l'adversaire est unique on peut donc le faire au start
                             
                             Expel(hitbox.Expulsion);
-
+                            
                             Stun(hitbox.StunFactor);
                             // en vrai, vu qu'il y a un seul character controller adverse, il suffit de get en début de partie le character controller de l'adversaire
                         }
@@ -180,28 +194,20 @@ public class CharacterController : MonoBehaviour //!!!
 
     void Stun(float stunFactor) //On lance un timer dans l'input manager qui change le comportement des boutons pendant un nombre de frame donné, ici stun * pourcentages
     {
-        print("stun invincible =");
-        print(invincible);
         if (!invincible)
         {
             opponentController.gameObject.GetComponent<InputManager>().Stun((int)(stunFactor * opponentController.gameObject.GetComponent<CharacterController>().Pourcentages));
-            invincible = true;
+            opponentController.gameObject.GetComponent<CharacterController>().invincible = true;
         }
     }
 
-    public IEnumerator KeepInvincible()
+    public void KeepInvincible()
     {
-        print("coroutine started");
-
-        int i = 0;
-        while (i < baseTimeInvincibleInFrames)
+        if (framesInvicibility < maxFramesInvincibility)
         {
-            print("A");
-            i++;
-            yield return new WaitForEndOfFrame();
+            framesInvicibility++;
         }
         invincible = false;
-        print("coroutine ended");
         //gameObject.GetComponent<InputManager>().coroutineStarted = false;
     }
 

@@ -23,6 +23,9 @@ public class InputManager : MonoBehaviour
 
     public bool coroutineStarted = false;
 
+    
+
+
 
     void Start()
     {
@@ -76,8 +79,6 @@ public class InputManager : MonoBehaviour
         }
         else
         {
-            print("stunned");
-            print(stunTimeInFrames);
             timeStunned++;
             if (Input.anyKeyDown)
             {
@@ -89,8 +90,8 @@ public class InputManager : MonoBehaviour
             {
                 stunned = false;
                 timeStunned = 0;
+                gameObject.GetComponent<CharacterController>().recovering = true;
                 //coroutineStarted = true;
-                StartCoroutine(gameObject.GetComponent<CharacterController>().KeepInvincible());
                 
             }
         }
