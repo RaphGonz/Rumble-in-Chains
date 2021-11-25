@@ -5,13 +5,13 @@ using UnityEngine;
 
 public class CharacterController : MonoBehaviour //!!!
 {
-    private float _damages = 0;
+    private float _pourcentages = 0;
     private float _weight;
     private float _points = 0; //public pour le moment
 
     private int _attackFrame = 0;
     public LayerMask enemyMask;
-    public float Damages { get; }
+    public float Pourcentages { get => _pourcentages; set { _pourcentages = value; } }
     public float Weight { get; }
 
     public float Points { get => _points; set { _points = value; print(_points); } }
@@ -46,7 +46,8 @@ public class CharacterController : MonoBehaviour //!!!
     // Start is called before the first frame update
     void Start()
     {
-        HitboxSphere hitbox1 = new HitboxSphere(5, 0, 3, Vector2.one * 5, new Vector2(1, 0), 1);
+        HitboxSphere hitbox1 = new HitboxSphere(5, 1, 0, 3, Vector2.one, new Vector2(1, 0), 1);
+        
         //HitboxCapsule hitbox2 = new HitboxCapsule(5, 0, 3, Vector2.one, Vector2.zero, 1*Vector2.one, 1);
         List<Hitbox> hitboxList = new List<Hitbox>();
         hitboxList.Add(hitbox1);
@@ -68,16 +69,18 @@ public class CharacterController : MonoBehaviour //!!!
     }
 
 
-    public void TakeDamages(float purcentages)
+    public void TakePourcentages(float pourcentage)
     {
-        _damages += purcentages;
+        _pourcentages += pourcentage;
+        //print(gameObject.name);
+        //print(_pourcentages);
         //UIController.Instance.ChangePercentages(this.gameObject.name.Equals("Player1") ? 1 : 2, _damages);
 
     }
 
     void CheckHitboxes(Attack attack)
     {
-        Debug.Log("current attack is not null");
+        //Debug.Log("current attack is not null");
         _attackFrame++;
         if (_attackFrame >= attack.Prelag) // no need to check if under attack.Prelag + attack.AttackDuration + attack.Postlag bcs currentAttack becomes null at the moment when the frame counter is greater than this amount
         {
@@ -86,7 +89,7 @@ public class CharacterController : MonoBehaviour //!!!
             {
                 if (_attackFrame >= attack.Prelag + hitbox.StartUpTiming && _attackFrame < attack.Prelag + hitbox.StartUpTiming + hitbox.DurationOfHitbox)
                 {
-                    Debug.Log("attacking!");
+                    //Debug.Log("attacking!");
 
                     if (hitbox is HitboxCapsule)
                     {
@@ -120,7 +123,8 @@ public class CharacterController : MonoBehaviour //!!!
                         if (collider != null && !hit)
                         {
                             hit = true;
-                            collider.gameObject.GetComponent<CharacterController>().TakeDamages(hitboxSphere.Damage); // changer le get component : l'adversaire est unique on peut donc le faire au start
+                            collider.gameObject.GetComponent<CharacterController>().TakePourcentages(hitboxSphere.Damage); // changer le get component : l'adversaire est unique on peut donc le faire au start
+                            
                             Expel(hitbox.Expulsion);
                             // en vrai, vu qu'il y a un seul character controller adverse, il suffit de get en début de partie le character controller de l'adversaire
                         }
@@ -133,7 +137,7 @@ public class CharacterController : MonoBehaviour //!!!
         if(_attackFrame >= attack.Prelag + attack.AttackDuration + attack.Postlag )
         {
             CurrentAttack = null;
-            Debug.Log("current attack is now null");
+            //Debug.Log("current attack is now null");
             _attackFrame = 0;
             //myInputController.attacking = false;
         }
@@ -142,8 +146,18 @@ public class CharacterController : MonoBehaviour //!!!
     
     void Expel(Vector2 expelForce)
     {
-        opponentController.velocity += new Vector2(expelForce.x, 0);
+        Vector2 finalExpelForce = opponentController.gameObject.GetComponent<CharacterController>().Pourcentages * expelForce;
+        opponentController.velocity += finalExpelForce;
+        print(opponentController.gameObject.GetComponent<CharacterController>().Pourcentages);
+        print(expelForce);
+        print(finalExpelForce);
+        print(opponentController.velocity);
         Debug.Log("expelled !");
+    }
+
+    void Stun()
+    {
+
     }
 
     void OnDrawGizmos()

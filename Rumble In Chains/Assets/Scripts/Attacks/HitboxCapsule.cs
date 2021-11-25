@@ -11,7 +11,7 @@ public class HitboxCapsule : Hitbox // !!!
     public Vector2 CenterOfTheSecondSphere { get => _centerOfTheSecondSphere; }
     public float Radius { get => _radius; }
 
-    public HitboxCapsule(float damage, float startUpTiming, float durationOfHitbox, Vector2 expulsion, Vector2 centerOfTheFirstSphere, Vector2 centerOfTheSecondSphere, float radius) : base(damage, startUpTiming, durationOfHitbox, expulsion)
+    public HitboxCapsule(float damage, float stunFactor, float startUpTiming, float durationOfHitbox, Vector2 expulsion, Vector2 centerOfTheFirstSphere, Vector2 centerOfTheSecondSphere, float radius) : base(damage, stunFactor, startUpTiming, durationOfHitbox, expulsion)
     {
         _centerOfTheFirstSphere = centerOfTheFirstSphere;
         _centerOfTheSecondSphere = centerOfTheSecondSphere;

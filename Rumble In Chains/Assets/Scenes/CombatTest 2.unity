@@ -149,7 +149,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 43118346}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 17.3911, y: -1.4832, z: 3.001607}
+  m_LocalPosition: {x: -2.3, y: -1.4832, z: 3.001607}
   m_LocalScale: {x: 5.0619693, y: 11.999646, z: 1}
   m_Children:
   - {fileID: 516709209}
@@ -194,9 +194,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5bd8a5032770634786f12a366ef981b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  number_of_player_inside: 0
-  frequency: 1
-  pointsGiven: 10
 --- !u!1 &179633969
 GameObject:
   m_ObjectHideFlags: 0
@@ -401,8 +398,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 188035428}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.7275728, y: -8.528791, z: 3.001607}
-  m_LocalScale: {x: 57.23407, y: 1.7911499, z: 1}
+  m_LocalPosition: {x: -2.0386, y: -8.7017, z: 3.001607}
+  m_LocalScale: {x: 51.699535, y: 2.1368418, z: 1}
   m_Children: []
   m_Father: {fileID: 1771658516}
   m_RootOrder: 0
@@ -460,7 +457,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 19.19142
+  orthographic size: 18.196342
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -789,7 +786,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f38a1b41bc0d9a4498b30b9985c2a8b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointNumber: 30
+  pointNumber: 20
   storageLength: 4
   initialStorage: 2
   maxSpeedRatio: 10
@@ -862,7 +859,7 @@ PrefabInstance:
     - target: {fileID: 5899132421662591187, guid: 360e08196e2cc1142982da7688613d12,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.9528255
+      value: -15.2
       objectReference: {fileID: 0}
     - target: {fileID: 5899132421662591187, guid: 360e08196e2cc1142982da7688613d12,
         type: 3}
@@ -1032,7 +1029,7 @@ PrefabInstance:
     - target: {fileID: 5899132421662591187, guid: 360e08196e2cc1142982da7688613d12,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.3368456
+      value: -21.7
       objectReference: {fileID: 0}
     - target: {fileID: 5899132421662591187, guid: 360e08196e2cc1142982da7688613d12,
         type: 3}
