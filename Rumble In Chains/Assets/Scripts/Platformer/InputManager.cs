@@ -22,7 +22,11 @@ public class InputManager : MonoBehaviour
     CharacterController characterController;
 
     public bool coroutineStarted = false;
-    
+
+    #region UI
+    [SerializeField]
+    UIStunSlider stunSlider;
+    #endregion
 
     void Start()
     {
@@ -82,14 +86,16 @@ public class InputManager : MonoBehaviour
             {
                 //Idées : Appuyer sur 3 boutons en même temps enlève 3 frames
                 //        Changer de direction enlève une framea
-                stunTimeInFrames--;
+                timeStunned++;
             }
+            stunSlider.ChangeStunValue(stunTimeInFrames - timeStunned);
             if(timeStunned >= stunTimeInFrames)
             {
                 stunned = false;
                 timeStunned = 0;
                 gameObject.GetComponent<CharacterController>().recovering = true;
                 //coroutineStarted = true;
+                stunSlider.ChangeStunValue(stunTimeInFrames);
                 
             }
         }
@@ -132,5 +138,7 @@ public class InputManager : MonoBehaviour
     {
         stunned = true;
         this.stunTimeInFrames = stunTimeInFrames;
+        stunSlider.ChangeMaxStunValue(stunTimeInFrames);
+        stunSlider.ChangeStunValue(stunTimeInFrames);
     }
 }

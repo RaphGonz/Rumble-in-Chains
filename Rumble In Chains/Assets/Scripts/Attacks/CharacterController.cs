@@ -7,16 +7,16 @@ public class CharacterController : MonoBehaviour //!!!
 {
     private float _pourcentages = 0;
     private float _weight;
-    private float _points = 0;
+    private int _points = 0;
 
 
 
     private int _attackFrame = 0;
     public LayerMask enemyMask;
-    public float Pourcentages { get => _pourcentages; set { _pourcentages = value; } }
+    public float Pourcentages { get => _pourcentages; set { _pourcentages = value; UIController.Instance.ChangePercentages(this.gameObject.name.Equals("PlayerLeft") ? 1 : 2, Pourcentages); } }
     public float Weight { get; }
 
-    public float Points { get => _points; set { _points = value; print(_points); } }
+    public int Points { get => _points; set { _points = value; UIController.Instance.ChangePoints(this.gameObject.name.Equals("PlayerLeft") ? 1 : 2, Points); } }
 
     bool hit = false; //Sert a savoir si j'ai touché quelque chose ou non : a rattacher a chaque hitbox
 
@@ -54,6 +54,11 @@ public class CharacterController : MonoBehaviour //!!!
     PlayerController myPlayerController;
     [SerializeField]
     PlayerController opponentController;
+
+    #region UI
+    [SerializeField]
+    UIStunSlider stunSlider;
+    #endregion
 
 
     // Start is called before the first frame update
@@ -98,12 +103,11 @@ public class CharacterController : MonoBehaviour //!!!
 
         if (!invincible)
         {
-            _pourcentages += pourcentage;
-            //print(gameObject.name);
-            //print(_pourcentages);
-            //UIController.Instance.ChangePercentages(this.gameObject.name.Equals("Player1") ? 1 : 2, _damages);
+            Pourcentages += pourcentage;
+            
         }
         print(invincible);
+        
     }
 
     void CheckHitboxes(Attack attack)
@@ -197,9 +201,12 @@ public class CharacterController : MonoBehaviour //!!!
     {
         if (!invincible)
         {
-            opponentController.gameObject.GetComponent<InputManager>().Stun((int)(stunFactor * opponentController.gameObject.GetComponent<CharacterController>().Pourcentages));
+            int stunValueInFrames = (int)(stunFactor * opponentController.gameObject.GetComponent<CharacterController>().Pourcentages);
+            opponentController.gameObject.GetComponent<InputManager>().Stun(stunValueInFrames);
             opponentController.gameObject.GetComponent<CharacterController>().invincible = true;
+
         }
+        
     }
 
     public void KeepInvincible()

@@ -10,7 +10,10 @@ public class UIController : MonoBehaviour
     TextMeshProUGUI player1Percentages;
     [SerializeField]
     TextMeshProUGUI player2Percentages;
-
+    [SerializeField]
+    TextMeshProUGUI player1Points;
+    [SerializeField]
+    TextMeshProUGUI player2Points;
 
     private static UIController instance;
     private UIController() { } //au cas où certains fous tenteraient qd même d'utiliser le mot clé "new"
@@ -31,5 +34,11 @@ public class UIController : MonoBehaviour
     {
         TextMeshProUGUI text = player == 1 ? player1Percentages : player2Percentages;
         text.text = "Player " + (player == 1 ? "1" : "2") + " : " + percentages + "%";
+    }
+
+    public void ChangePoints(int player, int points)
+    {
+        TextMeshProUGUI text = player == 1 ? player1Points : player2Points;
+        text.text = points + " points";
     }
 }

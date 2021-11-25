@@ -95,10 +95,6 @@ public class PlayerController : MonoBehaviour
         {
             facing = -1;
         }
-        
-
-        print(gameObject.name + " " + facing);
-        //print(gameObject.name + " " + GetComponent<InputManager>().direction.x);
     }
 
     
