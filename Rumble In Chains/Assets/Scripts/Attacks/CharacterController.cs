@@ -17,6 +17,8 @@ public class CharacterController : MonoBehaviour //!!!
 
     public float Points { get => _points; set { _points = value; print(_points); } }
 
+    bool hit = false; //Sert a savoir si j'ai touché quelque chose ou non : a rattacher a chaque hitbox
+
     private bool invincible = false;
     [SerializeField]
     int baseTimeInvincibleInFrames = 10; //Nombre de frame invicibilité de base, en plus après avoir été stunned
@@ -69,6 +71,7 @@ public class CharacterController : MonoBehaviour //!!!
     // Update is called once per frame
     void Update()
     {
+       
         if (CurrentAttack != null)
         {
             CheckHitboxes(CurrentAttack);
@@ -94,9 +97,10 @@ public class CharacterController : MonoBehaviour //!!!
         _attackFrame++;
         if (_attackFrame >= attack.Prelag) // no need to check if under attack.Prelag + attack.AttackDuration + attack.Postlag bcs currentAttack becomes null at the moment when the frame counter is greater than this amount
         {
-            bool hit = false;
+            
             foreach (var hitbox in attack.Hitboxes)
             {
+                //Si notre timer _attackframe est après le prelage et avant la fin des apparitions d'hitbox alors
                 if (_attackFrame >= attack.Prelag + hitbox.StartUpTiming && _attackFrame < attack.Prelag + hitbox.StartUpTiming + hitbox.DurationOfHitbox)
                 {
                     //Debug.Log("attacking!");
@@ -130,8 +134,10 @@ public class CharacterController : MonoBehaviour //!!!
                         //FOR DEBUGGING PURPOSES
                         lastCircleRadius = hitboxSphere.Radius;
                         lastCircleCenter = hitboxSphere.Center + new Vector2(transform.position.x, transform.position.y);
+                        //Si j'ai touché quelque chose et que je n'avais rien touché avant
                         if (collider != null && !hit)
                         {
+                            print("hit reussi");
                             hit = true;
                             collider.gameObject.GetComponent<CharacterController>().TakePourcentages(hitboxSphere.Damage); // changer le get component : l'adversaire est unique on peut donc le faire au start
                             
@@ -144,6 +150,10 @@ public class CharacterController : MonoBehaviour //!!!
                         
                     }
                 }
+                else //On a rien touché : peut etre a l'avenir hit devrait être unique pour chaque hitbox
+                {
+                    hit = false;
+                }
             }
         }
         if(_attackFrame >= attack.Prelag + attack.AttackDuration + attack.Postlag )
@@ -152,6 +162,7 @@ public class CharacterController : MonoBehaviour //!!!
             //Debug.Log("current attack is now null");
             _attackFrame = 0;
             //myInputController.attacking = false;
+            
         }
         
     }
@@ -169,20 +180,29 @@ public class CharacterController : MonoBehaviour //!!!
 
     void Stun(float stunFactor) //On lance un timer dans l'input manager qui change le comportement des boutons pendant un nombre de frame donné, ici stun * pourcentages
     {
-        opponentController.gameObject.GetComponent<InputManager>().Stun((int)(stunFactor * opponentController.gameObject.GetComponent<CharacterController>().Pourcentages));
-        invincible = true;
+        print("stun invincible =");
+        print(invincible);
+        if (!invincible)
+        {
+            opponentController.gameObject.GetComponent<InputManager>().Stun((int)(stunFactor * opponentController.gameObject.GetComponent<CharacterController>().Pourcentages));
+            invincible = true;
+        }
     }
 
     public IEnumerator KeepInvincible()
     {
+        print("coroutine started");
+
         int i = 0;
         while (i < baseTimeInvincibleInFrames)
         {
+            print("A");
             i++;
-            print("I'm invincible");
             yield return new WaitForEndOfFrame();
         }
-
+        invincible = false;
+        print("coroutine ended");
+        gameObject.GetComponent<InputManager>().coroutineStarted = false;
     }
 
     void OnDrawGizmos()
