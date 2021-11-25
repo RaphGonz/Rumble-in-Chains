@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 
-    
+    public int facing;
 
     private PlayerCollider playerCollider;
     private Dash dashManager;
@@ -73,6 +73,7 @@ public class PlayerController : MonoBehaviour
         playerCollider = GetComponent<PlayerCollider>();
         dashManager = GetComponent<Dash>();
         jumpManager = GetComponent<Jump>();
+        facing = GetComponent<InputManager>().direction.x > 0 ? 1 : -1;
     }
 
     public void ApplyNewPosition()
@@ -87,7 +88,17 @@ public class PlayerController : MonoBehaviour
         UpdateVelocity(); //ça modifie le vecteur velocité
         UpdatePosition(); //ca calcule la prochaine position idéal (sans collider)
         UpdatePositionInRegardsOfCollision();
+        if (GetComponent<InputManager>().direction.x > 0) {
+            facing = 1;
+        }
+        if(GetComponent<InputManager>().direction.x < 0)
+        {
+            facing = -1;
+        }
         
+
+        print(gameObject.name + " " + facing);
+        //print(gameObject.name + " " + GetComponent<InputManager>().direction.x);
     }
 
     

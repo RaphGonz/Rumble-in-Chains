@@ -10,7 +10,7 @@ public class InputManager : MonoBehaviour
     public int playerNumber = 1;
 
     private Vector2 direction_raw;
-    private Vector2 direction;
+    public Vector2 direction;
 
     public float deadZone;
 
@@ -22,10 +22,7 @@ public class InputManager : MonoBehaviour
     CharacterController characterController;
 
     public bool coroutineStarted = false;
-
     
-
-
 
     void Start()
     {
@@ -38,6 +35,7 @@ public class InputManager : MonoBehaviour
 
     void Update()
     {
+        
         
         if (!stunned)
         {

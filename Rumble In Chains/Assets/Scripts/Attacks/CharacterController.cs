@@ -10,6 +10,7 @@ public class CharacterController : MonoBehaviour //!!!
     private float _points = 0;
 
 
+
     private int _attackFrame = 0;
     public LayerMask enemyMask;
     public float Pourcentages { get => _pourcentages; set { _pourcentages = value; } }
@@ -144,10 +145,10 @@ public class CharacterController : MonoBehaviour //!!!
                     {
                         
                         HitboxSphere hitboxSphere = (HitboxSphere)hitbox;
-                        Collider2D collider = Physics2D.OverlapCircle(hitboxSphere.Center + new Vector2(transform.position.x, transform.position.y), hitboxSphere.Radius, enemyMask) ;
+                        Collider2D collider = Physics2D.OverlapCircle(myPlayerController.facing * hitboxSphere.Center +  new Vector2(transform.position.x, transform.position.y), hitboxSphere.Radius, enemyMask) ;
                         //FOR DEBUGGING PURPOSES
                         lastCircleRadius = hitboxSphere.Radius;
-                        lastCircleCenter = hitboxSphere.Center + new Vector2(transform.position.x, transform.position.y);
+                        lastCircleCenter = myPlayerController.facing * hitboxSphere.Center + new Vector2(transform.position.x, transform.position.y);
                         //Si j'ai touché quelque chose et que je n'avais rien touché avant
                         if (collider != null && !hit)
                         {
