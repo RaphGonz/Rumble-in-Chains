@@ -130,7 +130,7 @@ public class RopeManager : MonoBehaviour
         for (int i = 0; i < variablePointNumber; i++) //Points de la corde uniquement
         {
             Vector2 positionBeforeUpdate = listRopePoints[i].transform.position;
-            listRopePoints[i].TranslatePosition((listRopePoints[i].position - listRopePoints[i].previousPosition) * 0.9f); // *0.9f pcq ??
+            listRopePoints[i].TranslatePosition((listRopePoints[i].position - listRopePoints[i].previousPosition) * 1.0f); // *0.9f pcq ??
             listRopePoints[i].TranslatePosition(Vector2.down * gravity * Time.deltaTime * Time.deltaTime);
             listRopePoints[i].previousPosition = positionBeforeUpdate;
         }

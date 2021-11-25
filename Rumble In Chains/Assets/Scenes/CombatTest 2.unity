@@ -1659,10 +1659,10 @@ MonoBehaviour:
   pointNumber: 20
   storageLength: 4
   initialStorage: 2
-  maxSpeedRatio: 10
+  maxSpeedRatio: 5
   stickLength: 0.3
   playerPointStickLength: 0
-  gravity: 30
+  gravity: 5
   simulationLoopIterations: 3
   playerRopePointRatio: 1
   pointPrefab: {fileID: 612620891362580031, guid: 71eb96d79afb104458f557bc4ec99680,
