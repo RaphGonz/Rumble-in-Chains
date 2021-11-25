@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,12 +14,17 @@ public class InputManager : MonoBehaviour
 
     public float deadZone;
 
+    public bool stunned; //Permet de savoir si on est stunned ou non
+    public int stunTimeInFrames = 0;
+    int timeStunned = 0;
+
     [SerializeField]
     CharacterController characterController;
 
 
     void Start()
     {
+        stunned = false;
         playerController = GetComponent<PlayerController>();
         Mathf.Clamp(playerNumber, 1, 2);
     }
@@ -27,71 +33,61 @@ public class InputManager : MonoBehaviour
 
     void Update()
     {
-        direction_raw = Vector2.right * Filter(Input.GetAxis("Horizontal" + playerNumber)) + Vector2.up * Filter(Input.GetAxis("Vertical" + playerNumber));
-        direction = direction_raw.normalized;
-
         
-        if(direction.x != 0)
+        if (!stunned)
         {
-            playerController.MoveX(Mathf.Sign(direction.x)); //On donne la direction 
-        }
-        
+
+            direction_raw = Vector2.right * Filter(Input.GetAxis("Horizontal" + playerNumber)) + Vector2.up * Filter(Input.GetAxis("Vertical" + playerNumber));
+            direction = direction_raw.normalized;
 
 
-        /*
-        var input = Input.inputString;
+            if (direction.x != 0)
+            {
+                playerController.MoveX(Mathf.Sign(direction.x)); //On donne la direction 
+            }
 
-        switch (input)
-        {
-            case ("joystick button 0"):
-                if (player.canJump)
-                {
-                    player.Jump();
-                }
-                else
-                {
-                    StartCoroutine(JumpInputBuffer());
-                }
-                break;
-            case ("X"):
-                player.Dash(direction);
-                break;
-            case ("joystick button 1"):
-                //player.Sprint()
-                print("B pressed");
-                break;
-            default:
-                break;
+            if (Input.GetButtonDown("A" + playerNumber))
+            {
+                //print("A pressed");
+                playerController.Jump();
+            }
+            if (Input.GetButtonDown("X" + playerNumber))
+            {
+                //print("A pressed");
+                playerController.Dash(direction);
+            }
+            if (Input.GetButtonDown("B" + playerNumber))
+            {
+                //print("B pressed");
+                playerController.Sprint();
+            }
+            if (Input.GetButtonUp("B" + playerNumber))
+            {
+                //print("B released");
+                playerController.StopSprinting();
+            }
+            if (Input.GetButtonDown("Y" + playerNumber))
+            {
+                //print("Y pressed");
+                characterController.Attack(AttackType.Jab);
+            }
         }
-
-        */
-
-        
-
-        if (Input.GetButtonDown("A" + playerNumber))
+        else
         {
-            print("A pressed");
-            playerController.Jump();
-        }
-        if (Input.GetButtonDown("X" + playerNumber))
-        {
-            print("A pressed");
-            playerController.Dash(direction);
-        }
-        if (Input.GetButtonDown("B" + playerNumber))
-        {
-            print("B pressed");
-            playerController.Sprint();
-        }
-        if (Input.GetButtonUp("B" + playerNumber))
-        {
-            print("B released");
-            playerController.StopSprinting();
-        }
-        if (Input.GetButtonDown("Y" + playerNumber))
-        {
-            print("Y pressed");
-            characterController.Attack(AttackType.Jab);
+            print("stunned");
+            print(stunTimeInFrames);
+            timeStunned++;
+            if (Input.anyKeyDown)
+            {
+                //Idées : Appuyer sur 3 boutons en même temps enlève 3 frames
+                //        Changer de direction enlève une framea
+                stunTimeInFrames--;
+            }
+            if(timeStunned >= stunTimeInFrames)
+            {
+                stunned = false;
+                timeStunned = 0;
+            }
         }
         
 
@@ -128,4 +124,9 @@ public class InputManager : MonoBehaviour
         yield return null;
     }
 
+    internal void Stun(int stunTimeInFrames)
+    {
+        stunned = true;
+        this.stunTimeInFrames = stunTimeInFrames;
+    }
 }

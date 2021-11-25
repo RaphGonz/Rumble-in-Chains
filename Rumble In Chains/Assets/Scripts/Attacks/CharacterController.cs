@@ -126,6 +126,7 @@ public class CharacterController : MonoBehaviour //!!!
                             collider.gameObject.GetComponent<CharacterController>().TakePourcentages(hitboxSphere.Damage); // changer le get component : l'adversaire est unique on peut donc le faire au start
                             
                             Expel(hitbox.Expulsion);
+                            Stun(hitbox.StunFactor);
                             // en vrai, vu qu'il y a un seul character controller adverse, il suffit de get en début de partie le character controller de l'adversaire
                         }
 
@@ -155,9 +156,9 @@ public class CharacterController : MonoBehaviour //!!!
         Debug.Log("expelled !");
     }
 
-    void Stun()
+    void Stun(float stunFactor) //On lance un timer dans l'input manager qui change le comportement des boutons pendant un nombre de frame donné, ici stun * pourcentages
     {
-
+        opponentController.gameObject.GetComponent<InputManager>().Stun((int)(stunFactor * opponentController.gameObject.GetComponent<CharacterController>().Pourcentages));
     }
 
     void OnDrawGizmos()
