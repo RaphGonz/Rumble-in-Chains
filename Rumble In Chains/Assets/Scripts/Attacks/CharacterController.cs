@@ -188,7 +188,7 @@ public class CharacterController : MonoBehaviour //!!!
     
     void Expel(Vector2 expelForce)
     {
-        Vector2 finalExpelForce = opponentController.gameObject.GetComponent<CharacterController>().Pourcentages * expelForce;
+        Vector2 finalExpelForce = opponentController.gameObject.GetComponent<CharacterController>().Pourcentages * expelForce * myPlayerController.facing ;
         opponentController.velocity += finalExpelForce;
         //print(opponentController.gameObject.GetComponent<CharacterController>().Pourcentages);
         //print(expelForce);
