@@ -7,7 +7,8 @@ public class CharacterController : MonoBehaviour //!!!
 {
     private float _pourcentages = 0;
     private float _weight;
-    private float _points = 0; //public pour le moment
+    private float _points = 0;
+
 
     private int _attackFrame = 0;
     public LayerMask enemyMask;
@@ -15,6 +16,12 @@ public class CharacterController : MonoBehaviour //!!!
     public float Weight { get; }
 
     public float Points { get => _points; set { _points = value; print(_points); } }
+
+    private bool invincible = false;
+    [SerializeField]
+    int baseTimeInvincibleInFrames = 10; //Nombre de frame invicibilité de base, en plus après avoir été stunned
+                                         //A equilibrer et faire varier avec les percentages
+
 
     #region Attacks
     public int AttackFrame { get; set; }
@@ -71,10 +78,13 @@ public class CharacterController : MonoBehaviour //!!!
 
     public void TakePourcentages(float pourcentage)
     {
-        _pourcentages += pourcentage;
-        //print(gameObject.name);
-        //print(_pourcentages);
-        //UIController.Instance.ChangePercentages(this.gameObject.name.Equals("Player1") ? 1 : 2, _damages);
+        if (!invincible)
+        {
+            _pourcentages += pourcentage;
+            //print(gameObject.name);
+            //print(_pourcentages);
+            //UIController.Instance.ChangePercentages(this.gameObject.name.Equals("Player1") ? 1 : 2, _damages);
+        }
 
     }
 
@@ -126,6 +136,7 @@ public class CharacterController : MonoBehaviour //!!!
                             collider.gameObject.GetComponent<CharacterController>().TakePourcentages(hitboxSphere.Damage); // changer le get component : l'adversaire est unique on peut donc le faire au start
                             
                             Expel(hitbox.Expulsion);
+
                             Stun(hitbox.StunFactor);
                             // en vrai, vu qu'il y a un seul character controller adverse, il suffit de get en début de partie le character controller de l'adversaire
                         }
@@ -149,16 +160,29 @@ public class CharacterController : MonoBehaviour //!!!
     {
         Vector2 finalExpelForce = opponentController.gameObject.GetComponent<CharacterController>().Pourcentages * expelForce;
         opponentController.velocity += finalExpelForce;
-        print(opponentController.gameObject.GetComponent<CharacterController>().Pourcentages);
-        print(expelForce);
-        print(finalExpelForce);
-        print(opponentController.velocity);
-        Debug.Log("expelled !");
+        //print(opponentController.gameObject.GetComponent<CharacterController>().Pourcentages);
+        //print(expelForce);
+        //print(finalExpelForce);
+        //print(opponentController.velocity);
+        //Debug.Log("expelled !");
     }
 
     void Stun(float stunFactor) //On lance un timer dans l'input manager qui change le comportement des boutons pendant un nombre de frame donné, ici stun * pourcentages
     {
         opponentController.gameObject.GetComponent<InputManager>().Stun((int)(stunFactor * opponentController.gameObject.GetComponent<CharacterController>().Pourcentages));
+        invincible = true;
+    }
+
+    public IEnumerator KeepInvincible()
+    {
+        int i = 0;
+        while (i < baseTimeInvincibleInFrames)
+        {
+            i++;
+            print("I'm invincible");
+            yield return new WaitForEndOfFrame();
+        }
+
     }
 
     void OnDrawGizmos()

@@ -87,6 +87,7 @@ public class InputManager : MonoBehaviour
             {
                 stunned = false;
                 timeStunned = 0;
+                StartCoroutine(gameObject.GetComponent<CharacterController>().KeepInvincible());
             }
         }
         
