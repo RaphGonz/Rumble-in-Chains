@@ -373,6 +373,7 @@ MonoBehaviour:
   pointNumber: 15
   storageLength: 4
   initialStorage: 2
+  maxSpeedRatio: 1.5
   stickLength: 0.25
   playerPointStickLength: 0
   gravity: 20
@@ -380,5 +381,5 @@ MonoBehaviour:
   playerRopePointRatio: 0
   pointPrefab: {fileID: 612620891362580031, guid: 71eb96d79afb104458f557bc4ec99680,
     type: 3}
-  leftCharacter: {fileID: 775440106238608834}
-  rightCharacter: {fileID: 775440107445494322}
+  leftPlayerGameObject: {fileID: 775440106238608834}
+  rightCharacterGameObject: {fileID: 775440107445494322}

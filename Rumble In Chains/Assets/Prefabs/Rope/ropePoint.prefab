@@ -99,11 +99,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0}
+  positionBeforeCollider: {x: 0, y: 0}
   previousPosition: {x: 0, y: 0}
-  topDirectionLocked: 0
-  bottomDirectionLocked: 0
-  leftDirectionLocked: 0
-  rightDirectionLocked: 0
   onContact: 0
 --- !u!61 &4025771893335791993
 BoxCollider2D:
@@ -146,3 +143,6 @@ MonoBehaviour:
   debug: 1
   rayLength: 0.1
   boundsExtension: 0.001
+  mask:
+    serializedVersion: 2
+    m_Bits: 128
