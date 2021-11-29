@@ -1,5 +1,23 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &1687415734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7127397669951487557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 154e100898c4a834db75238fa3630ee2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  position: {x: 0, y: 0}
+  positionBeforeCollider: {x: 0, y: 0}
+  gravity: 10
+  previousPosition: {x: 0, y: 0}
+  onContact: 0
+  fix: 0
 --- !u!1 &7667920559789645161
 GameObject:
   m_ObjectHideFlags: 0
@@ -268,7 +286,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: ropePoint (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 612620891362580030, guid: 71eb96d79afb104458f557bc4ec99680, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 71eb96d79afb104458f557bc4ec99680, type: 3}
 --- !u!1 &7127397669951487557 stripped
 GameObject:

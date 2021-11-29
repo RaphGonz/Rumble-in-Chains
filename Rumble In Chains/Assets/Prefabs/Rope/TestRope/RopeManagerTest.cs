@@ -34,7 +34,7 @@ public class RopeManagerTest : MonoBehaviour
     public GameObject rightCharacterGameObject;
 
     private RopePoint leftPlayer;
-    private RopePoint rightPlayer;
+    private RopePointTest rightPlayer;
 
     Vector2[] positionsLeft;
     Vector2[] positionsRight;
@@ -74,7 +74,7 @@ public class RopeManagerTest : MonoBehaviour
 
         
         leftPlayer = leftPlayerGameObject.GetComponent<RopePoint>();
-        rightPlayer = rightCharacterGameObject.GetComponent<RopePoint>();
+        rightPlayer = rightCharacterGameObject.GetComponent<RopePointTest>();
         
         startPosition = leftPlayer.position;
 
@@ -120,8 +120,8 @@ public class RopeManagerTest : MonoBehaviour
     private void UpdatePlayerRight()
     {
         Vector2 positionBeforeUpdate = rightPlayer.transform.position;
-        rightPlayer.TranslatePosition((rightPlayer.position - rightPlayer.previousPosition) * 1.0f); // *0.9f pcq ??
-        rightPlayer.TranslatePosition(Vector2.down * gravity * Time.deltaTime * Time.deltaTime);
+        rightPlayer.TranslatePosition((rightPlayer.position - rightPlayer.previousPosition) * 0.999f); // *0.9f pcq ??
+        rightPlayer.TranslatePosition(Vector2.down * rightPlayer.GetGravity() * Time.deltaTime * Time.deltaTime);
         rightPlayer.previousPosition = positionBeforeUpdate;
     }
 
@@ -136,7 +136,7 @@ public class RopeManagerTest : MonoBehaviour
         for (int i = 0; i < variablePointNumber; i++) //Points de la corde uniquement
         {
             Vector2 positionBeforeUpdate = listRopePoints[i].transform.position;
-            listRopePoints[i].TranslatePosition((listRopePoints[i].position - listRopePoints[i].previousPosition) * 1.0f); // *0.9f pcq ??
+            listRopePoints[i].TranslatePosition((listRopePoints[i].position - listRopePoints[i].previousPosition) * 0.999f); // *0.9f pcq ??
             listRopePoints[i].TranslatePosition(Vector2.down * gravity * Time.deltaTime * Time.deltaTime);
             listRopePoints[i].previousPosition = positionBeforeUpdate;
         }
