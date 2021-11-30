@@ -19,7 +19,8 @@ public class RopeManagerTest : MonoBehaviour
     public float stickLength;
     public float gravity = 100f;
 
-    public float simulationLoopIterations = 3;
+    public float ropeLoopIterations = 3;
+    public float simulationLoopIterations = 2;
 
     public float playerRopePointRatio = 1f;
 
@@ -102,9 +103,16 @@ public class RopeManagerTest : MonoBehaviour
     {
         TestInput();
 
-        for (int i = 0; i < simulationLoopIterations; i++)
+        for (int i = 0; i < Mathf.Max(simulationLoopIterations, ropeLoopIterations); i++)
         {
-            SimulatePoints();
+            if (i < simulationLoopIterations)
+            {
+                SimulatePoints();
+            }
+            if (i < ropeLoopIterations)
+            {
+                ComputePosition();
+            }
             DisplayPoints();
         }
     }
@@ -141,7 +149,7 @@ public class RopeManagerTest : MonoBehaviour
             listRopePoints[i].previousPosition = positionBeforeUpdate;
         }
 
-        ComputePosition();
+        //ComputePosition();
 
 
 

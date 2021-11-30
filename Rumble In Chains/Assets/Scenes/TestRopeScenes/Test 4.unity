@@ -240,6 +240,37 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 390382694238553422, guid: 078ff6fda9098ba498f33acb9ff326da,
+        type: 3}
+      propertyPath: debug
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7667920559789645163, guid: 078ff6fda9098ba498f33acb9ff326da,
+        type: 3}
+      propertyPath: gravity
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7667920559789645163, guid: 078ff6fda9098ba498f33acb9ff326da,
+        type: 3}
+      propertyPath: pointNumber
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7667920559789645163, guid: 078ff6fda9098ba498f33acb9ff326da,
+        type: 3}
+      propertyPath: pointPrefab
+      value: 
+      objectReference: {fileID: 4091833878827374267, guid: 1208ff1f6ebd50543864bdbd27e4dd10,
+        type: 3}
+    - target: {fileID: 7667920559789645163, guid: 078ff6fda9098ba498f33acb9ff326da,
+        type: 3}
+      propertyPath: ropeLoopIterations
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7667920559789645163, guid: 078ff6fda9098ba498f33acb9ff326da,
+        type: 3}
+      propertyPath: simulationLoopIterations
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7667920559900204886, guid: 078ff6fda9098ba498f33acb9ff326da,
         type: 3}
       propertyPath: m_RootOrder
@@ -602,10 +633,31 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 390382694238553422, guid: 078ff6fda9098ba498f33acb9ff326da,
+        type: 3}
+      propertyPath: debug
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7667920559789645163, guid: 078ff6fda9098ba498f33acb9ff326da,
+        type: 3}
+      propertyPath: gravity
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7667920559789645163, guid: 078ff6fda9098ba498f33acb9ff326da,
+        type: 3}
+      propertyPath: pointPrefab
+      value: 
+      objectReference: {fileID: 4091833878827374267, guid: 1208ff1f6ebd50543864bdbd27e4dd10,
+        type: 3}
+    - target: {fileID: 7667920559789645163, guid: 078ff6fda9098ba498f33acb9ff326da,
+        type: 3}
+      propertyPath: ropeLoopIterations
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7667920559789645163, guid: 078ff6fda9098ba498f33acb9ff326da,
         type: 3}
       propertyPath: simulationLoopIterations
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7667920559900204886, guid: 078ff6fda9098ba498f33acb9ff326da,
         type: 3}
