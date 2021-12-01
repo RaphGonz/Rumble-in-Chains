@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
     // Jump
     public int jumpCount;
     public bool onJump;
-    private float jumpCooldown = 1.0f;
+    [SerializeField] private float jumpCooldown = 0.5f;
     private float timeStartJump = 0.0f;
 
 
