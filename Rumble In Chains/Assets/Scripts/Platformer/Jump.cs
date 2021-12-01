@@ -23,7 +23,7 @@ public class Jump : MonoBehaviour
     private bool onWallJump;
     private bool jumpReleased;
 
-    private float jumpCount;
+    [SerializeField] private int jumpCount;
 
     private float timeStartJump;
     [SerializeField] private float timeDurationJump;
@@ -32,7 +32,7 @@ public class Jump : MonoBehaviour
 
 
     // Appelé lorsque la touche de jump est préssée. Decide du jump à faire et le lance.
-    public void StartJump(float playerControllerJumpCount)
+    public void StartJump(int playerControllerJumpCount)
     {
         jumpCount = playerControllerJumpCount;
 
@@ -86,10 +86,10 @@ public class Jump : MonoBehaviour
      */
     private void StartFirstJump()
     {
-        //playerController.jumpCount--;
+        playerController.jumpCount--;
         playerController.onJump = true;
 
-        //jumpCount--; //inutile donc commenté
+        jumpCount--; //inutile donc commenté
         onFirstJump = true;
         playerController.velocity.y = jumpForce;
         variableJumpForce = jumpForce;
@@ -98,10 +98,10 @@ public class Jump : MonoBehaviour
 
     private void StartSecondJump()
     {
-        //playerController.jumpCount--;
+        playerController.jumpCount--;
         playerController.onJump = true;
 
-        //jumpCount--; inutile donc commenté
+        jumpCount--; //inutile donc commenté
         onFirstJump = false;
         onWallJump = false;
         onSecondJump = true;
@@ -173,5 +173,16 @@ public class Jump : MonoBehaviour
         {
             playerController.velocity = new Vector2(wallJumpDirection.x * wallJumpForce.x, wallJumpForce.y);
         }
+    }
+
+
+    public int GetJumpCount()
+    {
+        return jumpCount;
+    }
+
+    public void SetJumpCount(int count)
+    {
+        jumpCount = count;
     }
 }
