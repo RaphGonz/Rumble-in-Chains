@@ -443,6 +443,111 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!1001 &692899191
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 390382694238553422, guid: 078ff6fda9098ba498f33acb9ff326da,
+        type: 3}
+      propertyPath: debug
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7667920559789645163, guid: 078ff6fda9098ba498f33acb9ff326da,
+        type: 3}
+      propertyPath: gravity
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7667920559789645163, guid: 078ff6fda9098ba498f33acb9ff326da,
+        type: 3}
+      propertyPath: pointNumber
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7667920559789645163, guid: 078ff6fda9098ba498f33acb9ff326da,
+        type: 3}
+      propertyPath: pointPrefab
+      value: 
+      objectReference: {fileID: 612620891362580031, guid: 71eb96d79afb104458f557bc4ec99680,
+        type: 3}
+    - target: {fileID: 7667920559789645163, guid: 078ff6fda9098ba498f33acb9ff326da,
+        type: 3}
+      propertyPath: ropeLoopIterations
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7667920559789645163, guid: 078ff6fda9098ba498f33acb9ff326da,
+        type: 3}
+      propertyPath: simulationLoopIterations
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7667920559900204886, guid: 078ff6fda9098ba498f33acb9ff326da,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7667920559900204886, guid: 078ff6fda9098ba498f33acb9ff326da,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 12.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 7667920559900204886, guid: 078ff6fda9098ba498f33acb9ff326da,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 12.39
+      objectReference: {fileID: 0}
+    - target: {fileID: 7667920559900204886, guid: 078ff6fda9098ba498f33acb9ff326da,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -6.0048437
+      objectReference: {fileID: 0}
+    - target: {fileID: 7667920559900204886, guid: 078ff6fda9098ba498f33acb9ff326da,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7667920559900204886, guid: 078ff6fda9098ba498f33acb9ff326da,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7667920559900204886, guid: 078ff6fda9098ba498f33acb9ff326da,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7667920559900204886, guid: 078ff6fda9098ba498f33acb9ff326da,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7667920559900204886, guid: 078ff6fda9098ba498f33acb9ff326da,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7667920559900204886, guid: 078ff6fda9098ba498f33acb9ff326da,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7667920559900204886, guid: 078ff6fda9098ba498f33acb9ff326da,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7667920559900204887, guid: 078ff6fda9098ba498f33acb9ff326da,
+        type: 3}
+      propertyPath: m_Name
+      value: RopeMeanDistanceTestWithRaycast
+      objectReference: {fileID: 0}
+    - target: {fileID: 7667920559900204887, guid: 078ff6fda9098ba498f33acb9ff326da,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 078ff6fda9098ba498f33acb9ff326da, type: 3}
 --- !u!1 &1337468867
 GameObject:
   m_ObjectHideFlags: 0
