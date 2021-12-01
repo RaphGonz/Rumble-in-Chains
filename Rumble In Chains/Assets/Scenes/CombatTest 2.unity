@@ -417,7 +417,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   number_of_player_inside: 0
-  frequency: 1
+  frequency: 100
   pointsGiven: 1
 --- !u!114 &43118350
 MonoBehaviour:
