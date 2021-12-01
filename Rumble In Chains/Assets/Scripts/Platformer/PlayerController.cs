@@ -27,6 +27,9 @@ public class PlayerController : MonoBehaviour
     // Jump
     public int jumpCount;
     public bool onJump;
+    private float jumpCooldown = 1.0f;
+    private float timeStartJump = 0.0f;
+
 
 
     // grab
@@ -264,7 +267,12 @@ public class PlayerController : MonoBehaviour
     // JumpButtonPressed
     public void Jump()
     {
-        jumpManager.StartJump(jumpCount);
+        if (Time.time - timeStartJump > jumpCooldown)
+        {
+            jumpManager.StartJump(jumpCount);
+            timeStartJump = Time.time;
+        }
+        
     }
 
     // JumpButtonReleased
