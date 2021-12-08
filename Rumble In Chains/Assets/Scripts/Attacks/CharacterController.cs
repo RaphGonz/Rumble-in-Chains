@@ -64,7 +64,7 @@ public class CharacterController : MonoBehaviour //!!!
     // Start is called before the first frame update
     void Start()
     {
-        HitboxSphere hitbox1 = new HitboxSphere(5, 1, 0, 3, Vector2.one, new Vector2(1, 0), 1);
+        HitboxSphere hitbox1 = new HitboxSphere(5, 5, 0, 3, Vector2.one, new Vector2(1, 0), 1);
         
         //HitboxCapsule hitbox2 = new HitboxCapsule(5, 0, 3, Vector2.one, Vector2.zero, 1*Vector2.one, 1);
         List<Hitbox> hitboxList = new List<Hitbox>();
