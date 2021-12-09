@@ -78,6 +78,10 @@ public class InputManager : MonoBehaviour
                 //print("Y pressed");
                 characterController.Attack(AttackType.Jab);
             }
+            if (Input.GetButtonDown("LB" + playerNumber))
+            {
+                playerController.ImmobilizePlayer();
+            }
         }
         else
         {

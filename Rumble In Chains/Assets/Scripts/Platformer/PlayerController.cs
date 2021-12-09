@@ -62,6 +62,12 @@ public class PlayerController : MonoBehaviour
     public bool onDash = false;
     public bool canDash = true;
 
+    public bool immobile = false;
+    public bool onImmobilization = false;
+    public float immobileDuration = 1.0f;
+    public float immobileCooldown = 0.5f;
+    public float timeImmobileStart = 0;
+
 
     int i = 0;
 
@@ -81,15 +87,23 @@ public class PlayerController : MonoBehaviour
 
     public void ApplyNewPosition()
     {
-        transform.position = position;
+        if (!immobile)
+        {
+            transform.position = position;
+        }
+        
     }
 
     // Pour mettre à jour la position et la velocity du player
     public void UpdatePlayerVelocityAndPosition()
     {
- 
-        UpdateVelocity(); //ça modifie le vecteur velocité
-        UpdatePosition(); //ca calcule la prochaine position idéal (sans collider)
+        UpdateActions();
+        if (!immobile)
+        {
+            UpdateVelocity(); //ça modifie le vecteur velocité
+            UpdatePosition(); //ca calcule la prochaine position idéal (sans collider)
+        }
+        
         UpdatePositionInRegardsOfCollision();
         if (GetComponent<InputManager>().direction.x > 0) {
             facing = 1;
@@ -100,13 +114,9 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    
 
-    private void UpdateVelocity()
+    private void UpdateActions()
     {
-
-        Vector2 deceleration = new Vector2(ComputeDecelerationX(), 0); //Vecteur vertical ! Possible de faire une deceleration sur y aussi, a tester
-
         // pas de gravité pendant le dash
         if (onDash)
         {
@@ -118,52 +128,37 @@ public class PlayerController : MonoBehaviour
             {
                 velocity.y += gravity * Time.deltaTime;
             }
-            
+
         }
 
         if (onJump)
         {
             jumpManager.UpdateJump();
         }
-        /*
-        else if (onSecondJump)
+
+        if (onImmobilization)
         {
-            UpdateSecondJump();
+            UpdateImmobilisation();
         }
-        else if (onWallJump)
-        {
-            UpdateWallJump();
-        }
-        */
+
 
         if (onGrab)
         {
             velocity.y = -grabFallingSpeed;
         }
+    }
+    
+
+    private void UpdateVelocity()
+    {
+
+        Vector2 deceleration = new Vector2(ComputeDecelerationX(), 0); //Vecteur vertical ! Possible de faire une deceleration sur y aussi, a tester
+
+        
+        
 
 
         velocity += deceleration * Time.deltaTime;
-        
-
-        /*
-        if (bottomDirectionLocked && velocity.y < 0)
-        {
-            velocity.y = 0;
-        }
-        else if (topDirectionLocked && velocity.y > 0)
-        {
-            velocity.y = 0;
-        }
-
-        if (leftDirectionLocked && velocity.x < 0)
-        {
-            velocity.x = 0;
-        }
-        else if (rightDirectionLocked && velocity.x > 0)
-        {
-            velocity.x = 0;
-        }
-        */
     }
 
     private void UpdatePosition() //Positions idéales
@@ -201,17 +196,20 @@ public class PlayerController : MonoBehaviour
 
     public void MoveX(float directionx) //On lui donne 1 ou -1 selon si on va a droite ou a gauche
     {
-        float speedAugmentation = groundAcceleration * Mathf.Sign(directionx) * Time.deltaTime;
-        
-        if (Mathf.Abs(speedAugmentation) > actualMaxSpeed - Mathf.Abs(velocity.x))
+        if (!immobile)
         {
-            velocity.x = actualMaxSpeed * Mathf.Sign(directionx);
+            float speedAugmentation = groundAcceleration * Mathf.Sign(directionx) * Time.deltaTime;
+
+            if (Mathf.Abs(speedAugmentation) > actualMaxSpeed - Mathf.Abs(velocity.x))
+            {
+                velocity.x = actualMaxSpeed * Mathf.Sign(directionx);
+            }
+            else
+            {
+                velocity.x += speedAugmentation;
+            }
+            Grab(directionx); //On transmet la direction a Grab qui va gérer l'accroche au murs (si on est bien accroché ou non)
         }
-        else
-        {
-            velocity.x += speedAugmentation;
-        }
-        Grab(directionx); //On transmet la direction a Grab qui va gérer l'accroche au murs (si on est bien accroché ou non)
     }
 
     private float ComputeDecelerationX()
@@ -252,7 +250,10 @@ public class PlayerController : MonoBehaviour
 
     internal void SetPosition(Vector2 newPosition)
     {
-        position = newPosition;
+        if (!immobile)
+        {
+            position = newPosition;
+        }
     }
 
     public void GroundTouched()
@@ -321,5 +322,34 @@ public class PlayerController : MonoBehaviour
     public void StopSprinting()
     {
         actualMaxSpeed = walkSpeed;
+    }
+
+    public void ImmobilizePlayer()
+    {
+        if (!onImmobilization)
+        {
+            immobile = true;
+            onImmobilization = true;
+            timeImmobileStart = Time.time;
+        }
+    }
+
+    private void UpdateImmobilisation()
+    {
+        if (immobile)
+        {
+            if (Time.time - timeImmobileStart > immobileDuration)
+            {
+                immobile = false;
+                timeImmobileStart = Time.time;
+            }
+        }
+        else
+        {
+            if (Time.time - timeImmobileStart > immobileCooldown)
+            {
+                onImmobilization = false;
+            }
+        }
     }
 }
