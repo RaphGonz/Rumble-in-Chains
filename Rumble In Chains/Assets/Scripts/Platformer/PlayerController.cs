@@ -60,6 +60,7 @@ public class PlayerController : MonoBehaviour
     public float timeDivider = 0.001f;
 
     public bool onDash = false;
+    public bool onDashCooldown = false;
     public bool canDash = true;
 
     public bool immobile = false;
@@ -118,9 +119,16 @@ public class PlayerController : MonoBehaviour
     private void UpdateActions()
     {
         // pas de gravité pendant le dash
-        if (onDash)
+        if (onDash || onDashCooldown)
         {
             dashManager.UpdateDash();
+            if (onDashCooldown)
+            {
+                if (velocity.y > -maxYspeed)
+                {
+                    velocity.y += gravity * Time.deltaTime;
+                }
+            }
         }
         else
         {
@@ -128,7 +136,6 @@ public class PlayerController : MonoBehaviour
             {
                 velocity.y += gravity * Time.deltaTime;
             }
-
         }
 
         if (onJump)
@@ -285,12 +292,7 @@ public class PlayerController : MonoBehaviour
     // DashButtonPressed
     public void Dash(Vector2 dashDirection)
     {
-        if (canDash)
-        {
-            dashManager.StartDash(dashDirection);
-            canDash = false;
-            onDash = true;
-        }
+        dashManager.StartDash(dashDirection);
     }
 
 
