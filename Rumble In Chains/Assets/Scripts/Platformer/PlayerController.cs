@@ -295,6 +295,12 @@ public class PlayerController : MonoBehaviour
         dashManager.StartDash(dashDirection);
     }
 
+    public void DashForced(Vector2 dashDirection)
+    {
+        dashManager.resetDash();
+        dashManager.StartDash(dashDirection);
+    }
+
 
     public void Grab(float direction)
     {
