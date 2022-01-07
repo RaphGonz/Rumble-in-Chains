@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public abstract class Hitbox //!!!
 {
     protected float _damage;
@@ -22,5 +23,13 @@ public abstract class Hitbox //!!!
         _startUpTiming = startUpTiming;
         _durationOfHitbox = durationOfHitbox;
         _expulsion = expulsion;
+    }
+    protected Hitbox(Hitbox hitbox)
+    {
+        _damage = hitbox.Damage;
+        _stunFactor = hitbox.StunFactor;
+        _startUpTiming = hitbox.StartUpTiming;
+        _durationOfHitbox = hitbox.DurationOfHitbox;
+        _expulsion = hitbox.Expulsion;
     }
 }

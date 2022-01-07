@@ -5,7 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/RaphaelTest.unity
     guid: e4932a6074f731e42a3f77ae714495d3
+  - enabled: 1
+    path: Assets/Scenes/CombatTest 2.unity
+    guid: 19a4c77c98759bb4e913ee45ed518c62
   m_configObjects: {}

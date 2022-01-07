@@ -61,6 +61,9 @@ public class PlayerController : MonoBehaviour
 
     public bool onDash = false;
     public bool canDash = true;
+    public bool grounded = true;
+    public bool hit = false;
+    public int counterFramesHit = 3;
 
 
     int i = 0;
@@ -88,8 +91,8 @@ public class PlayerController : MonoBehaviour
     public void UpdatePlayerVelocityAndPosition()
     {
  
-        UpdateVelocity(); //ça modifie le vecteur velocité
-        UpdatePosition(); //ca calcule la prochaine position idéal (sans collider)
+        UpdateVelocity(); //ça modifie le vecteur velocité en fonction du dash, jump, décélération, gravité, wallJump
+        UpdatePosition(); //ca calcule la prochaine position idéal (sans collider) (juste avec la vélocité)
         UpdatePositionInRegardsOfCollision();
         if (GetComponent<InputManager>().direction.x > 0) {
             facing = 1;
@@ -98,6 +101,15 @@ public class PlayerController : MonoBehaviour
         {
             facing = -1;
         }
+    }
+
+    public IEnumerator Hit() {
+        hit = true;
+        for (int i = 0; i < counterFramesHit; i++) {
+            yield return new WaitForEndOfFrame();
+            print("pluideiz");
+        }
+        hit = false;
     }
 
     
@@ -114,11 +126,22 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+
+            if (gameObject.name == "PlayerRight" && hit)
+            {
+                Debug.Break();
+                print(velocity); 
+            }
+
             if (velocity.y > -maxYspeed)
             {
                 velocity.y += gravity * Time.deltaTime;
             }
-            
+            if (gameObject.name == "PlayerRight" && hit)
+            {
+                Debug.Break();
+                print(velocity);
+            }
         }
 
         if (onJump)
@@ -139,6 +162,10 @@ public class PlayerController : MonoBehaviour
         if (onGrab)
         {
             velocity.y = -grabFallingSpeed;
+        }
+        if (gameObject.name == "PlayerRight" && hit)
+        {
+            print(velocity);
         }
 
 
@@ -257,6 +284,7 @@ public class PlayerController : MonoBehaviour
 
     public void GroundTouched()
     {
+        grounded = true;
         jumpCount = 2;
         if (!onDash)
         {
@@ -267,8 +295,10 @@ public class PlayerController : MonoBehaviour
     // JumpButtonPressed
     public void Jump()
     {
+        grounded = false;
         if (Time.time - timeStartJump > jumpCooldown)
         {
+
             jumpManager.StartJump(jumpCount);
             timeStartJump = Time.time;
         }

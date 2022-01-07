@@ -134,7 +134,6 @@ public class PlayerCollider : MonoBehaviour
                 return hit;
             }
         }
-
         return hit;
     }
 
@@ -223,34 +222,48 @@ public class PlayerCollider : MonoBehaviour
             playerController.rightDirectionLocked = false;
             hitRight = DetectCollision(bottomRightPoint, topRightPoint, Vector2.right, movement.x, numberOfRays);
         }
-
-
-
-        if (hitDown)
+        if (gameObject.name == "PlayerRight")
         {
-            movement.y += (-hitDown.distance + Vector2.Dot(Vector2.down, movement));
-            playerController.velocity.y = 0;
-            playerController.bottomDirectionLocked = true;
-
+            print(gameObject.name + " : Hit :" + playerController.hit);
+            print(gameObject.name + " : Bot Dir Locked :" + playerController.bottomDirectionLocked);
         }
-        else if (hitUp)
+        if (!playerController.hit)
         {
-            movement.y += (hitUp.distance - movement.y);
-            playerController.velocity.y = 0;
-            playerController.topDirectionLocked = true;
+            if (hitDown)
+            {
+                if (gameObject.name == "PlayerRight") print("pleassssssssse");
+                movement.y += (-hitDown.distance + Vector2.Dot(Vector2.down, movement));
+                playerController.velocity.y = 0;
+                playerController.bottomDirectionLocked = true;
+            }
+            else if (hitUp)
+            {
+                movement.y += (hitUp.distance - movement.y);
+                playerController.velocity.y = 0;
+                playerController.topDirectionLocked = true;
+            }
+            if (hitLeft)
+            {
+                movement.x += (-hitLeft.distance - movement.x);
+                playerController.velocity.x = 0;
+                playerController.leftDirectionLocked = true;
+            }
+            else if (hitRight)
+            {
+                movement.x += (hitLeft.distance - movement.x);
+                playerController.velocity.x = 0;
+                playerController.rightDirectionLocked = true;
+            }
         }
-        if (hitLeft)
+        else
         {
-            movement.x += (-hitLeft.distance - movement.x);
-            playerController.velocity.x = 0;
-            playerController.leftDirectionLocked = true;
+            playerController.rightDirectionLocked = false;
+            playerController.bottomDirectionLocked = false;
+            playerController.topDirectionLocked = false;
+            playerController.leftDirectionLocked = false;
         }
-        else if (hitRight)
-        {
-            movement.x += (hitLeft.distance - movement.x);
-            playerController.velocity.x = 0;
-            playerController.rightDirectionLocked = true;
-        }
+        if(gameObject.name == "RightPlayer")
+        print(playerController.velocity);
 
         CanJump();
 

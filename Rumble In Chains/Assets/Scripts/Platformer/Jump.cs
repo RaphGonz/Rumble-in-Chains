@@ -159,6 +159,8 @@ public class Jump : MonoBehaviour
         else
         {
             playerController.velocity.y = jumpForce * 0.7f;
+            if (this.gameObject.layer == 18)
+                print(playerController.velocity);
         }
     }
 
@@ -184,5 +186,10 @@ public class Jump : MonoBehaviour
     public void SetJumpCount(int count)
     {
         jumpCount = count;
+    }
+
+    private void Update()
+    {
+
     }
 }

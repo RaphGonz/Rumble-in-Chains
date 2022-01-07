@@ -26,6 +26,4 @@ public enum AttackType
     //UpSmash,
     //SideSmash,
     //DownSmash,
-
-
 }

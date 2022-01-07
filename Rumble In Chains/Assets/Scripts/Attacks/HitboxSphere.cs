@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class HitboxSphere : Hitbox //!!!
 {
+    string jsonName;
     private Vector2 _center;
     private float _radius;
     public Vector2 Center { get => _center; }
@@ -13,5 +15,14 @@ public class HitboxSphere : Hitbox //!!!
     {
         _center = center;
         _radius = radius;
+    }
+    public HitboxSphere(HitboxSphere hitboxSphere) : base(hitboxSphere.Damage, hitboxSphere.StunFactor, hitboxSphere.StartUpTiming, hitboxSphere.DurationOfHitbox, hitboxSphere.Expulsion)
+    {
+        _center = hitboxSphere.Center;
+        _radius = hitboxSphere.Radius;
+    }
+    public HitboxSphere CreateFromJson()
+    {
+        return JsonUtility.FromJson<HitboxSphere>(jsonName);
     }
 }
