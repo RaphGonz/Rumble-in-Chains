@@ -16,9 +16,6 @@ public class PlayerCollider : MonoBehaviour
     public int numberOfRays = 3;
     public float distanceRaycast = 0.1f;
 
-
-    private float diagonalHitMovement = 0.01f;
-
     public float xJumpFlexibility = 0.1f;
     public float yJumpFlexibility = 0.5f;
     public int jumpNumberOfRays = 1;

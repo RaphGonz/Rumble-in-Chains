@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class FightButtonSetter : ButtonSetter
 {
@@ -18,6 +19,6 @@ public class FightButtonSetter : ButtonSetter
 
     protected override void setButton()
     {
-        throw new System.NotImplementedException();
+        SceneManager.LoadScene("CharacterSelectionScene");
     }
 }

@@ -139,6 +139,10 @@ public class InputManager : MonoBehaviour
             {
                 planted = false; // ajouter qqs frames de déplantage par coroutine ? 
             }
+            if (Input.GetButtonDown("LB" + playerNumber))
+            {
+                playerController.ImmobilizePlayer();
+            }
         }
         else
         {

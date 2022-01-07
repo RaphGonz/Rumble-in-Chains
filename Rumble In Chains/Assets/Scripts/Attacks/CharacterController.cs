@@ -239,8 +239,6 @@ public class CharacterController : MonoBehaviour //!!!
             int stunValueInFrames = (int)(stunFactor * opponentController.gameObject.GetComponent<CharacterController>().Pourcentages);
             opponentController.gameObject.GetComponent<InputManager>().Stun(stunValueInFrames);
             opponentController.gameObject.GetComponent<CharacterController>().invincible = true;
-            StartCoroutine(opponentController.Hit());
-
         }
         
     }

@@ -8,7 +8,8 @@ public class Dash : MonoBehaviour
 
     private Vector2 dashDirection;
 
-    private float timeStartDash;
+    private float timeStart;
+    //private bool inCooldwon = false;
 
 
     [SerializeField] private float positionDisplacement;
@@ -16,6 +17,7 @@ public class Dash : MonoBehaviour
     [SerializeField] private float timeFreezeOnDash;
     [SerializeField] private float timeInsideDash;
     [SerializeField] private float timeDecelerationAfterDash;
+    [SerializeField] private float timeCooldown = 1.0f;
 
 
 
@@ -26,7 +28,7 @@ public class Dash : MonoBehaviour
 
     public void StartDash(Vector2 dashDirection)
     {
-        if (playerController.canDash)
+        if (playerController.canDash && !playerController.onDashCooldown)
         {
             if (dashDirection == new Vector2(0, 0))
             {
@@ -35,32 +37,44 @@ public class Dash : MonoBehaviour
             playerController.onDash = true;
             playerController.canDash = false;
             this.dashDirection = dashDirection;
-            timeStartDash = Time.time;
+            timeStart = Time.time;
         }
     }
 
     public void UpdateDash()
     {
-        float currentTime = Time.time - timeStartDash;
-
-        if (currentTime < timeFreezeOnDash)
+        float currentTime = Time.time - timeStart;
+        if (!playerController.onDashCooldown)
         {
-            playerController.velocity = new Vector2(0, 0);
-        }
-        else if (currentTime < timeFreezeOnDash + timeInsideDash)
-        {
-            playerController.velocity = GetCurrentDashSpeed() * dashDirection;
-        }
+            if (currentTime < timeFreezeOnDash)
+            {
+                playerController.velocity = new Vector2(0, 0);
+            }
+            else if (currentTime < timeFreezeOnDash + timeInsideDash)
+            {
+                playerController.velocity = GetCurrentDashSpeed() * dashDirection;
+            }
 
-        else if (currentTime < timeFreezeOnDash + timeInsideDash + timeDecelerationAfterDash)
-        {
-            playerController.velocity = dashDirection * playerController.actualMaxSpeed;
-        }
+            else if (currentTime < timeFreezeOnDash + timeInsideDash + timeDecelerationAfterDash)
+            {
+                playerController.velocity = dashDirection * playerController.actualMaxSpeed;
+            }
 
+            else
+            {
+                playerController.onDashCooldown = true;
+                playerController.onDash = false;
+                timeStart = Time.time;
+            }
+        }
         else
         {
-            playerController.onDash = false;
+            if (currentTime > timeCooldown)
+            {
+                playerController.onDashCooldown = false;
+            }
         }
+        
     }
 
     private float GetCurrentDashSpeed()
