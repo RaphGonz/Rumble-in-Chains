@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class PlayerController : MonoBehaviour
 {
 
@@ -48,6 +49,10 @@ public class PlayerController : MonoBehaviour
     public float actualMaxSpeed;
     public float maxYspeed;
 
+    private float maxDownSpeed = 10;
+    [SerializeField] float normalMaxDownSpeed = 10;
+    [SerializeField] float downMaxDownSpeed = 20;
+
     public float groundProportionalDecelerationX;
     public float airProportionalDecelerationX;
     public float groundFlatDecelerationX;
@@ -68,6 +73,10 @@ public class PlayerController : MonoBehaviour
     public float immobileDuration = 1.0f;
     public float immobileCooldown = 0.5f;
     public float timeImmobileStart = 0;
+
+
+    private PlayerState playerState = PlayerState.NORMAL;
+    private bool ropeActive = true;
 
 
     int i = 0;
@@ -138,6 +147,11 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+        if(playerState == PlayerState.NORMAL && velocity.y > -maxYspeed)
+        {
+            velocity.y += gravity * Time.deltaTime;
+        }
+
         if (onJump)
         {
             jumpManager.UpdateJump();
@@ -158,6 +172,16 @@ public class PlayerController : MonoBehaviour
 
     private void UpdateVelocity()
     {
+        if (playerState == PlayerState.NORMAL)
+        {
+            if (velocity.y > -maxDownSpeed)
+            {
+                velocity.y -= gravity * Time.deltaTime;
+            }
+        }
+
+
+
 
         Vector2 deceleration = new Vector2(ComputeDecelerationX(), 0); //Vecteur vertical ! Possible de faire une deceleration sur y aussi, a tester
 
@@ -203,7 +227,7 @@ public class PlayerController : MonoBehaviour
 
     public void MoveX(float directionx) //On lui donne 1 ou -1 selon si on va a droite ou a gauche
     {
-        if (!immobile)
+        if (playerState == PlayerState.NORMAL || playerState == PlayerState.JUMP)
         {
             float speedAugmentation = groundAcceleration * Mathf.Sign(directionx) * Time.deltaTime;
 
@@ -217,6 +241,11 @@ public class PlayerController : MonoBehaviour
             }
             Grab(directionx); //On transmet la direction a Grab qui va gérer l'accroche au murs (si on est bien accroché ou non)
         }
+    }
+
+    public void MoveDown()
+    {
+
     }
 
     private float ComputeDecelerationX()
@@ -257,7 +286,7 @@ public class PlayerController : MonoBehaviour
 
     internal void SetPosition(Vector2 newPosition)
     {
-        if (!immobile)
+        if (ropeActive)
         {
             position = newPosition;
         }
@@ -292,25 +321,31 @@ public class PlayerController : MonoBehaviour
     // DashButtonPressed
     public void Dash(Vector2 dashDirection)
     {
-        dashManager.StartDash(dashDirection);
+        if (playerState == PlayerState.NORMAL)
+        {
+            dashManager.StartDash(dashDirection);
+        }
     }
 
 
     public void Grab(float direction)
     {
-        if (leftDirectionLocked && direction < 0 && !onJump && velocity.y < 0)
+        if (playerState == PlayerState.NORMAL)
         {
-            onGrab = true;
-            grabDirectionx = direction;
-        }
-        else if (rightDirectionLocked && direction > 0 && !onJump && velocity.y < 0)
-        {
-            onGrab = true;
-            grabDirectionx = direction;
-        }
-        else
-        {
-            onGrab = false;
+            if (leftDirectionLocked && direction < 0 && !onJump && velocity.y < 0)
+            {
+                onGrab = true;
+                grabDirectionx = direction;
+            }
+            else if (rightDirectionLocked && direction > 0 && !onJump && velocity.y < 0)
+            {
+                onGrab = true;
+                grabDirectionx = direction;
+            }
+            else
+            {
+                onGrab = false;
+            }
         }
     }
 
@@ -318,7 +353,10 @@ public class PlayerController : MonoBehaviour
 
     public void Sprint()
     {
-        actualMaxSpeed = sprintSpeed;
+        if (playerState == PlayerState.NORMAL || playerState == PlayerState.JUMP)
+        {
+            actualMaxSpeed = sprintSpeed;
+        }
     }
 
     public void StopSprinting()
@@ -330,6 +368,7 @@ public class PlayerController : MonoBehaviour
     {
         if (!onImmobilization)
         {
+            playerState = PlayerState.SHIELD;
             immobile = true;
             onImmobilization = true;
             timeImmobileStart = Time.time;
@@ -350,8 +389,30 @@ public class PlayerController : MonoBehaviour
         {
             if (Time.time - timeImmobileStart > immobileCooldown)
             {
+                playerState = PlayerState.NORMAL;
                 onImmobilization = false;
             }
         }
+    }
+
+    public void Stun()
+    {
+
+    }
+
+    public void RopeGrab(Vector2 grabDirection)
+    {
+
+    }
+
+    public void Shield()
+    {
+
+    }
+
+
+    public void SetPlayerState(PlayerState newPlayerState)
+    {
+        playerState = newPlayerState;
     }
 }

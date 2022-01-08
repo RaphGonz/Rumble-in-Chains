@@ -78,7 +78,7 @@ public class CharacterController : MonoBehaviour //!!!
     }
 
     // Update is called once per frame
-    void Update()
+    public void UpdateCharacter()
     {
 
         if (CurrentAttack != null)
