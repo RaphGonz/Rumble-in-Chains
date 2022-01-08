@@ -30,6 +30,7 @@ public class DashAction : Action
         this.dashDirection = direction;
         timer1.start();
         cooldown.start();
+        print("dashStart");
     }
 
     // Start is called before the first frame update

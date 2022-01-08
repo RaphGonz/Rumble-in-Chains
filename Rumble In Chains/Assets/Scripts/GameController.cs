@@ -20,6 +20,8 @@ public class GameController : MonoBehaviour
     [SerializeField] RopeManager ropeManager;
 
 
+    [SerializeField] float gameIteration = 2;
+
 
     // Start is called before the first frame update
     void Start()
@@ -36,11 +38,14 @@ public class GameController : MonoBehaviour
         actionControllerLeft.UpdateActions();
         actionControllerRight.UpdateActions();
 
-        playerControllerLeft.UpdatePlayerVelocityAndPosition();
-        playerControllerRight.UpdatePlayerVelocityAndPosition();
+        for (int i = 0; i < gameIteration; i++)
+        {
+            playerControllerLeft.UpdatePlayerVelocityAndPosition();
+            playerControllerRight.UpdatePlayerVelocityAndPosition();
 
-        characterControllerLeft.UpdateCharacter();
-        characterControllerRight.UpdateCharacter();
+            characterControllerLeft.UpdateCharacter();
+            characterControllerRight.UpdateCharacter();
+        }
 
         ropeManager.UpdateRope();
 

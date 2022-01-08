@@ -66,7 +66,6 @@ public class BufferManager : MonoBehaviour
 
     public void popBuffer()
     {
-        removeOutOfDate();
         for (int i = 0; i < buffer.Length - 1; i++)
         {
             if (buffer[i].input == InputButtons.NULL)
@@ -87,6 +86,7 @@ public class BufferManager : MonoBehaviour
     public InputButtons getBufferElement()
     {
         removeOutOfDate();
+        //print(buffer[0].input + " " + buffer[1].input + " " + buffer[2].input + " " + buffer[3].input + " " + buffer[4].input);
         return buffer[0].input;
     }
 

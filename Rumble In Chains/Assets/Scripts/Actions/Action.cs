@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class Action : MonoBehaviour
 {
-    protected Timer timer1;
-    protected Timer timer2;
-    protected Timer timer3;
+    protected Timer timer1 = new Timer();
+    protected Timer timer2 = new Timer();
+    protected Timer timer3 = new Timer();
 
-    protected Timer cooldown;
+    protected Timer cooldown = new Timer();
 
-    
+    private bool firstCall = true;
 
 
 
@@ -28,7 +28,15 @@ public class Action : MonoBehaviour
 
     public bool getCooldown()
     {
-        return cooldown.check();
+        if (firstCall)
+        {
+            firstCall = false;
+            return true;
+        }
+        else
+        {
+            return cooldown.check();
+        }
     }
 
     virtual public void cancel() {}

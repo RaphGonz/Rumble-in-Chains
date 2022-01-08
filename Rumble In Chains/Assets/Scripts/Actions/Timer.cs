@@ -9,6 +9,13 @@ public class Timer
 
     bool active = false;
 
+    public Timer()
+    {
+        startTime = 0;
+        duration = 0;
+        active = false;
+    }
+
     public void start()
     {
         active = true;
@@ -17,7 +24,7 @@ public class Timer
 
     public bool check()
     {
-        if (active && Time.time - startTime > duration)
+        if (Time.time - startTime > duration)
         {
             return true;
         }

@@ -77,6 +77,7 @@ public class PlayerController : MonoBehaviour
 
     private PlayerState playerState = PlayerState.NORMAL;
     private bool ropeActive = true;
+    private bool gravityActive = true;
 
 
     int i = 0;
@@ -89,9 +90,12 @@ public class PlayerController : MonoBehaviour
         position = transform.position;
         positionBeforeCollider = transform.position;
         actualMaxSpeed = walkSpeed;
+        
         playerCollider = GetComponent<PlayerCollider>();
+        /*
         dashManager = GetComponent<Dash>();
         jumpManager = GetComponent<Jump>();
+        */
         facing = GetComponent<InputManager>().direction.x > 0 ? 1 : -1;
     }
 
@@ -107,7 +111,7 @@ public class PlayerController : MonoBehaviour
     // Pour mettre à jour la position et la velocity du player
     public void UpdatePlayerVelocityAndPosition()
     {
-        UpdateActions();
+        //UpdateActions();
         if (!immobile)
         {
             UpdateVelocity(); //ça modifie le vecteur velocité
@@ -172,11 +176,11 @@ public class PlayerController : MonoBehaviour
 
     private void UpdateVelocity()
     {
-        if (playerState == PlayerState.NORMAL)
+        if (gravityActive)
         {
             if (velocity.y > -maxDownSpeed)
             {
-                velocity.y -= gravity * Time.deltaTime;
+                velocity.y += gravity * Time.deltaTime;
             }
         }
 
@@ -414,5 +418,15 @@ public class PlayerController : MonoBehaviour
     public void SetPlayerState(PlayerState newPlayerState)
     {
         playerState = newPlayerState;
+    }
+
+    public void SetRopeActive(bool newRopeActive)
+    {
+        ropeActive = newRopeActive;
+    }
+
+    public void SetGravityActive(bool newGravityActive)
+    {
+        gravityActive = newGravityActive;
     }
 }

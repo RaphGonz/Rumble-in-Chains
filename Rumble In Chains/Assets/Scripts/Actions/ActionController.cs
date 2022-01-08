@@ -21,17 +21,21 @@ public enum PlayerState
 
 public class ActionController : MonoBehaviour
 {
-    private PlayerState playerState;
+    private PlayerState playerState = PlayerState.NORMAL;
     private Vector2 joystickDirection;
     private AttackType attackType = AttackType.Jab;
+    Action currentAction;
 
     private bool canDash = true;
     private bool canJump = true;
 
 
-    //private bool[][] priorityMatrix = new bool[((int)PlayerState.COUNT)* ((int)PlayerState.COUNT)];
 
-
+    [SerializeField] JumpAction jumpAction;
+    [SerializeField] DashAction dashAction;
+    [SerializeField] ShieldAction shieldAction;
+    [SerializeField] RopegrabAction ropegrabAction;
+    [SerializeField] AttackAction attackAction;
 
     [SerializeField] CharacterController characterController;
     [SerializeField] PlayerController playerController;
@@ -39,44 +43,16 @@ public class ActionController : MonoBehaviour
 
 
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void UpdateActions()
     {
-        InputButtons input = buffer.getBufferElement();
-        if (input != InputButtons.NULL)
-        {
-            switch (input)
-            {
-                case InputButtons.ATTACKBUTTON:
-                    Attack();
-                    break;
-                case InputButtons.DASHBUTTON:
-                    Dash();
-                    break;
-                case InputButtons.JUMPBUTTON:
-                    Jump();
-                    break;
-                case InputButtons.ROPEBUTTON:
-                    RopeGrab();
-                    break;
-                case InputButtons.SHIELDBUTTON:
-                    Shield();
-                    break;
-            }
-        }
-
         joystickDirection = buffer.getDirection();
+
+        LaunchNewAction();
+
+        UpdateCurrentAction();
+
+        
 
         if (joystickDirection.x != 0)
         {
@@ -88,49 +64,162 @@ public class ActionController : MonoBehaviour
         }
     }
 
-    private void Attack()
+    private bool Attack()
     {
         if (GetPriority(PlayerState.ATTACK))
         {
+            CancelCurrentAction();
             characterController.Attack(attackType);
+            return true;
         }
+        return false;
     }
 
-    private void Dash()
+    private bool Dash()
     {
         if (canDash && GetPriority(PlayerState.DASH))
         {
-            playerController.Dash(joystickDirection);
+            CancelCurrentAction();
+            dashAction.start(joystickDirection);
+            changeState(PlayerState.DASH);
+            return true;
         }
+        return false;
     }
 
-    private void Jump()
+    private bool Jump()
     {
-        if (canJump && GetPriority(PlayerState.JUMP))
+        if (canJump && GetPriority(PlayerState.JUMP) && jumpAction.getCooldown())
         {
-            playerController.Jump();
+            CancelCurrentAction();
+            jumpAction.start();
             changeState(PlayerState.JUMP);
+            return true;
         }
+        return false;
     }
 
-    private void Stun()
+    private bool Stun()
     {
+        CancelCurrentAction();
         playerController.Stun();
+        changeState(PlayerState.STUN);
+        return true;
     }
 
-    private void RopeGrab()
+    private bool RopeGrab()
     {
         if (GetPriority(PlayerState.ROPEGRAB))
         {
+            CancelCurrentAction();
             playerController.RopeGrab(joystickDirection);
+            changeState(PlayerState.ROPEGRAB);
+            return true;
         }
+        return false;
     }
 
-    private void Shield()
+    private bool Shield()
     {
         if (GetPriority(PlayerState.SHIELD))
         {
+            CancelCurrentAction();
             playerController.Shield();
+            changeState(PlayerState.SHIELD);
+            return true;
+        }
+        return false;
+    }
+
+    private void LaunchNewAction()
+    {
+        InputButtons input = buffer.getBufferElement();
+        if (input != InputButtons.NULL)
+        {
+            print(playerState);
+            bool popBuffer = false;
+            switch (input)
+            {
+                case InputButtons.ATTACKBUTTON:
+                    popBuffer = Attack();
+                    break;
+                case InputButtons.DASHBUTTON:
+                    //print("dash");
+                    popBuffer = Dash();
+                    break;
+                case InputButtons.JUMPBUTTON:
+                    //print("jump");
+                    popBuffer = Jump();
+                    break;
+                case InputButtons.ROPEBUTTON:
+                    popBuffer = RopeGrab();
+                    break;
+                case InputButtons.SHIELDBUTTON:
+                    popBuffer = Shield();
+                    break;
+            }
+
+            if (popBuffer)
+            {
+                buffer.popBuffer();
+            }
+        }
+    }
+
+    private void UpdateCurrentAction()
+    {
+        if (playerState != PlayerState.NORMAL)
+        {
+            bool terminated = false;
+
+            switch (playerState)
+            {
+                case PlayerState.JUMP:
+                    terminated = jumpAction.update();
+                    break;
+                case PlayerState.DASH:
+                    terminated = dashAction.update();
+                    break;
+                case PlayerState.SHIELD:
+                    terminated = shieldAction.update();
+                    break;
+                case PlayerState.ROPEGRAB:
+                    terminated = ropegrabAction.update();
+                    break;
+                case PlayerState.ATTACK:
+                    terminated = attackAction.update();
+                    break;
+            }
+
+            if (terminated)
+            {
+                changeState(PlayerState.NORMAL);
+            }
+        }
+    }
+
+    private void CancelCurrentAction()
+    {
+        if (playerState != PlayerState.NORMAL)
+        {
+            switch (playerState)
+            {
+                case PlayerState.JUMP:
+                    jumpAction.cancel();
+                    break;
+                case PlayerState.DASH:
+                    dashAction.cancel();
+                    break;
+                case PlayerState.SHIELD:
+                    shieldAction.cancel();
+                    break;
+                case PlayerState.ROPEGRAB:
+                    ropegrabAction.cancel();
+                    break;
+                case PlayerState.ATTACK:
+                    attackAction.cancel();
+                    break;
+            }
         }
     }
 
@@ -153,6 +242,35 @@ public class ActionController : MonoBehaviour
     public void changeState(PlayerState newState)
     {
         playerState = newState;
+
+        switch (newState)
+        {
+            case PlayerState.NORMAL:
+                playerController.SetGravityActive(true);
+                playerController.SetRopeActive(true);
+                break;
+            case PlayerState.JUMP:
+                playerController.SetGravityActive(false);
+                break;
+            case PlayerState.DASH:
+                playerController.SetGravityActive(false);
+                playerController.SetRopeActive(false);
+                break;
+            case PlayerState.ATTACK:
+                
+                break;
+            case PlayerState.ROPEGRAB:
+                playerController.SetGravityActive(false);
+                playerController.SetRopeActive(false);
+                break;
+            case PlayerState.SHIELD:
+                playerController.SetGravityActive(true);
+                playerController.SetRopeActive(false);
+                break;
+            case PlayerState.STUN:
+                
+                break;
+        }
     }
 
 

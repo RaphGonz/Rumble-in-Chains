@@ -148,8 +148,8 @@ public class InputManager : MonoBehaviour
         if (controllerInput != InputButtons.NULL)
         {
             buffer.addToBuffer(controllerInput);
+            controllerInput = InputButtons.NULL;
         }
-        
 
     }
 

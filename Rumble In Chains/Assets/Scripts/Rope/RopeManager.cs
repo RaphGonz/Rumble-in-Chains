@@ -131,8 +131,8 @@ public class RopeManager : MonoBehaviour
     void SimulatePoints()
     {
 
-        UpdatePlayerLeft(); //On a modif la prochaine position chez le joueur, en fonction des collisions
-        UpdatePlayerRight();
+        //UpdatePlayerLeft(); //On a modif la prochaine position chez le joueur, en fonction des collisions
+        //UpdatePlayerRight();
 
 
 
