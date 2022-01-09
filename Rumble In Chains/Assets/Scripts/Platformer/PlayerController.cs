@@ -115,7 +115,7 @@ public class PlayerController : MonoBehaviour
         if (!immobile)
         {
             UpdateVelocity(); //ça modifie le vecteur velocité
-            UpdatePosition(); //ca calcule la prochaine position idéal (sans collider)
+            UpdatePosition(); //ça calcule la prochaine position idéal (sans collider)
         }
         
         UpdatePositionInRegardsOfCollision();

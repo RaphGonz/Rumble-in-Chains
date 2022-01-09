@@ -28,7 +28,7 @@ public class RopePointCollider : MonoBehaviour
     }
 
 
-    public void UpdateCollisions(ref Vector2 movement)
+    public bool UpdateCollisions(ref Vector2 movement)
     {
         collisionTest = false;
         UpdateBounds();
@@ -45,7 +45,8 @@ public class RopePointCollider : MonoBehaviour
         {
             movementCollision(ref movement);
         }
-        
+
+        return collisionTest;
         /*
         BottomLeftCollsion(ref movement);
         BottomRightCollsion(ref movement);

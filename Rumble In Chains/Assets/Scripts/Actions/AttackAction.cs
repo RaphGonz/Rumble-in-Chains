@@ -4,20 +4,18 @@ using UnityEngine;
 
 public class AttackAction : Action
 {
-    [SerializeField] PlayerController playerController;
+    [SerializeField] CharacterController characterController;
 
     [SerializeField] private float jumpVelocity;
 
-    [SerializeField] private float jumpAccelerationTime;
-    [SerializeField] private float jumpMovementTime;
-    [SerializeField] private float jumpCooldown;
+    [SerializeField] private float attackTotalTime;
+    [SerializeField] private float attackCooldown;
 
 
     private void Start()
     {
-        timer1.setDuration(jumpAccelerationTime);
-        timer2.setDuration(jumpMovementTime);
-        cooldown.setDuration(jumpCooldown);
+        timer1.setDuration(attackTotalTime);
+        cooldown.setDuration(attackCooldown);
     }
 
 
@@ -26,6 +24,7 @@ public class AttackAction : Action
     {
         timer1.start();
         cooldown.start();
+        characterController.Attack(AttackType.Jab);
     }
 
     // Update is called once per frame
@@ -33,47 +32,19 @@ public class AttackAction : Action
     {
         if (timer1.isActive())
         {
-            phase1Acceleration();
-            return false;
-        }
-        else if (timer2.isActive())
-        {
-            phase2Movement();
+            if (timer1.check())
+            {
+                timer1.reset();
+            }
             return false;
         }
 
         return true;
     }
 
-    private void phase1Acceleration()
-    {
-        if (!timer1.check())
-        {
-            playerController.velocity.y = jumpVelocity * timer1.getRatio();
-        }
-        else
-        {
-            timer2.start();
-            timer1.reset();
-        }
-    }
-
-    private void phase2Movement()
-    {
-        if (!timer2.check())
-        {
-            playerController.velocity.y = jumpVelocity;
-        }
-        else
-        {
-            timer3.start();
-            timer2.reset();
-        }
-    }
 
     override public void cancel()
     {
-        //playerController.velocity = new Vector2(0, 0);
         timer1.reset();
         timer2.reset();
         timer3.reset();

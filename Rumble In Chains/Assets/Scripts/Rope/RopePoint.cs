@@ -33,14 +33,17 @@ public class RopePoint : MonoBehaviour
     }
 
 
-    public void UpdateCollisions()
+    public bool UpdateCollisions()
     {
+        bool collision = false;
         Vector2 movement = position - new Vector2(positionBeforeCollider.x, positionBeforeCollider.y);
 
-        ropePointCollider.UpdateCollisions(ref movement);
+        collision = ropePointCollider.UpdateCollisions(ref movement);
 
         position = new Vector3(movement.x + positionBeforeCollider.x, movement.y + positionBeforeCollider.y, 0);
         positionBeforeCollider = position;
+
+        return collision;
     }
 
     public void Move(Vector2 translatePosition)

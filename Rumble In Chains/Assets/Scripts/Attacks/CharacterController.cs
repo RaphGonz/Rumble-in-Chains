@@ -54,6 +54,8 @@ public class CharacterController : MonoBehaviour //!!!
     PlayerController myPlayerController;
     [SerializeField]
     PlayerController opponentController;
+    [SerializeField]
+    ActionController opponentActionController;
 
     #region UI
     [SerializeField]
@@ -160,9 +162,16 @@ public class CharacterController : MonoBehaviour //!!!
                             hit = true;
                             collider.gameObject.GetComponent<CharacterController>().TakePourcentages(hitboxSphere.Damage); // changer le get component : l'adversaire est unique on peut donc le faire au start
                             
-                            Expel(hitbox.Expulsion);
+
+                            if (!opponentActionController.isInvincible() && !opponentActionController.isShieldActive())
+                            {
+                                Expel(hitbox.Expulsion);
+
+                                Stun(hitbox.StunFactor);
+
+                                opponentActionController.ExpelAndStun(hitbox.Expulsion * myPlayerController.facing, hitbox.StunFactor);
+                            }
                             
-                            Stun(hitbox.StunFactor);
                             // en vrai, vu qu'il y a un seul character controller adverse, il suffit de get en début de partie le character controller de l'adversaire
                         }
 
