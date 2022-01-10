@@ -806,7 +806,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 18.364918
+  orthographic size: 18
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1324,11 +1324,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerController: {fileID: 1141088103}
+  enemyPlayerController: {fileID: 1856135595}
   ropeManager: {fileID: 1562322076}
   playerNumber: 1
-  maxGrabAngle: 90
+  maxGrabAngle: 135
   ropegrabFreezeTime: 0.2
-  ropegrabGrabTime: 0.2
+  ropegrabGrabTime: 10
   ropegrabCooldown: 2
 --- !u!114 &1141088103 stripped
 MonoBehaviour:
@@ -1408,7 +1409,7 @@ MonoBehaviour:
   positionDisplacement: 5
   dashFreezeTime: 0.1
   dashMovementTime: 0.1
-  dashDecelerationTime: 0.05
+  dashDecelerationTime: 0.2
   dashCooldown: 10
 --- !u!114 &1141088113
 MonoBehaviour:
@@ -3077,11 +3078,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerController: {fileID: 1856135595}
+  enemyPlayerController: {fileID: 1141088103}
   ropeManager: {fileID: 1562322076}
   playerNumber: 2
-  maxGrabAngle: 90
+  maxGrabAngle: 135
   ropegrabFreezeTime: 0.2
-  ropegrabGrabTime: 0.2
+  ropegrabGrabTime: 10
   ropegrabCooldown: 2
 --- !u!114 &1856135595 stripped
 MonoBehaviour:
@@ -3173,7 +3175,7 @@ MonoBehaviour:
   positionDisplacement: 5
   dashFreezeTime: 0.1
   dashMovementTime: 0.1
-  dashDecelerationTime: 0.05
+  dashDecelerationTime: 0.2
   dashCooldown: 10
 --- !u!114 &1856135606
 MonoBehaviour:

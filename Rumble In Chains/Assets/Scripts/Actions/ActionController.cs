@@ -24,6 +24,7 @@ public class ActionController : MonoBehaviour
 {
     private PlayerState playerState = PlayerState.NORMAL;
     private Vector2 joystickDirection;
+    private Joystick joystick;
     private AttackType attackType = AttackType.Jab;
 
     private bool canDash = true;
@@ -49,7 +50,8 @@ public class ActionController : MonoBehaviour
 
     public void UpdateActions()
     {
-        joystickDirection = buffer.getDirection();
+        joystick = buffer.getJoystick();
+        joystickDirection = joystick.GetDirection();
 
         LaunchNewAction();
 
@@ -72,7 +74,7 @@ public class ActionController : MonoBehaviour
         if (GetPriority(PlayerState.ATTACK))
         {
             CancelCurrentAction();
-            characterController.Attack(attackType);
+            attackAction.start(joystick.getFilter4());
             return true;
         }
         return false;
@@ -83,7 +85,7 @@ public class ActionController : MonoBehaviour
         if (canDash && GetPriority(PlayerState.DASH))
         {
             CancelCurrentAction();
-            dashAction.start(joystickDirection);
+            dashAction.start(joystick.getFilter8());
             changeState(PlayerState.DASH);
             return true;
         }
@@ -115,7 +117,7 @@ public class ActionController : MonoBehaviour
         if (GetPriority(PlayerState.ROPEGRAB))
         {
             CancelCurrentAction();
-            ropegrabAction.start(joystickDirection);
+            ropegrabAction.start(joystick.GetDirection());
             changeState(PlayerState.ROPEGRAB);
             return true;
         }

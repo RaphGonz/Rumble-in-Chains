@@ -2,17 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+public enum RopegrabType
+{
+    NEUTRAL,
+    UP,
+    DOWN
+}
+
 public class RopegrabAction : Action
 {
 
     [SerializeField] PlayerController playerController;
+    [SerializeField] PlayerController enemyPlayerController;
     [SerializeField] RopeManager ropeManager;
 
     [SerializeField] int playerNumber;
 
     [SerializeField] private float maxGrabAngle;
     private float currentGrabAngle = 0;
+    private float initialGrabAngle = 0;
+    private float finalGrabAngle = 0;
     private Vector2 joystickDirection;
+    private RopegrabType type;
 
 
     [SerializeField] private float ropegrabFreezeTime;
@@ -32,6 +44,29 @@ public class RopegrabAction : Action
     public void start(Vector2 direction)
     {
         joystickDirection = direction;
+
+
+
+
+
+
+        type = getTypeOfRopegrab();
+
+
+        Vector2 directionPlayers = enemyPlayerController.position - playerController.position;
+        initialGrabAngle = Mathf.Rad2Deg * Mathf.Atan2(directionPlayers.y, directionPlayers.x);
+        if (type == RopegrabType.UP)
+        {
+            finalGrabAngle = initialGrabAngle + maxGrabAngle;
+        }
+        else
+        {
+            finalGrabAngle = initialGrabAngle - maxGrabAngle;
+        }
+        
+
+
+
         timer3.setDuration(0);
         timer1.start();
         cooldown.start();
@@ -47,13 +82,13 @@ public class RopegrabAction : Action
         }
         else if (timer2.isActive())
         {
-            if (joystickDirection.y > 0)
+            if (type == RopegrabType.NEUTRAL)
             {
-                phase2GrabWithAdjustment();
+                phase2Attraction();
             }
             else
             {
-                phase2Attraction();
+                phase2GrabWithAdjustment();
             }
             return false;
         }
@@ -86,7 +121,7 @@ public class RopegrabAction : Action
         if (!timer2.check())
         {
             playerController.velocity = new Vector2(0, 0);
-            currentGrabAngle = timer2.getRatio() * maxGrabAngle;
+            currentGrabAngle = timer2.getRatio() * finalGrabAngle + (1 - timer2.getRatio()) * initialGrabAngle;
             Vector2 newDir = new Vector2(Mathf.Cos(Mathf.Deg2Rad * currentGrabAngle), Mathf.Sin(Mathf.Deg2Rad * currentGrabAngle));
 
             if (ropeManager.placePointsTowardDirection(playerNumber, newDir, timer2.getRatio()))
@@ -111,8 +146,6 @@ public class RopegrabAction : Action
         if (!timer2.check())
         {
             playerController.velocity = new Vector2(0, 0);
-            currentGrabAngle = timer2.getRatio() * maxGrabAngle;
-            Vector2 newDir = new Vector2(Mathf.Cos(Mathf.Deg2Rad * currentGrabAngle), Mathf.Sin(Mathf.Deg2Rad * currentGrabAngle));
 
             if (ropeManager.attractPoints(playerNumber, timer2.getRatio()))
             {
@@ -151,6 +184,27 @@ public class RopegrabAction : Action
         timer1.reset();
         timer2.reset();
         timer3.reset();
+    }
+
+
+    private RopegrabType getTypeOfRopegrab()
+    {
+        Vector2 directionPlayers = (enemyPlayerController.position - playerController.position).normalized;
+        float dotProduct = Vector2.Dot(directionPlayers, joystickDirection);
+        if (dotProduct * dotProduct > 0.85f){
+            return RopegrabType.NEUTRAL;
+        }
+        else
+        {
+            if (Vector3.Cross(directionPlayers, joystickDirection).z > 0)
+            {
+                return RopegrabType.UP;
+            }
+            else
+            {
+                return RopegrabType.DOWN;
+            }
+        }
     }
 
 }

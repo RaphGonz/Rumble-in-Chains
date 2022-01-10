@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RopePoint : MonoBehaviour
+public class RopePointTestCollision : MonoBehaviour
 {
-
     private RopePointCollider ropePointCollider;
 
     public Vector2 position;
@@ -24,6 +23,50 @@ public class RopePoint : MonoBehaviour
 
     private void Update()
     {
+        float val = 5f;
+
+        Vector2 direction_raw = Vector2.right * Filter(Input.GetAxis("Horizontal1")) + Vector2.up * Filter(Input.GetAxis("Vertical1"));
+
+        position += direction_raw * val;
+        
+        if (Input.GetButtonDown("A1"))
+        {
+            //print("A pressed");
+            //playerController.Jump();
+            position.y -= val;
+        }
+        if (Input.GetButtonDown("X1"))
+        {
+            //print("A pressed");
+            //playerController.Dash(direction);
+            position.x -= val;
+        }
+        if (Input.GetButtonDown("B1"))
+        {
+            //print("B pressed");
+            //playerController.Sprint();
+            position.x += val;
+        }
+        if (Input.GetButtonDown("Y1"))
+        {
+            //print("Y pressed");
+            //characterController.Attack(AttackType.Jab);
+            position.y += val;
+        }
+
+        Actualise();
+    }
+
+    public float Filter(float f)
+    {
+        if (Mathf.Abs(f) < 0.3f)
+        {
+            return 0f;
+        }
+        else
+        {
+            return f;
+        }
     }
 
     public void Actualise()
@@ -37,12 +80,6 @@ public class RopePoint : MonoBehaviour
     {
         bool collision = false;
         Vector2 movement = position - new Vector2(positionBeforeCollider.x, positionBeforeCollider.y);
-
-        if (movement.magnitude > 1000f)
-        {
-            movement = movement.normalized * 1000f;
-        }
-
 
         collision = ropePointCollider.UpdateCollisions(ref movement, positionBeforeCollider);
 

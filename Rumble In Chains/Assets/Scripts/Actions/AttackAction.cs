@@ -11,6 +11,9 @@ public class AttackAction : Action
     [SerializeField] private float attackTotalTime;
     [SerializeField] private float attackCooldown;
 
+    private Vector2 joystickDirection;
+    private AttackType attackType = AttackType.Jab;
+
 
     private void Start()
     {
@@ -20,11 +23,14 @@ public class AttackAction : Action
 
 
     // Start is called before the first frame update
-    override public void start()
+    public void start(Vector2 direction)
     {
+        joystickDirection = direction;
         timer1.start();
         cooldown.start();
+        selectAttack();
         characterController.Attack(AttackType.Jab);
+        
     }
 
     // Update is called once per frame
@@ -40,6 +46,30 @@ public class AttackAction : Action
         }
 
         return true;
+    }
+
+    private void selectAttack()
+    {
+        if (joystickDirection.x == 1)
+        {
+            attackType = AttackType.SideTilt;
+        }
+        else if (joystickDirection.x == -1)
+        {
+            attackType = AttackType.SideTilt;
+        }
+        else if (joystickDirection.y == 1)
+        {
+            attackType = AttackType.UpTilt;
+        }
+        else if (joystickDirection.y == -1)
+        {
+            attackType = AttackType.DownTilt;
+        }
+        else
+        {
+            attackType = AttackType.Jab;
+        }
     }
 
 

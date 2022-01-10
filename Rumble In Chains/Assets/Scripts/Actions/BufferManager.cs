@@ -23,11 +23,13 @@ public class BufferManager : MonoBehaviour
     InputTime[] buffer;
 
     private Vector2 direction;
+    private Joystick joystick;
 
     // Start is called before the first frame update
     void Start()
     {
         buffer = new InputTime[bufferLength];
+        joystick = new Joystick();
 
         for (int i = 0; i < buffer.Length; i++)
         {
@@ -100,13 +102,13 @@ public class BufferManager : MonoBehaviour
         }
     }
 
-    public void setDirection(Vector2 newDir)
+    public void setJoystick(Vector2 newValue)
     {
-        direction = newDir;
+        joystick.SetVector(newValue);
     }
 
-    public Vector2 getDirection()
+    public Joystick getJoystick()
     {
-        return direction;
+        return joystick;
     }
 }
