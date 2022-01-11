@@ -82,4 +82,10 @@ public class Dash : MonoBehaviour
         float currentDashSpeed = positionDisplacement / timeInsideDash;
         return currentDashSpeed;
     }
+
+    public void resetDash()
+    {
+        playerController.onDashCooldown = false;
+        playerController.canDash = true;
+    }
 }

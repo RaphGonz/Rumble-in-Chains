@@ -3,9 +3,43 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
+
+
+public enum InputButtons
+{
+    NULL,
+    ATTACKBUTTON,
+    JUMPBUTTON,
+    DASHBUTTON,
+    ROPEBUTTON,
+    SHIELDBUTTON,
+    COUNT
+}
+
+public enum JoystickDirection
+{
+    CENTER,
+    LEFT,
+    RIGHT,
+    DOWN,
+    UP,
+    DOWNLEFT,
+    DOWNRIGHT,
+    UPLEFT,
+    UPRIGHT,
+    COUNT
+}
+
 public class InputManager : MonoBehaviour
 {
     PlayerController playerController;
+
+    InputButtons controllerInput;
+
+    [SerializeField] BufferManager buffer;
+
 
     public int playerNumber = 1;
 
@@ -40,47 +74,50 @@ public class InputManager : MonoBehaviour
 
     
 
-    void Update()
+    public void UpdateInput()
     {
-        
-        
+
+        stunned = false;
         if (!stunned)
         {
 
             direction_raw = Vector2.right * Filter(Input.GetAxis("Horizontal" + playerNumber)) + Vector2.up * Filter(Input.GetAxis("Vertical" + playerNumber));
-            direction = direction_raw.normalized;
+            //direction = direction_raw.normalized;
 
 
-            if (direction.x != 0)
-            {
-                playerController.MoveX(Mathf.Sign(direction.x)); //On donne la direction 
-            }
+            buffer.setJoystick(direction_raw);
+
 
             if (Input.GetButtonDown("A" + playerNumber))
             {
                 //print("A pressed");
-                playerController.Jump();
+                //playerController.Jump();
+                controllerInput = InputButtons.JUMPBUTTON;
             }
             if (Input.GetButtonDown("X" + playerNumber))
             {
                 //print("A pressed");
-                playerController.Dash(direction);
+                //playerController.Dash(direction);
+                controllerInput = InputButtons.ATTACKBUTTON;
             }
             if (Input.GetButtonDown("B" + playerNumber))
             {
                 //print("B pressed");
-                playerController.Sprint();
+                //playerController.Sprint();
+                controllerInput = InputButtons.DASHBUTTON;
             }
             if (Input.GetButtonUp("B" + playerNumber))
             {
                 //print("B released");
-                playerController.StopSprinting();
+                //playerController.StopSprinting();
             }
             if (Input.GetButtonDown("Y" + playerNumber))
             {
                 bool vertical = Mathf.Abs(Input.GetAxis("Vertical" + playerNumber)) > Mathf.Abs(Input.GetAxis("Horizontal" + playerNumber));
                 bool neutral = Input.GetAxis("Vertical" + playerNumber) == 0 && Input.GetAxis("Horizontal" + playerNumber) == 0;
                 //print("Y pressed");
+
+		/*
                 if (!GetComponent<PlayerController>().grounded) {
                     if (vertical && Input.GetAxis("Vertical" + playerNumber) < 0)
                     {
@@ -132,12 +169,19 @@ public class InputManager : MonoBehaviour
             if (Input.GetButtonUp("LB2") && planted)
             {
                 planted = false; // ajouter qqs frames de déplantage par coroutine ? 
+		*/
+
+                //characterController.Attack(AttackType.Jab);
+                controllerInput = InputButtons.ROPEBUTTON;
             }
             if (Input.GetButtonDown("LB" + playerNumber))
             {
-                playerController.ImmobilizePlayer();
+                //playerController.ImmobilizePlayer();
+                controllerInput = InputButtons.SHIELDBUTTON;
             }
         }
+
+        /*
         else
         {
             timeStunned++;
@@ -158,7 +202,14 @@ public class InputManager : MonoBehaviour
                 
             }
         }
-        
+        */
+
+
+        if (controllerInput != InputButtons.NULL)
+        {
+            buffer.addToBuffer(controllerInput);
+            controllerInput = InputButtons.NULL;
+        }
 
     }
 
@@ -200,4 +251,5 @@ public class InputManager : MonoBehaviour
         //stunSlider.ChangeMaxStunValue(stunTimeInFrames);
         //stunSlider.ChangeStunValue(stunTimeInFrames);
     }
+
 }

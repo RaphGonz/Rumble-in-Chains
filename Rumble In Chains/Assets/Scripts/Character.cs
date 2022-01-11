@@ -12,5 +12,5 @@ public class Character : ScriptableObject
     public DashActivation dashActivation;
     public DashDistance dashDistance;
     public RopePulling ropePulling;
-    public Sprite sprite;   
+    public Sprite sprite;
 }
