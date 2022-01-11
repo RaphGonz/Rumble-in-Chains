@@ -14,6 +14,10 @@ public class UIController : MonoBehaviour
     TextMeshProUGUI player1Points;
     [SerializeField]
     TextMeshProUGUI player2Points;
+    [SerializeField]
+    TextMeshProUGUI playerWins;
+    [SerializeField]
+    int mandatoryPoints;
 
     private static UIController instance;
     private UIController() { } //au cas où certains fous tenteraient qd même d'utiliser le mot clé "new"
@@ -40,5 +44,10 @@ public class UIController : MonoBehaviour
     {
         TextMeshProUGUI text = player == 1 ? player1Points : player2Points;
         text.text = points + " points";
+        if(points >= mandatoryPoints)
+        {
+            playerWins.text = "Player " + player + " wins !";
+            playerWins.transform.parent.gameObject.SetActive(true);
+        }
     }
 }

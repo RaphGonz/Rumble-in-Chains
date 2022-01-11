@@ -25,8 +25,8 @@ TagManager:
   - 
   - 
   - 
-  - Player1
-  - Player2
+  - PlayerLeft
+  - PlayerRight
   - ZonePlayer1
   - ZonePlayer2
   - 

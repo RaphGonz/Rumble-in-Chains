@@ -183,13 +183,25 @@ public class RopeManager : MonoBehaviour
 
 
         Vector2 rightVelocity = listRopePoints[variablePointNumber - 1].position - listRopePoints[variablePointNumber - 1].previousPosition;
-        if (rightPlayer.velocity.y > maxSpeedRatio * Mathf.Abs(leftVelocity.y))
+        if (rightPlayer.velocity.y > maxSpeedRatio * Mathf.Abs(rightVelocity.y)) 
         {
-            rightPlayer.velocity.y = maxSpeedRatio * Mathf.Abs(leftVelocity.y);
+            if (rightPlayer.hit)
+            {
+                print(rightPlayer.velocity);
+            }
+            rightPlayer.velocity.y = maxSpeedRatio * Mathf.Abs(rightVelocity.y);
+            if (rightPlayer.hit)
+            {
+                print(rightPlayer.velocity);
+            }
         }
-        else if (rightPlayer.velocity.y < -maxSpeedRatio * Mathf.Abs(leftVelocity.y))
+        else if (rightPlayer.velocity.y < -maxSpeedRatio * Mathf.Abs(rightVelocity.y))
         {
-            rightPlayer.velocity.y = -maxSpeedRatio * Mathf.Abs(leftVelocity.y);
+            rightPlayer.velocity.y = -maxSpeedRatio * Mathf.Abs(rightVelocity.y);
+            if (rightPlayer.hit)
+            {
+                print(rightPlayer.velocity);
+            }
         }
 
         leftPlayer.UpdatePositionInRegardsOfCollision();

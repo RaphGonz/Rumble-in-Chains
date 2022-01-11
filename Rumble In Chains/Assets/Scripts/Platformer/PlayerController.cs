@@ -62,17 +62,15 @@ public class PlayerController : MonoBehaviour
     public bool onDash = false;
     public bool onDashCooldown = false;
     public bool canDash = true;
+    public bool grounded = true;
+    public bool hit = false;
+    public int counterFramesHit = 3;
 
     public bool immobile = false;
     public bool onImmobilization = false;
     public float immobileDuration = 1.0f;
     public float immobileCooldown = 0.5f;
-    public float timeImmobileStart = 0;
-
-
-    int i = 0;
-
-   
+    public float timeImmobileStart = 0;   
 
     // Start is called before the first frame update
     void Start()
@@ -104,7 +102,6 @@ public class PlayerController : MonoBehaviour
             UpdateVelocity(); //ça modifie le vecteur velocité
             UpdatePosition(); //ca calcule la prochaine position idéal (sans collider)
         }
-        
         UpdatePositionInRegardsOfCollision();
         if (GetComponent<InputManager>().direction.x > 0) {
             facing = 1;
@@ -114,7 +111,6 @@ public class PlayerController : MonoBehaviour
             facing = -1;
         }
     }
-
 
     private void UpdateActions()
     {
@@ -132,6 +128,13 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+
+            if (gameObject.name == "PlayerRight" && hit)
+            {
+                Debug.Break();
+                print(velocity); 
+            }
+
             if (velocity.y > -maxYspeed)
             {
                 velocity.y += gravity * Time.deltaTime;
@@ -153,8 +156,8 @@ public class PlayerController : MonoBehaviour
         {
             velocity.y = -grabFallingSpeed;
         }
+
     }
-    
 
     private void UpdateVelocity()
     {
@@ -265,6 +268,7 @@ public class PlayerController : MonoBehaviour
 
     public void GroundTouched()
     {
+        grounded = true;
         jumpCount = 2;
         if (!onDash)
         {
@@ -275,8 +279,10 @@ public class PlayerController : MonoBehaviour
     // JumpButtonPressed
     public void Jump()
     {
+        grounded = false;
         if (Time.time - timeStartJump > jumpCooldown)
         {
+
             jumpManager.StartJump(jumpCount);
             timeStartJump = Time.time;
         }
