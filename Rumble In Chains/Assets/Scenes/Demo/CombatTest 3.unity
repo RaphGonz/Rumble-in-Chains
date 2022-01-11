@@ -1206,8 +1206,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cab2f3ab388e714296ccfb3a581325c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterController: {fileID: 0}
-  jumpVelocity: 0
+  characterController: {fileID: 1141088099}
   attackTotalTime: 0
   attackCooldown: 0
 --- !u!114 &1141088102
@@ -1229,7 +1228,7 @@ MonoBehaviour:
   maxGrabAngle: 180
   ropegrabFreezeTime: 0.2
   ropegrabGrabTime: 0.3
-  ropegrabCooldown: 2
+  ropegrabCooldown: 0.5
 --- !u!114 &1141088103 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2966433189847347344, guid: 360e08196e2cc1142982da7688613d12,
@@ -1288,10 +1287,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerController: {fileID: 1141088103}
-  jumpVelocity: 0
-  jumpAccelerationTime: 0
-  jumpMovementTime: 0
-  jumpCooldown: 0
+  shieldTime: 1
+  shieldCooldown: 1.5
 --- !u!114 &1141088112
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1309,7 +1306,7 @@ MonoBehaviour:
   dashFreezeTime: 0.1
   dashMovementTime: 0.1
   dashDecelerationTime: 0.2
-  dashCooldown: 10
+  dashCooldown: 0.5
 --- !u!114 &1141088113
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1326,7 +1323,7 @@ MonoBehaviour:
   jumpVelocity: 30
   jumpAccelerationTime: 0.05
   jumpMovementTime: 0.2
-  jumpCooldown: 2
+  jumpCooldown: 1
 --- !u!114 &1141088114
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3003,8 +3000,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cab2f3ab388e714296ccfb3a581325c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterController: {fileID: 0}
-  jumpVelocity: 0
+  characterController: {fileID: 1856135596}
   attackTotalTime: 0
   attackCooldown: 0
 --- !u!114 &1856135594
@@ -3026,7 +3022,7 @@ MonoBehaviour:
   maxGrabAngle: 180
   ropegrabFreezeTime: 0.2
   ropegrabGrabTime: 0.3
-  ropegrabCooldown: 2
+  ropegrabCooldown: 0.5
 --- !u!114 &1856135595 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2966433189847347344, guid: 360e08196e2cc1142982da7688613d12,
@@ -3097,10 +3093,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerController: {fileID: 1856135595}
-  jumpVelocity: 0
-  jumpAccelerationTime: 0
-  jumpMovementTime: 0
-  jumpCooldown: 0
+  shieldTime: 1
+  shieldCooldown: 1.5
 --- !u!114 &1856135605
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3118,7 +3112,7 @@ MonoBehaviour:
   dashFreezeTime: 0.1
   dashMovementTime: 0.1
   dashDecelerationTime: 0.2
-  dashCooldown: 10
+  dashCooldown: 0.5
 --- !u!114 &1856135606
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3135,7 +3129,7 @@ MonoBehaviour:
   jumpVelocity: 30
   jumpAccelerationTime: 0.05
   jumpMovementTime: 0.2
-  jumpCooldown: 3
+  jumpCooldown: 1
 --- !u!114 &1856135607
 MonoBehaviour:
   m_ObjectHideFlags: 0

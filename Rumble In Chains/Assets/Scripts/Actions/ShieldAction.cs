@@ -6,18 +6,14 @@ public class ShieldAction : Action
 {
     [SerializeField] PlayerController playerController;
 
-    [SerializeField] private float jumpVelocity;
-
-    [SerializeField] private float jumpAccelerationTime;
-    [SerializeField] private float jumpMovementTime;
-    [SerializeField] private float jumpCooldown;
+    [SerializeField] private float shieldTime;
+    [SerializeField] private float shieldCooldown;
 
 
     private void Start()
     {
-        timer1.setDuration(jumpAccelerationTime);
-        timer2.setDuration(jumpMovementTime);
-        cooldown.setDuration(jumpCooldown);
+        timer1.setDuration(shieldTime);
+        cooldown.setDuration(shieldCooldown);
     }
 
 
@@ -33,41 +29,23 @@ public class ShieldAction : Action
     {
         if (timer1.isActive())
         {
-            phase1Acceleration();
+            phase1Shield();
             return false;
         }
-        else if (timer2.isActive())
-        {
-            phase2Movement();
-            return false;
-        }
+
 
         return true;
     }
 
-    private void phase1Acceleration()
+    private void phase1Shield()
     {
         if (!timer1.check())
         {
-            playerController.velocity.y = jumpVelocity * timer1.getRatio();
+            playerController.velocity = new Vector2(0, 0);
         }
         else
         {
-            timer2.start();
             timer1.reset();
-        }
-    }
-
-    private void phase2Movement()
-    {
-        if (!timer2.check())
-        {
-            playerController.velocity.y = jumpVelocity;
-        }
-        else
-        {
-            timer3.start();
-            timer2.reset();
         }
     }
 

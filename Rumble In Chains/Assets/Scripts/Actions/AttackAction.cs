@@ -6,8 +6,6 @@ public class AttackAction : Action
 {
     [SerializeField] CharacterController characterController;
 
-    [SerializeField] private float jumpVelocity;
-
     [SerializeField] private float attackTotalTime;
     [SerializeField] private float attackCooldown;
 
@@ -19,18 +17,6 @@ public class AttackAction : Action
     {
         timer1.setDuration(attackTotalTime);
         cooldown.setDuration(attackCooldown);
-        EventManager.Instance.eventSound += TestEvent;
-        EventManager.Instance.eventParticle += TestEventParticle;
-    }
-
-    private void TestEvent(string testString)
-    {
-        Debug.Log("AttackAction recieved the Event with string parameter : " + testString);
-    }
-
-    private void TestEventParticle(Vector2 pos, string testString)
-    {
-        Debug.Log("AttackAction recieved the Event with parameters : position = (" + pos.x + "; " + pos.y + ");  string = " + testString);
     }
 
 
@@ -42,7 +28,6 @@ public class AttackAction : Action
         cooldown.start();
         selectAttack();
         characterController.Attack(AttackType.Jab);
-        
     }
 
     // Update is called once per frame
@@ -65,22 +50,27 @@ public class AttackAction : Action
         if (joystickDirection.x == 1)
         {
             attackType = AttackType.SideTilt;
+            Debug.Log("sideTilt");
         }
         else if (joystickDirection.x == -1)
         {
             attackType = AttackType.SideTilt;
+            Debug.Log("sideTilt");
         }
         else if (joystickDirection.y == 1)
         {
             attackType = AttackType.UpTilt;
+            Debug.Log("UpTilt");
         }
         else if (joystickDirection.y == -1)
         {
             attackType = AttackType.DownTilt;
+            Debug.Log("DownTilt");
         }
         else
         {
             attackType = AttackType.Jab;
+            Debug.Log("Jab");
         }
     }
 
