@@ -47,6 +47,7 @@ public class RopeManager : MonoBehaviour
     private float extentionRatio;
     private bool ropegrabCollision = false;
     private bool ropeAttraction = false;
+    [SerializeField] private float ropegrabAttenuation = 0.2f;
 
     Vector2[] positionsLeft;
     Vector2[] positionsRight;
@@ -160,9 +161,9 @@ public class RopeManager : MonoBehaviour
                 
                 Vector2 newPos = pos + currentDirection * stickLength * currentElongation * i;
 
-                if ((newPos - listRopePoints[i].position).magnitude > 0.05f * (1 + i * stickLength * currentElongation))
+                if ((newPos - listRopePoints[i].position).magnitude > ropegrabAttenuation * (1 + i * stickLength * currentElongation))
                 {
-                    newPos = 0.05f * (1 + i * stickLength * currentElongation) * (newPos - listRopePoints[i].position).normalized + listRopePoints[i].position;
+                    newPos = ropegrabAttenuation * (1 + i * stickLength * currentElongation) * (newPos - listRopePoints[i].position).normalized + listRopePoints[i].position;
                 }
                 
                 if (i != 0 && i != listRopePoints.Count-1)
@@ -192,9 +193,9 @@ public class RopeManager : MonoBehaviour
                 Vector2 newPos = pos + currentDirection * stickLength * currentElongation * (listRopePoints.Count - 1 - i);
 
                 //listRopePoints[i].UpdateCollisions();
-                if ((newPos - listRopePoints[i].position).magnitude > 0.05f * (1 + i * stickLength * currentElongation))
+                if ((newPos - listRopePoints[i].position).magnitude > ropegrabAttenuation * (1 + i * stickLength * currentElongation))
                 {
-                    newPos = 0.05f * (1 + i * stickLength * currentElongation) * (newPos - listRopePoints[i].position).normalized + listRopePoints[i].position;
+                    newPos = ropegrabAttenuation * (1 + i * stickLength * currentElongation) * (newPos - listRopePoints[i].position).normalized + listRopePoints[i].position;
                 }
 
                 if (i != 0 && i != listRopePoints.Count - 1)
