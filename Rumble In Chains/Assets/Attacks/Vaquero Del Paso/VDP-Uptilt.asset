@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9db44418192ac53418ae0ceca60a04c9, type: 3}
+  m_Name: VDP-Uptilt
+  m_EditorClassIdentifier: 
+  _prelag: 8
+  _postlag: 8
+  _hitboxes:
+  - {fileID: 11400000, guid: 90e2de4b0c2d13c48a64a453b9718ae4, type: 2}
+  - {fileID: 11400000, guid: c36483cfce66c5f4a8e1fa90327ffdbf, type: 2}
+  - {fileID: 11400000, guid: 1452fb9c905c6914d87bb28cf856111b, type: 2}
+  _attackDuration: 0

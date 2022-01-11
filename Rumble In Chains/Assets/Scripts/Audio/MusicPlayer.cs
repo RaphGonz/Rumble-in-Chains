@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class MusicPlayer : MonoBehaviour // Allows to choose which instruments to play from the main theme and to synchronize voices
 {
-    private MusicPlayer _instance;
-    public MusicPlayer Instance { get => _instance; private set { _instance = value; } }
+    private static MusicPlayer _instance;
+    public static MusicPlayer Instance { get => _instance; private set { _instance = value; } }
     public MusicPlayer(){}
 
     [SerializeField]

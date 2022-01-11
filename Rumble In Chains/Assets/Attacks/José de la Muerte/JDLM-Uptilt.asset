@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9db44418192ac53418ae0ceca60a04c9, type: 3}
+  m_Name: JDLM-Uptilt
+  m_EditorClassIdentifier: 
+  _prelag: 16
+  _postlag: 8
+  _hitboxes:
+  - {fileID: 11400000, guid: 7da907e3d84c01e428864185c5eb4702, type: 2}
+  - {fileID: 11400000, guid: 88dc62241c730f740845b801ccda58d8, type: 2}
+  - {fileID: 11400000, guid: ea7c0ddece31722489bd32bb60c76d24, type: 2}
+  - {fileID: 11400000, guid: 1a4ed9273dcc7a94cbc72b5a00544c42, type: 2}
+  - {fileID: 11400000, guid: 0876d8d77027e9d4ca911c551e069c32, type: 2}
+  - {fileID: 11400000, guid: 03b65f6f9b2b7d54cad5ba578434ffda, type: 2}
+  _attackDuration: 0

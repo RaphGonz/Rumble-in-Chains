@@ -2,21 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public abstract class Hitbox //!!!
+public abstract class Hitbox : ScriptableObject //!!!
 {
+    [SerializeField]
     protected float _damage;
-    protected float _stunFactor; //C'est le multiplicateur de stun, en général > 1.f
-    protected float _startUpTiming;// number of frames at which this hitbox starts. 1st hitbox starts at startUpTiming = 0;
-    protected float _durationOfHitbox;
+    [SerializeField]
+    protected float _stunFactor = 1; //C'est le multiplicateur de stun, en général > 1.f
+    [SerializeField]
+    protected int _startUpTiming;// number of frames at which this hitbox starts. 1st hitbox starts at startUpTiming = 0;
+    [SerializeField]
+    protected int _durationOfHitbox;
+    [SerializeField]
     protected Vector2 _expulsion;
     public float Damage { get => _damage; }
     public float StunFactor { get => _stunFactor; }
-    public float StartUpTiming { get => _startUpTiming; }// number of frames at which this hitbox starts. 1st hitbox starts at startUpTiming = 0;
-    public float DurationOfHitbox { get => _durationOfHitbox; } //number of frames that this hitbox lasts;
+    public int StartUpTiming { get => _startUpTiming; }// number of frames at which this hitbox starts. 1st hitbox starts at startUpTiming = 0;
+    public int DurationOfHitbox { get => _durationOfHitbox; } //number of frames that this hitbox lasts;
     public Vector2 Expulsion { get => _expulsion; }
 
-    protected Hitbox(float damage,float stunFactor, float startUpTiming, float durationOfHitbox, Vector2 expulsion)
+    protected Hitbox(float damage,float stunFactor, int startUpTiming, int durationOfHitbox, Vector2 expulsion)
     {
         _damage = damage;
         _stunFactor = stunFactor;

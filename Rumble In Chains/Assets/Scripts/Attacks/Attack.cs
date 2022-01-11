@@ -2,12 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public class Attack // !!!
+[CreateAssetMenu(fileName = "New Attack", menuName = "Attack")]
+public class Attack : ScriptableObject
 {
+    [SerializeField]
     private float _prelag;
+    [SerializeField]
     private float _postlag;
+    [SerializeField]
     private List<Hitbox> _hitboxes;
+    [SerializeField]
     private float _attackDuration = 0;
     public float Prelag { get => _prelag; }
     public float Postlag { get => _postlag; }

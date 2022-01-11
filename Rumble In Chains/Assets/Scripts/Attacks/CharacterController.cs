@@ -6,7 +6,6 @@ using UnityEngine;
 public class CharacterController : MonoBehaviour //!!!
 {
     private float _pourcentages = 0;
-    private float _weight;
     private int _points = 0;
     private int lastHitbox;
     [SerializeField]
@@ -15,6 +14,15 @@ public class CharacterController : MonoBehaviour //!!!
     [SerializeField]
     private int _framesShieldPostlag;
     private bool shieldStun = false;
+
+    private Weight _weight;
+    private DashActivation _dashActivation;
+    
+
+    CharacterController(Character character)
+    {
+
+    }
     //private int _framesCounterForShieldStun = 0;
 
 

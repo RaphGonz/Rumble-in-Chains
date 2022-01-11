@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9db44418192ac53418ae0ceca60a04c9, type: 3}
+  m_Name: VDP-Ftilt
+  m_EditorClassIdentifier: 
+  _prelag: 8
+  _postlag: 8
+  _hitboxes:
+  - {fileID: 11400000, guid: 1b5ca7fe350d24a44a5af8a82749d299, type: 2}
+  - {fileID: 11400000, guid: a94534f74a8b075478a2a3573220a5fd, type: 2}
+  - {fileID: 11400000, guid: 7dedeb86228307a4d875ec4c033d2e56, type: 2}
+  - {fileID: 11400000, guid: 0e712c6e0f9977f479bf3eabc556fecd, type: 2}
+  _attackDuration: 0

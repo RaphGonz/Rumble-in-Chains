@@ -228,7 +228,6 @@ public class PlayerCollider : MonoBehaviour
         {
             if (hitDown)
             {
-                if (gameObject.name == "PlayerRight") print("pleassssssssse");
                 movement.y += (-hitDown.distance + Vector2.Dot(Vector2.down, movement));
                 playerController.velocity.y = 0;
                 playerController.bottomDirectionLocked = true;

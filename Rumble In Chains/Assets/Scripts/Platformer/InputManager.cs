@@ -78,7 +78,6 @@ public class InputManager : MonoBehaviour
             }
             if (Input.GetButtonDown("Y" + playerNumber))
             {
-                print("hi");
                 bool vertical = Mathf.Abs(Input.GetAxis("Vertical" + playerNumber)) > Mathf.Abs(Input.GetAxis("Horizontal" + playerNumber));
                 bool neutral = Input.GetAxis("Vertical" + playerNumber) == 0 && Input.GetAxis("Horizontal" + playerNumber) == 0;
                 //print("Y pressed");
@@ -86,22 +85,18 @@ public class InputManager : MonoBehaviour
                     if (vertical && Input.GetAxis("Vertical" + playerNumber) < 0)
                     {
                         characterController.Attack(AttackType.DownAir);
-                        print("where");
                     }
                     else if (vertical && Input.GetAxis("Vertical" + playerNumber) > 0)
                     {
                         characterController.Attack(AttackType.UpAir);
-                        print("you");
                     }
                     else if (neutral)
                     {
                         characterController.Attack(AttackType.NeutralAir);
-                        print("at");
                     }
                     else
                     {
                         characterController.Attack(AttackType.SideAir);
-                        print("bruh ?");
                     }
 
                 }
@@ -123,7 +118,6 @@ public class InputManager : MonoBehaviour
                     else
                     {
                         characterController.Attack(AttackType.SideTilt);
-                        print("hello");
                     }
                 }
 
