@@ -8,6 +8,8 @@ public class PlayerCollider : MonoBehaviour
     Collider2D playerCollider;
     Bounds bounds;
 
+    private float length;
+
     public Vector2 bottomLeftPoint;
     public Vector2 bottomRightPoint;
     public Vector2 topLeftPoint;
@@ -35,20 +37,32 @@ public class PlayerCollider : MonoBehaviour
     {
         playerCollider = GetComponent<Collider2D>();
 
-        UpdateBounds();
+        bounds = playerCollider.bounds;
+        
+
+        UpdateBounds(playerController.position);
 
         mask = LayerMask.GetMask("Wall");
     }
 
 
-    private void UpdateBounds()
+    private void UpdateBounds(Vector2 position)
     {
         bounds = playerCollider.bounds;
+        length = bounds.max.x - bounds.min.x;
+
+        /*
         bounds.Expand(-collisionDistance);
         bottomLeftPoint = new Vector2(bounds.min.x, bounds.min.y);
         bottomRightPoint = new Vector2(bounds.max.x, bounds.min.y);
         topLeftPoint = new Vector2(bounds.min.x, bounds.max.y);
         topRightPoint = new Vector2(bounds.max.x, bounds.max.y);
+        */
+
+        bottomLeftPoint = new Vector2(position.x - length/2, position.y - length/2);
+        bottomRightPoint = new Vector2(position.x + length / 2, position.y - length / 2);
+        topLeftPoint = new Vector2(position.x - length / 2, position.y + length / 2);
+        topRightPoint = new Vector2(position.x + length / 2, position.y + length / 2);
 
         if (debug)
         {
@@ -191,10 +205,10 @@ public class PlayerCollider : MonoBehaviour
     }
 
     
-    public void UpdateCollisions(ref Vector2 movement) // fonction à tester
+    public void UpdateCollisions(ref Vector2 movement, Vector2 position) // fonction à tester
     {   //bottomLeftPoint/2 + topLeftPoint/2 = 1/2 * (bottomLeftPoint + topLeftPoint) 
 
-        UpdateBounds();
+        UpdateBounds(position);
 
         RaycastHit2D hitDown = new RaycastHit2D();
         RaycastHit2D hitUp = new RaycastHit2D();

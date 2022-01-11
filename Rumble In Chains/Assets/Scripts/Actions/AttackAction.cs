@@ -19,6 +19,18 @@ public class AttackAction : Action
     {
         timer1.setDuration(attackTotalTime);
         cooldown.setDuration(attackCooldown);
+        EventManager.Instance.eventSound += TestEvent;
+        EventManager.Instance.eventParticle += TestEventParticle;
+    }
+
+    private void TestEvent(string testString)
+    {
+        Debug.Log("AttackAction recieved the Event with string parameter : " + testString);
+    }
+
+    private void TestEventParticle(Vector2 pos, string testString)
+    {
+        Debug.Log("AttackAction recieved the Event with parameters : position = (" + pos.x + "; " + pos.y + ");  string = " + testString);
     }
 
 

@@ -206,7 +206,7 @@ public class PlayerController : MonoBehaviour
     {
         Vector2 movement = position - new Vector2(positionBeforeCollider.x, positionBeforeCollider.y);
 
-        playerCollider.UpdateCollisions(ref movement);
+        playerCollider.UpdateCollisions(ref movement, positionBeforeCollider);
 
         position = new Vector3(movement.x + positionBeforeCollider.x, movement.y + positionBeforeCollider.y, 0);
         positionBeforeCollider = position;

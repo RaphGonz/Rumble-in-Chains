@@ -111,7 +111,14 @@ public class RopegrabAction : Action
         {
             timer2.start();
             timer1.reset();
-            ropeManager.startRopeGab();
+            if (type == RopegrabType.NEUTRAL)
+            {
+                ropeManager.startRopeAttraction();
+            }
+            else
+            {
+                ropeManager.startRopeGab(new Vector2(Mathf.Cos(Mathf.Deg2Rad * initialGrabAngle), Mathf.Sin(Mathf.Deg2Rad * initialGrabAngle)));
+            }
             currentGrabAngle = 0;
         }
     }
@@ -124,13 +131,16 @@ public class RopegrabAction : Action
             currentGrabAngle = timer2.getRatio() * finalGrabAngle + (1 - timer2.getRatio()) * initialGrabAngle;
             Vector2 newDir = new Vector2(Mathf.Cos(Mathf.Deg2Rad * currentGrabAngle), Mathf.Sin(Mathf.Deg2Rad * currentGrabAngle));
 
-            if (ropeManager.placePointsTowardDirection(playerNumber, newDir, timer2.getRatio()))
+            
+            if (ropeManager.UpdateRopegrabValues(playerNumber, newDir, timer2.getRatio()))
             {
                 timer3.setDuration(ropegrabGrabTime * (1 - timer2.getRatio()));
                 timer3.start();
                 timer2.reset();
                 ropeManager.endRopeGrab();
             }
+            
+
         }
         else
         {
@@ -152,14 +162,14 @@ public class RopegrabAction : Action
                 timer3.setDuration(ropegrabGrabTime * (1 - timer2.getRatio()));
                 timer3.start();
                 timer2.reset();
-                ropeManager.endRopeGrab();
+                ropeManager.endRopeAttraction();
             }
         }
         else
         {
             timer3.start();
             timer2.reset();
-            ropeManager.endRopeGrab();
+            ropeManager.endRopeAttraction();
         }
     }
 
@@ -174,12 +184,14 @@ public class RopegrabAction : Action
         {
             timer3.reset();
             ropeManager.endRopeGrab();
+            ropeManager.endRopeAttraction();
         }
     }
 
     override public void cancel()
     {
         ropeManager.endRopeGrab();
+        ropeManager.endRopeAttraction();
         //playerController.velocity = new Vector2(0, 0);
         timer1.reset();
         timer2.reset();

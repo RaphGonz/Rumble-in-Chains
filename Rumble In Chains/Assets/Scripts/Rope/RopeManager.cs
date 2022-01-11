@@ -41,6 +41,13 @@ public class RopeManager : MonoBehaviour
     private PlayerController leftPlayer;
     private PlayerController rightPlayer;
 
+    private Vector2 directionRopegrab;
+    private Vector2 lastDirectionRopegrab;
+    private int playerNumber;
+    private float extentionRatio;
+    private bool ropegrabCollision = false;
+    private bool ropeAttraction = false;
+
     Vector2[] positionsLeft;
     Vector2[] positionsRight;
 
@@ -101,31 +108,79 @@ public class RopeManager : MonoBehaviour
         
     }
 
-    public void startRopeGab()
+    public void startRopeGab(Vector2 initialGrabDirection)
     {
         inRopeGrab = true;
+        lastDirectionRopegrab = initialGrabDirection;
+        directionRopegrab = initialGrabDirection;
+        ropegrabCollision = false;
     }
 
-    public bool placePointsTowardDirection(int playerNumber, Vector2 direction, float extentionRatio)
+    public void endRopeGrab()
     {
+        inRopeGrab = false;
+    }
 
+    public void startRopeAttraction()
+    {
+        ropeAttraction = true;
+    }
+
+    public void endRopeAttraction()
+    {
+        ropeAttraction = false;
+    }
+
+    public bool UpdateRopegrabValues(int playerNumber, Vector2 direction, float extentionRatio)
+    {
+        lastDirectionRopegrab = this.directionRopegrab;
+        this.playerNumber = playerNumber;
+        this.directionRopegrab = direction;
+        this.extentionRatio = extentionRatio;
+
+        return ropegrabCollision;
+    }
+
+    public void placePointsTowardDirection(int iteration)
+    {
+        iteration += 1;
         float distanceBetweenPlayers = (leftPlayer.position - rightPlayer.position).magnitude;
         float newElongation = distanceBetweenPlayers / (variablePointNumber * stickLength);
         float wantedElongation = 1.2f;
         float currentElongation = extentionRatio * wantedElongation + (1 - extentionRatio) * newElongation;
-        bool collision = false;
 
+        Vector2 currentDirection = lastDirectionRopegrab + (directionRopegrab - lastDirectionRopegrab) * iteration / ropeLoopIterations;
+        
 
         if (playerNumber == 1)
         {
             Vector2 pos = leftPlayer.position;
             for (int i = 0; i < listRopePoints.Count; i++)
             {
-                listRopePoints[i].UpdateCollisions();
-                listRopePoints[i].SetPosition(pos + direction * stickLength * currentElongation * i);
+                
+                Vector2 newPos = pos + currentDirection * stickLength * currentElongation * i;
+
+                if ((newPos - listRopePoints[i].position).magnitude > 0.05f * (1 + i * stickLength * currentElongation))
+                {
+                    newPos = 0.05f * (1 + i * stickLength * currentElongation) * (newPos - listRopePoints[i].position).normalized + listRopePoints[i].position;
+                }
+                
+                if (i != 0 && i != listRopePoints.Count-1)
+                {
+                    float maxDelta = Mathf.Max((listRopePoints[i].position - listRopePoints[i - 1].position).magnitude, (listRopePoints[i].position - listRopePoints[i + 1].position).magnitude);
+                    if (maxDelta < stickLength * wantedElongation * 1f)
+                    {
+                        listRopePoints[i].SetPosition(newPos);
+                    }
+                }
+                else
+                {
+                    listRopePoints[i].SetPosition(newPos);
+                } 
+
                 if (listRopePoints[i].UpdateCollisions())
                 {
-                    collision = true;
+                    ropegrabCollision = true;
                 }
             }
         }
@@ -134,17 +189,33 @@ public class RopeManager : MonoBehaviour
             Vector2 pos = rightPlayer.position;
             for (int i = listRopePoints.Count-1; i >= 0; i--)
             {
-                listRopePoints[i].UpdateCollisions();
-                listRopePoints[i].SetPosition(pos + direction * stickLength * currentElongation * (listRopePoints.Count - 1 - i));
+                Vector2 newPos = pos + currentDirection * stickLength * currentElongation * (listRopePoints.Count - 1 - i);
+
+                //listRopePoints[i].UpdateCollisions();
+                if ((newPos - listRopePoints[i].position).magnitude > 0.05f * (1 + i * stickLength * currentElongation))
+                {
+                    newPos = 0.05f * (1 + i * stickLength * currentElongation) * (newPos - listRopePoints[i].position).normalized + listRopePoints[i].position;
+                }
+
+                if (i != 0 && i != listRopePoints.Count - 1)
+                {
+                    float maxDelta = Mathf.Max((listRopePoints[i].position - listRopePoints[i - 1].position).magnitude, (listRopePoints[i].position - listRopePoints[i + 1].position).magnitude);
+                    if (maxDelta < stickLength * wantedElongation * 1f)
+                    {
+                        listRopePoints[i].SetPosition(newPos);
+                    }
+                }
+                else
+                {
+                    listRopePoints[i].SetPosition(newPos);
+                }
 
                 if (listRopePoints[i].UpdateCollisions())
                 {
-                    collision = true;
+                    ropegrabCollision = true;
                 }
             }
         }
-
-        return collision;
         
     }
 
@@ -181,10 +252,7 @@ public class RopeManager : MonoBehaviour
         return collision;
     }
 
-    public void endRopeGrab()
-    {
-        inRopeGrab = false;
-    }
+    
 
 
     public void UpdateRope()
@@ -195,10 +263,16 @@ public class RopeManager : MonoBehaviour
         {
             if (i < simulationLoopIterations)
             {
+                
                 SimulatePoints(i);
+                
             }
             if (i < ropeLoopIterations)
             {
+                if (inRopeGrab && !ropegrabCollision)
+                {
+                    placePointsTowardDirection(i);
+                }
                 ComputePosition();
             }
         }
@@ -222,12 +296,12 @@ public class RopeManager : MonoBehaviour
         //UpdatePlayerRight();
 
 
-        if (!inRopeGrab || iterationNumber == 0)
+        if (!inRopeGrab && !ropeAttraction || iterationNumber == 0)
         {
             for (int i = 0; i < variablePointNumber; i++) //Points de la corde uniquement
             {
                 Vector2 positionBeforeUpdate = listRopePoints[i].position;
-                if (!inRopeGrab)
+                if (!inRopeGrab && !ropeAttraction)
                 {
                     listRopePoints[i].TranslatePosition((listRopePoints[i].position - listRopePoints[i].previousPosition) * 1.0f);
                     listRopePoints[i].TranslatePosition(Vector2.down * gravity * Time.deltaTime * Time.deltaTime);
