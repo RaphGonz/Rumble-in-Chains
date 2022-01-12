@@ -81,6 +81,7 @@ public class PlayerController : MonoBehaviour
     private PlayerState playerState = PlayerState.NORMAL;
     private bool ropeActive = true;
     private bool gravityActive = true;
+    private bool decelerationActive = true;
 
 
     int i = 0;
@@ -120,6 +121,7 @@ public class PlayerController : MonoBehaviour
             UpdatePosition(); //ça calcule la prochaine position idéal (sans collider)
         }
         UpdatePositionInRegardsOfCollision();
+
         if (GetComponent<InputManager>().direction.x > 0) {
             facing = 1;
         }
@@ -193,14 +195,11 @@ public class PlayerController : MonoBehaviour
 
 
 
-
-        Vector2 deceleration = new Vector2(ComputeDecelerationX(), 0); //Vecteur vertical ! Possible de faire une deceleration sur y aussi, a tester
-
-        
-        
-
-
-        velocity += deceleration * Time.deltaTime;
+        if (decelerationActive)
+        {
+            Vector2 deceleration = new Vector2(ComputeDecelerationX(), 0); //Vecteur vertical ! Possible de faire une deceleration sur y aussi, a tester
+            velocity += deceleration * Time.deltaTime;
+        }
     }
 
     private void UpdatePosition() //Positions idéales
@@ -254,9 +253,12 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void MoveDown()
+    public void MoveDown(bool value)
     {
-
+        if (value)
+        {
+            gravity = -200;
+        }
     }
 
     private float ComputeDecelerationX()
@@ -444,5 +446,9 @@ public class PlayerController : MonoBehaviour
     public void SetGravityActive(bool newGravityActive)
     {
         gravityActive = newGravityActive;
+    }
+    public void SetDecelerationActive(bool newDecelerationActive)
+    {
+        decelerationActive = newDecelerationActive;
     }
 }
