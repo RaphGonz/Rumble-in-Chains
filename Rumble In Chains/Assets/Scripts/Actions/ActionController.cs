@@ -31,6 +31,7 @@ public class ActionController : MonoBehaviour
     private bool canJump = true;
     private bool shieldActive = false;
     private bool invincible = false;
+    
 
     private float invincibilityTime;
 
@@ -57,6 +58,10 @@ public class ActionController : MonoBehaviour
     [SerializeField] private float maxInvincibilityTime;
 
 
+    private void Start()
+    {
+        invincibilityTimer = new Timer();
+    }
 
 
     public void UpdateActions()
@@ -76,7 +81,11 @@ public class ActionController : MonoBehaviour
         }
         if (joystickDirection.y < 0)
         {
-            MoveDown();
+            MoveDown(true);
+        }
+        else
+        {
+            MoveDown(false);
         }
     }
 
@@ -165,6 +174,27 @@ public class ActionController : MonoBehaviour
         changeState(PlayerState.EXPEL);
     }
 
+
+    private void MoveX()
+    {
+        if (playerState == PlayerState.NORMAL || playerState == PlayerState.JUMP)
+        {
+            playerController.MoveX(joystickDirection.x);
+        }
+    }
+
+    private void MoveDown(bool value)
+    {
+        if (playerState == PlayerState.NORMAL)
+        {
+            playerController.MoveDown(value);
+        }
+        else
+        {
+            playerController.MoveDown(false);
+        }
+    }
+
     public bool isInvincible()
     {
         return invincible;
@@ -203,17 +233,13 @@ public class ActionController : MonoBehaviour
 
             if (popBuffer)
             {
-                if (playerState == PlayerState.STUN)
-                {
-                    invincibilityTimer.start();
-                }
                 buffer.popBuffer();
             }
         }
     }
 
     private void UpdateCurrentAction()
-    {
+    {   
         if (playerState != PlayerState.NORMAL)
         {
             bool terminated = false;
@@ -242,7 +268,28 @@ public class ActionController : MonoBehaviour
 
             if (terminated)
             {
+                if (playerState == PlayerState.STUN)
+                {
+                    invincibilityTimer.start();
+                }
+                if (playerState == PlayerState.EXPEL)
+                {
+                    Stun();
+                    changeState(PlayerState.STUN);
+                }
                 changeState(PlayerState.NORMAL);
+            }
+        }
+
+        if (invincibilityTimer.isActive())
+        {
+            if (!invincibilityTimer.check())
+            {
+                invincible = true;
+            }
+            else
+            {
+                invincible = false;
             }
         }
     }
@@ -274,21 +321,6 @@ public class ActionController : MonoBehaviour
         }
     }
 
-    private void MoveX()
-    {
-        if (playerState == PlayerState.NORMAL || playerState == PlayerState.JUMP)
-        {
-            playerController.MoveX(joystickDirection.x);
-        }
-    }
-
-    private void MoveDown()
-    {
-        if (playerState == PlayerState.NORMAL)
-        {
-            playerController.MoveDown();
-        }
-    }
 
     public void changeState(PlayerState newState)
     {
@@ -299,48 +331,56 @@ public class ActionController : MonoBehaviour
             case PlayerState.NORMAL:
                 playerController.SetGravityActive(true);
                 playerController.SetRopeActive(true);
+                playerController.SetDecelerationActive(true);
                 shieldActive = false;
                 invincible = false;
                 break;
             case PlayerState.JUMP:
                 playerController.SetGravityActive(false);
                 playerController.SetRopeActive(true);
+                playerController.SetDecelerationActive(true);
                 shieldActive = false;
                 invincible = false;
                 break;
             case PlayerState.DASH:
                 playerController.SetGravityActive(false);
                 playerController.SetRopeActive(false);
+                playerController.SetDecelerationActive(false);
                 shieldActive = false;
                 invincible = false;
                 break;
             case PlayerState.ATTACK:
                 playerController.SetGravityActive(true);
                 playerController.SetRopeActive(true);
+                playerController.SetDecelerationActive(true);
                 shieldActive = false;
                 invincible = false;
                 break;
             case PlayerState.ROPEGRAB:
                 playerController.SetGravityActive(false);
                 playerController.SetRopeActive(false);
+                playerController.SetDecelerationActive(true);
                 shieldActive = false;
                 invincible = false;
                 break;
             case PlayerState.SHIELD:
                 playerController.SetGravityActive(true);
                 playerController.SetRopeActive(false);
+                playerController.SetDecelerationActive(true);
                 shieldActive = true;
                 invincible = false;
                 break;
             case PlayerState.STUN:
                 playerController.SetGravityActive(true);
                 playerController.SetRopeActive(true);
+                playerController.SetDecelerationActive(false);
                 shieldActive = false;
                 invincible = true;
                 break;
             case PlayerState.EXPEL:
                 playerController.SetGravityActive(false);
                 playerController.SetRopeActive(false);
+                playerController.SetDecelerationActive(false);
                 shieldActive = false;
                 invincible = true;
                 break;
