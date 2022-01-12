@@ -390,6 +390,8 @@ MonoBehaviour:
   player2Percentages: {fileID: 982053914}
   player1Points: {fileID: 1732793428}
   player2Points: {fileID: 1330291954}
+  playerWins: {fileID: 0}
+  mandatoryPoints: 0
 --- !u!1 &179633969
 GameObject:
   m_ObjectHideFlags: 0
@@ -2062,7 +2064,7 @@ MonoBehaviour:
   maxSpeedRatio: 5
   stickLength: 0.3
   playerPointStickLength: 0
-  gravity: 5
+  gravity: 0.2
   simulationLoopIterations: 3
   ropeLoopIterations: 10
   playerRopePointRatio: 1
@@ -2070,6 +2072,7 @@ MonoBehaviour:
     type: 3}
   leftPlayerGameObject: {fileID: 1141088098}
   rightCharacterGameObject: {fileID: 1856135591}
+  ropegrabAttenuation: 0.05
 --- !u!1 &1592932861
 GameObject:
   m_ObjectHideFlags: 0
