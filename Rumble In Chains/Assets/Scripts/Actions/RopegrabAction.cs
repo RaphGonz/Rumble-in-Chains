@@ -17,7 +17,7 @@ public class RopegrabAction : Action
     [SerializeField] PlayerController enemyPlayerController;
     [SerializeField] RopeManager ropeManager;
 
-    [SerializeField] int playerNumber;
+    int playerNumber;
 
     [SerializeField] private float maxGrabAngle;
     private float currentGrabAngle = 0;
@@ -41,14 +41,10 @@ public class RopegrabAction : Action
 
 
     // Start is called before the first frame update
-    public void start(Vector2 direction)
+    public void start(Vector2 direction, int newPlayerNumber)
     {
         joystickDirection = direction;
-
-
-
-
-
+        playerNumber = newPlayerNumber;
 
         type = getTypeOfRopegrab();
 
