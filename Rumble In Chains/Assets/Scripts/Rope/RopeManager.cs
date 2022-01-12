@@ -262,6 +262,8 @@ public class RopeManager : MonoBehaviour
 
     public void UpdateRope()
     {
+        TestInput();
+
         for (int i = 0; i < Mathf.Max(simulationLoopIterations, ropeLoopIterations); i++)
         {
             if (i < simulationLoopIterations)

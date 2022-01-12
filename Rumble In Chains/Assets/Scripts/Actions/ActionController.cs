@@ -81,7 +81,7 @@ public class ActionController : MonoBehaviour
 
     private bool Attack()
     {
-        if (GetPriority(PlayerState.ATTACK) && attackAction.getCooldown())
+        if (GetPriority(PlayerState.ATTACK))
         {
             CancelCurrentAction();
             attackAction.start(joystick.getFilter4());
@@ -92,7 +92,7 @@ public class ActionController : MonoBehaviour
 
     private bool Dash()
     {
-        if (canDash && GetPriority(PlayerState.DASH) && dashAction.getCooldown())
+        if (canDash && GetPriority(PlayerState.DASH))
         {
             CancelCurrentAction();
             dashAction.start(joystick.getFilter8());
@@ -127,7 +127,7 @@ public class ActionController : MonoBehaviour
 
     private bool RopeGrab()
     {
-        if (GetPriority(PlayerState.ROPEGRAB) && ropegrabAction.getCooldown())
+        if (GetPriority(PlayerState.ROPEGRAB))
         {
             CancelCurrentAction();
             ropegrabAction.start(joystick.GetDirection(), playerNumber);
@@ -139,10 +139,10 @@ public class ActionController : MonoBehaviour
 
     private bool Shield()
     {
-        if (GetPriority(PlayerState.SHIELD) && shieldAction.getCooldown())
+        if (GetPriority(PlayerState.SHIELD))
         {
             CancelCurrentAction();
-            shieldAction.start();
+            playerController.Shield();
             changeState(PlayerState.SHIELD);
             return true;
         }
@@ -187,9 +187,11 @@ public class ActionController : MonoBehaviour
                     popBuffer = Attack();
                     break;
                 case InputButtons.DASHBUTTON:
+                    //print("dash");
                     popBuffer = Dash();
                     break;
                 case InputButtons.JUMPBUTTON:
+                    //print("jump");
                     popBuffer = Jump();
                     break;
                 case InputButtons.ROPEBUTTON:
