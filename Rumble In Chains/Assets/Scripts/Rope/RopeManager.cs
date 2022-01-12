@@ -169,7 +169,7 @@ public class RopeManager : MonoBehaviour
                 if (i != 0 && i != listRopePoints.Count-1)
                 {
                     float maxDelta = Mathf.Max((listRopePoints[i].position - listRopePoints[i - 1].position).magnitude, (listRopePoints[i].position - listRopePoints[i + 1].position).magnitude);
-                    if (maxDelta < stickLength * wantedElongation * 2f)
+                    if (maxDelta < stickLength * wantedElongation * 3f)
                     {
                         listRopePoints[i].SetPosition(newPos);
                     }

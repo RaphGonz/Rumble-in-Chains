@@ -32,6 +32,13 @@ public class ActionController : MonoBehaviour
     private bool shieldActive = false;
     private bool invincible = false;
 
+    private float invincibilityTime;
+
+
+
+    private bool inRecoveryFrames;
+
+    Timer invincibilityTimer;
 
 
     [SerializeField] JumpAction jumpAction;
@@ -44,6 +51,10 @@ public class ActionController : MonoBehaviour
     [SerializeField] CharacterController characterController;
     [SerializeField] PlayerController playerController;
     [SerializeField] BufferManager buffer;
+
+    [SerializeField] public int playerNumber;
+    [SerializeField] private float stunInvincibilityRatio;
+    [SerializeField] private float maxInvincibilityTime;
 
 
 
@@ -106,6 +117,10 @@ public class ActionController : MonoBehaviour
 
     private bool Stun()
     {
+        if (playerState == PlayerState.ATTACK)
+        {
+            //characterController.Interrupt();
+        }
         CancelCurrentAction();
         playerController.Stun();
         changeState(PlayerState.STUN);
@@ -117,7 +132,7 @@ public class ActionController : MonoBehaviour
         if (GetPriority(PlayerState.ROPEGRAB) && ropegrabAction.getCooldown())
         {
             CancelCurrentAction();
-            ropegrabAction.start(joystick.GetDirection());
+            ropegrabAction.start(joystick.GetDirection(), playerNumber);
             changeState(PlayerState.ROPEGRAB);
             return true;
         }
@@ -136,8 +151,15 @@ public class ActionController : MonoBehaviour
         return false;
     }
 
-    public void ExpelAndStun(Vector2 direction, float stunTime)
+    public void ExpelAndStun(Vector2 direction, float stunFrames)
     {
+        float stunTime = stunFrames / 60;
+        invincibilityTime = stunTime * stunInvincibilityRatio;
+        if (invincibilityTime > maxInvincibilityTime)
+        {
+            invincibilityTime = maxInvincibilityTime;
+        }
+        invincibilityTimer.setDuration(invincibilityTime);
         CancelCurrentAction();
         expelAction.start(direction);
         changeState(PlayerState.EXPEL);
@@ -181,6 +203,10 @@ public class ActionController : MonoBehaviour
 
             if (popBuffer)
             {
+                if (playerState == PlayerState.STUN)
+                {
+                    invincibilityTimer.start();
+                }
                 buffer.popBuffer();
             }
         }
