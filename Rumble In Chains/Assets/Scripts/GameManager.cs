@@ -47,8 +47,6 @@ public class GameManager : MonoBehaviour
         {
             characterPlayer2 = myCharacter;
         }
-        Debug.Log("characterP1 : " + characterPlayer1.ToString());
-        Debug.Log("characterP2 : " + characterPlayer2.ToString());
     }
 
     private void EmitDataFromCharacter()

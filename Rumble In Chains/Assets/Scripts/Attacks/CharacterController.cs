@@ -58,10 +58,11 @@ public class CharacterController : MonoBehaviour //!!!
     #endregion
 
     #region debug
-    private float lastCircleRadius;
-    private Vector2 lastCircleCenter;
+    private List<float> lastCircleRadius;
+    private List<Vector2> lastCircleCenter;
     #endregion
     
+    [SerializeField]
     PlayerController myPlayerController;
     [SerializeField]
     PlayerController opponentController;
@@ -76,10 +77,11 @@ public class CharacterController : MonoBehaviour //!!!
 
     // Start is called before the first frame update
     void Start()
-    {
-        enemyMask = this.gameObject.layer == 17 ? LayerMask.GetMask("PlayerRight") : LayerMask.GetMask("PlayerLeft"); //17 c'est la layer Player1 : a voir comment faire ça proprepement sans int
-        Character character = AssetDatabase.LoadAssetAtPath<Character>("Assets/Characters/" + (this.gameObject.layer == 17 ? GameManager.Instance.characterPlayer1 : GameManager.Instance.characterPlayer2));
-        Debug.Log(character.name);
+    { //17 c'est la layer Player1 : a voir comment faire ça proprepement sans int
+        lastCircleCenter = new List<Vector2>();//DEBUG 
+        lastCircleRadius = new List<float>();//DEBUG 
+        Character character = AssetDatabase.LoadAssetAtPath<Character>("Assets/Characters/" + (this.gameObject.layer == 17 ? GameManager.Instance.characterPlayer1 : GameManager.Instance.characterPlayer2)+ ".asset");
+        print((gameObject.layer == 17 ? "player1" : "player2") + " : " + character.name);
         Jab = character.attacks[0];
         SideTilt = character.attacks[1];
         UpTilt = character.attacks[2];
@@ -109,7 +111,7 @@ public class CharacterController : MonoBehaviour //!!!
 
     public void TakePourcentages(float pourcentage)
     {
-
+        Debug.Log("ouch!");
         if (!invincible)
         {
             Pourcentages += pourcentage;
@@ -159,18 +161,19 @@ public class CharacterController : MonoBehaviour //!!!
                         HitboxSphere hitboxSphere = (HitboxSphere)hitbox;
                         Collider2D collider = Physics2D.OverlapCircle(new Vector2(myPlayerController.facing * hitboxSphere.Center.x,hitboxSphere.Center.y) +  new Vector2(transform.position.x, transform.position.y), hitboxSphere.Radius, enemyMask) ;
                         //FOR DEBUGGING PURPOSES
-                        lastCircleRadius = hitboxSphere.Radius;
-                        lastCircleCenter = new Vector2(myPlayerController.facing * hitboxSphere.Center.x, hitboxSphere.Center.y) + new Vector2(transform.position.x, transform.position.y);
+                        lastCircleRadius.Add(hitboxSphere.Radius);
+                        lastCircleCenter.Add(new Vector2(myPlayerController.facing * hitboxSphere.Center.x, hitboxSphere.Center.y) + new Vector2(transform.position.x, transform.position.y));
                         //Si j'ai touché quelque chose et que je n'avais rien touché avant
                         if (collider != null && !hit && lastHitbox != thisHitbox)
                         {
                             lastHitbox = thisHitbox;
                             hit = true;
                             collider.gameObject.GetComponent<CharacterController>().TakePourcentages(hitboxSphere.Damage); // changer le get component : l'adversaire est unique on peut donc le faire au start
-                            
+                            Debug.Log(new Vector2(hitbox.Expulsion.x * myPlayerController.facing, hitbox.Expulsion.y));
 
                             if (!opponentActionController.isInvincible() && !opponentActionController.isShieldActive())
                             {
+                                Debug.Log(hitbox.Expulsion);
                                 opponentActionController.ExpelAndStun(new Vector2(hitbox.Expulsion.x*myPlayerController.facing, hitbox.Expulsion.y), (int)(hitbox.StunFactor * opponentController.gameObject.GetComponent<CharacterController>().Pourcentages));
                             }
                             
@@ -193,6 +196,8 @@ public class CharacterController : MonoBehaviour //!!!
             _attackFrame = 0;
             lastHitbox = 0;
             //myInputController.attacking = false;
+
+            
             
         }
         
@@ -200,8 +205,10 @@ public class CharacterController : MonoBehaviour //!!!
 
     void OnDrawGizmos()
     {
-        Gizmos.DrawSphere(lastCircleCenter, lastCircleRadius);
-       
+        for(int i = 0; i< lastCircleCenter.Count; i++)
+        {
+            Gizmos.DrawSphere(lastCircleCenter[i], lastCircleRadius[i]);
+        }
     }
 
     //public void Shield()
@@ -234,6 +241,8 @@ public class CharacterController : MonoBehaviour //!!!
 
     public void Attack(AttackType type)
     {
+        lastCircleCenter.Clear();//DEBUG
+        lastCircleRadius.Clear();//Debug
         switch (type)
         {
             case AttackType.Jab:

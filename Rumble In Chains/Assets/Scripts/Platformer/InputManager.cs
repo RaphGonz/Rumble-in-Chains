@@ -82,7 +82,7 @@ public class InputManager : MonoBehaviour
         {
 
             direction_raw = Vector2.right * Filter(Input.GetAxis("Horizontal" + playerNumber)) + Vector2.up * Filter(Input.GetAxis("Vertical" + playerNumber));
-            //direction = direction_raw.normalized;
+            direction = direction_raw.normalized;
 
 
             buffer.setJoystick(direction_raw);

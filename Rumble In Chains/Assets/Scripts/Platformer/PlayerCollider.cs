@@ -233,11 +233,6 @@ public class PlayerCollider : MonoBehaviour
             playerController.rightDirectionLocked = false;
             hitRight = DetectCollision(bottomRightPoint, topRightPoint, Vector2.right, movement.x, numberOfRays);
         }
-        if (gameObject.name == "PlayerRight")
-        {
-            print(gameObject.name + " : Hit :" + playerController.hit);
-            print(gameObject.name + " : Bot Dir Locked :" + playerController.bottomDirectionLocked);
-        }
         if (!playerController.hit)
         {
             if (hitDown)

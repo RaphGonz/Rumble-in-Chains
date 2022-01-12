@@ -27,7 +27,7 @@ public class AttackAction : Action
         timer1.start();
         cooldown.start();
         selectAttack();
-        characterController.Attack(AttackType.Jab);
+        characterController.Attack(attackType);
     }
 
     // Update is called once per frame
