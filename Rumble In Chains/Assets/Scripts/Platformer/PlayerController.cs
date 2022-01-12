@@ -39,7 +39,9 @@ public class PlayerController : MonoBehaviour
     public float grabDirectionx;
 
 
-    public float gravity = -100f;
+    private float gravity = -100f;
+    [SerializeField] private float minGravity = 300f;
+    [SerializeField] private float maxGravity = 150f;
 
     private float minVelocity = 0.1f;
     
@@ -93,6 +95,7 @@ public class PlayerController : MonoBehaviour
         position = transform.position;
         positionBeforeCollider = transform.position;
         actualMaxSpeed = walkSpeed;
+        gravity = minGravity;
         
         playerCollider = GetComponent<PlayerCollider>();
         /*
@@ -189,7 +192,7 @@ public class PlayerController : MonoBehaviour
         {
             if (velocity.y > -maxDownSpeed)
             {
-                velocity.y += gravity * Time.deltaTime;
+                velocity.y -= gravity * Time.deltaTime;
             }
         }
 
@@ -257,7 +260,11 @@ public class PlayerController : MonoBehaviour
     {
         if (value)
         {
-            gravity = -200;
+            gravity = maxGravity;
+        }
+        else
+        {
+            gravity = minGravity;
         }
     }
 

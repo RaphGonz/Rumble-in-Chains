@@ -79,13 +79,13 @@ public class ActionController : MonoBehaviour
         {
             MoveX();
         }
-        if (joystickDirection.y < 0)
+        if (joystick.getFilter4().y < 0)
         {
-            MoveDown(true);
+            MoveDown(false);
         }
         else
         {
-            MoveDown(false);
+            MoveDown(true);
         }
     }
 
@@ -162,6 +162,7 @@ public class ActionController : MonoBehaviour
 
     public void ExpelAndStun(Vector2 direction, float stunFrames)
     {
+        Debug.Log("player Expel&Stun");
         float stunTime = stunFrames / 60;
         invincibilityTime = stunTime * stunInvincibilityRatio;
         if (invincibilityTime > maxInvincibilityTime)
@@ -170,6 +171,7 @@ public class ActionController : MonoBehaviour
         }
         invincibilityTimer.setDuration(invincibilityTime);
         CancelCurrentAction();
+        
         expelAction.start(direction);
         changeState(PlayerState.EXPEL);
     }
@@ -315,6 +317,9 @@ public class ActionController : MonoBehaviour
                     ropegrabAction.cancel();
                     break;
                 case PlayerState.ATTACK:
+                    attackAction.cancel();
+                    break;
+                case PlayerState.EXPEL:
                     attackAction.cancel();
                     break;
             }
