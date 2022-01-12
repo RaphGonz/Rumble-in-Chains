@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 
 public class CharacterController : MonoBehaviour //!!!
@@ -19,10 +20,6 @@ public class CharacterController : MonoBehaviour //!!!
     private DashActivation _dashActivation;
     
 
-    CharacterController(Character character)
-    {
-
-    }
     //private int _framesCounterForShieldStun = 0;
 
 
@@ -50,9 +47,9 @@ public class CharacterController : MonoBehaviour //!!!
     #region Attacks
     public int AttackFrame { get; set; }
     public Attack CurrentAttack { get; set; } = null;
-    public Attack NeutralAir { get; set; }
-    public Attack UpAir { get; set; }
-    public Attack SideAir { get; set; }
+    //public Attack NeutralAir { get; set; }
+    //public Attack UpAir { get; set; }
+    //public Attack SideAir { get; set; }
     public Attack DownAir { get; set; }
     public Attack Jab { get; set; }
     public Attack UpTilt { get; set; }
@@ -65,10 +62,6 @@ public class CharacterController : MonoBehaviour //!!!
     private Vector2 lastCircleCenter;
     #endregion
     
-
-    [SerializeField]
-    InputManager myInputController;
-    [SerializeField]
     PlayerController myPlayerController;
     [SerializeField]
     PlayerController opponentController;
@@ -84,47 +77,14 @@ public class CharacterController : MonoBehaviour //!!!
     // Start is called before the first frame update
     void Start()
     {
-        HitboxSphere hitbox1 = new HitboxSphere(5, 1, 0, 3, new Vector2(0,1) * 50000000, new Vector2(1, 0), 1);
-        HitboxSphere hitbox2 = new HitboxSphere(5, 1, 0, 3, Vector2.one, new Vector2(0, -1), 1);
-        HitboxSphere hitbox3 = new HitboxSphere(5, 1, 0, 3, Vector2.one, new Vector2(0, 1), 1);
-        HitboxSphere hitbox4 = new HitboxSphere(5, 1, 0, 3, Vector2.one, new Vector2(1, 0), 1);
-        HitboxSphere hitbox5 = new HitboxSphere(5, 1, 0, 3, new Vector2(0,1) * 100, new Vector2(1, 0), 1);
-        HitboxSphere hitbox7 = new HitboxSphere(5, 1, 0, 3, Vector2.one, new Vector2(1, -1), 1);
-        HitboxSphere hitbox8 = new HitboxSphere(2, .2f, 0, 2, new Vector2(0,1), new Vector2(1, .5f), .5f);
-        HitboxSphere hitbox9 = new HitboxSphere(2, .2f, 2, 2, new Vector2(0, 1), new Vector2(1, 1), .5f);
-        HitboxSphere hitbox10 = new HitboxSphere(2, .2f, 4, 2, new Vector2(0, 1), new Vector2(1, 1.5f), .5f);
-        HitboxSphere hitbox11 = new HitboxSphere(4, 1, 6, 2, new Vector2(0, 1), new Vector2(1, 2), .5f);
-        //HitboxCapsule hitbox2 = new HitboxCapsule(5, 0, 3, Vector2.one, Vector2.zero, 1*Vector2.one, 1);
-        List<Hitbox> hitboxList1 = new List<Hitbox>();
-        List<Hitbox> hitboxList2 = new List<Hitbox>();
-        List<Hitbox> hitboxList3 = new List<Hitbox>();
-        List<Hitbox> hitboxList4 = new List<Hitbox>();
-        List<Hitbox> hitboxList5 = new List<Hitbox>();
-        List<Hitbox> hitboxList6 = new List<Hitbox>();
-        List<Hitbox> hitboxList7 = new List<Hitbox>();
-        List<Hitbox> hitboxList8 = new List<Hitbox>();
-        hitboxList1.Add(hitbox1);
-        hitboxList2.Add(hitbox2);
-        hitboxList3.Add(hitbox3);
-        hitboxList4.Add(hitbox4);
-        hitboxList5.Add(hitbox5);
-        hitboxList7.Add(hitbox7);
-        hitboxList6.Add(hitbox8);
-        hitboxList6.Add(hitbox9);
-        hitboxList6.Add(hitbox10);
-        hitboxList6.Add(hitbox11);
-        Jab = new Attack(4, 4, hitboxList1); 
-        DownAir = new Attack(4, 4, hitboxList2);
-        UpAir = new Attack(4, 4, hitboxList3);
-        SideAir = new Attack(4, 4, hitboxList4);
-        SideTilt = new Attack(4, 4, hitboxList5);
-        UpTilt = new Attack(4, 4, hitboxList6);
-        DownTilt = new Attack(4, 4, hitboxList7);
-         
         enemyMask = this.gameObject.layer == 17 ? LayerMask.GetMask("PlayerRight") : LayerMask.GetMask("PlayerLeft"); //17 c'est la layer Player1 : a voir comment faire ça proprepement sans int
-
-        
-
+        Character character = AssetDatabase.LoadAssetAtPath<Character>("Assets/Characters/" + (this.gameObject.layer == 17 ? GameManager.Instance.characterPlayer1 : GameManager.Instance.characterPlayer2));
+        Debug.Log(character.name);
+        Jab = character.attacks[0];
+        SideTilt = character.attacks[1];
+        UpTilt = character.attacks[2];
+        DownTilt = character.attacks[3];
+        DownAir = character.attacks[4];
     }
 
     // Update is called once per frame
@@ -211,11 +171,7 @@ public class CharacterController : MonoBehaviour //!!!
 
                             if (!opponentActionController.isInvincible() && !opponentActionController.isShieldActive())
                             {
-                                Expel(hitbox.Expulsion);
-
-                                Stun(hitbox.StunFactor);
-
-                                opponentActionController.ExpelAndStun(hitbox.Expulsion * myPlayerController.facing, hitbox.StunFactor);
+                                opponentActionController.ExpelAndStun(new Vector2(hitbox.Expulsion.x*myPlayerController.facing, hitbox.Expulsion.y), (int)(hitbox.StunFactor * opponentController.gameObject.GetComponent<CharacterController>().Pourcentages));
                             }
                             
                             // en vrai, vu qu'il y a un seul character controller adverse, il suffit de get en début de partie le character controller de l'adversaire
@@ -240,34 +196,6 @@ public class CharacterController : MonoBehaviour //!!!
             
         }
         
-    }
-    
-    void Expel(Vector2 expelForce)
-    {
-        //Vector2 finalExpelForce = opponentController.gameObject.GetComponent<CharacterController>().Pourcentages * expelForce * myPlayerController.facing ;
-        Vector2 finalExpelForce = new Vector2(expelForce.x * myPlayerController.facing, expelForce.y) ;
-        opponentController.velocity += finalExpelForce;
-    }
-
-    void Stun(float stunFactor) //On lance un timer dans l'input manager qui change le comportement des boutons pendant un nombre de frame donné, ici stun * pourcentages
-    {
-        if (!invincible)
-        {
-            int stunValueInFrames = (int)(stunFactor * opponentController.gameObject.GetComponent<CharacterController>().Pourcentages);
-            opponentController.gameObject.GetComponent<InputManager>().Stun(stunValueInFrames);
-            opponentController.gameObject.GetComponent<CharacterController>().invincible = true;
-        }
-        
-    }
-
-    public void KeepInvincible()
-    {
-        if (framesInvicibility < maxFramesInvincibility)
-        {
-            framesInvicibility++;
-        }
-        invincible = false;
-        //gameObject.GetComponent<InputManager>().coroutineStarted = false;
     }
 
     void OnDrawGizmos()
@@ -320,24 +248,29 @@ public class CharacterController : MonoBehaviour //!!!
             case AttackType.DownTilt:
                 CurrentAttack = DownTilt;
                 break;
-            case AttackType.NeutralAir:
-                CurrentAttack = NeutralAir;
-                break;
-            case AttackType.UpAir:
-                CurrentAttack = UpAir;
-                break;
-            case AttackType.SideAir:
-                CurrentAttack = SideAir;
-                break;
+            //case AttackType.NeutralAir:
+            //    CurrentAttack = NeutralAir;
+            //    break;
+            //case AttackType.UpAir:
+            //    CurrentAttack = UpAir;
+            //    break;
+            //case AttackType.SideAir:
+            //    CurrentAttack = SideAir;
+            //    break;
             case AttackType.DownAir:
                 CurrentAttack = DownAir;
                 break;
-            case AttackType.DashAttackLight:
-                break;
-            case AttackType.DashAttackStrong:
-                break;
+            //case AttackType.DashAttackLight:
+            //    break;
+            //case AttackType.DashAttackStrong:
+            //    break;
 
         }
+    }
+
+    public void InterruptAttack()
+    {
+        CurrentAttack = null;
     }
 
     

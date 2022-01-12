@@ -961,8 +961,6 @@ GameObject:
   - component: {fileID: 906900646}
   - component: {fileID: 906900645}
   - component: {fileID: 906900644}
-  - component: {fileID: 906900649}
-  - component: {fileID: 906900648}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1053,32 +1051,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &906900648
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 906900643}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f515daff2865eb478586855de4e391b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: 0
-  character: 0
---- !u!114 &906900649
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 906900643}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 658733dc3799201438ab9a356e11d1d0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1119556127
 GameObject:
   m_ObjectHideFlags: 0
@@ -1244,7 +1216,7 @@ GameObject:
   - component: {fileID: 1735997431}
   - component: {fileID: 1735997427}
   m_Layer: 5
-  m_Name: ChooseCharacterOneButton (1)
+  m_Name: ChooseCharacterOneButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

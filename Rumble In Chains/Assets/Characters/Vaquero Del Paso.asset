@@ -20,3 +20,9 @@ MonoBehaviour:
   dashDistance: 2
   ropePulling: 2
   sprite: {fileID: 0}
+  attacks:
+  - {fileID: 11400000, guid: cedae9c00a1fb8541a366ebc96fabc2a, type: 2}
+  - {fileID: 11400000, guid: d1287d8996d427f4b9ca166af8eb63a6, type: 2}
+  - {fileID: 11400000, guid: 5afe75760cc69ea48ae5524aabd400eb, type: 2}
+  - {fileID: 11400000, guid: 522a44884f835d44898b6cd211ccddf6, type: 2}
+  - {fileID: 11400000, guid: cd450a9a7711a7b48a2e09deed160125, type: 2}

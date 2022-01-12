@@ -13,4 +13,5 @@ public class Character : ScriptableObject
     public DashDistance dashDistance;
     public RopePulling ropePulling;
     public Sprite sprite;
+    public List<Attack> attacks;
 }
