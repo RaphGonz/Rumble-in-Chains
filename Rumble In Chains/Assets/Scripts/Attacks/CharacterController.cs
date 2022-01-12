@@ -160,6 +160,7 @@ public class CharacterController : MonoBehaviour //!!!
                     {
                         HitboxSphere hitboxSphere = (HitboxSphere)hitbox;
                         Collider2D collider = Physics2D.OverlapCircle(new Vector2(myPlayerController.facing * hitboxSphere.Center.x,hitboxSphere.Center.y) +  new Vector2(transform.position.x, transform.position.y), hitboxSphere.Radius, enemyMask) ;
+                        print(collider);
                         //FOR DEBUGGING PURPOSES
                         lastCircleRadius.Add(hitboxSphere.Radius);
                         lastCircleCenter.Add(new Vector2(myPlayerController.facing * hitboxSphere.Center.x, hitboxSphere.Center.y) + new Vector2(transform.position.x, transform.position.y));
