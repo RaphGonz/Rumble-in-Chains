@@ -8,7 +8,6 @@ public class SelectorOne : MonoBehaviour
     Commander[] CommanderList;
     LinkedList<Commander> CommanderLinkedList;
     LinkedListNode<Commander> selected;
-    List<Rect> rectanglesToFill;
     bool selectionIsDone1 = false;
     bool selectionIsDone2 = false;
 
