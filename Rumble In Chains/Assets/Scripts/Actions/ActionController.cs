@@ -32,6 +32,14 @@ public class ActionController : MonoBehaviour
     private bool shieldActive = false;
     private bool invincible = false;
 
+    private float invincibilityTime;
+
+    
+
+    private bool inRecoveryFrames;
+    
+    Timer invincibilityTimer;
+
 
 
     [SerializeField] JumpAction jumpAction;
@@ -45,7 +53,9 @@ public class ActionController : MonoBehaviour
     [SerializeField] PlayerController playerController;
     [SerializeField] BufferManager buffer;
 
-
+    [SerializeField] public int playerNumber;
+    [SerializeField] private float stunInvincibilityRatio;
+    [SerializeField] private float maxInvincibilityTime;
 
 
     public void UpdateActions()
@@ -106,8 +116,11 @@ public class ActionController : MonoBehaviour
 
     private bool Stun()
     {
+        if (playerState == PlayerState.ATTACK)
+        {
+            //characterController.Interrupt();
+        }
         CancelCurrentAction();
-        playerController.Stun();
         changeState(PlayerState.STUN);
         return true;
     }
@@ -117,7 +130,7 @@ public class ActionController : MonoBehaviour
         if (GetPriority(PlayerState.ROPEGRAB) && ropegrabAction.getCooldown())
         {
             CancelCurrentAction();
-            ropegrabAction.start(joystick.GetDirection());
+            ropegrabAction.start(joystick.GetDirection(), playerNumber);
             changeState(PlayerState.ROPEGRAB);
             return true;
         }
@@ -136,8 +149,16 @@ public class ActionController : MonoBehaviour
         return false;
     }
 
-    public void ExpelAndStun(Vector2 direction, float stunTime)
+    public void ExpelAndStun(Vector2 direction, float stunFrames)
     {
+        float stunTime = stunFrames / 60;
+        invincibilityTime = stunTime * stunInvincibilityRatio;
+        if (invincibilityTime > maxInvincibilityTime)
+        {
+            invincibilityTime = maxInvincibilityTime;
+        }
+        invincibilityTimer.setDuration(invincibilityTime);
+
         CancelCurrentAction();
         expelAction.start(direction);
         changeState(PlayerState.EXPEL);
@@ -216,6 +237,10 @@ public class ActionController : MonoBehaviour
 
             if (terminated)
             {
+                if (playerState == PlayerState.STUN)
+                {
+                    invincibilityTimer.start();
+                }
                 changeState(PlayerState.NORMAL);
             }
         }
@@ -352,47 +377,6 @@ public class ActionController : MonoBehaviour
         return false;
     }
 
-    /*
-
-    private Vector2 getCurrentDirection()
-    {
-        Vector2 direction = new Vector2();
-
-        switch (joystickDirection)
-        {
-            case JoystickDirection.LEFT:
-                direction.x = -1;
-                break;
-            case JoystickDirection.RIGHT:
-                direction.x =  1;
-                break;
-            case JoystickDirection.DOWN:
-                direction.y = -1;
-                break;
-            case JoystickDirection.UP:
-                direction.y =  1;
-                break;
-            case JoystickDirection.DOWNLEFT:
-                direction.x = -1;
-                direction.y = -1;
-                break;
-            case JoystickDirection.DOWNRIGHT:
-                direction.x =  1;
-                direction.y = -1;
-                break;
-            case JoystickDirection.UPLEFT:
-                direction.x = -1;
-                direction.y =  1;
-                break;
-            case JoystickDirection.UPRIGHT:
-                direction.x =  1;
-                direction.y =  1;
-                break;
-        }
-
-        return direction;
-    }
-    */
 }
 
 
