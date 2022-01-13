@@ -1,16 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public class JumpAction : Action
 {
     [SerializeField] PlayerController playerController;
 
-    [SerializeField] private float jumpVelocity;
-
     [SerializeField] private float jumpAccelerationTime;
     [SerializeField] private float jumpMovementTime;
     [SerializeField] private float jumpCooldown;
+
+    private float jumpVelocity;
 
 
     private void Start()
@@ -18,6 +19,11 @@ public class JumpAction : Action
         timer1.setDuration(jumpAccelerationTime);
         timer2.setDuration(jumpMovementTime);
         cooldown.setDuration(jumpCooldown);
+
+
+        Character character = AssetDatabase.LoadAssetAtPath<Character>("Assets/Characters/" + (this.gameObject.layer == 17 ? GameManager.Instance.characterPlayer1 : GameManager.Instance.characterPlayer2) + ".asset");
+        float jumpDistance = character.characterConverter.convertJumpHeight(character.jumpHeight);
+        jumpVelocity = jumpDistance / (jumpMovementTime + 0.5f * jumpAccelerationTime);
     }
 
 

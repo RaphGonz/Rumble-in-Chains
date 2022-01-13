@@ -216,6 +216,14 @@ PrefabInstance:
       value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 2966433189847347344, guid: 360e08196e2cc1142982da7688613d12, type: 3}
+      propertyPath: maxGravity
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 2966433189847347344, guid: 360e08196e2cc1142982da7688613d12, type: 3}
+      propertyPath: minGravity
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2966433189847347344, guid: 360e08196e2cc1142982da7688613d12, type: 3}
       propertyPath: groundFlatDecelerationX
       value: 20
       objectReference: {fileID: 0}
@@ -733,7 +741,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95c66a8d96b4b874ba08dad5f2a75221, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterPlayer1: "Jos\xE9 de la Muerte"
+  characterPlayer1: El Jaguar
   characterPlayer2: Vaquero Del Paso
 --- !u!4 &447773909
 Transform:
@@ -2841,6 +2849,14 @@ PrefabInstance:
     - target: {fileID: 2966433189847347344, guid: 360e08196e2cc1142982da7688613d12, type: 3}
       propertyPath: maxYspeed
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 2966433189847347344, guid: 360e08196e2cc1142982da7688613d12, type: 3}
+      propertyPath: maxGravity
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 2966433189847347344, guid: 360e08196e2cc1142982da7688613d12, type: 3}
+      propertyPath: minGravity
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 2966433189847347344, guid: 360e08196e2cc1142982da7688613d12, type: 3}
       propertyPath: groundFlatDecelerationX

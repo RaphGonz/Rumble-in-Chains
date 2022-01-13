@@ -14,4 +14,5 @@ public class Character : ScriptableObject
     public RopePulling ropePulling;
     public Sprite sprite;
     public List<Attack> attacks;
+    public readonly CharacterConverter characterConverter = new CharacterConverter();
 }

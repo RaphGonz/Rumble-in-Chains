@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 
@@ -50,6 +51,10 @@ public class PlayerController : MonoBehaviour
     public float sprintSpeed;
     public float actualMaxSpeed;
     public float maxYspeed;
+
+
+    private float characterSpeedMultiplier;
+    private float characterWeight;
 
     private float maxDownSpeed = 10;
     [SerializeField] float normalMaxDownSpeed = 10;
@@ -103,6 +108,12 @@ public class PlayerController : MonoBehaviour
         jumpManager = GetComponent<Jump>();
         */
         facing = GetComponent<InputManager>().direction.x > 0 ? 1 : -1;
+
+
+        Character character = AssetDatabase.LoadAssetAtPath<Character>("Assets/Characters/" + (this.gameObject.layer == 17 ? GameManager.Instance.characterPlayer1 : GameManager.Instance.characterPlayer2) + ".asset");
+        characterSpeedMultiplier = character.characterConverter.convertSpeed(character.speed);
+        
+        characterWeight = character.characterConverter.convertWeight(character.weight);
     }
 
     public void ApplyNewPosition()
@@ -192,7 +203,7 @@ public class PlayerController : MonoBehaviour
         {
             if (velocity.y > -maxDownSpeed)
             {
-                velocity.y -= gravity * Time.deltaTime;
+                velocity.y -= gravity * characterWeight * Time.deltaTime;
             }
         }
 
@@ -242,11 +253,11 @@ public class PlayerController : MonoBehaviour
     {
         if (playerState == PlayerState.NORMAL || playerState == PlayerState.JUMP)
         {
-            float speedAugmentation = groundAcceleration * Mathf.Sign(directionx) * Time.deltaTime;
+            float speedAugmentation = groundAcceleration * characterSpeedMultiplier * Mathf.Sign(directionx) * Time.deltaTime;
 
-            if (Mathf.Abs(speedAugmentation) > actualMaxSpeed - Mathf.Abs(velocity.x))
+            if (Mathf.Abs(speedAugmentation) > actualMaxSpeed * characterSpeedMultiplier - Mathf.Abs(velocity.x))
             {
-                velocity.x = actualMaxSpeed * Mathf.Sign(directionx);
+                velocity.x = actualMaxSpeed * characterSpeedMultiplier * Mathf.Sign(directionx);
             }
             else
             {
@@ -260,7 +271,7 @@ public class PlayerController : MonoBehaviour
     {
         if (value)
         {
-            gravity = maxGravity;
+            gravity = maxGravity * characterSpeedMultiplier;
         }
         else
         {

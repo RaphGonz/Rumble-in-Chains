@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class ExpelAction : Action
@@ -23,6 +24,10 @@ public class ExpelAction : Action
         timer2.setDuration(expelMovementTime);
         timer3.setDuration(expelDecelerationTime);
         cooldown.setDuration(expelCooldown);
+
+        Character character = AssetDatabase.LoadAssetAtPath<Character>("Assets/Characters/" + (this.gameObject.layer == 17 ? GameManager.Instance.characterPlayer1 : GameManager.Instance.characterPlayer2) + ".asset");
+        float weight = character.characterConverter.convertWeight(character.weight);
+        positionDisplacement = positionDisplacement / weight;
     }
 
     public void start(Vector2 direction)

@@ -81,11 +81,11 @@ public class ActionController : MonoBehaviour
         }
         if (joystick.getFilter4().y < 0)
         {
-            MoveDown(false);
+            MoveDown(true);
         }
         else
         {
-            MoveDown(true);
+            MoveDown(false);
         }
     }
 

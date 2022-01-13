@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 
@@ -20,6 +21,8 @@ public class RopegrabAction : Action
     int playerNumber;
 
     [SerializeField] private float maxGrabAngle;
+    private float maxGrabRelativeDistance;
+
     private float currentGrabAngle = 0;
     private float initialGrabAngle = 0;
     private float finalGrabAngle = 0;
@@ -34,6 +37,11 @@ public class RopegrabAction : Action
 
     private void Start()
     {
+        Character character = AssetDatabase.LoadAssetAtPath<Character>("Assets/Characters/" + (this.gameObject.layer == 17 ? GameManager.Instance.characterPlayer1 : GameManager.Instance.characterPlayer2) + ".asset");
+        maxGrabAngle = character.characterConverter.convertRopegrabAngle(character.ropePulling);
+        maxGrabRelativeDistance = character.characterConverter.convertRopegrabDistance(character.ropePulling);
+
+
         timer1.setDuration(ropegrabFreezeTime);
         timer2.setDuration(ropegrabGrabTime);
         cooldown.setDuration(ropegrabCooldown);
@@ -153,7 +161,7 @@ public class RopegrabAction : Action
         {
             playerController.velocity = new Vector2(0, 0);
 
-            if (ropeManager.attractPoints(playerNumber, timer2.getRatio()))
+            if (ropeManager.attractPoints(playerNumber, timer2.getRatio(), maxGrabRelativeDistance))
             {
                 timer3.setDuration(ropegrabGrabTime * (1 - timer2.getRatio()));
                 timer3.start();

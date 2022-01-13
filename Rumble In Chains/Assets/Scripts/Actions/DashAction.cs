@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public class DashAction : Action
 {
@@ -19,6 +20,11 @@ public class DashAction : Action
 
     private void Start()
     {
+        Character character = AssetDatabase.LoadAssetAtPath<Character>("Assets/Characters/" + (this.gameObject.layer == 17 ? GameManager.Instance.characterPlayer1 : GameManager.Instance.characterPlayer2) + ".asset");
+        dashFreezeTime = character.characterConverter.convertDashActivation(character.dashActivation);
+        positionDisplacement = character.characterConverter.convertDashDistance(character.dashDistance);
+
+
         timer1.setDuration(dashFreezeTime);
         timer2.setDuration(dashMovementTime);
         timer3.setDuration(dashDecelerationTime);
