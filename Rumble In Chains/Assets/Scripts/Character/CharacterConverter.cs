@@ -28,10 +28,29 @@ public class CharacterConverter : MonoBehaviour
         switch (force)
         {
             case Weight.LOW:
-                weight = 1;
+                weight = 1f;
                 break;
             case Weight.MEDIUM:
-                weight = 2;
+                weight = 1.25f;
+                break;
+            case Weight.HIGH:
+                weight = 1.5f;
+                break;
+        }
+
+        return weight;
+    }
+
+    public int convertWeightRope(Weight force)
+    {
+        int weight = 0;
+        switch (force)
+        {
+            case Weight.LOW:
+                weight = 12;
+                break;
+            case Weight.MEDIUM:
+                weight = 6;
                 break;
             case Weight.HIGH:
                 weight = 3;
@@ -122,10 +141,10 @@ public class CharacterConverter : MonoBehaviour
         switch (force)
         {
             case RopePulling.LOW:
-                relativeDistance = 0.5f;
+                relativeDistance = 0.6f;
                 break;
             case RopePulling.MEDIUM:
-                relativeDistance = 0.75f;
+                relativeDistance = 0.8f;
                 break;
             case RopePulling.HIGH:
                 relativeDistance = 1;

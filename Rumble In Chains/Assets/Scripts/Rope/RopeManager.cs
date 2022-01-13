@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class RopeManager : MonoBehaviour
@@ -49,6 +50,9 @@ public class RopeManager : MonoBehaviour
     private bool ropegrabCollision = false;
     private bool ropeAttraction = false;
     [SerializeField] private float ropegrabAttenuation = 0.2f;
+    private Vector2 finalPosition;
+
+    private int moduloRatio;
 
     Vector2[] positionsLeft;
     Vector2[] positionsRight;
@@ -101,6 +105,10 @@ public class RopeManager : MonoBehaviour
             listRopePoints.Add(point.GetComponent<RopePoint>());
             position.x += stickLength;
         }
+
+
+        Character character = AssetDatabase.LoadAssetAtPath<Character>("Assets/Characters/" + (this.gameObject.layer == 17 ? GameManager.Instance.characterPlayer1 : GameManager.Instance.characterPlayer2) + ".asset");
+        moduloRatio = character.characterConverter.convertWeightRope(character.weight);
     }
 
     // Update is called once per frame
@@ -125,9 +133,18 @@ public class RopeManager : MonoBehaviour
         inRopeGrab = false;
     }
 
-    public void startRopeAttraction()
+    public void startRopeAttraction(int playerNumber, float relativeDistance)
     {
         ropeAttraction = true;
+        if (playerNumber == 1)
+        {
+            finalPosition = leftPlayer.position * relativeDistance + rightPlayer.position * (1 - relativeDistance);
+        }
+        else
+        {
+            finalPosition = rightPlayer.position * relativeDistance + leftPlayer.position * (1 - relativeDistance);
+        }
+        
     }
 
     public void endRopeAttraction()
@@ -238,9 +255,9 @@ public class RopeManager : MonoBehaviour
         if (playerNumber == 1)
         {
             Vector2 pos = leftPlayer.position;
-            for (int i = 0; i < listRopePoints.Count; i++)
+            for (int i = 0; i < listRopePoints.Count * relativeDistance; i++)
             {
-                listRopePoints[i].SetPosition(listRopePoints[i].position + (pos - listRopePoints[i].position) * attractionRatio * relativeDistance);
+                listRopePoints[i].SetPosition(listRopePoints[i].position + (pos - listRopePoints[i].position) * attractionRatio);
                 if (listRopePoints[i].UpdateCollisions())
                 {
                     collision = true;
@@ -250,9 +267,9 @@ public class RopeManager : MonoBehaviour
         else
         {
             Vector2 pos = rightPlayer.position;
-            for (int i = listRopePoints.Count - 1; i >= 0; i--)
+            for (int i = listRopePoints.Count - 1; i >= listRopePoints.Count * (1 - relativeDistance); i--)
             {
-                listRopePoints[i].SetPosition(listRopePoints[i].position + (pos - listRopePoints[i].position) * attractionRatio * relativeDistance);
+                listRopePoints[i].SetPosition(listRopePoints[i].position + (pos - listRopePoints[i].position) * attractionRatio);
 
                 if (listRopePoints[i].UpdateCollisions())
                 {

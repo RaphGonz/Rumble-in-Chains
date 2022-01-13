@@ -117,7 +117,7 @@ public class RopegrabAction : Action
             timer1.reset();
             if (type == RopegrabType.NEUTRAL)
             {
-                ropeManager.startRopeAttraction();
+                ropeManager.startRopeAttraction(playerNumber, maxGrabRelativeDistance);
             }
             else
             {
