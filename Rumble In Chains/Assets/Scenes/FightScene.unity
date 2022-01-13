@@ -260,6 +260,14 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5899132421662591187, guid: 360e08196e2cc1142982da7688613d12, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5899132421662591187, guid: 360e08196e2cc1142982da7688613d12, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5899132421662591187, guid: 360e08196e2cc1142982da7688613d12, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.5
       objectReference: {fileID: 0}
@@ -515,7 +523,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerController: {fileID: 58947859}
-  jumpVelocity: 30
   jumpAccelerationTime: 0.05
   jumpMovementTime: 0.2
   jumpCooldown: 1
@@ -1344,7 +1351,7 @@ SpriteRenderer:
   m_SortingLayerID: -1897780149
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 13e1e45ae27beea449a90ba21c11baab, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1e0dff40b55fefe42964fc97ed589ae8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2361,7 +2368,7 @@ SpriteRenderer:
   m_SortingLayerID: 820883357
   m_SortingLayer: 1
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: d3d62ef7cb8018b4e8d01a68b363c740, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4cd96ce036e397544a38fceb7f38aefb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2883,6 +2890,14 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5899132421662591187, guid: 360e08196e2cc1142982da7688613d12, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5899132421662591187, guid: 360e08196e2cc1142982da7688613d12, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5899132421662591187, guid: 360e08196e2cc1142982da7688613d12, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.5
       objectReference: {fileID: 0}
@@ -3134,7 +3149,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerController: {fileID: 2144526653}
-  jumpVelocity: 30
   jumpAccelerationTime: 0.05
   jumpMovementTime: 0.2
   jumpCooldown: 1
