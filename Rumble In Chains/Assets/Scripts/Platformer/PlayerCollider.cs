@@ -182,6 +182,21 @@ public class PlayerCollider : MonoBehaviour
         }
     }
 
+    public bool IsGrounded()
+    {
+        Vector2 startPoint = bottomLeftPoint;
+        Vector2 endPoint = bottomRightPoint;
+
+        RaycastHit2D hit = DetectCollision(startPoint, endPoint, -Vector2.up, yJumpFlexibility, jumpNumberOfRays);
+
+        if (hit)
+        {
+
+            return true;
+        }
+        return false;
+    }
+
 
     private RaycastHit2D Raycast(RayInfo ray)
     {

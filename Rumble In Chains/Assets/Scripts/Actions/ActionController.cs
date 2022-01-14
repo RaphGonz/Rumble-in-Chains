@@ -52,6 +52,7 @@ public class ActionController : MonoBehaviour
 
     [SerializeField] CharacterController characterController;
     [SerializeField] PlayerController playerController;
+    [SerializeField] PlayerCollider playerCollider;
     [SerializeField] BufferManager buffer;
 
     [SerializeField] public int playerNumber;
@@ -96,7 +97,7 @@ public class ActionController : MonoBehaviour
         if (GetPriority(PlayerState.ATTACK) && attackAction.getCooldown())
         {
             CancelCurrentAction();
-            attackAction.start(joystick.getFilter4());
+            attackAction.start(joystick.getFilter4(), playerCollider.IsGrounded());
             return true;
         }
         return false;

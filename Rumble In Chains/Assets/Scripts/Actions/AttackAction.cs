@@ -11,6 +11,7 @@ public class AttackAction : Action
 
     private Vector2 joystickDirection;
     private AttackType attackType = AttackType.Jab;
+    private bool grounded = false;
 
 
     private void Start()
@@ -21,9 +22,10 @@ public class AttackAction : Action
 
 
     // Start is called before the first frame update
-    public void start(Vector2 direction)
+    public void start(Vector2 direction, bool isGrounded)
     {
         joystickDirection = direction;
+        grounded = isGrounded;
         timer1.start();
         cooldown.start();
         selectAttack();
@@ -47,12 +49,7 @@ public class AttackAction : Action
 
     private void selectAttack()
     {
-        if (joystickDirection.x == 1)
-        {
-            attackType = AttackType.SideTilt;
-            Debug.Log("sideTilt");
-        }
-        else if (joystickDirection.x == -1)
+        if (joystickDirection.x == 1 || joystickDirection.x == -1)
         {
             attackType = AttackType.SideTilt;
             Debug.Log("sideTilt");
@@ -64,8 +61,16 @@ public class AttackAction : Action
         }
         else if (joystickDirection.y == -1)
         {
-            attackType = AttackType.DownTilt;
-            Debug.Log("DownTilt");
+            if (grounded)
+            {
+                attackType = AttackType.DownTilt;
+                Debug.Log("DownTilt");
+            }
+            else
+            {
+                attackType = AttackType.DownAir;
+                Debug.Log("DownAir");
+            }
         }
         else
         {
