@@ -15,6 +15,7 @@ public class ExpelAction : Action
     [SerializeField] private float expelCooldown = 0;
 
     private Vector2 dashDirection;
+    private float weight;
 
 
 
@@ -26,7 +27,7 @@ public class ExpelAction : Action
         cooldown.setDuration(expelCooldown);
 
         Character character = AssetDatabase.LoadAssetAtPath<Character>("Assets/Characters/" + (this.gameObject.layer == 17 ? GameManager.Instance.characterPlayer1 : GameManager.Instance.characterPlayer2) + ".asset");
-        float weight = character.characterConverter.convertWeight(character.weight);
+        weight = character.characterConverter.convertWeight(character.weight);
         positionDisplacement = positionDisplacement / weight;
     }
 
@@ -35,6 +36,7 @@ public class ExpelAction : Action
         this.dashDirection = direction;
         timer1.start();
         cooldown.start();
+        dashDirection /= weight;
     }
 
     // Start is called before the first frame update
@@ -85,7 +87,7 @@ public class ExpelAction : Action
         print("player touched by attack");
         if (!timer2.check())
         {
-            playerController.velocity = positionDisplacement / expelMovementTime * dashDirection;
+            playerController.velocity = dashDirection / expelMovementTime ;
         }
         else
         {
@@ -98,7 +100,7 @@ public class ExpelAction : Action
     {
         if (!timer3.check())
         {
-            playerController.velocity = positionDisplacement * (1 - timer3.getRatio()) * dashDirection;
+            playerController.velocity = dashDirection * (1 - timer3.getRatio());
         }
         else
         {

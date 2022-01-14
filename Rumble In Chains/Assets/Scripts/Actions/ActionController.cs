@@ -40,6 +40,7 @@ public class ActionController : MonoBehaviour
     private bool inRecoveryFrames;
 
     Timer invincibilityTimer;
+    Timer stunTimer;
 
 
     [SerializeField] JumpAction jumpAction;
@@ -61,6 +62,7 @@ public class ActionController : MonoBehaviour
     private void Start()
     {
         invincibilityTimer = new Timer();
+        stunTimer = new Timer();
     }
 
 
@@ -124,17 +126,7 @@ public class ActionController : MonoBehaviour
         return false;
     }
 
-    private bool Stun()
-    {
-        if (playerState == PlayerState.ATTACK)
-        {
-            //characterController.Interrupt();
-        }
-        CancelCurrentAction();
-        playerController.Stun();
-        changeState(PlayerState.STUN);
-        return true;
-    }
+    
 
     private bool RopeGrab()
     {
@@ -170,10 +162,39 @@ public class ActionController : MonoBehaviour
             invincibilityTime = maxInvincibilityTime;
         }
         invincibilityTimer.setDuration(invincibilityTime);
+
+        stunTimer.setDuration(stunTime);
+        stunTimer.start();
+
         CancelCurrentAction();
         
         expelAction.start(direction);
         changeState(PlayerState.EXPEL);
+    }
+
+    public bool Stun(float stunFrames)
+    {
+        if (playerState == PlayerState.ATTACK)
+        {
+            characterController.InterruptAttack();
+        }
+        CancelCurrentAction();
+        //playerController.Stun();
+
+        if (stunFrames < 3) stunFrames = 3;
+        float stunTime = stunFrames / 60;
+        stunTimer.setDuration(stunTime);
+        stunTimer.start();
+
+        invincibilityTime = stunTime * stunInvincibilityRatio;
+        if (invincibilityTime > maxInvincibilityTime)
+        {
+            invincibilityTime = maxInvincibilityTime;
+        }
+        invincibilityTimer.setDuration(invincibilityTime);
+
+        changeState(PlayerState.STUN);
+        return true;
     }
 
 
@@ -266,20 +287,47 @@ public class ActionController : MonoBehaviour
                 case PlayerState.EXPEL:
                     terminated = expelAction.update();
                     break;
+                case PlayerState.STUN:
+                    terminated = stunTimer.check();
+                    break;
             }
 
             if (terminated)
             {
                 if (playerState == PlayerState.STUN)
                 {
+                    stunTimer.reset();
                     invincibilityTimer.start();
+                    changeState(PlayerState.NORMAL);
                 }
-                if (playerState == PlayerState.EXPEL)
+                else if (playerState == PlayerState.EXPEL)
                 {
-                    Stun();
-                    changeState(PlayerState.STUN);
+                    if (stunTimer.isActive())
+                    {
+                        changeState(PlayerState.STUN);
+                    }
+                    else
+                    {
+                        changeState(PlayerState.NORMAL);
+                    }
                 }
+                else
+                {
+                    changeState(PlayerState.NORMAL);
+                }
+            }
+        }
+
+        if (stunTimer.isActive())
+        {
+            if (stunTimer.check())
+            {
                 changeState(PlayerState.NORMAL);
+                stunTimer.reset();
+            }
+            else
+            {
+                invincibilityTimer.start();
             }
         }
 
