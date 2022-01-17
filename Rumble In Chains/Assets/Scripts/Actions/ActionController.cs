@@ -33,6 +33,7 @@ public class ActionController : MonoBehaviour
     private bool invincible = false;
     
 
+
     private float invincibilityTime;
 
 
@@ -59,12 +60,19 @@ public class ActionController : MonoBehaviour
     [SerializeField] private float stunInvincibilityRatio;
     [SerializeField] private float maxInvincibilityTime;
 
+    [SerializeField] private int shieldBrokenStunFrames = 60;
+    [SerializeField] private int stopRopegrabStunFrames = 60;
+
 
     private void Start()
     {
         invincibilityTimer = new Timer();
         stunTimer = new Timer();
+
+        EventManager.Instance.eventDash += EventEnemyDash;
+        EventManager.Instance.eventRopegrab += EventEnemyRopegrab;
     }
+
 
 
     public void UpdateActions()
@@ -108,7 +116,8 @@ public class ActionController : MonoBehaviour
         if (canDash && GetPriority(PlayerState.DASH) && dashAction.getCooldown())
         {
             CancelCurrentAction();
-            dashAction.start(joystick.getFilter8());
+            //EventManager.Instance.OnEventDash(playerNumber);
+            dashAction.start(joystick.getFilter8(), playerNumber);
             changeState(PlayerState.DASH);
             return true;
         }
@@ -134,6 +143,7 @@ public class ActionController : MonoBehaviour
         if (GetPriority(PlayerState.ROPEGRAB) && ropegrabAction.getCooldown())
         {
             CancelCurrentAction();
+            //EventManager.Instance.OnEventRopegrab(playerNumber);
             ropegrabAction.start(joystick.GetDirection(), playerNumber);
             changeState(PlayerState.ROPEGRAB);
             return true;
@@ -397,8 +407,8 @@ public class ActionController : MonoBehaviour
                 invincible = false;
                 break;
             case PlayerState.DASH:
-                playerController.SetGravityActive(false);
-                playerController.SetRopeActive(false);
+                playerController.SetGravityActive(true);
+                playerController.SetRopeActive(true);
                 playerController.SetDecelerationActive(false);
                 shieldActive = false;
                 invincible = false;
@@ -513,6 +523,24 @@ public class ActionController : MonoBehaviour
         return direction;
     }
     */
+
+    private void EventEnemyRopegrab(int number)
+    {
+        if (number != playerNumber && playerState == PlayerState.SHIELD)
+        {
+            CancelCurrentAction();
+            Stun(shieldBrokenStunFrames);
+        }
+    }
+
+    private void EventEnemyDash(int number)
+    {
+        if (number != playerNumber && playerState == PlayerState.ROPEGRAB)
+        {
+            CancelCurrentAction();
+            Stun(stopRopegrabStunFrames);
+        }
+    }
 }
 
 

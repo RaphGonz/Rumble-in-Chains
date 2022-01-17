@@ -15,6 +15,7 @@ public class DashAction : Action
     [SerializeField] private float dashCooldown;
 
     private Vector2 dashDirection;
+    private int playerNumber;
 
 
 
@@ -31,12 +32,13 @@ public class DashAction : Action
         cooldown.setDuration(dashCooldown);
     }
 
-    public void start(Vector2 direction)
+    public void start(Vector2 direction, int newNumber)
     {
         this.dashDirection = direction;
         timer1.start();
         cooldown.start();
         print("dashStart");
+        playerNumber = newNumber;
     }
 
     // Start is called before the first frame update
@@ -57,11 +59,13 @@ public class DashAction : Action
         }
         else if (timer2.isActive())
         {
+            EventManager.Instance.OnEventDash(playerNumber);
             phase2Movement();
             return false;
         }
         else if (timer3.isActive())
         {
+            EventManager.Instance.OnEventDash(playerNumber);
             phase3Deceleration();
             return false;
         }
@@ -73,12 +77,15 @@ public class DashAction : Action
     {
         if (!timer1.check())
         {
-            playerController.velocity = new Vector2(0, 0);
+            //playerController.velocity = new Vector2(0, 0);
         }
         else
         {
             timer2.start();
             timer1.reset();
+            playerController.SetGravityActive(false);
+            playerController.SetRopeActive(false);
+            playerController.SetDecelerationActive(false);
         }
     }
 

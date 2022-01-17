@@ -59,4 +59,24 @@ public class EventManager : MonoBehaviour
             eventParticle(position, particleName);
         }
     }
+
+    public delegate void EventRopegrab(int playerNumber);
+    public event EventRopegrab eventRopegrab;
+    public void OnEventRopegrab(int playerNumber)
+    {
+        if (eventRopegrab != null)
+        {
+            eventRopegrab(playerNumber);
+        }
+    }
+
+    public delegate void EventDash(int playerNumber);
+    public event EventRopegrab eventDash;
+    public void OnEventDash(int playerNumber)
+    {
+        if (eventDash != null)
+        {
+            eventDash(playerNumber);
+        }
+    }
 }
