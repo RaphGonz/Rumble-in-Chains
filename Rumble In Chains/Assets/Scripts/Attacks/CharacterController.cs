@@ -25,7 +25,7 @@ public class CharacterController : MonoBehaviour //!!!
 
     private int _attackFrame = 0;
     public LayerMask enemyMask;
-    public float Pourcentages { get => _pourcentages; set { _pourcentages = value; UIController.Instance.ChangePercentages(this.gameObject.name.Equals("PlayerLeft") ? 1 : 2, Pourcentages); } }
+    public float Pourcentages { get => _pourcentages; set { _pourcentages = value; /*UIController.Instance.ChangePercentages(this.gameObject.name.Equals("PlayerLeft") ? 1 : 2, Pourcentages);*/ } }
     public float Weight { get; }
 
     public float Points { get => _points; set { _points = value; UIController.Instance.ChangePoints(this.gameObject.name.Equals("PlayerLeft") ? 1 : 2, Points); /*Debug.Log(Points);*/ } }
@@ -159,6 +159,7 @@ public class CharacterController : MonoBehaviour //!!!
                     }
                     else
                     {
+                        Debug.Break();
                         HitboxSphere hitboxSphere = (HitboxSphere)hitbox;
                         Collider2D collider = Physics2D.OverlapCircle(new Vector2(myPlayerController.facing * hitboxSphere.Center.x,hitboxSphere.Center.y) +  new Vector2(transform.position.x, transform.position.y), hitboxSphere.Radius, enemyMask) ;
                         print(collider);
