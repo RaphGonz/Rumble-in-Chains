@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
     private static GameManager _instance;
     public static GameManager Instance { get => _instance; private set { _instance = value; } }
 
+    public int winner = 0;
+
     public string characterPlayer1;
     public string characterPlayer2;
 

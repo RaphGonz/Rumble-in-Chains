@@ -19,11 +19,13 @@ public class UIController : MonoBehaviour
     [SerializeField]
     RectTransform blueBarre;
     [SerializeField]
-    TextMeshProUGUI playerWins;
+    GameObject gameOver;
     [SerializeField]
     int mandatoryPoints;
     [SerializeField]
     float baseWidth;
+
+    bool won = false;
 
     static UIController _instance;
     public static UIController Instance { get => _instance; private set { _instance = value; } }
@@ -53,21 +55,46 @@ public class UIController : MonoBehaviour
 
     public void ChangePoints(int player, int points)
     {
-        float pourcentageOfMaxPoints = (float)points / (float)mandatoryPoints;
-        float newWidth = pourcentageOfMaxPoints * baseWidth;
-        Rect rect = player == 1 ? blueBarre.rect : redBarre.rect;
-        Debug.Log(baseWidth / 2 - newWidth / 2 * (player == 1 ? -1 : 1));
-        Debug.Log(newWidth);
-        if(player == 1)
+        if(points > mandatoryPoints)
         {
-            blueBarre.sizeDelta = new Vector2(newWidth, rect.height); 
-            blueBarre.localPosition = new Vector2(newWidth / 2 + baseWidth * (player == 1 ? -1 : 1), redBarre.localPosition.y) ; 
+            Win(player);
         }
-        else {
-            redBarre.sizeDelta = new Vector2(newWidth, rect.height);
-            redBarre.localPosition = new Vector2(-newWidth / 2 + baseWidth * (player == 1 ? -1 : 1), redBarre.localPosition.y);
+        else
+        {
+            float pourcentageOfMaxPoints = (float)points / (float)mandatoryPoints;
+            float newWidth = pourcentageOfMaxPoints * baseWidth;
+            Rect rect = player == 1 ? blueBarre.rect : redBarre.rect;
+            Debug.Log(baseWidth / 2 - newWidth / 2 * (player == 1 ? -1 : 1));
+            Debug.Log(newWidth);
+            if(player == 1)
+            {
+                blueBarre.sizeDelta = new Vector2(newWidth, rect.height); 
+                blueBarre.localPosition = new Vector2(newWidth / 2 + baseWidth * (player == 1 ? -1 : 1), redBarre.localPosition.y) ; 
+            }
+            else {
+                redBarre.sizeDelta = new Vector2(newWidth, rect.height);
+                redBarre.localPosition = new Vector2(-newWidth / 2 + baseWidth * (player == 1 ? -1 : 1), redBarre.localPosition.y);
+            }
         }
 
     }
+    public void Win(int player)
+    {
+        if (!won)
+        {
+            gameOver.SetActive(true);
+            won = true;
+            GameManager.Instance.winner = player;
+            StartCoroutine(ChangeScene());
+        }
+    }
+
+    IEnumerator ChangeScene()
+    {
+        yield return new WaitForSeconds(2);
+        GameManager.Instance.LoadScene("WinnerScene");
+    }
+
+    
     
 }
