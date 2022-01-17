@@ -7,47 +7,67 @@ using TMPro;
 public class UIController : MonoBehaviour
 {
     [SerializeField]
+    TextMeshProUGUI player1Character;
+    [SerializeField]
+    TextMeshProUGUI player2Character;
+    [SerializeField]
     TextMeshProUGUI player1Percentages;
     [SerializeField]
     TextMeshProUGUI player2Percentages;
     [SerializeField]
-    TextMeshProUGUI player1Points;
+    RectTransform redBarre;
     [SerializeField]
-    TextMeshProUGUI player2Points;
+    RectTransform blueBarre;
     [SerializeField]
     TextMeshProUGUI playerWins;
     [SerializeField]
     int mandatoryPoints;
+    [SerializeField]
+    float baseWidth;
 
-    private static UIController instance;
-    private UIController() { } //au cas où certains fous tenteraient qd même d'utiliser le mot clé "new"
+    static UIController _instance;
+    public static UIController Instance { get => _instance; private set { _instance = value; } }
+    UIController() { }
 
-    // Méthode d'accès statique (point d'accès global)
-    public static UIController Instance { get => instance; set { instance = value; } }
-
-    void Awake()
+    private void Awake()
     {
-        if (instance != null && instance != this)
-            Destroy(gameObject);    // Suppression d'une instance précédente potentielle
-
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this);
+        }
         Instance = this;
+    }
+
+    void Start()
+    {
+        player1Character.SetText(GameManager.Instance.characterPlayer1);
+        player2Character.SetText(GameManager.Instance.characterPlayer2);
     }
     // Start is called before the first frame update
 
     public void ChangePercentages(int player, float percentages)
     {
         TextMeshProUGUI text = player == 1 ? player1Percentages : player2Percentages;
-        text.text = "Player " + (player == 1 ? "1" : "2") + " : " + percentages + "%";
+        text.text = percentages.ToString() + "%";
     }
 
     public void ChangePoints(int player, int points)
     {
-        TextMeshProUGUI text = player == 1 ? player1Points : player2Points;
-        text.text = points + " points";
-        if(points >= mandatoryPoints)
+        float pourcentageOfMaxPoints = (float)points / (float)mandatoryPoints;
+        float newWidth = pourcentageOfMaxPoints * baseWidth;
+        Rect rect = player == 1 ? blueBarre.rect : redBarre.rect;
+        Debug.Log(baseWidth / 2 - newWidth / 2 * (player == 1 ? -1 : 1));
+        Debug.Log(newWidth);
+        if(player == 1)
         {
-            playerWins.text = "Player " + player + " wins !";
-            playerWins.transform.parent.gameObject.SetActive(true);
+            blueBarre.sizeDelta = new Vector2(newWidth, rect.height); 
+            blueBarre.localPosition = new Vector2(newWidth / 2 + baseWidth * (player == 1 ? -1 : 1), redBarre.localPosition.y) ; 
         }
+        else {
+            redBarre.sizeDelta = new Vector2(newWidth, rect.height);
+            redBarre.localPosition = new Vector2(-newWidth / 2 + baseWidth * (player == 1 ? -1 : 1), redBarre.localPosition.y);
+        }
+
     }
+    
 }

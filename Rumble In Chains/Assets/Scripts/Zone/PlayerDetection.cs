@@ -6,8 +6,9 @@ public class PlayerDetection : MonoBehaviour
 {
     public int number_of_player_inside = 0;
 
-    
-    
+
+    [SerializeField]
+    CharacterController charCon;
     [SerializeField]
     float frequency = 1f; //Frequency = number of point per seconds
     float time; // 1/f
@@ -37,15 +38,13 @@ public class PlayerDetection : MonoBehaviour
     private void OnTriggerStay2D(Collider2D collision)
     {
         if(number_of_player_inside == 1)
-        {
-            
+        { 
             current_timer += Time.deltaTime;
             if(current_timer >= time)
             {
-                collision.gameObject.GetComponent<CharacterController>().Points += pointsGiven;
+                charCon.Points += pointsGiven;
                 current_timer = 0f;
-            }
-            
+            }  
         }
     }
 }

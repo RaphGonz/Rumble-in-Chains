@@ -25,10 +25,10 @@ public class CharacterController : MonoBehaviour //!!!
 
     private int _attackFrame = 0;
     public LayerMask enemyMask;
-    public float Pourcentages { get => _pourcentages; set { _pourcentages = value; /*UIController.Instance.ChangePercentages(this.gameObject.name.Equals("PlayerLeft") ? 1 : 2, Pourcentages);*/ } }
+    public float Pourcentages { get => _pourcentages; set { _pourcentages = value; UIController.Instance.ChangePercentages(this.gameObject.name.Equals("PlayerLeft") ? 1 : 2, Pourcentages); } }
     public float Weight { get; }
 
-    public int Points { get => _points; set { _points = value; UIController.Instance.ChangePoints(this.gameObject.name.Equals("PlayerLeft") ? 1 : 2, Points); } }
+    public int Points { get => _points; set { _points = value; UIController.Instance.ChangePoints(this.gameObject.name.Equals("PlayerLeft") ? 1 : 2, Points); Debug.Log(Points); } }
     public int FramesBeforeShieldActive { get => _framesBeforeShieldActive; set { _framesBeforeShieldActive = value; } }
     public int FramesCounterForShield { get => _framesCounterForShield; set { _framesCounterForShield = value; } }
     //public int FramesCounterForShieldStun { get => _framesCounterForShieldStun; set { _framesCounterForShieldStun = value; } }
@@ -87,6 +87,7 @@ public class CharacterController : MonoBehaviour //!!!
         UpTilt = character.attacks[2];
         DownTilt = character.attacks[3];
         DownAir = character.attacks[4];
+        enemyMask = gameObject.layer == 17 ? LayerMask.GetMask("PlayerRight") : LayerMask.GetMask("PlayerLeft");
     }
 
     // Update is called once per frame
@@ -175,7 +176,6 @@ public class CharacterController : MonoBehaviour //!!!
                             if (!opponentActionController.isInvincible() && !opponentActionController.isShieldActive())
                             {
                                 Debug.Log(hitbox.Expulsion);
-                                Debug.Log("Pourcentages = " + opponentController.gameObject.GetComponent<CharacterController>().Pourcentages);
                                 float multiplier = (1 + opponentController.gameObject.GetComponent<CharacterController>().Pourcentages / 100);
                                 opponentActionController.ExpelAndStun(new Vector2(hitbox.Expulsion.x*myPlayerController.facing, hitbox.Expulsion.y) * multiplier, (int)(hitbox.StunFactor * multiplier));
                             }
