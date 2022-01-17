@@ -53,7 +53,7 @@ public class UIController : MonoBehaviour
         text.text = percentages.ToString() + "%";
     }
 
-    public void ChangePoints(int player, int points)
+    public void ChangePoints(int player, float points)
     {
         if(points > mandatoryPoints)
         {
@@ -61,7 +61,7 @@ public class UIController : MonoBehaviour
         }
         else
         {
-            float pourcentageOfMaxPoints = (float)points / (float)mandatoryPoints;
+            float pourcentageOfMaxPoints = points / (float)mandatoryPoints;
             float newWidth = pourcentageOfMaxPoints * baseWidth;
             Rect rect = player == 1 ? blueBarre.rect : redBarre.rect;
             Debug.Log(baseWidth / 2 - newWidth / 2 * (player == 1 ? -1 : 1));
