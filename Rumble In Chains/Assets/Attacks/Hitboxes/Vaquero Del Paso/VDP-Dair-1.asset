@@ -17,5 +17,5 @@ MonoBehaviour:
   _startUpTiming: 0
   _durationOfHitbox: 2
   _expulsion: {x: 1, y: -1}
-  _center: {x: 0, y: -1}
-  _radius: 0.4
+  _center: {x: 0, y: -1.45}
+  _radius: 0.7
