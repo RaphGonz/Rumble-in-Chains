@@ -340,6 +340,10 @@ PrefabInstance:
       value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 5899132421662591199, guid: 360e08196e2cc1142982da7688613d12, type: 3}
+      propertyPath: debug
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5899132421662591199, guid: 360e08196e2cc1142982da7688613d12, type: 3}
       propertyPath: numberOfRays
       value: 10
       objectReference: {fileID: 0}
@@ -421,7 +425,7 @@ MonoBehaviour:
   expelAction: {fileID: 58947864}
   characterController: {fileID: 58947858}
   playerController: {fileID: 58947859}
-  playerCollider: {fileID: 0}
+  playerCollider: {fileID: 58947870}
   buffer: {fileID: 58947862}
   playerNumber: 2
   stunInvincibilityRatio: 0.5
@@ -529,6 +533,17 @@ MonoBehaviour:
   jumpAccelerationTime: 0.05
   jumpMovementTime: 0.2
   jumpCooldown: 1
+--- !u!114 &58947870 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5899132421662591199, guid: 360e08196e2cc1142982da7688613d12, type: 3}
+  m_PrefabInstance: {fileID: 58947857}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 58947861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb28efb6fd6085498367bd297f3c090, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &128622076
 GameObject:
   m_ObjectHideFlags: 0
@@ -751,6 +766,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95c66a8d96b4b874ba08dad5f2a75221, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  winner: 0
   characterPlayer1: El Jaguar
   characterPlayer2: Vaquero Del Paso
 --- !u!4 &447773909
@@ -1447,6 +1463,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1726135540}
     m_Modifications:
+    - target: {fileID: 649100918724381819, guid: 312ba638874ee1748a42add08dffe1e9, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 649100918724381819, guid: 312ba638874ee1748a42add08dffe1e9, type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1286660650956074628, guid: 312ba638874ee1748a42add08dffe1e9, type: 3}
       propertyPath: m_LocalPosition.x
       value: -8.89
@@ -1522,6 +1546,14 @@ PrefabInstance:
     - target: {fileID: 7380781147480156917, guid: 312ba638874ee1748a42add08dffe1e9, type: 3}
       propertyPath: m_UseCustomVertexStreams
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7928952595306263602, guid: 312ba638874ee1748a42add08dffe1e9, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7928952595306263602, guid: 312ba638874ee1748a42add08dffe1e9, type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8801891711587545312, guid: 312ba638874ee1748a42add08dffe1e9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3247,7 +3279,7 @@ MonoBehaviour:
   expelAction: {fileID: 2144526658}
   characterController: {fileID: 2144526652}
   playerController: {fileID: 2144526653}
-  playerCollider: {fileID: 0}
+  playerCollider: {fileID: 2144526664}
   buffer: {fileID: 2144526656}
   playerNumber: 1
   stunInvincibilityRatio: 0.5
@@ -3355,3 +3387,14 @@ MonoBehaviour:
   jumpAccelerationTime: 0.05
   jumpMovementTime: 0.2
   jumpCooldown: 1
+--- !u!114 &2144526664 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5899132421662591199, guid: 360e08196e2cc1142982da7688613d12, type: 3}
+  m_PrefabInstance: {fileID: 2144526651}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2144526655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb28efb6fd6085498367bd297f3c090, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
