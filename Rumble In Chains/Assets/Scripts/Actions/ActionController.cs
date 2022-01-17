@@ -409,7 +409,7 @@ public class ActionController : MonoBehaviour
             case PlayerState.DASH:
                 playerController.SetGravityActive(true);
                 playerController.SetRopeActive(true);
-                playerController.SetDecelerationActive(false);
+                playerController.SetDecelerationActive(true);
                 shieldActive = false;
                 invincible = false;
                 break;
