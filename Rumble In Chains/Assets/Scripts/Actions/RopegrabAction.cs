@@ -86,6 +86,7 @@ public class RopegrabAction : Action
         }
         else if (timer2.isActive())
         {
+            EventManager.Instance.OnEventRopegrab(playerNumber);
             if (type == RopegrabType.NEUTRAL)
             {
                 phase2Attraction();
@@ -98,6 +99,7 @@ public class RopegrabAction : Action
         }
         else if (timer3.isActive())
         {
+            EventManager.Instance.OnEventRopegrab(playerNumber);
             phase3PrelagIfCollision();
             return false;
         }
