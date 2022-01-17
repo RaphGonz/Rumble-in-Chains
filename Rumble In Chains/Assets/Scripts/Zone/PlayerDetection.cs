@@ -10,10 +10,12 @@ public class PlayerDetection : MonoBehaviour
     [SerializeField]
     CharacterController charCon;
     [SerializeField]
-    float frequency = 1f; //Frequency = number of point per seconds
+    float frequency; //Frequency = number of point per seconds
     float time; // 1/f
     [SerializeField]
-    int pointsGiven = 1;
+    float pointsGiven = 1;
+    [SerializeField]
+    int player;
 
     
     float current_timer = 0f;
@@ -38,12 +40,15 @@ public class PlayerDetection : MonoBehaviour
     private void OnTriggerStay2D(Collider2D collision)
     {
         if(number_of_player_inside == 1)
-        { 
+        {
+            Debug.Log(current_timer);
             current_timer += Time.deltaTime;
             if(current_timer >= time)
             {
                 charCon.Points += pointsGiven;
-                current_timer = 0f;
+                current_timer = 0;
+                UIController.Instance.MakeBubbleAppear(player, pointsGiven);
+
             }  
         }
     }

@@ -7,7 +7,7 @@ using UnityEditor;
 public class CharacterController : MonoBehaviour //!!!
 {
     private float _pourcentages = 0;
-    private int _points = 0;
+    private float _points = 0;
     private int lastHitbox;
     [SerializeField]
     private int _framesBeforeShieldActive;
@@ -28,7 +28,7 @@ public class CharacterController : MonoBehaviour //!!!
     public float Pourcentages { get => _pourcentages; set { _pourcentages = value; UIController.Instance.ChangePercentages(this.gameObject.name.Equals("PlayerLeft") ? 1 : 2, Pourcentages); } }
     public float Weight { get; }
 
-    public int Points { get => _points; set { _points = value; UIController.Instance.ChangePoints(this.gameObject.name.Equals("PlayerLeft") ? 1 : 2, Points); Debug.Log(Points); } }
+    public float Points { get => _points; set { _points = value; UIController.Instance.ChangePoints(this.gameObject.name.Equals("PlayerLeft") ? 1 : 2, Points); /*Debug.Log(Points);*/ } }
     public int FramesBeforeShieldActive { get => _framesBeforeShieldActive; set { _framesBeforeShieldActive = value; } }
     public int FramesCounterForShield { get => _framesCounterForShield; set { _framesCounterForShield = value; } }
     //public int FramesCounterForShieldStun { get => _framesCounterForShieldStun; set { _framesCounterForShieldStun = value; } }
