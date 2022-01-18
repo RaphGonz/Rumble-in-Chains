@@ -188,10 +188,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -3414843495647307070, guid: 360e08196e2cc1142982da7688613d12, type: 3}
-      propertyPath: stunSlider
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: -3414843495647307070, guid: 360e08196e2cc1142982da7688613d12, type: 3}
       propertyPath: enemyMask.m_Bits
       value: 131072
       objectReference: {fileID: 0}
@@ -200,33 +196,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2144526653}
     - target: {fileID: -3414843495647307070, guid: 360e08196e2cc1142982da7688613d12, type: 3}
-      propertyPath: maxFramesInvincibility
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: -3414843495647307070, guid: 360e08196e2cc1142982da7688613d12, type: 3}
       propertyPath: opponentActionController
       value: 
       objectReference: {fileID: 2144526657}
-    - target: {fileID: 2966433189847347344, guid: 360e08196e2cc1142982da7688613d12, type: 3}
-      propertyPath: gravity
-      value: -100
+    - target: {fileID: 2144526657, guid: 360e08196e2cc1142982da7688613d12, type: 3}
+      propertyPath: playerNumber
+      value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 2966433189847347344, guid: 360e08196e2cc1142982da7688613d12, type: 3}
-      propertyPath: maxYspeed
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 2966433189847347344, guid: 360e08196e2cc1142982da7688613d12, type: 3}
-      propertyPath: maxGravity
-      value: 200
-      objectReference: {fileID: 0}
-    - target: {fileID: 2966433189847347344, guid: 360e08196e2cc1142982da7688613d12, type: 3}
-      propertyPath: minGravity
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 2966433189847347344, guid: 360e08196e2cc1142982da7688613d12, type: 3}
-      propertyPath: groundFlatDecelerationX
-      value: 20
-      objectReference: {fileID: 0}
+    - target: {fileID: 2144526660, guid: 360e08196e2cc1142982da7688613d12, type: 3}
+      propertyPath: ropeManager
+      value: 
+      objectReference: {fileID: 8092169}
+    - target: {fileID: 2144526660, guid: 360e08196e2cc1142982da7688613d12, type: 3}
+      propertyPath: enemyPlayerController
+      value: 
+      objectReference: {fileID: 2144526653}
     - target: {fileID: 5899132421662591185, guid: 360e08196e2cc1142982da7688613d12, type: 3}
       propertyPath: m_Name
       value: PlayerRight
@@ -237,7 +221,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5899132421662591186, guid: 360e08196e2cc1142982da7688613d12, type: 3}
       propertyPath: m_Color.b
-      value: 0.08056307
+      value: 0.029678345
       objectReference: {fileID: 0}
     - target: {fileID: 5899132421662591186, guid: 360e08196e2cc1142982da7688613d12, type: 3}
       propertyPath: m_Color.g
@@ -247,25 +231,9 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 5899132421662591186, guid: 360e08196e2cc1142982da7688613d12, type: 3}
-      propertyPath: m_SortingLayer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5899132421662591186, guid: 360e08196e2cc1142982da7688613d12, type: 3}
-      propertyPath: m_SortingLayerID
-      value: 1067530577
-      objectReference: {fileID: 0}
     - target: {fileID: 5899132421662591187, guid: 360e08196e2cc1142982da7688613d12, type: 3}
       propertyPath: m_RootOrder
       value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5899132421662591187, guid: 360e08196e2cc1142982da7688613d12, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5899132421662591187, guid: 360e08196e2cc1142982da7688613d12, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 5899132421662591187, guid: 360e08196e2cc1142982da7688613d12, type: 3}
       propertyPath: m_LocalPosition.x
@@ -308,52 +276,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5899132421662591193, guid: 360e08196e2cc1142982da7688613d12, type: 3}
-      propertyPath: buffer
-      value: 
-      objectReference: {fileID: 58947862}
-    - target: {fileID: 5899132421662591193, guid: 360e08196e2cc1142982da7688613d12, type: 3}
-      propertyPath: stunSlider
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5899132421662591193, guid: 360e08196e2cc1142982da7688613d12, type: 3}
       propertyPath: playerNumber
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 5899132421662591197, guid: 360e08196e2cc1142982da7688613d12, type: 3}
-      propertyPath: timeInsideDash
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5899132421662591197, guid: 360e08196e2cc1142982da7688613d12, type: 3}
-      propertyPath: timeFreezeOnDash
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 5899132421662591197, guid: 360e08196e2cc1142982da7688613d12, type: 3}
-      propertyPath: positionDisplacement
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5899132421662591198, guid: 360e08196e2cc1142982da7688613d12, type: 3}
-      propertyPath: jumpForce
-      value: 17
-      objectReference: {fileID: 0}
-    - target: {fileID: 5899132421662591198, guid: 360e08196e2cc1142982da7688613d12, type: 3}
-      propertyPath: timeDurationJump
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5899132421662591199, guid: 360e08196e2cc1142982da7688613d12, type: 3}
-      propertyPath: debug
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5899132421662591199, guid: 360e08196e2cc1142982da7688613d12, type: 3}
-      propertyPath: numberOfRays
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 5899132421662591199, guid: 360e08196e2cc1142982da7688613d12, type: 3}
-      propertyPath: playerController
-      value: 
-      objectReference: {fileID: 58947859}
-    m_RemovedComponents:
-    - {fileID: 5899132421662591197, guid: 360e08196e2cc1142982da7688613d12, type: 3}
-    - {fileID: 5899132421662591198, guid: 360e08196e2cc1142982da7688613d12, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 360e08196e2cc1142982da7688613d12, type: 3}
 --- !u!114 &58947858 stripped
 MonoBehaviour:
@@ -393,155 +319,15 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5899132421662591185, guid: 360e08196e2cc1142982da7688613d12, type: 3}
   m_PrefabInstance: {fileID: 58947857}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &58947862
+--- !u!114 &58947881 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 58947861}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8cecbb780c479e44aab4ec8a8e85d320, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &58947863
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 58947861}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6a4a1c67a1b5044aadcbd5278dc9c74, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  jumpAction: {fileID: 58947869}
-  dashAction: {fileID: 58947868}
-  shieldAction: {fileID: 58947867}
-  ropegrabAction: {fileID: 58947866}
-  attackAction: {fileID: 58947865}
-  expelAction: {fileID: 58947864}
-  characterController: {fileID: 58947858}
-  playerController: {fileID: 58947859}
-  playerCollider: {fileID: 58947870}
-  buffer: {fileID: 58947862}
-  playerNumber: 2
-  stunInvincibilityRatio: 0.5
-  maxInvincibilityTime: 0.3
-  shieldBrokenStunFrames: 60
-  stopRopegrabStunFrames: 60
---- !u!114 &58947864
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 58947861}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35b51f3d4ed79c543a811f4037572625, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerController: {fileID: 58947859}
-  positionDisplacement: 3
-  expelFreezeTime: 0
-  expelMovementTime: 0.1
-  expelDecelerationTime: 0.05
-  expelCooldown: 0
---- !u!114 &58947865
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 58947861}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cab2f3ab388e714296ccfb3a581325c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  characterController: {fileID: 58947858}
-  attackTotalTime: 0
-  attackCooldown: 0
---- !u!114 &58947866
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 58947861}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 606597ad8318cf5439d3a66c5196ba09, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerController: {fileID: 58947859}
-  enemyPlayerController: {fileID: 2144526653}
-  ropeManager: {fileID: 8092169}
-  maxGrabAngle: 180
-  ropegrabFreezeTime: 0.2
-  ropegrabGrabTime: 0.4
-  ropegrabCooldown: 0.5
---- !u!114 &58947867
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 58947861}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 094cd80a77e29d048b516e6278c668f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerController: {fileID: 58947859}
-  shieldTime: 1
-  shieldCooldown: 1.5
---- !u!114 &58947868
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 58947861}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cae252e4b7e063245a279d2bf56a2f5a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerController: {fileID: 58947859}
-  positionDisplacement: 5
-  dashFreezeTime: 0.1
-  dashMovementTime: 0.1
-  dashDecelerationTime: 0.2
-  dashCooldown: 0.5
---- !u!114 &58947869
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 58947861}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 033302310f63b024ba5b6d1a39e12c68, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerController: {fileID: 58947859}
-  jumpAccelerationTime: 0.05
-  jumpMovementTime: 0.2
-  jumpCooldown: 1
---- !u!114 &58947870 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5899132421662591199, guid: 360e08196e2cc1142982da7688613d12, type: 3}
+  m_CorrespondingSourceObject: {fileID: 2144526657, guid: 360e08196e2cc1142982da7688613d12, type: 3}
   m_PrefabInstance: {fileID: 58947857}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 58947861}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bbb28efb6fd6085498367bd297f3c090, type: 3}
+  m_Script: {fileID: 11500000, guid: d6a4a1c67a1b5044aadcbd5278dc9c74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &128622076
@@ -10380,7 +10166,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   winner: 0
-  characterPlayer1: El Jaguar
+  characterPlayer1: Vaquero Del Paso
   characterPlayer2: "Jos\xE9 de la Muerte"
 --- !u!4 &447773909
 Transform:
@@ -10428,7 +10214,7 @@ MonoBehaviour:
   inputManagerLeft: {fileID: 2144526654}
   inputManagerRight: {fileID: 58947860}
   actionControllerLeft: {fileID: 2144526657}
-  actionControllerRight: {fileID: 58947863}
+  actionControllerRight: {fileID: 58947881}
   playerControllerLeft: {fileID: 2144526653}
   playerControllerRight: {fileID: 58947859}
   characterControllerLeft: {fileID: 2144526652}
@@ -20892,6 +20678,36 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!1 &1367258120
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1367258121}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1367258121
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1367258120}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.4106543, y: -9.167574, z: 1269.5305}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1397768386
 GameObject:
   m_ObjectHideFlags: 0
@@ -26922,7 +26738,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   number_of_player_inside: 0
-  charCon: {fileID: 0}
+  charCon: {fileID: 58947858}
   frequency: 1
   pointsGiven: 1
 --- !u!61 &1875469295
@@ -41593,72 +41409,28 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -3414843495647307070, guid: 360e08196e2cc1142982da7688613d12, type: 3}
-      propertyPath: stunSlider
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: -3414843495647307070, guid: 360e08196e2cc1142982da7688613d12, type: 3}
-      propertyPath: enemyMask.m_Bits
-      value: 262144
-      objectReference: {fileID: 0}
-    - target: {fileID: -3414843495647307070, guid: 360e08196e2cc1142982da7688613d12, type: 3}
       propertyPath: opponentController
       value: 
       objectReference: {fileID: 58947859}
     - target: {fileID: -3414843495647307070, guid: 360e08196e2cc1142982da7688613d12, type: 3}
-      propertyPath: maxFramesInvincibility
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: -3414843495647307070, guid: 360e08196e2cc1142982da7688613d12, type: 3}
       propertyPath: opponentActionController
       value: 
-      objectReference: {fileID: 58947863}
-    - target: {fileID: 2966433189847347344, guid: 360e08196e2cc1142982da7688613d12, type: 3}
-      propertyPath: gravity
-      value: -100
-      objectReference: {fileID: 0}
-    - target: {fileID: 2966433189847347344, guid: 360e08196e2cc1142982da7688613d12, type: 3}
-      propertyPath: maxYspeed
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 2966433189847347344, guid: 360e08196e2cc1142982da7688613d12, type: 3}
-      propertyPath: maxGravity
-      value: 200
-      objectReference: {fileID: 0}
-    - target: {fileID: 2966433189847347344, guid: 360e08196e2cc1142982da7688613d12, type: 3}
-      propertyPath: minGravity
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 2966433189847347344, guid: 360e08196e2cc1142982da7688613d12, type: 3}
-      propertyPath: groundFlatDecelerationX
-      value: 20
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 58947881}
+    - target: {fileID: 2144526660, guid: 360e08196e2cc1142982da7688613d12, type: 3}
+      propertyPath: ropeManager
+      value: 
+      objectReference: {fileID: 8092169}
+    - target: {fileID: 2144526660, guid: 360e08196e2cc1142982da7688613d12, type: 3}
+      propertyPath: enemyPlayerController
+      value: 
+      objectReference: {fileID: 58947859}
     - target: {fileID: 5899132421662591185, guid: 360e08196e2cc1142982da7688613d12, type: 3}
       propertyPath: m_Name
       value: PlayerLeft
       objectReference: {fileID: 0}
-    - target: {fileID: 5899132421662591185, guid: 360e08196e2cc1142982da7688613d12, type: 3}
-      propertyPath: m_Layer
-      value: 17
-      objectReference: {fileID: 0}
-    - target: {fileID: 5899132421662591186, guid: 360e08196e2cc1142982da7688613d12, type: 3}
-      propertyPath: m_SortingLayer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5899132421662591186, guid: 360e08196e2cc1142982da7688613d12, type: 3}
-      propertyPath: m_SortingLayerID
-      value: 1067530577
-      objectReference: {fileID: 0}
     - target: {fileID: 5899132421662591187, guid: 360e08196e2cc1142982da7688613d12, type: 3}
       propertyPath: m_RootOrder
       value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 5899132421662591187, guid: 360e08196e2cc1142982da7688613d12, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5899132421662591187, guid: 360e08196e2cc1142982da7688613d12, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 5899132421662591187, guid: 360e08196e2cc1142982da7688613d12, type: 3}
       propertyPath: m_LocalPosition.x
@@ -41700,45 +41472,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5899132421662591193, guid: 360e08196e2cc1142982da7688613d12, type: 3}
-      propertyPath: buffer
-      value: 
-      objectReference: {fileID: 2144526656}
-    - target: {fileID: 5899132421662591193, guid: 360e08196e2cc1142982da7688613d12, type: 3}
-      propertyPath: stunSlider
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5899132421662591193, guid: 360e08196e2cc1142982da7688613d12, type: 3}
-      propertyPath: characterController
-      value: 
-      objectReference: {fileID: 2144526652}
-    - target: {fileID: 5899132421662591197, guid: 360e08196e2cc1142982da7688613d12, type: 3}
-      propertyPath: timeInsideDash
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5899132421662591197, guid: 360e08196e2cc1142982da7688613d12, type: 3}
-      propertyPath: timeFreezeOnDash
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 5899132421662591197, guid: 360e08196e2cc1142982da7688613d12, type: 3}
-      propertyPath: positionDisplacement
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5899132421662591198, guid: 360e08196e2cc1142982da7688613d12, type: 3}
-      propertyPath: jumpForce
-      value: 17
-      objectReference: {fileID: 0}
-    - target: {fileID: 5899132421662591198, guid: 360e08196e2cc1142982da7688613d12, type: 3}
-      propertyPath: timeDurationJump
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5899132421662591199, guid: 360e08196e2cc1142982da7688613d12, type: 3}
-      propertyPath: numberOfRays
-      value: 10
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 5899132421662591197, guid: 360e08196e2cc1142982da7688613d12, type: 3}
-    - {fileID: 5899132421662591198, guid: 360e08196e2cc1142982da7688613d12, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 360e08196e2cc1142982da7688613d12, type: 3}
 --- !u!114 &2144526652 stripped
 MonoBehaviour:
@@ -41778,154 +41512,14 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5899132421662591185, guid: 360e08196e2cc1142982da7688613d12, type: 3}
   m_PrefabInstance: {fileID: 2144526651}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2144526656
+--- !u!114 &2144526657 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2144526655}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8cecbb780c479e44aab4ec8a8e85d320, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &2144526657
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2144526655}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6a4a1c67a1b5044aadcbd5278dc9c74, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  jumpAction: {fileID: 2144526663}
-  dashAction: {fileID: 2144526662}
-  shieldAction: {fileID: 2144526661}
-  ropegrabAction: {fileID: 2144526660}
-  attackAction: {fileID: 2144526659}
-  expelAction: {fileID: 2144526658}
-  characterController: {fileID: 2144526652}
-  playerController: {fileID: 2144526653}
-  playerCollider: {fileID: 2144526664}
-  buffer: {fileID: 2144526656}
-  playerNumber: 1
-  stunInvincibilityRatio: 0.5
-  maxInvincibilityTime: 0.3
-  shieldBrokenStunFrames: 60
-  stopRopegrabStunFrames: 60
---- !u!114 &2144526658
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2144526655}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35b51f3d4ed79c543a811f4037572625, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerController: {fileID: 2144526653}
-  positionDisplacement: 3
-  expelFreezeTime: 0
-  expelMovementTime: 0.1
-  expelDecelerationTime: 0.05
-  expelCooldown: 0
---- !u!114 &2144526659
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2144526655}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cab2f3ab388e714296ccfb3a581325c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  characterController: {fileID: 2144526652}
-  attackTotalTime: 0
-  attackCooldown: 0
---- !u!114 &2144526660
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2144526655}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 606597ad8318cf5439d3a66c5196ba09, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerController: {fileID: 2144526653}
-  enemyPlayerController: {fileID: 58947859}
-  ropeManager: {fileID: 8092169}
-  maxGrabAngle: 180
-  ropegrabFreezeTime: 0.2
-  ropegrabGrabTime: 0.4
-  ropegrabCooldown: 0.5
---- !u!114 &2144526661
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2144526655}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 094cd80a77e29d048b516e6278c668f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerController: {fileID: 2144526653}
-  shieldTime: 1
-  shieldCooldown: 1.5
---- !u!114 &2144526662
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2144526655}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cae252e4b7e063245a279d2bf56a2f5a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerController: {fileID: 2144526653}
-  positionDisplacement: 5
-  dashFreezeTime: 0.1
-  dashMovementTime: 0.1
-  dashDecelerationTime: 0.2
-  dashCooldown: 0.5
---- !u!114 &2144526663
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2144526655}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 033302310f63b024ba5b6d1a39e12c68, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerController: {fileID: 2144526653}
-  jumpAccelerationTime: 0.05
-  jumpMovementTime: 0.2
-  jumpCooldown: 1
---- !u!114 &2144526664 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5899132421662591199, guid: 360e08196e2cc1142982da7688613d12, type: 3}
+  m_CorrespondingSourceObject: {fileID: 2144526657, guid: 360e08196e2cc1142982da7688613d12, type: 3}
   m_PrefabInstance: {fileID: 2144526651}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2144526655}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bbb28efb6fd6085498367bd297f3c090, type: 3}
+  m_Script: {fileID: 11500000, guid: d6a4a1c67a1b5044aadcbd5278dc9c74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

@@ -6,7 +6,7 @@ public class Shadow : MonoBehaviour
 {
     private float xPos;
     private float yPos;
-    [SerializeField] private float initialAlpha;
+    private float initialAlpha;
     [SerializeField] private float distanceToInvisible;
     [SerializeField] private float initialDiffDistance;
 

@@ -209,10 +209,12 @@ public class CharacterController : MonoBehaviour //!!!
 
     void OnDrawGizmos()
     {
+        
         for(int i = 0; i< lastCircleCenter.Count; i++)
         {
             Gizmos.DrawSphere(lastCircleCenter[i], lastCircleRadius[i]);
         }
+        
     }
 
     //public void Shield()
