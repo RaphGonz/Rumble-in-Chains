@@ -112,7 +112,7 @@ public class CharacterController : MonoBehaviour //!!!
 
     public void TakePourcentages(float pourcentage)
     {
-        Debug.Log("ouch!");
+        //Debug.Log("ouch!");
         if (!opponentActionController.isInvincible())
         {
             Pourcentages += pourcentage;
@@ -135,6 +135,8 @@ public class CharacterController : MonoBehaviour //!!!
                 if (_attackFrame >= attack.Prelag + hitbox.StartUpTiming && _attackFrame < attack.Prelag + hitbox.StartUpTiming + hitbox.DurationOfHitbox)
                 {
                     //Debug.Log("attacking!");
+                    
+                    
 
                     if (hitbox is HitboxCapsule)
                     {
@@ -162,7 +164,14 @@ public class CharacterController : MonoBehaviour //!!!
                         //Debug.Break();
                         HitboxSphere hitboxSphere = (HitboxSphere)hitbox;
                         Collider2D collider = Physics2D.OverlapCircle(new Vector2(myPlayerController.facing * hitboxSphere.Center.x,hitboxSphere.Center.y) +  new Vector2(transform.position.x, transform.position.y), hitboxSphere.Radius, enemyMask) ;
-                        print(collider);
+                        //print(collider);
+
+                        if (hitboxSphere.FirstLoop)
+                        {
+                            EventManager.Instance.OnEventSpawnParticles(hitboxSphere.ParticleSystemName, transform.position + new Vector3(hitboxSphere.Center.x, hitboxSphere.Center.y), myPlayerController.facing >= 0);
+                            hitboxSphere.FirstLoop = false;
+                        }
+
                         //FOR DEBUGGING PURPOSES
                         lastCircleRadius.Add(hitboxSphere.Radius);
                         lastCircleCenter.Add(new Vector2(myPlayerController.facing * hitboxSphere.Center.x, hitboxSphere.Center.y) + new Vector2(transform.position.x, transform.position.y));
@@ -172,11 +181,11 @@ public class CharacterController : MonoBehaviour //!!!
                             lastHitbox = thisHitbox;
                             hit = true;
                             collider.gameObject.GetComponent<CharacterController>().TakePourcentages(hitboxSphere.Damage); // changer le get component : l'adversaire est unique on peut donc le faire au start
-                            Debug.Log(new Vector2(hitbox.Expulsion.x * myPlayerController.facing, hitbox.Expulsion.y));
+                            //Debug.Log(new Vector2(hitbox.Expulsion.x * myPlayerController.facing, hitbox.Expulsion.y));
 
                             if (!opponentActionController.isInvincible() && !opponentActionController.isShieldActive())
                             {
-                                Debug.Log(hitbox.Expulsion);
+                                //Debug.Log(hitbox.Expulsion);
                                 float multiplier = (1 + opponentController.gameObject.GetComponent<CharacterController>().Pourcentages / 100);
                                 opponentActionController.ExpelAndStun(new Vector2(hitbox.Expulsion.x*myPlayerController.facing, hitbox.Expulsion.y) * multiplier, (int)(hitbox.StunFactor * multiplier));
                             }
@@ -199,8 +208,12 @@ public class CharacterController : MonoBehaviour //!!!
             //Debug.Log("current attack is now null");
             _attackFrame = 0;
             lastHitbox = 0;
+            
             //myInputController.attacking = false;
-
+            foreach(var hitbox in attack.Hitboxes)
+            {
+                hitbox.FirstLoop = true;
+            }
             
             
         }

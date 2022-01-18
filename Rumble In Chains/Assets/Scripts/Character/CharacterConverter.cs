@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterConverter : MonoBehaviour
+public class CharacterConverter
 {
     public float convertSpeed(Speed force)
     {

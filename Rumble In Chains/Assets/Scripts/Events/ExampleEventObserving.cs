@@ -9,6 +9,7 @@ public class ExampleEventObserving : MonoBehaviour
     {
         EventManager.Instance.eventSound += LaunchSound;
         EventManager.Instance.eventParticle += LaunchParticle;
+        EventManager.Instance.eventSpawnParticles += SpawnParticle;
     }
     void OnDestroy()
     {
@@ -26,5 +27,10 @@ public class ExampleEventObserving : MonoBehaviour
     {
         Debug.Log("Launch Particles named : " + s);
         transform.position = position;
+    }
+
+    private void SpawnParticle(string s, Vector2 pos, bool right)
+    {
+        Debug.Log("particle spawned, name :" + s + ";   position : " + pos + ";    orientation : " + right);
     }
 }

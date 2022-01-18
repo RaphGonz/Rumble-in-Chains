@@ -84,7 +84,7 @@ public class ExpelAction : Action
 
     private void phase2Movement()
     {
-        print("player touched by attack");
+        //print("player touched by attack");
         if (!timer2.check())
         {
             playerController.velocity = dashDirection / expelMovementTime ;

@@ -71,12 +71,22 @@ public class EventManager : MonoBehaviour
     }
 
     public delegate void EventDash(int playerNumber);
-    public event EventRopegrab eventDash;
+    public event EventDash eventDash;
     public void OnEventDash(int playerNumber)
     {
         if (eventDash != null)
         {
             eventDash(playerNumber);
+        }
+    }
+
+    public delegate void EventSpawnParticles(string name, Vector2 position, bool right);
+    public event EventSpawnParticles eventSpawnParticles;
+    public void OnEventSpawnParticles(string name, Vector2 position, bool right)
+    {
+        if (eventSpawnParticles != null)
+        {
+            eventSpawnParticles(name, position, right);
         }
     }
 }

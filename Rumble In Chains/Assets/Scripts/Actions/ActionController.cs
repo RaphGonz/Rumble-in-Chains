@@ -165,7 +165,7 @@ public class ActionController : MonoBehaviour
 
     public void ExpelAndStun(Vector2 direction, float stunFrames)
     {
-        Debug.Log("player Expel&Stun");
+        //Debug.Log("player Expel&Stun");
         float stunTime = stunFrames / 60;
         invincibilityTime = stunTime * stunInvincibilityRatio;
         if (invincibilityTime > maxInvincibilityTime)
@@ -244,7 +244,7 @@ public class ActionController : MonoBehaviour
         InputButtons input = buffer.getBufferElement();
         if (input != InputButtons.NULL)
         {
-            print(playerState);
+            //print(playerState);
             bool popBuffer = false;
             switch (input)
             {

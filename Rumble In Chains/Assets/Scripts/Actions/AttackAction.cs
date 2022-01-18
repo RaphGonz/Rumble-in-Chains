@@ -52,30 +52,30 @@ public class AttackAction : Action
         if (joystickDirection.x == 1 || joystickDirection.x == -1)
         {
             attackType = AttackType.SideTilt;
-            Debug.Log("sideTilt");
+            //Debug.Log("sideTilt");
         }
         else if (joystickDirection.y == 1)
         {
             attackType = AttackType.UpTilt;
-            Debug.Log("UpTilt");
+            //Debug.Log("UpTilt");
         }
         else if (joystickDirection.y == -1)
         {
             if (grounded)
             {
                 attackType = AttackType.DownTilt;
-                Debug.Log("DownTilt");
+                //Debug.Log("DownTilt");
             }
             else
             {
                 attackType = AttackType.DownAir;
-                Debug.Log("DownAir");
+                //Debug.Log("DownAir");
             }
         }
         else
         {
             attackType = AttackType.Jab;
-            Debug.Log("Jab");
+            //Debug.Log("Jab");
         }
     }
 
