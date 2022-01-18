@@ -14,6 +14,7 @@ public enum PlayerState
     ROPEGRAB,
     SHIELD,
     EXPEL,
+    POSING,
     COUNT
 }
 
@@ -31,6 +32,7 @@ public class ActionController : MonoBehaviour
     private bool canJump = true;
     private bool shieldActive = false;
     private bool invincible = false;
+    private bool inZone = false;
     
 
 
@@ -50,6 +52,7 @@ public class ActionController : MonoBehaviour
     [SerializeField] RopegrabAction ropegrabAction;
     [SerializeField] AttackAction attackAction;
     [SerializeField] ExpelAction expelAction;
+    [SerializeField] PublicAction publicAction;
 
     [SerializeField] CharacterController characterController;
     [SerializeField] PlayerController playerController;
@@ -71,6 +74,7 @@ public class ActionController : MonoBehaviour
 
         EventManager.Instance.eventDash += EventEnemyDash;
         EventManager.Instance.eventRopegrab += EventEnemyRopegrab;
+        EventManager.Instance.eventPlayerInZone += EventPlayerZone;
     }
 
 
@@ -229,6 +233,18 @@ public class ActionController : MonoBehaviour
         }
     }
 
+    private bool TakePose()
+    {
+        if (playerCollider.IsGrounded() && GetPriority(PlayerState.POSING) && publicAction.getCooldown())
+        {
+            CancelCurrentAction();
+            changeState(PlayerState.POSING);
+            publicAction.start();
+            return true;
+        }
+        return false;
+    }
+
     public bool isInvincible()
     {
         return invincible;
@@ -249,7 +265,14 @@ public class ActionController : MonoBehaviour
             switch (input)
             {
                 case InputButtons.ATTACKBUTTON:
-                    popBuffer = Attack();
+                    if (inZone)
+                    {
+                        popBuffer = TakePose();
+                    }
+                    else
+                    {
+                        popBuffer = Attack();
+                    }
                     break;
                 case InputButtons.DASHBUTTON:
                     popBuffer = Dash();
@@ -297,6 +320,9 @@ public class ActionController : MonoBehaviour
                     break;
                 case PlayerState.EXPEL:
                     terminated = expelAction.update();
+                    break;
+                case PlayerState.POSING:
+                    terminated = publicAction.update();
                     break;
                 case PlayerState.STUN:
                     terminated = stunTimer.check();
@@ -381,6 +407,9 @@ public class ActionController : MonoBehaviour
                 case PlayerState.EXPEL:
                     attackAction.cancel();
                     break;
+                case PlayerState.POSING:
+                    attackAction.cancel();
+                    break;
             }
         }
     }
@@ -448,6 +477,13 @@ public class ActionController : MonoBehaviour
                 shieldActive = false;
                 invincible = true;
                 break;
+            case PlayerState.POSING:
+                playerController.SetGravityActive(true);
+                playerController.SetRopeActive(true);
+                playerController.SetDecelerationActive(true);
+                shieldActive = false;
+                invincible = false;
+                break;
         }
     }
 
@@ -473,6 +509,9 @@ public class ActionController : MonoBehaviour
                 if (newState == PlayerState.STUN) return true;
                 break;
             case PlayerState.SHIELD:
+                if (newState == PlayerState.STUN) return true;
+                break;
+            case PlayerState.POSING:
                 if (newState == PlayerState.STUN) return true;
                 break;
             case PlayerState.STUN:
@@ -539,6 +578,14 @@ public class ActionController : MonoBehaviour
         {
             CancelCurrentAction();
             Stun(stopRopegrabStunFrames);
+        }
+    }
+
+    private void EventPlayerZone(int number, bool value)
+    {
+        if (number == playerNumber)
+        {
+            inZone = value;
         }
     }
 }

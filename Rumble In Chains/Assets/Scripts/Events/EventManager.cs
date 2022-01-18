@@ -89,4 +89,14 @@ public class EventManager : MonoBehaviour
             eventSpawnParticles(name, position, right);
         }
     }
+
+    public delegate void EventPlayerInZone(int playerNumber, bool inZone);
+    public event EventPlayerInZone eventPlayerInZone;
+    public void OnEventPlayerInZone(int playerNumber, bool inZone)
+    {
+        if (eventPlayerInZone != null)
+        {
+            eventPlayerInZone(playerNumber, inZone);
+        }
+    }
 }

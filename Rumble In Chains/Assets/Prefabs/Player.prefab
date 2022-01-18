@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 2144526661}
   - component: {fileID: 2144526662}
   - component: {fileID: 2144526663}
+  - component: {fileID: 893476916449068451}
   m_Layer: 17
   m_Name: Player
   m_TagString: Untagged
@@ -294,6 +295,7 @@ MonoBehaviour:
   ropegrabAction: {fileID: 2144526660}
   attackAction: {fileID: 2144526659}
   expelAction: {fileID: 2144526658}
+  publicAction: {fileID: 893476916449068451}
   characterController: {fileID: -3414843495647307070}
   playerController: {fileID: 2966433189847347344}
   playerCollider: {fileID: 5899132421662591199}
@@ -404,6 +406,22 @@ MonoBehaviour:
   jumpAccelerationTime: 0.05
   jumpMovementTime: 0.2
   jumpCooldown: 1
+--- !u!114 &893476916449068451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5899132421662591185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80f411d33c199b646b83444090ef5e5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  preLag: 0.2
+  postLag: 0.5
+  cooldownBetweenTwoPoses: 1
+  characterController: {fileID: -3414843495647307070}
 --- !u!1001 &7964204126971131875
 PrefabInstance:
   m_ObjectHideFlags: 0

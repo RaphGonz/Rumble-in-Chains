@@ -23,11 +23,13 @@ public class PlayerDetectionSpecific : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        EventManager.Instance.OnEventPlayerInZone(collision.gameObject.GetComponent<ActionController>().playerNumber, true);
         number_of_player_inside++;
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
+        EventManager.Instance.OnEventPlayerInZone(collision.gameObject.GetComponent<ActionController>().playerNumber, false);
         number_of_player_inside--;
         current_timer = 0f;
     }
@@ -38,8 +40,6 @@ public class PlayerDetectionSpecific : MonoBehaviour
         current_timer += Time.deltaTime;
         if (current_timer >= time)
         {
-            collision.gameObject.GetComponent<CharacterController>().Points += pointsGiven;
-            //Debug.Log(collision.gameObject.GetComponent<CharacterController>().Points);
             current_timer = 0f;
         }
 
