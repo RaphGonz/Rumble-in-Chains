@@ -34,16 +34,14 @@ public class PlayerDetectionSpecific : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (number_of_player_inside == 1)
+
+        current_timer += Time.deltaTime;
+        if (current_timer >= time)
         {
-
-            current_timer += Time.deltaTime;
-            if (current_timer >= time)
-            {
-                collision.gameObject.GetComponent<CharacterController>().Points += pointsGiven;
-                current_timer = 0f;
-            }
-
+            collision.gameObject.GetComponent<CharacterController>().Points += pointsGiven;
+            //Debug.Log(collision.gameObject.GetComponent<CharacterController>().Points);
+            current_timer = 0f;
         }
+
     }
 }
