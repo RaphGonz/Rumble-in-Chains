@@ -68,8 +68,10 @@ public class ActionController : MonoBehaviour
 
     public ParticleSystem stunParticles1;
     public ParticleSystem stunParticles2;
-    public ParticleSystem dustParticles;
 
+    public ParticleSystem dustParticles;
+    //On ne peut pas faire .Play() à chaque update donc puisqu'on ne peut le faire qu'une fois il faut un booléen pour l'implémenter
+    private bool movingOnGround = false;
 
 
     private void Start()
@@ -224,10 +226,21 @@ public class ActionController : MonoBehaviour
     {
         if (playerState == PlayerState.NORMAL || playerState == PlayerState.JUMP)
         {
-            if (playerCollider.IsGrounded())
+            if (playerCollider.IsGrounded() && !Mathf.Approximately(playerController.velocity.x,0) )
             {
-                dustParticles.Play();
+                if (!movingOnGround)
+                {
+                    movingOnGround = true;
+                    dustParticles.Play();
+                }
+                
             }
+            else
+            {
+                movingOnGround = false;
+                dustParticles.Stop();
+            }
+            
             playerController.MoveX(joystickDirection.x);
         }
     }
