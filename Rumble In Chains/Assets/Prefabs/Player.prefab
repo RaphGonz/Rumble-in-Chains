@@ -50,7 +50,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 45073f75d8c09824b8e8fd702e91d38e, type: 2}
+  - {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -132,7 +132,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 45073f75d8c09824b8e8fd702e91d38e, type: 2}
+  - {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -495,6 +495,7 @@ MonoBehaviour:
   playerController: {fileID: 2966433189847347344}
   shieldTime: 1
   shieldCooldown: 1.5
+  shieldMaterial: {fileID: 0}
 --- !u!114 &2144526662
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -508,6 +509,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerController: {fileID: 2966433189847347344}
+  playerAnimation: {fileID: 0}
   positionDisplacement: 5
   dashFreezeTime: 0.1
   dashMovementTime: 0.1
