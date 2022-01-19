@@ -80,7 +80,9 @@ public class CharacterController : MonoBehaviour //!!!
     { //17 c'est la layer Player1 : a voir comment faire ça proprepement sans int
         lastCircleCenter = new List<Vector2>();//DEBUG 
         lastCircleRadius = new List<float>();//DEBUG 
+        
         Character character = this.gameObject.layer == 17 ? GameManager.Instance.Character1: GameManager.Instance.Character2;
+        print(character.name);
         Jab = character.attacks[0];
         SideTilt = character.attacks[1];
         UpTilt = character.attacks[2];
@@ -160,10 +162,14 @@ public class CharacterController : MonoBehaviour //!!!
                     }
                     else
                     {
-                        //Debug.Break();
                         HitboxSphere hitboxSphere = (HitboxSphere)hitbox;
                         Collider2D collider = Physics2D.OverlapCircle(new Vector2(myPlayerController.facing * hitboxSphere.Center.x,hitboxSphere.Center.y) +  new Vector2(transform.position.x, transform.position.y), hitboxSphere.Radius, enemyMask) ;
                         //FOR DEBUGGING PURPOSES
+                        if (hitboxSphere.FirstLoop)
+                        {
+                            EventManager.Instance.OnEventSpawnParticles(hitboxSphere.ParticleSystemName, transform.position + new Vector3(myPlayerController.facing * hitboxSphere.Center.x, hitboxSphere.Center.y), myPlayerController.facing >= 0);
+                            hitboxSphere.FirstLoop = false;
+                        }
                         lastCircleRadius.Add(hitboxSphere.Radius);
                         lastCircleCenter.Add(new Vector2(myPlayerController.facing * hitboxSphere.Center.x, hitboxSphere.Center.y) + new Vector2(transform.position.x, transform.position.y));
                         //Si j'ai touché quelque chose et que je n'avais rien touché avant
@@ -194,13 +200,13 @@ public class CharacterController : MonoBehaviour //!!!
         if(_attackFrame >= attack.Prelag + attack.AttackDuration + attack.Postlag )
         {
             CurrentAttack = null;
-            //Debug.Log("current attack is now null");
             _attackFrame = 0;
             lastHitbox = 0;
-            //myInputController.attacking = false;
-
-            
-            
+            foreach (var hitbox in attack.Hitboxes)
+            {
+                hitbox.FirstLoop = true;
+            }
+            //myInputController.attacking = false
         }
         
     }

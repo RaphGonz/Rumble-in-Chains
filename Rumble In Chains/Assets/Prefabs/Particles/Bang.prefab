@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4816772931281483813}
   - component: {fileID: 5666725295215172529}
   - component: {fileID: 7147284428817822658}
+  - component: {fileID: 6606790161438413030}
   m_Layer: 0
   m_Name: Bang
   m_TagString: Untagged
@@ -40,9 +41,9 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5556848819901622348}
   serializedVersion: 7
-  lengthInSec: 0.5
+  lengthInSec: 0.3
   simulationSpeed: 1
-  stopAction: 0
+  stopAction: 1
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
@@ -4862,3 +4863,18 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &6606790161438413030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5556848819901622348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a1e26548a4a7954399be73a5e23be42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  factory: {fileID: 0}
+  numberOfThisGoInTheFactory: 0
+  durationOfThisParticleSystem: 0.3

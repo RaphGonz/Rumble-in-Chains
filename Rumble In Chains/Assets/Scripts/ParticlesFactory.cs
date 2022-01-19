@@ -13,6 +13,12 @@ public class ParticlesFactory : MonoBehaviour
     private void Awake()
     {
         factories = new List<Queue<GameObject>>();
+        for (int i = 0; i<particlesSystems.Count; i++)
+        {
+            Queue<GameObject> q = new Queue<GameObject>();
+            factories.Add(q);
+        }
+        
     }
     private void Start()
     {
@@ -37,7 +43,8 @@ public class ParticlesFactory : MonoBehaviour
         }
         else
         {
-            go = Instantiate(particlesSystems[numberInTheList]);
+            go = Instantiate(particlesSystems[numberInTheList], position, Quaternion.identity);
+            go.GetComponent<ParticlesReturner>().factory = this;
             go.SetActive(false);
         }
         go.transform.position = position;
@@ -46,6 +53,7 @@ public class ParticlesFactory : MonoBehaviour
             go.transform.position.Scale(new Vector3(-1, 0, 0));
         }
         go.SetActive(true);
+        
     }
 
     public void ReturnParticleSystem(GameObject go, int numberInTheList)

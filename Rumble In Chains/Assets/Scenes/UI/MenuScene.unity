@@ -1658,8 +1658,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95c66a8d96b4b874ba08dad5f2a75221, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterPlayer1: 0
-  characterPlayer2: 0
+  winner: 0
+  characterPlayer1: El Jaguar
+  characterPlayer2: "Jos\xE9 de la Muerte"
 --- !u!4 &2110041600
 Transform:
   m_ObjectHideFlags: 0

@@ -424,6 +424,9 @@ MonoBehaviour:
   maxInvincibilityTime: 0.3
   shieldBrokenStunFrames: 60
   stopRopegrabStunFrames: 60
+  stunParticles1: {fileID: 0}
+  stunParticles2: {fileID: 0}
+  dustParticles: {fileID: 0}
 --- !u!114 &2144526658
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -510,6 +513,10 @@ MonoBehaviour:
   dashMovementTime: 0.1
   dashDecelerationTime: 0.2
   dashCooldown: 0.5
+  onDashParticles: {fileID: 0}
+  dashFocusShort: {fileID: 0}
+  dashFocusMedium: {fileID: 0}
+  dashFocusLong: {fileID: 0}
 --- !u!114 &2144526663
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -640,6 +647,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2950757835968024983, guid: 69d2ed7872667024b88b4f7b7e1c905b, type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5120410214041872170, guid: 69d2ed7872667024b88b4f7b7e1c905b, type: 3}
+      propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8621060299289129570, guid: 69d2ed7872667024b88b4f7b7e1c905b, type: 3}
@@ -706,6 +717,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3599905044334957664, guid: be2301284827f9042bc0d257000f346b, type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4027594994220612870, guid: be2301284827f9042bc0d257000f346b, type: 3}
+      propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6096302949657452191, guid: be2301284827f9042bc0d257000f346b, type: 3}
@@ -766,13 +781,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5899132421662591187}
     m_Modifications:
+    - target: {fileID: 160667620894843387, guid: d12622c27fee52d4cb4da8aed6768a8e, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3646438683642248129, guid: d12622c27fee52d4cb4da8aed6768a8e, type: 3}
       propertyPath: m_Name
       value: DizzyStarsParticles
       objectReference: {fileID: 0}
     - target: {fileID: 3646438683642248129, guid: d12622c27fee52d4cb4da8aed6768a8e, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4516939554058248736, guid: d12622c27fee52d4cb4da8aed6768a8e, type: 3}
       propertyPath: m_RootOrder
@@ -816,6 +835,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4516939554058248736, guid: d12622c27fee52d4cb4da8aed6768a8e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7671943621837260357, guid: d12622c27fee52d4cb4da8aed6768a8e, type: 3}
+      propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
