@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2786611301089101810}
   - component: {fileID: 2786611301089101811}
   - component: {fileID: 2786611301089101812}
+  - component: {fileID: 486084803402415842}
   m_Layer: 0
   m_Name: GriffeDown
   m_TagString: Untagged
@@ -40,9 +41,9 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2786611301089101813}
   serializedVersion: 7
-  lengthInSec: 1
+  lengthInSec: 0.2
   simulationSpeed: 1
-  stopAction: 0
+  stopAction: 1
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
@@ -4862,3 +4863,18 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &486084803402415842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2786611301089101813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a1e26548a4a7954399be73a5e23be42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  factory: {fileID: 0}
+  numberOfThisGoInTheFactory: 2
+  durationOfThisParticleSystem: 0.2

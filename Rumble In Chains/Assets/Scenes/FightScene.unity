@@ -10164,52 +10164,6 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
---- !u!1 &447773907
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 447773909}
-  - component: {fileID: 447773908}
-  m_Layer: 0
-  m_Name: TODELETE
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &447773908
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 447773907}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95c66a8d96b4b874ba08dad5f2a75221, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  winner: 0
-  characterPlayer1: Vaquero Del Paso
-  characterPlayer2: "Jos\xE9 de la Muerte"
---- !u!4 &447773909
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 447773907}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &507488442
 GameObject:
   m_ObjectHideFlags: 0
@@ -20735,7 +20689,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1367258122
 MonoBehaviour:
@@ -20749,7 +20703,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8c0af1ac64002345be236316ad943d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  particlesSystems: []
+  particlesSystems:
+  - {fileID: 5556848819901622348, guid: b7e625be87d98274991e1464c6ca61c8, type: 3}
+  - {fileID: 4597234954567691602, guid: a112a638a716bbf4bab5fd30eb07c1b0, type: 3}
+  - {fileID: 2786611301089101813, guid: b55375e93a6df4b469f4dd9d6dbfc6ef, type: 3}
+  - {fileID: 1295489891820311295, guid: 097ae19c98a2a1349abd312cd2ab4f26, type: 3}
+  - {fileID: 6610204283556681508, guid: 702451705f4a52745855310dffa078bd, type: 3}
 --- !u!1 &1397768386
 GameObject:
   m_ObjectHideFlags: 0

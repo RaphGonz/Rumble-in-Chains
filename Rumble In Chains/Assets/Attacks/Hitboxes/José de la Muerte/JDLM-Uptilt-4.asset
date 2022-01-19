@@ -17,5 +17,6 @@ MonoBehaviour:
   _startUpTiming: 6
   _durationOfHitbox: 2
   _expulsion: {x: 0, y: 0}
+  _particleSystemId: 0
   _center: {x: 0.8, y: 2.3}
   _radius: 0.4
