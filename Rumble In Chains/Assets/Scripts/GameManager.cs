@@ -29,8 +29,6 @@ public class GameManager : MonoBehaviour
         }
         Instance = this;
         DontDestroyOnLoad(this.gameObject);
-        print(characterPlayer1);
-        print(characterPlayer2);
         character1 = AssetDatabase.LoadAssetAtPath<Character>("Assets/Characters/" + characterPlayer1 + ".asset");
         character2 = AssetDatabase.LoadAssetAtPath<Character>("Assets/Characters/" + characterPlayer2 + ".asset");
         //FOR DEBUGGING PURPOSES
@@ -38,20 +36,17 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        print("ATTENTION REDIRECTION ICI");
         LoadScene("FightScene");
     }
 
     public void LoadScene(string sceneName)
     {
-        Debug.Log("Loading Scene : " + sceneName);
         SceneManager.LoadScene(sceneName);
     }
     private void OnLevelWasLoaded(int level)
     {        
         if (level == SceneManager.GetSceneByName("FightScene").buildIndex)
         {
-            print("allo");
             GameObject.FindGameObjectWithTag("Player1").GetComponent<SpriteRenderer>().sprite = character1.spriteNormal;
             GameObject.FindGameObjectWithTag("Player2").GetComponent<SpriteRenderer>().sprite = character2.spriteNormal;
         }
