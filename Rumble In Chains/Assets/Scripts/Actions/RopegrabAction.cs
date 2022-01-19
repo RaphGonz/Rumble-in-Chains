@@ -17,6 +17,7 @@ public class RopegrabAction : Action
     [SerializeField] PlayerController playerController;
     [SerializeField] PlayerController enemyPlayerController;
     [SerializeField] RopeManager ropeManager;
+    [SerializeField] PlayerAnimation playerAnimation;
 
     int playerNumber;
 
@@ -67,7 +68,8 @@ public class RopegrabAction : Action
         {
             finalGrabAngle = initialGrabAngle - maxGrabAngle;
         }
-        
+        playerAnimation.AnimationState = AnimationState.FOCUSROPEGRAB;
+
 
 
 
@@ -119,10 +121,20 @@ public class RopegrabAction : Action
             timer1.reset();
             if (type == RopegrabType.NEUTRAL)
             {
+                playerAnimation.AnimationState = AnimationState.BACKROPEGRAB;
                 ropeManager.startRopeAttraction(playerNumber, maxGrabRelativeDistance);
             }
             else
             {
+                if (type == RopegrabType.UP)
+                {
+                    playerAnimation.AnimationState = AnimationState.UPROPEGRAB;
+                }
+                else
+                {
+                    playerAnimation.AnimationState = AnimationState.DOWNROPEGRAB;
+                }
+
                 ropeManager.startRopeGab(new Vector2(Mathf.Cos(Mathf.Deg2Rad * initialGrabAngle), Mathf.Sin(Mathf.Deg2Rad * initialGrabAngle)));
             }
             currentGrabAngle = 0;
@@ -153,6 +165,7 @@ public class RopegrabAction : Action
             timer3.start();
             timer2.reset();
             ropeManager.endRopeGrab();
+            playerAnimation.AnimationState = AnimationState.IDLE;
         }
     }
 
@@ -176,6 +189,7 @@ public class RopegrabAction : Action
             timer3.start();
             timer2.reset();
             ropeManager.endRopeAttraction();
+            playerAnimation.AnimationState = AnimationState.IDLE;
         }
     }
 
@@ -191,6 +205,7 @@ public class RopegrabAction : Action
             timer3.reset();
             ropeManager.endRopeGrab();
             ropeManager.endRopeAttraction();
+            playerAnimation.AnimationState = AnimationState.IDLE;
         }
     }
 
@@ -202,6 +217,7 @@ public class RopegrabAction : Action
         timer1.reset();
         timer2.reset();
         timer3.reset();
+        playerAnimation.AnimationState = AnimationState.IDLE;
     }
 
 

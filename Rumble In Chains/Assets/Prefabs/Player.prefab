@@ -205,7 +205,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5899132421662591185}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.13, y: 6.96, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children:
   - {fileID: 6281698028160811332}
@@ -476,6 +476,7 @@ MonoBehaviour:
   playerController: {fileID: 2966433189847347344}
   enemyPlayerController: {fileID: 0}
   ropeManager: {fileID: 0}
+  playerAnimation: {fileID: 542897091201916130}
   maxGrabAngle: 180
   ropegrabFreezeTime: 0.2
   ropegrabGrabTime: 0.4
@@ -509,12 +510,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerController: {fileID: 2966433189847347344}
-  playerAnimation: {fileID: 0}
-  positionDisplacement: 5
-  dashFreezeTime: 0.1
-  dashMovementTime: 0.1
-  dashDecelerationTime: 0.2
-  dashCooldown: 0.5
+  playerAnimation: {fileID: 542897091201916130}
+  positionDisplacement: 0
+  dashFreezeTime: 0
+  dashMovementTime: 0
+  dashDecelerationTime: 0
+  dashCooldown: 0
   onDashParticles: {fileID: 0}
   dashFocusShort: {fileID: 0}
   dashFocusMedium: {fileID: 0}
