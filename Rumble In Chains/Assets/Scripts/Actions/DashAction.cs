@@ -17,7 +17,7 @@ public class DashAction : Action
     private Vector2 dashDirection;
     private int playerNumber;
 
-
+    public ParticleSystem onDashParticles;
 
     private void Start()
     {
@@ -61,6 +61,7 @@ public class DashAction : Action
         {
             EventManager.Instance.OnEventDash(playerNumber);
             phase2Movement();
+            
             return false;
         }
         else if (timer3.isActive())
@@ -69,7 +70,6 @@ public class DashAction : Action
             phase3Deceleration();
             return false;
         }
-
         return true;
     }
 
@@ -82,6 +82,7 @@ public class DashAction : Action
         else
         {
             timer2.start();
+            onDashParticles.Play(); //La phase2 de Dash commence : on lance les particules
             timer1.reset();
             playerController.SetGravityActive(false);
             playerController.SetRopeActive(false);
@@ -99,6 +100,7 @@ public class DashAction : Action
         {
             timer3.start();
             timer2.reset();
+            onDashParticles.Stop();
         }
     }
 
@@ -117,6 +119,7 @@ public class DashAction : Action
 
     override public void cancel() {
         playerController.velocity = new Vector2(0, 0);
+        onDashParticles.Stop(); //On arrête les particules si le move est annule
         timer1.reset();
         timer2.reset();
         timer3.reset();
