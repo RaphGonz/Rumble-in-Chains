@@ -12,7 +12,8 @@ public class Character : ScriptableObject
     public DashActivation dashActivation;
     public DashDistance dashDistance;
     public RopePulling ropePulling;
-    public Sprite sprite;
+    public Sprite spriteNormal;
+    public Sprite spriteAttacked;
     public List<Attack> attacks;
     public readonly CharacterConverter characterConverter = new CharacterConverter();
 }

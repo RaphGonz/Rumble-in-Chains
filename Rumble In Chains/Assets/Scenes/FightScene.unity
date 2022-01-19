@@ -211,6 +211,22 @@ PrefabInstance:
       propertyPath: enemyPlayerController
       value: 
       objectReference: {fileID: 2144526653}
+    - target: {fileID: 3441460084637365577, guid: 360e08196e2cc1142982da7688613d12, type: 3}
+      propertyPath: m_TagString
+      value: Player2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5645565741909095924, guid: 360e08196e2cc1142982da7688613d12, type: 3}
+      propertyPath: m_Color.b
+      value: 0.018271446
+      objectReference: {fileID: 0}
+    - target: {fileID: 5645565741909095924, guid: 360e08196e2cc1142982da7688613d12, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5645565741909095924, guid: 360e08196e2cc1142982da7688613d12, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5899132421662591185, guid: 360e08196e2cc1142982da7688613d12, type: 3}
       propertyPath: m_Name
       value: PlayerRight
@@ -218,6 +234,10 @@ PrefabInstance:
     - target: {fileID: 5899132421662591185, guid: 360e08196e2cc1142982da7688613d12, type: 3}
       propertyPath: m_Layer
       value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 5899132421662591185, guid: 360e08196e2cc1142982da7688613d12, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 5899132421662591186, guid: 360e08196e2cc1142982da7688613d12, type: 3}
       propertyPath: m_Color.b
@@ -278,6 +298,14 @@ PrefabInstance:
     - target: {fileID: 5899132421662591193, guid: 360e08196e2cc1142982da7688613d12, type: 3}
       propertyPath: playerNumber
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7405275577824175900, guid: 360e08196e2cc1142982da7688613d12, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7694819773692787658, guid: 360e08196e2cc1142982da7688613d12, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 360e08196e2cc1142982da7688613d12, type: 3}
@@ -41427,6 +41455,10 @@ PrefabInstance:
     - target: {fileID: 5899132421662591185, guid: 360e08196e2cc1142982da7688613d12, type: 3}
       propertyPath: m_Name
       value: PlayerLeft
+      objectReference: {fileID: 0}
+    - target: {fileID: 5899132421662591185, guid: 360e08196e2cc1142982da7688613d12, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 5899132421662591187, guid: 360e08196e2cc1142982da7688613d12, type: 3}
       propertyPath: m_RootOrder
