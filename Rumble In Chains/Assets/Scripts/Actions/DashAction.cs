@@ -6,6 +6,7 @@ using UnityEditor;
 public class DashAction : Action
 {
     [SerializeField] PlayerController playerController;
+    [SerializeField] PlayerAnimation playerAnimation;
 
     [SerializeField] private float positionDisplacement;
 
@@ -37,8 +38,9 @@ public class DashAction : Action
         this.dashDirection = direction;
         timer1.start();
         cooldown.start();
-        print("dashStart");
+        //print("dashStart");
         playerNumber = newNumber;
+        playerAnimation.AnimationState = AnimationState.FOCUSDASH;
     }
 
     // Start is called before the first frame update
@@ -86,6 +88,7 @@ public class DashAction : Action
             playerController.SetGravityActive(false);
             playerController.SetRopeActive(false);
             playerController.SetDecelerationActive(false);
+            playerAnimation.AnimationState = AnimationState.DASH;
         }
     }
 
@@ -112,10 +115,12 @@ public class DashAction : Action
         {
             timer3.reset();
             playerController.velocity = new Vector2(0,0);
+            playerAnimation.AnimationState = AnimationState.IDLE;
         }
     }
 
     override public void cancel() {
+        playerAnimation.AnimationState = AnimationState.IDLE;
         playerController.velocity = new Vector2(0, 0);
         timer1.reset();
         timer2.reset();

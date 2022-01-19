@@ -6,6 +6,7 @@ using UnityEditor;
 public class JumpAction : Action
 {
     [SerializeField] PlayerController playerController;
+    [SerializeField] PlayerAnimation playerAnimation;
 
     [SerializeField] private float jumpAccelerationTime;
     [SerializeField] private float jumpMovementTime;
@@ -32,6 +33,7 @@ public class JumpAction : Action
     {
         timer1.start();
         cooldown.start();
+        playerAnimation.AnimationState = AnimationState.JUMP;
     }
 
     // Update is called once per frame
@@ -74,12 +76,14 @@ public class JumpAction : Action
         {
             timer3.start();
             timer2.reset();
+            playerAnimation.AnimationState = AnimationState.IDLE;
         }
     }
 
     override public void cancel()
     {
         //playerController.velocity = new Vector2(0, 0);
+        playerAnimation.AnimationState = AnimationState.IDLE;
         timer1.reset();
         timer2.reset();
         timer3.reset();
