@@ -18,14 +18,23 @@ public class DashAction : Action
     private int playerNumber;
 
     public ParticleSystem onDashParticles;
+    public ParticleSystem dashFocusShort;
+    public ParticleSystem dashFocusMedium;
+    public ParticleSystem dashFocusLong;
+    private ParticleSystem chosenOne;
+
 
     private void Start()
     {
-        Character character = AssetDatabase.LoadAssetAtPath<Character>("Assets/Characters/" + (this.gameObject.layer == 17 ? GameManager.Instance.characterPlayer1 : GameManager.Instance.characterPlayer2) + ".asset");
+        Character character = this.gameObject.layer == 17 ? GameManager.Instance.Character1 : GameManager.Instance.Character2;
         dashFreezeTime = character.characterConverter.convertDashActivation(character.dashActivation);
         positionDisplacement = character.characterConverter.convertDashDistance(character.dashDistance);
-
-
+        switch (character.dashActivation)
+        {
+            case DashActivation.LOW: chosenOne = dashFocusShort; break;
+            case DashActivation.MEDIUM: chosenOne = dashFocusMedium; break;
+            case DashActivation.HIGH: chosenOne = dashFocusLong; break;
+        }
         timer1.setDuration(dashFreezeTime);
         timer2.setDuration(dashMovementTime);
         timer3.setDuration(dashDecelerationTime);
@@ -37,7 +46,7 @@ public class DashAction : Action
         this.dashDirection = direction;
         timer1.start();
         cooldown.start();
-        print("dashStart");
+        chosenOne.Play();
         playerNumber = newNumber;
     }
 
