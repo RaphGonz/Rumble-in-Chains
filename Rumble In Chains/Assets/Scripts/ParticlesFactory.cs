@@ -50,7 +50,11 @@ public class ParticlesFactory : MonoBehaviour
         go.transform.position = position;
         if (!TurnedTowardsRight)
         {
-            go.transform.position.Scale(new Vector3(-1, 0, 0));
+            go.GetComponent<ParticleSystemRenderer>().flip = new Vector3(1,0,0);
+        }
+        else
+        {
+            go.GetComponent<ParticleSystemRenderer>().flip = new Vector3(0,0,0);
         }
         go.SetActive(true);
         
@@ -58,7 +62,8 @@ public class ParticlesFactory : MonoBehaviour
 
     public void ReturnParticleSystem(GameObject go, int numberInTheList)
     {
-        go.SetActive(false);
         factories[numberInTheList].Enqueue(go);
+        go.SetActive(false);
+        print("wtf");
     }
 }

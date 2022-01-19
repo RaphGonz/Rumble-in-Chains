@@ -64,8 +64,6 @@ public class UIController : MonoBehaviour
             float pourcentageOfMaxPoints = points / (float)mandatoryPoints;
             float newWidth = pourcentageOfMaxPoints * baseWidth;
             Rect rect = player == 1 ? blueBarre.rect : redBarre.rect;
-            Debug.Log(baseWidth / 2 - newWidth / 2 * (player == 1 ? -1 : 1));
-            Debug.Log(newWidth);
             if(player == 1)
             {
                 blueBarre.sizeDelta = new Vector2(newWidth, rect.height); 

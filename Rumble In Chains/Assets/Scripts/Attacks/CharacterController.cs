@@ -25,7 +25,7 @@ public class CharacterController : MonoBehaviour //!!!
 
     private int _attackFrame = 0;
     public LayerMask enemyMask;
-    public float Pourcentages { get => _pourcentages; set { _pourcentages = value; /*UIController.Instance.ChangePercentages(this.gameObject.name.Equals("PlayerLeft") ? 1 : 2, Pourcentages);*/ } }
+    public float Pourcentages { get => _pourcentages; set { _pourcentages = value; UIController.Instance.ChangePercentages(this.gameObject.name.Equals("PlayerLeft") ? 1 : 2, Pourcentages); } }
     public float Weight { get; }
 
     public float Points { get => _points; set { _points = value; UIController.Instance.ChangePoints(this.gameObject.name.Equals("PlayerLeft") ? 1 : 2, Points); /*Debug.Log(Points);*/ } }

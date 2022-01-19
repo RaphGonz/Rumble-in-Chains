@@ -57,12 +57,10 @@ public class GameManager : MonoBehaviour
         if (player == 1)
         {
             characterPlayer1 = myCharacter;
-            
         }
         else
         {
             characterPlayer2 = myCharacter;
-            
         }
     }
 }
