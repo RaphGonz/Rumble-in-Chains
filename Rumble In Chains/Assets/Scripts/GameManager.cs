@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
 
     private Character character1;
     private Character character2;
+    public Character Character1 { get => character1; private set { character1 = value; } }
+    public Character Character2 { get => character2; private set { character2 = value; } }
     public GameManager(){}
 
     private void Awake()
@@ -27,33 +29,45 @@ public class GameManager : MonoBehaviour
         }
         Instance = this;
         DontDestroyOnLoad(this.gameObject);
+        print(characterPlayer1);
+        print(characterPlayer2);
+        character1 = AssetDatabase.LoadAssetAtPath<Character>("Assets/Characters/" + characterPlayer1 + ".asset");
+        character2 = AssetDatabase.LoadAssetAtPath<Character>("Assets/Characters/" + characterPlayer2 + ".asset");
+        //FOR DEBUGGING PURPOSES
     }
-    
+
+    private void Start()
+    {
+        print("ATTENTION REDIRECTION ICI");
+        LoadScene("FightScene");
+    }
+
     public void LoadScene(string sceneName)
     {
         Debug.Log("Loading Scene : " + sceneName);
         SceneManager.LoadScene(sceneName);
-        if(sceneName == "FightScene")
+    }
+    private void OnLevelWasLoaded(int level)
+    {        
+        if (level == SceneManager.GetSceneByName("FightScene").buildIndex)
         {
-            character1 = AssetDatabase.LoadAssetAtPath<Character>("Assets/Characters/" + characterPlayer1);
-            character2 = AssetDatabase.LoadAssetAtPath<Character>("Assets/Characters/" + characterPlayer2);
-            EmitDataFromCharacter();
+            print("allo");
+            GameObject.FindGameObjectWithTag("Player1").GetComponent<SpriteRenderer>().sprite = character1.spriteNormal;
+            GameObject.FindGameObjectWithTag("Player2").GetComponent<SpriteRenderer>().sprite = character2.spriteNormal;
         }
     }
 
     public void setCharacter(string myCharacter, int player)
     {
-        if (player == 0) {
+        if (player == 1)
+        {
             characterPlayer1 = myCharacter;
+            
         }
         else
         {
             characterPlayer2 = myCharacter;
+            
         }
-    }
-
-    private void EmitDataFromCharacter()
-    {
-        //
     }
 }

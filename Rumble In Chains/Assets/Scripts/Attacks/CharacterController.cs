@@ -80,14 +80,16 @@ public class CharacterController : MonoBehaviour //!!!
     { //17 c'est la layer Player1 : a voir comment faire ça proprepement sans int
         lastCircleCenter = new List<Vector2>();//DEBUG 
         lastCircleRadius = new List<float>();//DEBUG 
-        Character character = AssetDatabase.LoadAssetAtPath<Character>("Assets/Characters/" + (this.gameObject.layer == 17 ? GameManager.Instance.characterPlayer1 : GameManager.Instance.characterPlayer2)+ ".asset");
-        print((gameObject.layer == 17 ? "player1" : "player2") + " : " + character.name);
+        Character character = this.gameObject.layer == 17 ? GameManager.Instance.Character1: GameManager.Instance.Character2;
+        print(character.name);
+        print(this.gameObject.layer == 17);
         Jab = character.attacks[0];
         SideTilt = character.attacks[1];
         UpTilt = character.attacks[2];
         DownTilt = character.attacks[3];
         DownAir = character.attacks[4];
         enemyMask = gameObject.layer == 17 ? LayerMask.GetMask("PlayerRight") : LayerMask.GetMask("PlayerLeft");
+        
     }
 
     // Update is called once per frame
@@ -107,17 +109,18 @@ public class CharacterController : MonoBehaviour //!!!
                 framesInvicibility = 0;
             }
         }
+        
     }
 
 
     public void TakePourcentages(float pourcentage)
     {
-        //Debug.Log("ouch!");
         if (!opponentActionController.isInvincible())
         {
             Pourcentages += pourcentage;
             
-        }        
+        }      
+        
     }
 
     void CheckHitboxes(Attack attack)
@@ -135,8 +138,6 @@ public class CharacterController : MonoBehaviour //!!!
                 if (_attackFrame >= attack.Prelag + hitbox.StartUpTiming && _attackFrame < attack.Prelag + hitbox.StartUpTiming + hitbox.DurationOfHitbox)
                 {
                     //Debug.Log("attacking!");
-                    
-                    
 
                     if (hitbox is HitboxCapsule)
                     {
@@ -164,14 +165,6 @@ public class CharacterController : MonoBehaviour //!!!
                         //Debug.Break();
                         HitboxSphere hitboxSphere = (HitboxSphere)hitbox;
                         Collider2D collider = Physics2D.OverlapCircle(new Vector2(myPlayerController.facing * hitboxSphere.Center.x,hitboxSphere.Center.y) +  new Vector2(transform.position.x, transform.position.y), hitboxSphere.Radius, enemyMask) ;
-                        //print(collider);
-
-                        if (hitboxSphere.FirstLoop)
-                        {
-                            EventManager.Instance.OnEventSpawnParticles(hitboxSphere.ParticleSystemName, transform.position + new Vector3(hitboxSphere.Center.x, hitboxSphere.Center.y), myPlayerController.facing >= 0);
-                            hitboxSphere.FirstLoop = false;
-                        }
-
                         //FOR DEBUGGING PURPOSES
                         lastCircleRadius.Add(hitboxSphere.Radius);
                         lastCircleCenter.Add(new Vector2(myPlayerController.facing * hitboxSphere.Center.x, hitboxSphere.Center.y) + new Vector2(transform.position.x, transform.position.y));
@@ -181,11 +174,9 @@ public class CharacterController : MonoBehaviour //!!!
                             lastHitbox = thisHitbox;
                             hit = true;
                             collider.gameObject.GetComponent<CharacterController>().TakePourcentages(hitboxSphere.Damage); // changer le get component : l'adversaire est unique on peut donc le faire au start
-                            //Debug.Log(new Vector2(hitbox.Expulsion.x * myPlayerController.facing, hitbox.Expulsion.y));
 
                             if (!opponentActionController.isInvincible() && !opponentActionController.isShieldActive())
                             {
-                                //Debug.Log(hitbox.Expulsion);
                                 float multiplier = (1 + opponentController.gameObject.GetComponent<CharacterController>().Pourcentages / 100);
                                 opponentActionController.ExpelAndStun(new Vector2(hitbox.Expulsion.x*myPlayerController.facing, hitbox.Expulsion.y) * multiplier, (int)(hitbox.StunFactor * multiplier));
                             }
@@ -208,12 +199,8 @@ public class CharacterController : MonoBehaviour //!!!
             //Debug.Log("current attack is now null");
             _attackFrame = 0;
             lastHitbox = 0;
-            
             //myInputController.attacking = false;
-            foreach(var hitbox in attack.Hitboxes)
-            {
-                hitbox.FirstLoop = true;
-            }
+
             
             
         }
@@ -222,12 +209,10 @@ public class CharacterController : MonoBehaviour //!!!
 
     void OnDrawGizmos()
     {
-        
         for(int i = 0; i< lastCircleCenter.Count; i++)
         {
             Gizmos.DrawSphere(lastCircleCenter[i], lastCircleRadius[i]);
         }
-        
     }
 
     //public void Shield()
