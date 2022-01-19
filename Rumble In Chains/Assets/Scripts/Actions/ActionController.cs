@@ -66,6 +66,11 @@ public class ActionController : MonoBehaviour
     [SerializeField] private int shieldBrokenStunFrames = 60;
     [SerializeField] private int stopRopegrabStunFrames = 60;
 
+    public ParticleSystem stunParticles1;
+    public ParticleSystem stunParticles2;
+    public ParticleSystem dustParticles;
+
+
 
     private void Start()
     {
@@ -75,6 +80,7 @@ public class ActionController : MonoBehaviour
         EventManager.Instance.eventDash += EventEnemyDash;
         EventManager.Instance.eventRopegrab += EventEnemyRopegrab;
         EventManager.Instance.eventPlayerInZone += EventPlayerZone;
+
     }
 
 
@@ -209,6 +215,7 @@ public class ActionController : MonoBehaviour
         invincibilityTimer.setDuration(invincibilityTime);
 
         changeState(PlayerState.STUN);
+        
         return true;
     }
 
@@ -217,6 +224,10 @@ public class ActionController : MonoBehaviour
     {
         if (playerState == PlayerState.NORMAL || playerState == PlayerState.JUMP)
         {
+            if (playerCollider.IsGrounded())
+            {
+                dustParticles.Play();
+            }
             playerController.MoveX(joystickDirection.x);
         }
     }
@@ -335,6 +346,10 @@ public class ActionController : MonoBehaviour
                 {
                     stunTimer.reset();
                     invincibilityTimer.start();
+                    print("jsuis plus stunned frero");
+                    print(stunParticles1.isPlaying);
+                    stunParticles1.Stop();
+                    stunParticles2.Stop(); //On arrête les particules
                     changeState(PlayerState.NORMAL);
                 }
                 else if (playerState == PlayerState.EXPEL)
@@ -364,6 +379,7 @@ public class ActionController : MonoBehaviour
             }
             else
             {
+
                 invincibilityTimer.start();
             }
         }
@@ -469,6 +485,9 @@ public class ActionController : MonoBehaviour
                 playerController.SetDecelerationActive(false);
                 shieldActive = false;
                 invincible = true;
+                print("Yo je suis stun mec");
+                stunParticles1.Play(); //On est stun donc on lance les particules
+                stunParticles2.Play();
                 break;
             case PlayerState.EXPEL:
                 playerController.SetGravityActive(false);
