@@ -38,6 +38,8 @@ public class ActionController : MonoBehaviour
 
     private float invincibilityTime;
 
+    private AnimationState animationState;
+
 
 
     private bool inRecoveryFrames;
@@ -58,6 +60,8 @@ public class ActionController : MonoBehaviour
     [SerializeField] PlayerController playerController;
     [SerializeField] PlayerCollider playerCollider;
     [SerializeField] BufferManager buffer;
+
+    [SerializeField] PlayerAnimation playerAnimation;
 
     [SerializeField] public int playerNumber;
     [SerializeField] private float stunInvincibilityRatio;
@@ -96,7 +100,6 @@ public class ActionController : MonoBehaviour
 
         UpdateCurrentAction();
 
-        
 
         if (joystickDirection.x != 0)
         {
@@ -110,6 +113,8 @@ public class ActionController : MonoBehaviour
         {
             MoveDown(false);
         }
+
+        playerAnimation.UpdateAnimator();
     }
 
     private bool Attack()
@@ -190,7 +195,8 @@ public class ActionController : MonoBehaviour
         stunTimer.start();
 
         CancelCurrentAction();
-        
+
+
         expelAction.start(direction);
         changeState(PlayerState.EXPEL);
     }
@@ -202,6 +208,7 @@ public class ActionController : MonoBehaviour
             characterController.InterruptAttack();
         }
         CancelCurrentAction();
+        playerAnimation.SetBool("Hit", true);
         //playerController.Stun();
 
         if (stunFrames < 3) stunFrames = 3;
@@ -463,6 +470,7 @@ public class ActionController : MonoBehaviour
                 playerController.SetDecelerationActive(true);
                 shieldActive = false;
                 invincible = false;
+                animationState = AnimationState.JUMP;
                 break;
             case PlayerState.DASH:
                 playerController.SetGravityActive(true);
@@ -470,6 +478,7 @@ public class ActionController : MonoBehaviour
                 playerController.SetDecelerationActive(true);
                 shieldActive = false;
                 invincible = false;
+                animationState = AnimationState.FOCUSDASH;
                 break;
             case PlayerState.ATTACK:
                 playerController.SetGravityActive(true);
