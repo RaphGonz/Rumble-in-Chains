@@ -50,7 +50,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -132,7 +132,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -188,6 +188,8 @@ GameObject:
   - component: {fileID: 2144526662}
   - component: {fileID: 2144526663}
   - component: {fileID: 893476916449068451}
+  - component: {fileID: 6903146139070216750}
+  - component: {fileID: 542897091201916130}
   m_Layer: 17
   m_Name: Player
   m_TagString: Untagged
@@ -416,11 +418,15 @@ MonoBehaviour:
   playerController: {fileID: 2966433189847347344}
   playerCollider: {fileID: 5899132421662591199}
   buffer: {fileID: 2144526656}
+  playerAnimation: {fileID: 542897091201916130}
   playerNumber: 1
   stunInvincibilityRatio: 0.5
   maxInvincibilityTime: 0.3
   shieldBrokenStunFrames: 60
   stopRopegrabStunFrames: 60
+  stunParticles1: {fileID: 0}
+  stunParticles2: {fileID: 0}
+  dustParticles: {fileID: 0}
 --- !u!114 &2144526658
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -452,6 +458,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterController: {fileID: -3414843495647307070}
+  playerAnimation: {fileID: 542897091201916130}
   attackTotalTime: 0
   attackCooldown: 0
 --- !u!114 &2144526660
@@ -488,6 +495,7 @@ MonoBehaviour:
   playerController: {fileID: 2966433189847347344}
   shieldTime: 1
   shieldCooldown: 1.5
+  shieldMaterial: {fileID: 0}
 --- !u!114 &2144526662
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -501,11 +509,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerController: {fileID: 2966433189847347344}
+  playerAnimation: {fileID: 0}
   positionDisplacement: 5
   dashFreezeTime: 0.1
   dashMovementTime: 0.1
   dashDecelerationTime: 0.2
   dashCooldown: 0.5
+  onDashParticles: {fileID: 0}
+  dashFocusShort: {fileID: 0}
+  dashFocusMedium: {fileID: 0}
+  dashFocusLong: {fileID: 0}
 --- !u!114 &2144526663
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -519,6 +532,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerController: {fileID: 2966433189847347344}
+  playerAnimation: {fileID: 542897091201916130}
   jumpAccelerationTime: 0.05
   jumpMovementTime: 0.2
   jumpCooldown: 1
@@ -538,6 +552,38 @@ MonoBehaviour:
   postLag: 0.5
   cooldownBetweenTwoPoses: 1
   characterController: {fileID: -3414843495647307070}
+--- !u!95 &6903146139070216750
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5899132421662591185}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1a15baf5245ce2c4f87e40b5556eca67, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &542897091201916130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5899132421662591185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 661becc678e1dda449a72c064d4894a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 547247882705736063}
 --- !u!1 &8478585121851832328
 GameObject:
   m_ObjectHideFlags: 0
@@ -603,6 +649,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2950757835968024983, guid: 69d2ed7872667024b88b4f7b7e1c905b, type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5120410214041872170, guid: 69d2ed7872667024b88b4f7b7e1c905b, type: 3}
+      propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8621060299289129570, guid: 69d2ed7872667024b88b4f7b7e1c905b, type: 3}
@@ -669,6 +719,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3599905044334957664, guid: be2301284827f9042bc0d257000f346b, type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4027594994220612870, guid: be2301284827f9042bc0d257000f346b, type: 3}
+      propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6096302949657452191, guid: be2301284827f9042bc0d257000f346b, type: 3}
@@ -729,13 +783,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5899132421662591187}
     m_Modifications:
+    - target: {fileID: 160667620894843387, guid: d12622c27fee52d4cb4da8aed6768a8e, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3646438683642248129, guid: d12622c27fee52d4cb4da8aed6768a8e, type: 3}
       propertyPath: m_Name
       value: DizzyStarsParticles
       objectReference: {fileID: 0}
     - target: {fileID: 3646438683642248129, guid: d12622c27fee52d4cb4da8aed6768a8e, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4516939554058248736, guid: d12622c27fee52d4cb4da8aed6768a8e, type: 3}
       propertyPath: m_RootOrder
@@ -779,6 +837,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4516939554058248736, guid: d12622c27fee52d4cb4da8aed6768a8e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7671943621837260357, guid: d12622c27fee52d4cb4da8aed6768a8e, type: 3}
+      propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

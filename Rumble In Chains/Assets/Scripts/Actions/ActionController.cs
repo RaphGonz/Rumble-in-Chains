@@ -38,6 +38,8 @@ public class ActionController : MonoBehaviour
 
     private float invincibilityTime;
 
+    private AnimationState animationState;
+
 
 
     private bool inRecoveryFrames;
@@ -59,6 +61,8 @@ public class ActionController : MonoBehaviour
     [SerializeField] PlayerCollider playerCollider;
     [SerializeField] BufferManager buffer;
 
+    [SerializeField] PlayerAnimation playerAnimation;
+
     [SerializeField] public int playerNumber;
     [SerializeField] private float stunInvincibilityRatio;
     [SerializeField] private float maxInvincibilityTime;
@@ -68,8 +72,10 @@ public class ActionController : MonoBehaviour
 
     public ParticleSystem stunParticles1;
     public ParticleSystem stunParticles2;
-    public ParticleSystem dustParticles;
 
+    public ParticleSystem dustParticles;
+    //On ne peut pas faire .Play() à chaque update donc puisqu'on ne peut le faire qu'une fois il faut un booléen pour l'implémenter
+    private bool movingOnGround = false;
 
 
     private void Start()
@@ -94,7 +100,6 @@ public class ActionController : MonoBehaviour
 
         UpdateCurrentAction();
 
-        
 
         if (joystickDirection.x != 0)
         {
@@ -108,6 +113,8 @@ public class ActionController : MonoBehaviour
         {
             MoveDown(false);
         }
+
+        playerAnimation.UpdateAnimator();
     }
 
     private bool Attack()
@@ -188,7 +195,8 @@ public class ActionController : MonoBehaviour
         stunTimer.start();
 
         CancelCurrentAction();
-        
+
+
         expelAction.start(direction);
         changeState(PlayerState.EXPEL);
     }
@@ -200,6 +208,7 @@ public class ActionController : MonoBehaviour
             characterController.InterruptAttack();
         }
         CancelCurrentAction();
+        playerAnimation.SetBool("Hit", true);
         //playerController.Stun();
 
         if (stunFrames < 3) stunFrames = 3;
@@ -224,10 +233,21 @@ public class ActionController : MonoBehaviour
     {
         if (playerState == PlayerState.NORMAL || playerState == PlayerState.JUMP)
         {
-            if (playerCollider.IsGrounded())
+            if (playerCollider.IsGrounded() && !Mathf.Approximately(playerController.velocity.x,0) )
             {
-                dustParticles.Play();
+                if (!movingOnGround)
+                {
+                    movingOnGround = true;
+                    dustParticles.Play();
+                }
+                
             }
+            else
+            {
+                movingOnGround = false;
+                dustParticles.Stop();
+            }
+            
             playerController.MoveX(joystickDirection.x);
         }
     }
@@ -450,6 +470,7 @@ public class ActionController : MonoBehaviour
                 playerController.SetDecelerationActive(true);
                 shieldActive = false;
                 invincible = false;
+                animationState = AnimationState.JUMP;
                 break;
             case PlayerState.DASH:
                 playerController.SetGravityActive(true);
@@ -457,6 +478,7 @@ public class ActionController : MonoBehaviour
                 playerController.SetDecelerationActive(true);
                 shieldActive = false;
                 invincible = false;
+                animationState = AnimationState.FOCUSDASH;
                 break;
             case PlayerState.ATTACK:
                 playerController.SetGravityActive(true);

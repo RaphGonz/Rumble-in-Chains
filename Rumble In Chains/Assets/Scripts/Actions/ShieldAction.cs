@@ -9,11 +9,16 @@ public class ShieldAction : Action
     [SerializeField] private float shieldTime;
     [SerializeField] private float shieldCooldown;
 
+    public Material shieldMaterial;
+    private float height = 3f; //Valeur qui nous permet de faire slider le reflet metallique de haut en bas sur le personnage
 
     private void Start()
     {
         timer1.setDuration(shieldTime);
         cooldown.setDuration(shieldCooldown);
+        //Au niveau du shader pour le bouclier : on se transforme en gris
+        shieldMaterial.SetInt("_isShielding", 1);
+        shieldMaterial.SetFloat("_Height", height);
     }
 
 
@@ -30,6 +35,11 @@ public class ShieldAction : Action
         if (timer1.isActive())
         {
             phase1Shield();
+
+            height -= Time.deltaTime;
+            if (height <= 0) height += 3; //On fait boucler height sur lui même
+            shieldMaterial.SetFloat("_Height", height);
+
             return false;
         }
 
@@ -46,6 +56,7 @@ public class ShieldAction : Action
         else
         {
             timer1.reset();
+            shieldMaterial.SetInt("_isShielding", 0);
         }
     }
 
@@ -55,5 +66,6 @@ public class ShieldAction : Action
         timer1.reset();
         timer2.reset();
         timer3.reset();
+        shieldMaterial.SetInt("_isShielding", 0);
     }
 }
