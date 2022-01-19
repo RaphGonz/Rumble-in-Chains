@@ -81,8 +81,6 @@ public class CharacterController : MonoBehaviour //!!!
         lastCircleCenter = new List<Vector2>();//DEBUG 
         lastCircleRadius = new List<float>();//DEBUG 
         Character character = this.gameObject.layer == 17 ? GameManager.Instance.Character1: GameManager.Instance.Character2;
-        print(character.name);
-        print(this.gameObject.layer == 17);
         Jab = character.attacks[0];
         SideTilt = character.attacks[1];
         UpTilt = character.attacks[2];

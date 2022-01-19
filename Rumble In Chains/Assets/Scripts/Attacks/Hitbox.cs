@@ -15,14 +15,14 @@ public abstract class Hitbox : ScriptableObject //!!!
     [SerializeField]
     protected Vector2 _expulsion;
     [SerializeField]
-    protected string _particleSystemName;
+    protected int _particleSystemId;
     protected bool _firstLoop = true;
     public float Damage { get => _damage; }
     public float StunFactor { get => _stunFactor; }
     public int StartUpTiming { get => _startUpTiming; }// number of frames at which this hitbox starts. 1st hitbox starts at startUpTiming = 0;
     public int DurationOfHitbox { get => _durationOfHitbox; } //number of frames that this hitbox lasts;
     public Vector2 Expulsion { get => _expulsion; }
-    public string ParticleSystemName { get => _particleSystemName; }
+    public int ParticleSystemName { get => _particleSystemId; }
     public bool FirstLoop { get => _firstLoop; set { _firstLoop = value; } }
 
 

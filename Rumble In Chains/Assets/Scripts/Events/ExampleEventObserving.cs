@@ -29,8 +29,8 @@ public class ExampleEventObserving : MonoBehaviour
         transform.position = position;
     }
 
-    private void SpawnParticle(string s, Vector2 pos, bool right)
+    private void SpawnParticle(int id, Vector2 pos, bool right)
     {
-        Debug.Log("particle spawned, name :" + s + ";   position : " + pos + ";    orientation : " + right);
+        Debug.Log("particle spawned, id : " + id + " ;   position : " + pos + ";    orientation : " + right);
     }
 }

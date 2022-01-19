@@ -16,15 +16,41 @@ public class ParticlesFactory : MonoBehaviour
     }
     private void Start()
     {
-        foreach(var particleSys in particlesSystems)
+        for (int i = 0; i < particlesSystems.Count; i++)
         {
-            GameObject go = Instantiate(particleSys);
+            GameObject go = Instantiate(particlesSystems[i], new Vector3(-24, 0, 0), Quaternion.identity);
+            go.GetComponent<ParticlesReturner>().factory = this;
+            go.SetActive(false);
+            factories[i].Enqueue(go);
+        }
+
+        EventManager.Instance.eventSpawnParticles += SpawnParticleSystem;
+
+    }
+
+    public void SpawnParticleSystem(int numberInTheList, Vector2 position, bool TurnedTowardsRight)
+    {
+        GameObject go;
+        if (factories[numberInTheList].Count != 0)
+        {
+            go = factories[numberInTheList].Dequeue();
+        }
+        else
+        {
+            go = Instantiate(particlesSystems[numberInTheList]);
             go.SetActive(false);
         }
+        go.transform.position = position;
+        if (!TurnedTowardsRight)
+        {
+            go.transform.position.Scale(new Vector3(-1, 0, 0));
+        }
+        go.SetActive(true);
     }
-    // Update is called once per frame
-    void Update()
+
+    public void ReturnParticleSystem(GameObject go, int numberInTheList)
     {
-        
+        go.SetActive(false);
+        factories[numberInTheList].Enqueue(go);
     }
 }

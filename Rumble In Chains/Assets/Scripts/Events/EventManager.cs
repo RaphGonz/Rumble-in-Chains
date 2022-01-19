@@ -80,13 +80,13 @@ public class EventManager : MonoBehaviour
         }
     }
 
-    public delegate void EventSpawnParticles(string name, Vector2 position, bool right);
+    public delegate void EventSpawnParticles(int numberInTheList, Vector2 position, bool right);
     public event EventSpawnParticles eventSpawnParticles;
-    public void OnEventSpawnParticles(string name, Vector2 position, bool right)
+    public void OnEventSpawnParticles(int numberInTheList, Vector2 position, bool right)
     {
         if (eventSpawnParticles != null)
         {
-            eventSpawnParticles(name, position, right);
+            eventSpawnParticles(numberInTheList, position, right);
         }
     }
 
