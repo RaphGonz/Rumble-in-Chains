@@ -19,7 +19,8 @@ MonoBehaviour:
   dashActivation: 0
   dashDistance: 0
   ropePulling: 0
-  sprite: {fileID: 0}
+  spriteNormal: {fileID: 21300000, guid: a37384f6d05ccef4897e7208c50fb404, type: 3}
+  spriteAttacked: {fileID: 21300000, guid: 4ba6b45250e3d7743b142b70ab4a5e4a, type: 3}
   attacks:
   - {fileID: 11400000, guid: f364f96eb29f6dd4e849a2c227c13dec, type: 2}
   - {fileID: 11400000, guid: de2fbd6bff8c2b544b311ad5c16c1461, type: 2}
