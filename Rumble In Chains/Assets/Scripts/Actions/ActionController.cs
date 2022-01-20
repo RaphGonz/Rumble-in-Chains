@@ -415,7 +415,7 @@ public class ActionController : MonoBehaviour
             else
             {
                 invincible = false;
-                playerAnimation.SetBool("IsInvincible", true);
+                playerAnimation.SetBool("IsInvincible", false);
             }
         }
     }

@@ -516,9 +516,9 @@ MonoBehaviour:
   playerAnimation: {fileID: 542897091201916130}
   positionDisplacement: 0
   dashFreezeTime: 0
-  dashMovementTime: 0
-  dashDecelerationTime: 0
-  dashCooldown: 0
+  dashMovementTime: 0.1
+  dashDecelerationTime: 0.05
+  dashCooldown: 1
   onDashParticles: {fileID: 0}
   dashFocusShort: {fileID: 0}
   dashFocusMedium: {fileID: 0}
