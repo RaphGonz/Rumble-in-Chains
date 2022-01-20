@@ -64,6 +64,5 @@ public class ParticlesFactory : MonoBehaviour
     {
         factories[numberInTheList].Enqueue(go);
         go.SetActive(false);
-        print("wtf");
     }
 }
