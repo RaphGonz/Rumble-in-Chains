@@ -44,7 +44,7 @@ public class PublicAction : Action
                 timer1.reset();
                 timer2.start();
 
-                flash.color = flashColor; //Le flash est lancé : alpha set au maximum
+                StartCoroutine("Flash");
 
                 gainPoint();
             }
@@ -59,13 +59,24 @@ public class PublicAction : Action
                 timer2.reset();
             }
 
-            flashColor.w = (1 - timer2.getRatio());
-            flash.color = flashColor;
 
             return false;
         }
 
         return true;
+    }
+
+    IEnumerator Flash()
+    {
+        flash.color = flashColor; //Le flash est lancé : alpha set au maximum
+
+        while(flashColor.w > 0)
+        {
+            flashColor.w = (1 - timer2.getRatio());
+            flash.color = flashColor;
+            yield return new WaitForEndOfFrame();
+        }
+
     }
 
     private void gainPoint()
