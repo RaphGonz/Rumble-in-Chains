@@ -11,7 +11,7 @@ public class PublicAction : Action
 
     [SerializeField] CharacterController characterController;
 
-    //public ParticleSystem backGroundConfetti;
+    public ParticleSystem backGroundConfetti;
     public Image flash;
     private float flashAlpha;
     private Vector4 flashColor;
@@ -54,6 +54,8 @@ public class PublicAction : Action
         {
             if (timer2.check())
             {
+                backGroundConfetti.Play();
+
                 timer2.reset();
             }
 
