@@ -17,6 +17,7 @@ public class ParticlesReturner : MonoBehaviour
         if (time > durationOfThisParticleSystem || time > 1)
         {
             time = 0;
+            print(this.factory);
             factory.ReturnParticleSystem(this.gameObject, numberOfThisGoInTheFactory);
         }
         time += Time.deltaTime;
