@@ -44,6 +44,19 @@ public class PlayerAnimation : MonoBehaviour
         animator.SetBool(s, b);
     }
 
+    public void SetInt(string s, int i)
+    {
+        animator.SetInteger(s, i);
+    }
 
+    public void SetFloat(string s, float f)
+    {
+        animator.SetFloat(s, f);
+    }
+
+    public void Trigger(string s)
+    {
+        animator.SetTrigger(s);
+    }
 
 }

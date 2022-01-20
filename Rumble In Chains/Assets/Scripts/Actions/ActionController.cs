@@ -196,6 +196,7 @@ public class ActionController : MonoBehaviour
 
         CancelCurrentAction();
 
+        playerAnimation.Trigger("HitTrigger");
 
         expelAction.start(direction);
         changeState(PlayerState.EXPEL);
@@ -208,7 +209,7 @@ public class ActionController : MonoBehaviour
             characterController.InterruptAttack();
         }
         CancelCurrentAction();
-        playerAnimation.SetBool("Hit", true);
+        playerAnimation.Trigger("HitTrigger");
         //playerController.Stun();
 
         if (stunFrames < 3) stunFrames = 3;
@@ -409,10 +410,12 @@ public class ActionController : MonoBehaviour
             if (!invincibilityTimer.check())
             {
                 invincible = true;
+                playerAnimation.SetBool("IsInvincible", true);
             }
             else
             {
                 invincible = false;
+                playerAnimation.SetBool("IsInvincible", true);
             }
         }
     }
