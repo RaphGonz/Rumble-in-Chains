@@ -26,6 +26,7 @@ public class ShieldAction : Action
     override public void start()
     {
         timer1.start();
+        shieldMaterial.SetInt("_isShielding", 0);
         cooldown.start();
     }
 
@@ -36,7 +37,7 @@ public class ShieldAction : Action
         {
             phase1Shield();
 
-            height -= Time.deltaTime;
+            height -= 3*Time.deltaTime/shieldTime;
             if (height <= 0) height += 3; //On fait boucler height sur lui même
             shieldMaterial.SetFloat("_Height", height);
 
@@ -56,7 +57,7 @@ public class ShieldAction : Action
         else
         {
             timer1.reset();
-            shieldMaterial.SetInt("_isShielding", 0);
+            shieldMaterial.SetInt("_isShielding", 1);
         }
     }
 
@@ -66,6 +67,6 @@ public class ShieldAction : Action
         timer1.reset();
         timer2.reset();
         timer3.reset();
-        shieldMaterial.SetInt("_isShielding", 0);
+        shieldMaterial.SetInt("_isShielding", 1);
     }
 }

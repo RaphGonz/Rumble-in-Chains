@@ -223,6 +223,10 @@ PrefabInstance:
       propertyPath: enemyPlayerController
       value: 
       objectReference: {fileID: 2144526653}
+    - target: {fileID: 2144526661, guid: 360e08196e2cc1142982da7688613d12, type: 3}
+      propertyPath: shieldMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: b667ffc347a9e2e418a0fe54a286205b, type: 2}
     - target: {fileID: 2144526662, guid: 360e08196e2cc1142982da7688613d12, type: 3}
       propertyPath: dashFocusLong
       value: 
@@ -239,6 +243,10 @@ PrefabInstance:
       propertyPath: onDashParticles
       value: 
       objectReference: {fileID: 1542137270}
+    - target: {fileID: 1029345171809406919, guid: 360e08196e2cc1142982da7688613d12, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b667ffc347a9e2e418a0fe54a286205b, type: 2}
     - target: {fileID: 3441460084637365577, guid: 360e08196e2cc1142982da7688613d12, type: 3}
       propertyPath: m_TagString
       value: Player2
@@ -263,6 +271,10 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5645565741909095924, guid: 360e08196e2cc1142982da7688613d12, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b667ffc347a9e2e418a0fe54a286205b, type: 2}
     - target: {fileID: 5899132421662591185, guid: 360e08196e2cc1142982da7688613d12, type: 3}
       propertyPath: m_Name
       value: PlayerRight
@@ -44128,6 +44140,10 @@ PrefabInstance:
       propertyPath: enemyPlayerController
       value: 
       objectReference: {fileID: 58947859}
+    - target: {fileID: 2144526661, guid: 360e08196e2cc1142982da7688613d12, type: 3}
+      propertyPath: shieldMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: edfbc8729dc49a64c901484a9a504294, type: 2}
     - target: {fileID: 2144526662, guid: 360e08196e2cc1142982da7688613d12, type: 3}
       propertyPath: dashFocusLong
       value: 
@@ -44144,6 +44160,14 @@ PrefabInstance:
       propertyPath: onDashParticles
       value: 
       objectReference: {fileID: 1175152140}
+    - target: {fileID: 1029345171809406919, guid: 360e08196e2cc1142982da7688613d12, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: edfbc8729dc49a64c901484a9a504294, type: 2}
+    - target: {fileID: 5645565741909095924, guid: 360e08196e2cc1142982da7688613d12, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: edfbc8729dc49a64c901484a9a504294, type: 2}
     - target: {fileID: 5899132421662591185, guid: 360e08196e2cc1142982da7688613d12, type: 3}
       propertyPath: m_Name
       value: PlayerLeft
