@@ -338,6 +338,7 @@ MonoBehaviour:
   immobileDuration: 1
   immobileCooldown: 0.5
   timeImmobileStart: 0
+  playerAnimation: {fileID: 542897091201916130}
 --- !u!114 &-3414843495647307070
 MonoBehaviour:
   m_ObjectHideFlags: 0

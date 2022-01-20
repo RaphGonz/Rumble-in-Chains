@@ -90,6 +90,7 @@ public class PlayerController : MonoBehaviour
     private bool gravityActive = true;
     private bool decelerationActive = true;
 
+    [SerializeField] PlayerAnimation playerAnimation;
 
     int i = 0;
 
@@ -138,10 +139,12 @@ public class PlayerController : MonoBehaviour
 
         if (GetComponent<InputManager>().direction.x > 0) {
             facing = 1;
+            playerAnimation.SetBool("Left", false);
         }
         if(GetComponent<InputManager>().direction.x < 0)
         {
             facing = -1;
+            playerAnimation.SetBool("Left", true);
         }
     }
 
