@@ -34,6 +34,13 @@ public class PlayerAnimation : MonoBehaviour
 
     public AnimationState AnimationState { get => _animationState; set { _animationState = value; } }
 
+
+    private void Start()
+    {
+        Character character = this.gameObject.layer == 17 ? GameManager.Instance.Character1 : GameManager.Instance.Character2;
+        animator.runtimeAnimatorController = Resources.Load("Animations/" + character.name + "/" + character.name) as RuntimeAnimatorController;
+    }
+
     public void UpdateAnimator()
     {
         animator.SetInteger("State", (int)_animationState);

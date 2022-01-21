@@ -25,31 +25,6 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 0
---- !u!1101 &-8880990293594901525
-AnimatorStateTransition:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_Conditions:
-  - m_ConditionMode: 6
-    m_ConditionEvent: State
-    m_EventTreshold: 1
-  m_DstStateMachine: {fileID: 0}
-  m_DstState: {fileID: 960586314951630158}
-  m_Solo: 0
-  m_Mute: 0
-  m_IsExit: 0
-  serializedVersion: 3
-  m_TransitionDuration: 0
-  m_TransitionOffset: 0
-  m_ExitTime: 0.75
-  m_HasExitTime: 0
-  m_HasFixedDuration: 1
-  m_InterruptionSource: 0
-  m_OrderedInterruption: 1
-  m_CanTransitionToSelf: 1
 --- !u!1102 &-8380778684836992508
 AnimatorState:
   serializedVersion: 6
@@ -910,8 +885,8 @@ AnimatorController:
     m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
-    m_Name: Base Layer
-    m_StateMachine: {fileID: 4575508835833063275}
+    m_Name: Movement Layer
+    m_StateMachine: {fileID: 8407602981729507484}
     m_Mask: {fileID: 0}
     m_Motions: []
     m_Behaviours: []
@@ -934,8 +909,8 @@ AnimatorController:
     m_SyncedLayerAffectsTiming: 0
     m_Controller: {fileID: 9100000}
   - serializedVersion: 5
-    m_Name: Movement Layer
-    m_StateMachine: {fileID: 8407602981729507484}
+    m_Name: Base Layer
+    m_StateMachine: {fileID: 4575508835833063275}
     m_Mask: {fileID: 0}
     m_Motions: []
     m_Behaviours: []
@@ -1424,7 +1399,6 @@ AnimatorStateMachine:
   m_ChildStateMachines: []
   m_AnyStateTransitions:
   - {fileID: 4333151217368809383}
-  - {fileID: -8880990293594901525}
   - {fileID: 1803834975039588584}
   - {fileID: 2784916343532704625}
   - {fileID: 2172658875803960506}
