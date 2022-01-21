@@ -13,6 +13,7 @@ public class AttackAction : Action
     private Vector2 joystickDirection;
     private AttackType attackType = AttackType.Jab;
     private bool grounded = false;
+    float attackFrames = 0;
 
 
     private void Start()
@@ -27,10 +28,17 @@ public class AttackAction : Action
     {
         joystickDirection = direction;
         grounded = isGrounded;
+
+        selectAttack();
+        attackFrames = characterController.Attack(attackType);
+
+        attackTotalTime = attackFrames / 60;
+
+
+        timer1.setDuration(attackTotalTime);
+
         timer1.start();
         cooldown.start();
-        selectAttack();
-        characterController.Attack(attackType);
     }
 
     // Update is called once per frame

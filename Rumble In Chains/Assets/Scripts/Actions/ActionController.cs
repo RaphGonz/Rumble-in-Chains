@@ -23,7 +23,7 @@ public enum PlayerState
 
 public class ActionController : MonoBehaviour
 {
-    private PlayerState playerState = PlayerState.NORMAL;
+    [SerializeField] private PlayerState playerState = PlayerState.NORMAL;
     private Vector2 joystickDirection;
     private Joystick joystick;
     private AttackType attackType = AttackType.Jab;
@@ -122,6 +122,7 @@ public class ActionController : MonoBehaviour
         if (GetPriority(PlayerState.ATTACK) && attackAction.getCooldown())
         {
             CancelCurrentAction();
+            changeState(PlayerState.ATTACK);
             attackAction.start(joystick.getFilter4(), playerCollider.IsGrounded());
             return true;
         }

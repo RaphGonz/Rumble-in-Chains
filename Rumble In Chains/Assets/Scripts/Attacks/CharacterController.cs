@@ -119,7 +119,7 @@ public class CharacterController : MonoBehaviour //!!!
         {
             Pourcentages += pourcentage;
             
-        }      
+        }   
         
     }
 
@@ -127,6 +127,9 @@ public class CharacterController : MonoBehaviour //!!!
     {
         //Debug.Log("current attack is not null");
         _attackFrame++;
+
+        
+
         if (_attackFrame >= attack.Prelag) // no need to check if under attack.Prelag + attack.AttackDuration + attack.Postlag bcs currentAttack becomes null at the moment when the frame counter is greater than this amount
         {
             int thisHitbox = 0;
@@ -247,7 +250,7 @@ public class CharacterController : MonoBehaviour //!!!
         
     //}
 
-    public void Attack(AttackType type)
+    public float Attack(AttackType type)
     {
         lastCircleCenter.Clear();//DEBUG
         lastCircleRadius.Clear();//Debug
@@ -283,6 +286,18 @@ public class CharacterController : MonoBehaviour //!!!
             //    break;
 
         }
+
+        int value = 0;
+        for (int i = 0; i < CurrentAttack.Hitboxes.Count; i++)
+        {
+            int newValue = CurrentAttack.Hitboxes[i].StartUpTiming + CurrentAttack.Hitboxes[i].DurationOfHitbox;
+            if (newValue > value)
+            {
+                value = newValue;
+            }
+        }
+
+        return (CurrentAttack.Prelag + value + CurrentAttack.Postlag);
     }
 
     public void InterruptAttack()
