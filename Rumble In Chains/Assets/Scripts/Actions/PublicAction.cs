@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PublicAction : Action
 {
@@ -10,13 +11,19 @@ public class PublicAction : Action
 
     [SerializeField] CharacterController characterController;
 
-
+    public ParticleSystem backGroundConfetti;
+    public Image flash;
+    private float flashAlpha;
+    private Vector4 flashColor;
 
     private void Start()
     {
         timer1.setDuration(preLag);
         timer2.setDuration(postLag);
         cooldown.setDuration(cooldownBetweenTwoPoses);
+
+        flashAlpha = 1;
+        flashColor = new Vector4(1, 1, 1, flashAlpha);
     }
 
 
@@ -36,6 +43,9 @@ public class PublicAction : Action
             {
                 timer1.reset();
                 timer2.start();
+
+                StartCoroutine("Flash");
+
                 gainPoint();
             }
             return false;
@@ -44,12 +54,29 @@ public class PublicAction : Action
         {
             if (timer2.check())
             {
+                backGroundConfetti.Play();
+
                 timer2.reset();
             }
+
+
             return false;
         }
 
         return true;
+    }
+
+    IEnumerator Flash()
+    {
+        flash.color = flashColor; //Le flash est lancé : alpha set au maximum
+
+        while(flashColor.w > 0)
+        {
+            flashColor.w = (1 - timer2.getRatio());
+            flash.color = flashColor;
+            yield return new WaitForEndOfFrame();
+        }
+
     }
 
     private void gainPoint()
