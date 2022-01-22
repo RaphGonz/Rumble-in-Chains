@@ -526,6 +526,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6a4a1c67a1b5044aadcbd5278dc9c74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerState: 0
   jumpAction: {fileID: 2144526663}
   dashAction: {fileID: 2144526662}
   shieldAction: {fileID: 2144526661}
@@ -748,7 +749,7 @@ Animator:
   m_GameObject: {fileID: 8478585121851832328}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: e53c39ee750663a42898f0b47fe1364e, type: 2}
+  m_Controller: {fileID: 9100000, guid: 80e22f4f21ca1dd4eb28ea3e9d242660, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
