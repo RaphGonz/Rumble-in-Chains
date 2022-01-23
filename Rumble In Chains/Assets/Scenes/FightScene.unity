@@ -228,18 +228,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: b667ffc347a9e2e418a0fe54a286205b, type: 2}
     - target: {fileID: 2144526662, guid: 360e08196e2cc1142982da7688613d12, type: 3}
-      propertyPath: dashFocusLong
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2144526662, guid: 360e08196e2cc1142982da7688613d12, type: 3}
-      propertyPath: dashFocusShort
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2144526662, guid: 360e08196e2cc1142982da7688613d12, type: 3}
-      propertyPath: dashFocusMedium
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2144526662, guid: 360e08196e2cc1142982da7688613d12, type: 3}
       propertyPath: onDashParticles
       value: 
       objectReference: {fileID: 1542137270}

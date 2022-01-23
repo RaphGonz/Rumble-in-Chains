@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9db44418192ac53418ae0ceca60a04c9, type: 3}
   m_Name: VDP-Ftilt
   m_EditorClassIdentifier: 
-  _prelag: 8
-  _postlag: 8
+  _prelag: 16
+  _postlag: 16
   _hitboxes:
   - {fileID: 11400000, guid: 1b5ca7fe350d24a44a5af8a82749d299, type: 2}
   - {fileID: 11400000, guid: a94534f74a8b075478a2a3573220a5fd, type: 2}

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9db44418192ac53418ae0ceca60a04c9, type: 3}
   m_Name: VDP-Dair
   m_EditorClassIdentifier: 
-  _prelag: 2
-  _postlag: 8
+  _prelag: 8
+  _postlag: 12
   _hitboxes:
   - {fileID: 11400000, guid: 98535eb04d2eb3c4a8d38a52d8ab82ff, type: 2}
   - {fileID: 11400000, guid: dd22f0c5f3d701548bbd9eb54f6d3369, type: 2}

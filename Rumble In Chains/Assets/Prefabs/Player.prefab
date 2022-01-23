@@ -514,6 +514,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cecbb780c479e44aab4ec8a8e85d320, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shieldButton: 0
 --- !u!114 &2144526657
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -579,7 +580,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterController: {fileID: -3414843495647307070}
   playerAnimation: {fileID: 542897091201916130}
-  attackTotalTime: 0
   attackCooldown: 0
 --- !u!114 &2144526660
 MonoBehaviour:
@@ -637,9 +637,9 @@ MonoBehaviour:
   dashDecelerationTime: 0.05
   dashCooldown: 1
   onDashParticles: {fileID: 0}
-  dashFocusShort: {fileID: 0}
-  dashFocusMedium: {fileID: 0}
-  dashFocusLong: {fileID: 0}
+  dashFocusShort: {fileID: 1144891989482396887}
+  dashFocusMedium: {fileID: 2457620328838151251}
+  dashFocusLong: {fileID: 8471524474334311843}
 --- !u!114 &2144526663
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -818,6 +818,11 @@ PrefabInstance:
 --- !u!4 &7573914497118758878 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8059462835657279920, guid: 197016a75dd47a7409051c0ffced453e, type: 3}
+  m_PrefabInstance: {fileID: 487239390110772846}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &2457620328838151251 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 2654939118543065661, guid: 197016a75dd47a7409051c0ffced453e, type: 3}
   m_PrefabInstance: {fileID: 487239390110772846}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2550097865426724729
@@ -1096,6 +1101,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2380714766966422284, guid: 6a87d29c824f2214da92ebd95e18b8a1, type: 3}
   m_PrefabInstance: {fileID: 7343767857263180886}
   m_PrefabAsset: {fileID: 0}
+--- !u!198 &1144891989482396887 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 7640696275843915905, guid: 6a87d29c824f2214da92ebd95e18b8a1, type: 3}
+  m_PrefabInstance: {fileID: 7343767857263180886}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7964204126971131875
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1246,5 +1256,10 @@ PrefabInstance:
 --- !u!4 &4508152774888107566 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4710086240077362102, guid: e03b119dd27483645bfeda26cca03b5c, type: 3}
+  m_PrefabInstance: {fileID: 9209222880022338968}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &8471524474334311843 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 746856238122854459, guid: e03b119dd27483645bfeda26cca03b5c, type: 3}
   m_PrefabInstance: {fileID: 9209222880022338968}
   m_PrefabAsset: {fileID: 0}

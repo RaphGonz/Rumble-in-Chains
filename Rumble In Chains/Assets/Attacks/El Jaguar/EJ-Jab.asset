@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9db44418192ac53418ae0ceca60a04c9, type: 3}
   m_Name: EJ-Jab
   m_EditorClassIdentifier: 
-  _prelag: 2
-  _postlag: 4
+  _prelag: 12
+  _postlag: 8
   _hitboxes:
   - {fileID: 11400000, guid: f5808d7ca3039d441b052173e835a1f2, type: 2}
   _attackDuration: 0

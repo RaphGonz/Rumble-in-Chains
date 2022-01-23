@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9db44418192ac53418ae0ceca60a04c9, type: 3}
   m_Name: VDP-Uptilt
   m_EditorClassIdentifier: 
-  _prelag: 8
-  _postlag: 8
+  _prelag: 16
+  _postlag: 12
   _hitboxes:
   - {fileID: 11400000, guid: 90e2de4b0c2d13c48a64a453b9718ae4, type: 2}
   - {fileID: 11400000, guid: c36483cfce66c5f4a8e1fa90327ffdbf, type: 2}

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9db44418192ac53418ae0ceca60a04c9, type: 3}
   m_Name: VDP-Jab
   m_EditorClassIdentifier: 
-  _prelag: 4
-  _postlag: 8
+  _prelag: 16
+  _postlag: 12
   _hitboxes:
   - {fileID: 11400000, guid: da5022f79578bc24bbc0c5080dcc871e, type: 2}
   - {fileID: 11400000, guid: 506e3ec57b7d11448bebbabaf2e40927, type: 2}

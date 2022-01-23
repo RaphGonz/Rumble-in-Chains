@@ -233,7 +233,7 @@ public class ActionController : MonoBehaviour
 
     private void MoveX()
     {
-        if (playerState == PlayerState.NORMAL || playerState == PlayerState.JUMP)
+        if (playerState == PlayerState.NORMAL || playerState == PlayerState.JUMP || playerState == PlayerState.ATTACK && attackAction.InPostLag())
         {
             if (playerCollider.IsGrounded() && !Mathf.Approximately(playerController.velocity.x,0) )
             {
@@ -325,6 +325,10 @@ public class ActionController : MonoBehaviour
             {
                 buffer.popBuffer();
             }
+        }
+        if (buffer.getShieldButton())
+        {
+            Shield();
         }
     }
 

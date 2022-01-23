@@ -21,6 +21,7 @@ public class BufferManager : MonoBehaviour
     int bufferLength = 5;
     private float lifeTime = 0.2f;
     InputTime[] buffer;
+    public bool shieldButton = false;
 
     private Vector2 direction;
     private Joystick joystick;
@@ -110,5 +111,15 @@ public class BufferManager : MonoBehaviour
     public Joystick getJoystick()
     {
         return joystick;
+    }
+
+    public void setShieldButton(bool value)
+    {
+        shieldButton = value;
+    }
+
+    public bool getShieldButton()
+    {
+        return shieldButton;
     }
 }

@@ -250,7 +250,7 @@ public class CharacterController : MonoBehaviour //!!!
         
     //}
 
-    public float Attack(AttackType type)
+    public Vector2 Attack(AttackType type)
     {
         lastCircleCenter.Clear();//DEBUG
         lastCircleRadius.Clear();//Debug
@@ -297,7 +297,7 @@ public class CharacterController : MonoBehaviour //!!!
             }
         }
 
-        return (CurrentAttack.Prelag + value + CurrentAttack.Postlag);
+        return new Vector2(CurrentAttack.Prelag + value, CurrentAttack.Postlag);
     }
 
     public void InterruptAttack()

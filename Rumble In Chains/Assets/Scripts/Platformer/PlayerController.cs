@@ -137,6 +137,7 @@ public class PlayerController : MonoBehaviour
         }
         UpdatePositionInRegardsOfCollision();
 
+        /*
         if (GetComponent<InputManager>().direction.x > 0) {
             facing = 1;
             playerAnimation.SetBool("Left", false);
@@ -146,6 +147,7 @@ public class PlayerController : MonoBehaviour
             facing = -1;
             playerAnimation.SetBool("Left", true);
         }
+        */
     }
 
     private void UpdateActions()
@@ -254,19 +256,26 @@ public class PlayerController : MonoBehaviour
 
     public void MoveX(float directionx) //On lui donne 1 ou -1 selon si on va a droite ou a gauche
     {
-        if (playerState == PlayerState.NORMAL || playerState == PlayerState.JUMP)
-        {
-            float speedAugmentation = groundAcceleration * characterSpeedMultiplier * Mathf.Sign(directionx) * Time.deltaTime;
+        float speedAugmentation = groundAcceleration * characterSpeedMultiplier * Mathf.Sign(directionx) * Time.deltaTime;
 
-            if (Mathf.Abs(speedAugmentation) > actualMaxSpeed * characterSpeedMultiplier - Mathf.Abs(velocity.x))
-            {
-                velocity.x = actualMaxSpeed * characterSpeedMultiplier * Mathf.Sign(directionx);
-            }
-            else
-            {
-                velocity.x += speedAugmentation;
-            }
-            Grab(directionx); //On transmet la direction a Grab qui va gérer l'accroche au murs (si on est bien accroché ou non)
+        if (Mathf.Abs(speedAugmentation) > actualMaxSpeed * characterSpeedMultiplier - Mathf.Abs(velocity.x))
+        {
+            velocity.x = actualMaxSpeed * characterSpeedMultiplier * Mathf.Sign(directionx);
+        }
+        else
+        {
+            velocity.x += speedAugmentation;
+        }
+
+        if (GetComponent<InputManager>().direction.x > 0)
+        {
+            facing = 1;
+            playerAnimation.SetBool("Left", false);
+        }
+        if (GetComponent<InputManager>().direction.x < 0)
+        {
+            facing = -1;
+            playerAnimation.SetBool("Left", true);
         }
     }
 

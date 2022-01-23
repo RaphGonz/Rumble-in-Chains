@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9db44418192ac53418ae0ceca60a04c9, type: 3}
   m_Name: EJ-Dair
   m_EditorClassIdentifier: 
-  _prelag: 4
-  _postlag: 2
+  _prelag: 8
+  _postlag: 12
   _hitboxes:
   - {fileID: 11400000, guid: bf7d7ed42fa520644af9220e73c79684, type: 2}
   _attackDuration: 0
