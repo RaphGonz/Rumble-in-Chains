@@ -185,7 +185,7 @@ public class CharacterController : MonoBehaviour //!!!
                             if (!opponentActionController.isInvincible() && !opponentActionController.isShieldActive())
                             {
                                 float multiplier = (1 + opponentController.gameObject.GetComponent<CharacterController>().Pourcentages / 100);
-                                opponentActionController.ExpelAndStun(new Vector2(hitbox.Expulsion.x*myPlayerController.facing, hitbox.Expulsion.y) * multiplier, (int)(hitbox.StunFactor * multiplier));
+                                opponentActionController.ExpelAndStun(new Vector2(hitbox.Expulsion.x*myPlayerController.facing, hitbox.Expulsion.y) * multiplier, (int)(hitbox.StunFactor * multiplier * 20));
                             }
                             
                             // en vrai, vu qu'il y a un seul character controller adverse, il suffit de get en début de partie le character controller de l'adversaire

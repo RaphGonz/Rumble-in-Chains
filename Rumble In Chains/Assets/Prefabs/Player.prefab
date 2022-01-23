@@ -542,7 +542,7 @@ MonoBehaviour:
   playerAnimation: {fileID: 542897091201916130}
   playerNumber: 1
   stunInvincibilityRatio: 0.5
-  maxInvincibilityTime: 0.3
+  maxInvincibilityTime: 1
   shieldBrokenStunFrames: 60
   stopRopegrabStunFrames: 60
   stunParticles1: {fileID: 0}
