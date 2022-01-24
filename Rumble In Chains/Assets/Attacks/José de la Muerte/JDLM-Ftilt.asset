@@ -18,3 +18,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f7d2e70714c095343aeca1cc88a62005, type: 2}
   - {fileID: 11400000, guid: f5dd5faa00a599f41b4b407723f6f4eb, type: 2}
   _attackDuration: 0
+  _audioClip: 2

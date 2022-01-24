@@ -18,6 +18,7 @@ public class CharacterController : MonoBehaviour //!!!
 
     private Weight _weight;
     private DashActivation _dashActivation;
+    bool _soundIsPlayed = false;
     
 
     //private int _framesCounterForShieldStun = 0;
@@ -42,6 +43,8 @@ public class CharacterController : MonoBehaviour //!!!
     float framesInvicibility = 0;
 
     public bool recovering = false;
+
+    public bool SoundIsPlayed { get => _soundIsPlayed; private set { _soundIsPlayed = value; } }
 
 
     #region Attacks
@@ -132,6 +135,11 @@ public class CharacterController : MonoBehaviour //!!!
 
         if (_attackFrame >= attack.Prelag) // no need to check if under attack.Prelag + attack.AttackDuration + attack.Postlag bcs currentAttack becomes null at the moment when the frame counter is greater than this amount
         {
+            if (!SoundIsPlayed)
+            {
+                SoundPlayer.Instance.PlaySound(attack.AudioClip);
+                SoundIsPlayed = true;
+            }
             int thisHitbox = 0;
             foreach (var hitbox in attack.Hitboxes)
             {
@@ -210,6 +218,7 @@ public class CharacterController : MonoBehaviour //!!!
                 hitbox.FirstLoop = true;
             }
             //myInputController.attacking = false
+            SoundIsPlayed = false;
         }
         
     }
