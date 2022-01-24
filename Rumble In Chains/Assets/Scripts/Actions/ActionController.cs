@@ -103,6 +103,20 @@ public class ActionController : MonoBehaviour
 
         if (joystickDirection.x != 0)
         {
+            if (playerCollider.IsGrounded() && !Mathf.Approximately(joystickDirection.x, 0))
+            {
+                if (!movingOnGround)
+                {
+                    movingOnGround = true;
+                    dustParticles.Play();
+                }
+
+            }
+            else
+            {
+                movingOnGround = false;
+                dustParticles.Stop();
+            }
             MoveX();
         }
         if (joystick.getFilter4().y < 0)
@@ -235,20 +249,7 @@ public class ActionController : MonoBehaviour
     {
         if (playerState == PlayerState.NORMAL || playerState == PlayerState.JUMP || playerState == PlayerState.ATTACK && attackAction.InPostLag())
         {
-            if (playerCollider.IsGrounded() && !Mathf.Approximately(playerController.velocity.x,0) )
-            {
-                if (!movingOnGround)
-                {
-                    movingOnGround = true;
-                    dustParticles.Play();
-                }
-                
-            }
-            else
-            {
-                movingOnGround = false;
-                dustParticles.Stop();
-            }
+            
             
             playerController.MoveX(joystickDirection.x);
         }
