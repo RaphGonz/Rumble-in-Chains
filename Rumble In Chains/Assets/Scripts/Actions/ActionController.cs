@@ -513,7 +513,6 @@ public class ActionController : MonoBehaviour
                 playerController.SetDecelerationActive(false);
                 shieldActive = false;
                 invincible = true;
-                print("Yo je suis stun mec");
                 stunParticles1.Play(); //On est stun donc on lance les particules
                 stunParticles2.Play();
                 break;
