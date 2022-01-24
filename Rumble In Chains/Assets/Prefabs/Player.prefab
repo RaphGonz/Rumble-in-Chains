@@ -844,6 +844,18 @@ PrefabInstance:
       propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5120410214041872170, guid: 69d2ed7872667024b88b4f7b7e1c905b, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key1.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5120410214041872170, guid: 69d2ed7872667024b88b4f7b7e1c905b, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key1.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5120410214041872170, guid: 69d2ed7872667024b88b4f7b7e1c905b, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key1.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8621060299289129570, guid: 69d2ed7872667024b88b4f7b7e1c905b, type: 3}
       propertyPath: m_RootOrder
       value: 3
