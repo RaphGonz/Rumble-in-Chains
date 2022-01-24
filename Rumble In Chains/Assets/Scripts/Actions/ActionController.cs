@@ -103,22 +103,26 @@ public class ActionController : MonoBehaviour
 
         if (joystickDirection.x != 0)
         {
-            if (playerCollider.IsGrounded() && !Mathf.Approximately(joystickDirection.x, 0))
-            {
-                if (!movingOnGround)
-                {
-                    movingOnGround = true;
-                    dustParticles.Play();
-                }
-
-            }
-            else
-            {
-                movingOnGround = false;
-                dustParticles.Stop();
-            }
+            
             MoveX();
         }
+
+        //Pour les particules au sol
+        if (playerCollider.IsGrounded() && !Mathf.Approximately(joystickDirection.x, 0) )
+        {
+            if (!movingOnGround)
+            {
+                movingOnGround = true;
+                dustParticles.Play();
+            }
+        }
+        else
+        {
+            movingOnGround = false;
+            dustParticles.Stop();
+        }
+
+
         if (joystick.getFilter4().y < 0)
         {
             MoveDown(true);
