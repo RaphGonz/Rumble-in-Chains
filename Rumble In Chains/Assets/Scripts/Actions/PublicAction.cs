@@ -47,6 +47,7 @@ public class PublicAction : Action
                 StartCoroutine("Flash");
 
                 gainPoint();
+                SoundPlayer.Instance.PlaySound(6);
             }
             return false;
         }

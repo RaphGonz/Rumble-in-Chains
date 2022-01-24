@@ -19,6 +19,7 @@ public class CharacterController : MonoBehaviour //!!!
     private Weight _weight;
     private DashActivation _dashActivation;
     bool _soundIsPlayed = false;
+    int _ouch;
     
 
     //private int _framesCounterForShieldStun = 0;
@@ -45,6 +46,7 @@ public class CharacterController : MonoBehaviour //!!!
     public bool recovering = false;
 
     public bool SoundIsPlayed { get => _soundIsPlayed; private set { _soundIsPlayed = value; } }
+    public int Ouch { get => _ouch; private set { _ouch = value; } }
 
 
     #region Attacks
@@ -92,7 +94,7 @@ public class CharacterController : MonoBehaviour //!!!
         DownTilt = character.attacks[3];
         DownAir = character.attacks[4];
         enemyMask = gameObject.layer == 17 ? LayerMask.GetMask("PlayerRight") : LayerMask.GetMask("PlayerLeft");
-        
+        Ouch = character.ouch;
     }
 
     // Update is called once per frame
@@ -121,9 +123,11 @@ public class CharacterController : MonoBehaviour //!!!
         if (!opponentActionController.isInvincible())
         {
             Pourcentages += pourcentage;
-            
-        }   
-        
+        }
+        if(Random.Range(0,10) < 1)
+        {
+            SoundPlayer.Instance.PlaySound(Ouch);
+        }
     }
 
     void CheckHitboxes(Attack attack)

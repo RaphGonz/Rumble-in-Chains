@@ -45,7 +45,7 @@ public class UIController : MonoBehaviour
         player1Character.SetText(GameManager.Instance.characterPlayer1);
         player2Character.SetText(GameManager.Instance.characterPlayer2);
 
-        blueBarre.maxValue = mandatoryPoints;
+        //blueBarre.maxValue = mandatoryPoints;
         redBarre.maxValue = mandatoryPoints;
     }
     // Start is called before the first frame update
@@ -86,6 +86,7 @@ public class UIController : MonoBehaviour
             GameManager.Instance.winner = player;
             StartCoroutine(ChangeScene());
         }
+        SoundPlayer.Instance.PlaySound(5);
     }
 
     IEnumerator ChangeScene()

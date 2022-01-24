@@ -36,9 +36,8 @@ public class SoundPlayer : MonoBehaviour // Allows to choose which instruments t
         }
         int clipToPlay = Random.Range(zero, zero + numberOfClipsForThisSound[numberOfTheSound]);
         audioSource.volume = audioVolumes[clipToPlay];
-        print("clipPlayed : " + clipToPlay);
-        
         audioSource.PlayOneShot(audioClips[clipToPlay]);
+        print("clipPlayed : " + clipToPlay);
     }
 
     //FOR DEBUGGING PURPOSES

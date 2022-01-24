@@ -27,3 +27,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5afe75760cc69ea48ae5524aabd400eb, type: 2}
   - {fileID: 11400000, guid: 522a44884f835d44898b6cd211ccddf6, type: 2}
   - {fileID: 11400000, guid: cd450a9a7711a7b48a2e09deed160125, type: 2}
+  ouch: 10

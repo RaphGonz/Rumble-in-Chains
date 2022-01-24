@@ -372,8 +372,6 @@ public class ActionController : MonoBehaviour
                 {
                     stunTimer.reset();
                     invincibilityTimer.start();
-                    print("jsuis plus stunned frero");
-                    print(stunParticles1.isPlaying);
                     stunParticles1.Stop();
                     stunParticles2.Stop(); //On arrête les particules
                     changeState(PlayerState.NORMAL);

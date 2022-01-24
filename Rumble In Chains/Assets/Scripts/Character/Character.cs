@@ -16,4 +16,5 @@ public class Character : ScriptableObject
     public Sprite spriteAttacked;
     public List<Attack> attacks;
     public readonly CharacterConverter characterConverter = new CharacterConverter();
+    public int ouch;
 }

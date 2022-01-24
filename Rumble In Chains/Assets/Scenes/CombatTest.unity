@@ -1221,6 +1221,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cecbb780c479e44aab4ec8a8e85d320, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shieldButton: 0
 --- !u!114 &518752287 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2966433189847347344, guid: 360e08196e2cc1142982da7688613d12, type: 3}
@@ -1297,7 +1298,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterController: {fileID: 518752285}
   playerAnimation: {fileID: 0}
-  attackTotalTime: 0
   attackCooldown: 0
 --- !u!114 &518752291
 MonoBehaviour:
@@ -2095,8 +2095,8 @@ MonoBehaviour:
   player2Character: {fileID: 664417978}
   player1Percentages: {fileID: 209120626}
   player2Percentages: {fileID: 1294506996}
-  redBarre: {fileID: 1110177112}
-  blueBarre: {fileID: 1732552893}
+  redBarre: {fileID: 0}
+  blueBarre: {fileID: 0}
   gameOver: {fileID: 826810237}
   mandatoryPoints: 100
   baseWidth: 100
@@ -2538,8 +2538,11 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 8feaf7e49258fca4a9efa217acdb880d, type: 3}
   - {fileID: 8300000, guid: 00148374f687fea4fb8a18da4c680a27, type: 3}
   - {fileID: 8300000, guid: 3e3fde40126bfcd47a8dc81ee20ce223, type: 3}
-  - {fileID: 8300000, guid: 4cd966669505c90419dcc658887cc1c2, type: 3}
+  - {fileID: 8300000, guid: ca06fdf7e1cff2043b1228748867923c, type: 3}
   - {fileID: 8300000, guid: 4082e1926adcc5f4493479e038449a1e, type: 3}
+  - {fileID: 8300000, guid: 93fef45d0d7fd4e47884932a3e6fb696, type: 3}
+  - {fileID: 8300000, guid: a4f67b3ef0e230f4c86cf592bab001fa, type: 3}
+  - {fileID: 8300000, guid: 22c1edcf91507f84f82a498d5fa8e7b1, type: 3}
   audioSource: {fileID: 911068922}
   audioVolumes:
   - 0.7
@@ -2560,7 +2563,10 @@ MonoBehaviour:
   - 1
   - 1
   - 1
-  numberOfClipsForThisSound: 040000000200000001000000010000000700000001000000010000000100000001000000
+  - 0.2
+  - 0.2
+  - 0.2
+  numberOfClipsForThisSound: 0400000002000000010000000100000007000000010000000100000001000000010000000100000001000000
 --- !u!82 &911068922
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3107,6 +3113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cecbb780c479e44aab4ec8a8e85d320, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shieldButton: 0
 --- !u!114 &1304295225 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2966433189847347344, guid: 360e08196e2cc1142982da7688613d12, type: 3}
@@ -3183,7 +3190,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterController: {fileID: 1304295223}
   playerAnimation: {fileID: 0}
-  attackTotalTime: 0
   attackCooldown: 0
 --- !u!114 &1304295229
 MonoBehaviour:
