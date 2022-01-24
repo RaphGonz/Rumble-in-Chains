@@ -17,3 +17,4 @@ MonoBehaviour:
   _hitboxes:
   - {fileID: 11400000, guid: 7ec2cf8351f5cce468b4d00fa60b6d5b, type: 2}
   _attackDuration: 0
+  _audioClip: 1

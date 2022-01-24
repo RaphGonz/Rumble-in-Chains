@@ -13,10 +13,13 @@ public class Attack : ScriptableObject
     private List<Hitbox> _hitboxes;
     [SerializeField]
     private float _attackDuration = 0;
+    [SerializeField]
+    private int _audioClip;
     public float Prelag { get => _prelag; }
     public float Postlag { get => _postlag; }
     public List<Hitbox> Hitboxes { get => _hitboxes; }
     public float AttackDuration { get => _attackDuration; }
+    public int AudioClip { get => _audioClip; }
 
     public Attack(float prelag, float postlag, List<Hitbox> hitboxes)
     {
