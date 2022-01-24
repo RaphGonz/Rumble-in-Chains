@@ -15,9 +15,9 @@ public class UIController : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI player2Percentages;
     [SerializeField]
-    RectTransform redBarre;
+    Slider redBarre;
     [SerializeField]
-    RectTransform blueBarre;
+    Slider blueBarre;
     [SerializeField]
     GameObject gameOver;
     [SerializeField]
@@ -44,6 +44,9 @@ public class UIController : MonoBehaviour
     {
         player1Character.SetText(GameManager.Instance.characterPlayer1);
         player2Character.SetText(GameManager.Instance.characterPlayer2);
+
+        blueBarre.maxValue = mandatoryPoints;
+        redBarre.maxValue = mandatoryPoints;
     }
     // Start is called before the first frame update
 
@@ -63,15 +66,13 @@ public class UIController : MonoBehaviour
         {
             float pourcentageOfMaxPoints = points / (float)mandatoryPoints;
             float newWidth = pourcentageOfMaxPoints * baseWidth;
-            Rect rect = player == 1 ? blueBarre.rect : redBarre.rect;
+            
             if(player == 1)
             {
-                blueBarre.sizeDelta = new Vector2(newWidth, rect.height); 
-                blueBarre.localPosition = new Vector2(newWidth / 2 + baseWidth * (player == 1 ? -1 : 1), redBarre.localPosition.y) ; 
+                blueBarre.value += points; 
             }
             else {
-                redBarre.sizeDelta = new Vector2(newWidth, rect.height);
-                redBarre.localPosition = new Vector2(-newWidth / 2 + baseWidth * (player == 1 ? -1 : 1), redBarre.localPosition.y);
+                redBarre.value += points;
             }
         }
 

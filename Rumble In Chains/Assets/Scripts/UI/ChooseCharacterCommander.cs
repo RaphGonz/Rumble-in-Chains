@@ -8,6 +8,7 @@ public class ChooseCharacterCommander : Commander
     int player;
     [SerializeField]
     string character;
+
     public override void execute()
     {
         GameManager.Instance.setCharacter(character, player);
