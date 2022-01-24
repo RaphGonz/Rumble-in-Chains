@@ -7,19 +7,25 @@ public class AttackAction : Action
     [SerializeField] CharacterController characterController;
     [SerializeField] PlayerAnimation playerAnimation;
 
-    [SerializeField] private float attackTotalTime;
     [SerializeField] private float attackCooldown;
+
+    private bool inPostLag;
+
+    private float preLagAndHitboxFrames;
+    private float postLagFrames;
 
     private Vector2 joystickDirection;
     private AttackType attackType = AttackType.Jab;
     private bool grounded = false;
-    float attackFrames = 0;
+    Vector2 attackFrames;
 
 
     private void Start()
     {
-        timer1.setDuration(attackTotalTime);
+        timer1.setDuration(preLagAndHitboxFrames);
+        timer2.setDuration(postLagFrames);
         cooldown.setDuration(attackCooldown);
+        inPostLag = false;
     }
 
 
@@ -32,10 +38,14 @@ public class AttackAction : Action
         selectAttack();
         attackFrames = characterController.Attack(attackType);
 
-        attackTotalTime = attackFrames / 60;
+        attackFrames = attackFrames / 60;
 
+        preLagAndHitboxFrames = attackFrames.x;
+        postLagFrames = attackFrames.y;
+        inPostLag = false;
 
-        timer1.setDuration(attackTotalTime);
+        timer1.setDuration(preLagAndHitboxFrames);
+        timer2.setDuration(postLagFrames);
 
         timer1.start();
         cooldown.start();
@@ -49,10 +59,21 @@ public class AttackAction : Action
             if (timer1.check())
             {
                 timer1.reset();
+                inPostLag = true;
+                timer2.start();
+            }
+            return false;
+        }
+        else if (timer2.isActive())
+        {
+            if (timer2.check())
+            {
+                timer2.reset();
             }
             return false;
         }
 
+        inPostLag = false;
         playerAnimation.AnimationState = AnimationState.IDLE;
         return true;
     }
@@ -101,5 +122,11 @@ public class AttackAction : Action
         timer1.reset();
         timer2.reset();
         timer3.reset();
+        inPostLag = false;
+    }
+
+    public bool InPostLag()
+    {
+        return inPostLag;
     }
 }

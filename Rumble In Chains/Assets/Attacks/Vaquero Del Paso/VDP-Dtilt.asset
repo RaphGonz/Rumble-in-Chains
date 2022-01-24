@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9db44418192ac53418ae0ceca60a04c9, type: 3}
   m_Name: VDP-Dtilt
   m_EditorClassIdentifier: 
-  _prelag: 8
-  _postlag: 8
+  _prelag: 16
+  _postlag: 12
   _hitboxes:
   - {fileID: 11400000, guid: b79646445b767e645970a842dfc15939, type: 2}
   - {fileID: 11400000, guid: a73110d50fb13f043928a4fa03f189a3, type: 2}

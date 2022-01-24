@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9db44418192ac53418ae0ceca60a04c9, type: 3}
   m_Name: EJ-Dtilt
   m_EditorClassIdentifier: 
-  _prelag: 2
-  _postlag: 2
+  _prelag: 8
+  _postlag: 8
   _hitboxes:
   - {fileID: 11400000, guid: 0caa6164d3093b641b1077ca1e516668, type: 2}
   - {fileID: 11400000, guid: 9bce6858feecdcc458d3f90dd29604a1, type: 2}

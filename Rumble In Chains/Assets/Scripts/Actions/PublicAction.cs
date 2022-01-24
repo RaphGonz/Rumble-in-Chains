@@ -68,6 +68,8 @@ public class PublicAction : Action
 
     IEnumerator Flash()
     {
+        
+        flashColor.w = 1;
         flash.color = flashColor; //Le flash est lancé : alpha set au maximum
 
         while(flashColor.w > 0)
@@ -76,6 +78,7 @@ public class PublicAction : Action
             flash.color = flashColor;
             yield return new WaitForEndOfFrame();
         }
+
 
     }
 

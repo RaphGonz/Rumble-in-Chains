@@ -174,10 +174,15 @@ public class InputManager : MonoBehaviour
                 //characterController.Attack(AttackType.Jab);
                 controllerInput = InputButtons.ROPEBUTTON;
             }
-            if (Input.GetButtonDown("LB" + playerNumber))
+            if (Input.GetButton("LB" + playerNumber))
             {
                 //playerController.ImmobilizePlayer();
-                controllerInput = InputButtons.SHIELDBUTTON;
+                //controllerInput = InputButtons.SHIELDBUTTON;
+                buffer.setShieldButton(true);
+            }
+            else
+            {
+                buffer.setShieldButton(false);
             }
         }
 

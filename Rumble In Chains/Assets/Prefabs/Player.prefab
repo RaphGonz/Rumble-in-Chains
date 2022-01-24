@@ -514,6 +514,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cecbb780c479e44aab4ec8a8e85d320, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shieldButton: 0
 --- !u!114 &2144526657
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -526,6 +527,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6a4a1c67a1b5044aadcbd5278dc9c74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerState: 0
   jumpAction: {fileID: 2144526663}
   dashAction: {fileID: 2144526662}
   shieldAction: {fileID: 2144526661}
@@ -540,7 +542,7 @@ MonoBehaviour:
   playerAnimation: {fileID: 542897091201916130}
   playerNumber: 1
   stunInvincibilityRatio: 0.5
-  maxInvincibilityTime: 0.3
+  maxInvincibilityTime: 1
   shieldBrokenStunFrames: 60
   stopRopegrabStunFrames: 60
   stunParticles1: {fileID: 0}
@@ -578,7 +580,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterController: {fileID: -3414843495647307070}
   playerAnimation: {fileID: 542897091201916130}
-  attackTotalTime: 0
   attackCooldown: 0
 --- !u!114 &2144526660
 MonoBehaviour:
@@ -636,9 +637,9 @@ MonoBehaviour:
   dashDecelerationTime: 0.05
   dashCooldown: 1
   onDashParticles: {fileID: 0}
-  dashFocusShort: {fileID: 0}
-  dashFocusMedium: {fileID: 0}
-  dashFocusLong: {fileID: 0}
+  dashFocusShort: {fileID: 1144891989482396887}
+  dashFocusMedium: {fileID: 2457620328838151251}
+  dashFocusLong: {fileID: 8471524474334311843}
 --- !u!114 &2144526663
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -748,7 +749,7 @@ Animator:
   m_GameObject: {fileID: 8478585121851832328}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: e53c39ee750663a42898f0b47fe1364e, type: 2}
+  m_Controller: {fileID: 9100000, guid: 80e22f4f21ca1dd4eb28ea3e9d242660, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -819,6 +820,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8059462835657279920, guid: 197016a75dd47a7409051c0ffced453e, type: 3}
   m_PrefabInstance: {fileID: 487239390110772846}
   m_PrefabAsset: {fileID: 0}
+--- !u!198 &2457620328838151251 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 2654939118543065661, guid: 197016a75dd47a7409051c0ffced453e, type: 3}
+  m_PrefabInstance: {fileID: 487239390110772846}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2550097865426724729
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -836,6 +842,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5120410214041872170, guid: 69d2ed7872667024b88b4f7b7e1c905b, type: 3}
       propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5120410214041872170, guid: 69d2ed7872667024b88b4f7b7e1c905b, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key1.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5120410214041872170, guid: 69d2ed7872667024b88b4f7b7e1c905b, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key1.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5120410214041872170, guid: 69d2ed7872667024b88b4f7b7e1c905b, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key1.r
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8621060299289129570, guid: 69d2ed7872667024b88b4f7b7e1c905b, type: 3}
@@ -1095,6 +1113,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2380714766966422284, guid: 6a87d29c824f2214da92ebd95e18b8a1, type: 3}
   m_PrefabInstance: {fileID: 7343767857263180886}
   m_PrefabAsset: {fileID: 0}
+--- !u!198 &1144891989482396887 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 7640696275843915905, guid: 6a87d29c824f2214da92ebd95e18b8a1, type: 3}
+  m_PrefabInstance: {fileID: 7343767857263180886}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7964204126971131875
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1245,5 +1268,10 @@ PrefabInstance:
 --- !u!4 &4508152774888107566 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4710086240077362102, guid: e03b119dd27483645bfeda26cca03b5c, type: 3}
+  m_PrefabInstance: {fileID: 9209222880022338968}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &8471524474334311843 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 746856238122854459, guid: e03b119dd27483645bfeda26cca03b5c, type: 3}
   m_PrefabInstance: {fileID: 9209222880022338968}
   m_PrefabAsset: {fileID: 0}

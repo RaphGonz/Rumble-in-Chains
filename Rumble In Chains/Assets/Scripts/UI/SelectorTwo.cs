@@ -91,19 +91,23 @@ public class SelectorTwo : MonoBehaviour
         {
             selected1.Value.execute();
             selectionIsFinished1 = true;
+            Validate(selected1.Value);
         }
         if (Input.GetButtonDown("A2"))
         {
             selected2.Value.execute();
             selectionIsFinished2 = true;
+            Validate(selected2.Value);
         }
         if (Input.GetButtonDown("B1"))
         {
             selectionIsFinished1 = false;
+            Validate(selected1.Value);
         }
         if (Input.GetButtonDown("B2"))
         {
             selectionIsFinished2 = false;
+            Validate(selected1.Value);
         }
         if (Input.GetButton("B1"))
         {
@@ -139,6 +143,12 @@ public class SelectorTwo : MonoBehaviour
     void ChangeSelected(Commander commander, int blueOrRed) // 0 = blue, 1 = red
     {
         GameObject go = commander.transform.GetChild(blueOrRed).gameObject ;
+        go.SetActive(!go.activeSelf);
+    }
+
+    private void Validate(Commander commander)
+    {
+        GameObject go = commander.transform.GetChild(2).gameObject;
         go.SetActive(!go.activeSelf);
     }
 }

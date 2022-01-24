@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9db44418192ac53418ae0ceca60a04c9, type: 3}
   m_Name: JDLM-Dtilt&Dair
   m_EditorClassIdentifier: 
-  _prelag: 4
-  _postlag: 2
+  _prelag: 12
+  _postlag: 8
   _hitboxes:
   - {fileID: 11400000, guid: 2ad87bdd366f83246b2f60b3738fdd3a, type: 2}
   _attackDuration: 0
