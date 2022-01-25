@@ -12,11 +12,6 @@ public class MusicPlayer : MonoBehaviour // Allows to choose which instruments t
     private AudioSource[] audioSources; // The audiosource 0 will be used to synchronize all sounds
     [SerializeField]
     private float[] audioVolumes;
-
-    private void Start()
-    {
-        chooseInstruments(new List<Instruments>());
-    }
     private void Awake()
     {
         if(Instance != null && Instance != this)
