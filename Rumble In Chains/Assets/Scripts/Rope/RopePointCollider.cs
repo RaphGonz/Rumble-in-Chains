@@ -43,10 +43,14 @@ public class RopePointCollider : MonoBehaviour
         {
             return collisionTest;
         }
+        else
+        {
+            XAxisCollision(ref movement, ref position);
+            YAxisCollision(ref movement, ref position);
+        }
         
         /*
-        XAxisCollision(ref movement, ref position);
-        YAxisCollision(ref movement, ref position);
+        
         */
         /*
         if (movement.x != 0)
