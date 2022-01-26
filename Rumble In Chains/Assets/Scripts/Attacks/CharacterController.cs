@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using XInputDotNetPure;
 
 
 public class CharacterController : MonoBehaviour //!!!
@@ -20,6 +21,12 @@ public class CharacterController : MonoBehaviour //!!!
     private DashActivation _dashActivation;
     bool _soundIsPlayed = false;
     int _ouch;
+
+    GamePadState prevState1;
+    GamePadState prevState2;
+    GamePadState state1;
+    GamePadState state2;
+
     
 
     //private int _framesCounterForShieldStun = 0;
@@ -30,7 +37,7 @@ public class CharacterController : MonoBehaviour //!!!
     public float Pourcentages { get => _pourcentages; set { _pourcentages = value; UIController.Instance.ChangePercentages(this.gameObject.name.Equals("PlayerLeft") ? 1 : 2, Pourcentages); } }
     public float Weight { get; }
 
-    public float Points { get => _points; set { _points = value; UIController.Instance.ChangePoints(this.gameObject.name.Equals("PlayerLeft") ? 1 : 2, Points);  } }
+    public float Points { get => _points; set { _points = value; UIController.Instance.ChangePoints(this.gameObject.name.Equals("PlayerLeft") ? 1 : 2, Points); StartCoroutine(Vibrate());} }
     public int FramesBeforeShieldActive { get => _framesBeforeShieldActive; set { _framesBeforeShieldActive = value; } }
     public int FramesCounterForShield { get => _framesCounterForShield; set { _framesCounterForShield = value; } }
     //public int FramesCounterForShieldStun { get => _framesCounterForShieldStun; set { _framesCounterForShieldStun = value; } }
@@ -316,6 +323,16 @@ public class CharacterController : MonoBehaviour //!!!
     public void InterruptAttack()
     {
         CurrentAttack = null;
+    }
+
+    IEnumerator Vibrate()
+    {
+        GamePad.SetVibration(PlayerIndex.One, 1, 1);
+        GamePad.SetVibration(PlayerIndex.Two, 1, 1);
+        yield return new WaitForSeconds(.3f);
+        GamePad.SetVibration(PlayerIndex.One, 0, 0);
+        GamePad.SetVibration(PlayerIndex.Two, 0, 0);
+
     }
 
     

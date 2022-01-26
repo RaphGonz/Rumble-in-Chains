@@ -14,7 +14,7 @@ public class ParticlesReturner : MonoBehaviour
     float time = 0;
     void Update()
     {
-        if (time > durationOfThisParticleSystem || time > 1)
+        if ((time > durationOfThisParticleSystem || time > 1) && this.gameObject.activeSelf)
         {
             time = 0;
             factory.ReturnParticleSystem(this.gameObject, numberOfThisGoInTheFactory);

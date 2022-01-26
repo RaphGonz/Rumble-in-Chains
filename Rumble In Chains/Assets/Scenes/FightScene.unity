@@ -789,8 +789,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 16777215
+  m_fontColor: {r: 1, g: 1, b: 1, a: 0}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -933,8 +933,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 16777215
+  m_fontColor: {r: 1, g: 1, b: 1, a: 0}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -6006,7 +6006,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 23.1
+  m_fontSize: 20.55
   m_fontSizeBase: 10
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -6141,8 +6141,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 16777215
+  m_fontColor: {r: 1, g: 1, b: 1, a: 0}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -11120,15 +11120,15 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 888873857}
   - {fileID: 1505080956}
   - {fileID: 1000176768}
+  - {fileID: 888873857}
   m_Father: {fileID: 1948588193}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 11}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &501112586
@@ -16369,8 +16369,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 16777215
+  m_fontColor: {r: 1, g: 1, b: 1, a: 0}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -22013,12 +22013,12 @@ GameObject:
   - component: {fileID: 888873859}
   - component: {fileID: 888873858}
   m_Layer: 5
-  m_Name: Image
+  m_Name: redPlus1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &888873857
 RectTransform:
   m_ObjectHideFlags: 0
@@ -22032,11 +22032,11 @@ RectTransform:
   m_Children:
   - {fileID: 330101256}
   m_Father: {fileID: 400930065}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 108.9, y: 194}
+  m_AnchoredPosition: {x: 85, y: 194}
   m_SizeDelta: {x: 83.8591, y: 31.9778}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &888873858
@@ -22052,7 +22052,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9176471, g: 0.121568635, b: 0.15294118, a: 1}
+  m_Color: {r: 0.9176471, g: 0.121568635, b: 0.15294118, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -22253,7 +22253,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 19.8
+  m_fontSize: 17
   m_fontSizeBase: 10
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -22445,7 +22445,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 11}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &999357392
@@ -22535,12 +22535,12 @@ GameObject:
   - component: {fileID: 1000176770}
   - component: {fileID: 1000176769}
   m_Layer: 5
-  m_Name: Image (2)
+  m_Name: redPlus3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1000176768
 RectTransform:
   m_ObjectHideFlags: 0
@@ -22554,7 +22554,7 @@ RectTransform:
   m_Children:
   - {fileID: 530600178}
   m_Father: {fileID: 400930065}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -22574,7 +22574,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9176471, g: 0.121568635, b: 0.15294118, a: 1}
+  m_Color: {r: 0.9176471, g: 0.121568635, b: 0.15294118, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -22664,7 +22664,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 23.65
+  m_fontSize: 20.85
   m_fontSizeBase: 10
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -22810,6 +22810,14 @@ MonoBehaviour:
   gameOver: {fileID: 668912371}
   mandatoryPoints: 10
   baseWidth: 100
+  plusRed:
+  - {fileID: 888873858}
+  - {fileID: 1505080957}
+  - {fileID: 1000176769}
+  plusBlue:
+  - {fileID: 1342498989}
+  - {fileID: 2031719011}
+  - {fileID: 1138630720}
 --- !u!114 &1107908698
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22908,12 +22916,12 @@ GameObject:
   - component: {fileID: 1138630721}
   - component: {fileID: 1138630720}
   m_Layer: 5
-  m_Name: Image (2)
+  m_Name: bluePlus3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1138630719
 RectTransform:
   m_ObjectHideFlags: 0
@@ -22931,7 +22939,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -148.2, y: 144.3}
+  m_AnchoredPosition: {x: -134, y: 144.3}
   m_SizeDelta: {x: 83.8591, y: 31.9778}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1138630720
@@ -22947,7 +22955,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.63529414, b: 0.909804, a: 1}
+  m_Color: {r: 0, g: 0.63529414, b: 0.909804, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -22999,12 +23007,12 @@ GameObject:
   - component: {fileID: 1342498990}
   - component: {fileID: 1342498989}
   m_Layer: 5
-  m_Name: Image
+  m_Name: bluePlus1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1342498988
 RectTransform:
   m_ObjectHideFlags: 0
@@ -23022,7 +23030,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -281, y: 157.2}
+  m_AnchoredPosition: {x: -288, y: 157.2}
   m_SizeDelta: {x: 83.8591, y: 31.9778}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1342498989
@@ -23038,7 +23046,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.63529414, b: 0.909804, a: 1}
+  m_Color: {r: 0, g: 0.63529414, b: 0.909804, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -28301,12 +28309,12 @@ GameObject:
   - component: {fileID: 1505080958}
   - component: {fileID: 1505080957}
   m_Layer: 5
-  m_Name: Image (1)
+  m_Name: redPlus2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1505080956
 RectTransform:
   m_ObjectHideFlags: 0
@@ -28320,11 +28328,11 @@ RectTransform:
   m_Children:
   - {fileID: 219332520}
   m_Father: {fileID: 400930065}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 246.8, y: 215.6}
+  m_AnchoredPosition: {x: 319, y: 215.6}
   m_SizeDelta: {x: 83.8591, y: 31.9778}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1505080957
@@ -28340,7 +28348,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9176471, g: 0.121568635, b: 0.15294118, a: 1}
+  m_Color: {r: 0.9176471, g: 0.121568635, b: 0.15294118, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -34130,8 +34138,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 16777215
+  m_fontColor: {r: 1, g: 1, b: 1, a: 0}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -39412,7 +39420,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 19.85
+  m_fontSize: 17.1
   m_fontSizeBase: 10
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -49193,8 +49201,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 16777215
+  m_fontColor: {r: 1, g: 1, b: 1, a: 0}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -49273,12 +49281,12 @@ GameObject:
   - component: {fileID: 2031719012}
   - component: {fileID: 2031719011}
   m_Layer: 5
-  m_Name: Image (1)
+  m_Name: bluePlus2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2031719010
 RectTransform:
   m_ObjectHideFlags: 0
@@ -49296,7 +49304,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -211.4, y: 215.6}
+  m_AnchoredPosition: {x: -87, y: 215.6}
   m_SizeDelta: {x: 83.8591, y: 31.9778}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2031719011
@@ -49312,7 +49320,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.63529414, b: 0.909804, a: 1}
+  m_Color: {r: 0, g: 0.63529414, b: 0.909804, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

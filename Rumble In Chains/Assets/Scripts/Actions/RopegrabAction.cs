@@ -41,11 +41,12 @@ public class RopegrabAction : Action
         Character character = AssetDatabase.LoadAssetAtPath<Character>("Assets/Characters/" + (this.gameObject.layer == 17 ? GameManager.Instance.characterPlayer1 : GameManager.Instance.characterPlayer2) + ".asset");
         maxGrabAngle = character.characterConverter.convertRopegrabAngle(character.ropePulling);
         maxGrabRelativeDistance = character.characterConverter.convertRopegrabDistance(character.ropePulling);
-
+        
 
         timer1.setDuration(ropegrabFreezeTime);
         timer2.setDuration(ropegrabGrabTime);
         cooldown.setDuration(ropegrabCooldown);
+        
     }
 
 
@@ -70,12 +71,11 @@ public class RopegrabAction : Action
         }
         playerAnimation.AnimationState = AnimationState.FOCUSROPEGRAB;
 
-
-
-
         timer3.setDuration(0);
         timer1.start();
         cooldown.start();
+
+        SoundPlayer.Instance.PlaySound(11);
     }
 
     // Update is called once per frame

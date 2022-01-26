@@ -1716,8 +1716,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   winner: 0
-  characterPlayer1: El Jaguar
-  characterPlayer2: "Jos\xE9 de la Muerte"
+  characterPlayer1: "Jos\xE9 de la Muerte"
+  characterPlayer2: El Jaguar
 --- !u!4 &2110041600
 Transform:
   m_ObjectHideFlags: 0

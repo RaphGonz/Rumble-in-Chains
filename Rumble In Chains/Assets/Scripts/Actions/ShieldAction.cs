@@ -19,6 +19,8 @@ public class ShieldAction : Action
         //Au niveau du shader pour le bouclier : on se transforme en gris
         shieldMaterial.SetInt("_isShielding", 1);
         shieldMaterial.SetFloat("_Height", height);
+
+        //played sound
     }
 
 
@@ -28,6 +30,7 @@ public class ShieldAction : Action
         timer1.start();
         shieldMaterial.SetInt("_isShielding", 0);
         cooldown.start();
+        SoundPlayer.Instance.PlaySound(12);
     }
 
     // Update is called once per frame

@@ -30,6 +30,12 @@ public class UIController : MonoBehaviour
     [SerializeField]
     float baseWidth;
 
+    [SerializeField]
+    List<Image> plusRed;
+    [SerializeField]
+    List<Image> plusBlue;
+
+
     float points1;
     float points2;
 
@@ -110,7 +116,7 @@ public class UIController : MonoBehaviour
         }
         if (Mathf.Max(points1, points2) > 3 * mandatoryPoints / 4)
         {
-            MusicPlayer.Instance.chooseInstruments(instrumentsQuarter);
+            MusicPlayer.Instance.chooseInstruments(instrumentsQuarterTo);
         }
         else if (Mathf.Max(points1, points2) > mandatoryPoints / 2)
         {
@@ -118,8 +124,9 @@ public class UIController : MonoBehaviour
         }
         else if (Mathf.Max(points1, points2) > mandatoryPoints / 4)
         {
-            MusicPlayer.Instance.chooseInstruments(instrumentsQuarterTo);
+            MusicPlayer.Instance.chooseInstruments(instrumentsQuarter);
         }
+        ShowPlus(player, points);
     }
     public void Win(int player)
     {
@@ -139,6 +146,26 @@ public class UIController : MonoBehaviour
         GameManager.Instance.LoadScene("WinnerScene");
     }
 
+    void ShowPlus(int player, float points)
+    {
+        Image plus = player == 1 ? plusBlue[Random.Range(0, plusBlue.Count)] : plusRed[Random.Range(0, plusRed.Count)];
+        TextMeshProUGUI text = plus.GetComponentInChildren<TextMeshProUGUI>();
+        text.text = "+" + (int)points;
+        plus.color = new Color(plus.color.r, plus.color.g, plus.color.b, 1);
+        text.color = Color.white;
+        StartCoroutine(Disappear(plus, text));
+    }  
     
-    
+    IEnumerator Disappear(Image plus, TextMeshProUGUI text)
+    {
+        float countdown = .7f;
+        while (countdown >= 0)
+        {
+            plus.color = new Color(plus.color.r, plus.color.g, plus.color.b, plus.color.a - Time.deltaTime / .7f);
+            text.color = new Color(text.color.r, text.color.g, text.color.b, text.color.a - Time.deltaTime / .7f);
+            countdown -= Time.deltaTime;
+            yield return null;
+        }
+        
+    }
 }

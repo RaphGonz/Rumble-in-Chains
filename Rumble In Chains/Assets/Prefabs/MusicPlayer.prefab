@@ -579,6 +579,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 93fef45d0d7fd4e47884932a3e6fb696, type: 3}
   - {fileID: 8300000, guid: a4f67b3ef0e230f4c86cf592bab001fa, type: 3}
   - {fileID: 8300000, guid: 22c1edcf91507f84f82a498d5fa8e7b1, type: 3}
+  - {fileID: 8300000, guid: 120915ff7de05234098551ab093134e6, type: 3}
+  - {fileID: 8300000, guid: 69a8efea3d73de444b4304f08b95e7e1, type: 3}
+  - {fileID: 8300000, guid: 294454a40e576754faeb218aa438b98e, type: 3}
   audioSource: {fileID: 911068922}
   audioVolumes:
   - 0.5
@@ -602,7 +605,10 @@ MonoBehaviour:
   - 0.1
   - 0.1
   - 0.1
-  numberOfClipsForThisSound: 0400000002000000010000000100000007000000010000000100000001000000010000000100000001000000
+  - 0.1
+  - 0.1
+  - 0.1
+  numberOfClipsForThisSound: 04000000020000000100000001000000070000000100000001000000010000000100000001000000010000000100000001000000
 --- !u!1 &7566350454245544432
 GameObject:
   m_ObjectHideFlags: 0

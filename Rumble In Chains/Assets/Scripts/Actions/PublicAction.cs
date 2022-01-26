@@ -43,11 +43,11 @@ public class PublicAction : Action
             {
                 timer1.reset();
                 timer2.start();
-
+                SoundPlayer.Instance.PlaySound(6);
                 StartCoroutine("Flash");
 
                 gainPoint();
-                SoundPlayer.Instance.PlaySound(6);
+                
             }
             return false;
         }
@@ -86,7 +86,6 @@ public class PublicAction : Action
     private void gainPoint()
     {
         characterController.Points++;
-        print(characterController.Points);
     }
 
 
