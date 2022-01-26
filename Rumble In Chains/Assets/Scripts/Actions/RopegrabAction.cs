@@ -152,10 +152,12 @@ public class RopegrabAction : Action
             
             if (ropeManager.UpdateRopegrabValues(playerNumber, newDir, timer2.getRatio()))
             {
+                /*
                 timer3.setDuration(ropegrabGrabTime * (1 - timer2.getRatio()));
                 timer3.start();
                 timer2.reset();
                 ropeManager.endRopeGrab();
+                */
             }
             
 

@@ -16,6 +16,8 @@ public class RopePointCollider : MonoBehaviour
 
     private bool collisionTest = false;
 
+    private float rayon;
+
 
     public LayerMask mask;
     
@@ -25,6 +27,7 @@ public class RopePointCollider : MonoBehaviour
         ropePoint = GetComponent<RopePoint>();
 
         mask = LayerMask.GetMask("Wall");
+        rayon = (pointCollider.bounds.max.y - pointCollider.bounds.min.y) / 2;
     }
 
 
@@ -35,10 +38,16 @@ public class RopePointCollider : MonoBehaviour
 
         Vector2 position = oldPosition;
 
+
+        if (movementCollisionCircle(ref movement, position))
+        {
+            return collisionTest;
+        }
         
+        /*
         XAxisCollision(ref movement, ref position);
         YAxisCollision(ref movement, ref position);
-
+        */
         /*
         if (movement.x != 0)
         {
@@ -210,6 +219,48 @@ public class RopePointCollider : MonoBehaviour
         Vector2 origin = new Vector2(position.x + direction.x * (bounds.max.x - bounds.min.x) / 2, position.y + direction.y * (bounds.max.y - bounds.min.y) / 2);
 
         movement = DetectCollision(origin, direction, movement);
+    }
+
+    private bool movementCollisionCircle(ref Vector2 movement, Vector2 position)
+    {
+        Vector2 direction = movement.normalized;
+        Vector2 origin = new Vector2(position.x + direction.x * (bounds.max.x - bounds.min.x) / 2, position.y + direction.y * (bounds.max.y - bounds.min.y) / 2);
+
+        float length = Vector2.Dot(direction, movement);
+
+        RayInfo ray;
+        ray.origin = origin;
+        ray.direction = direction;
+        ray.distance = length;
+
+        RaycastHit2D hit;
+
+        if (length > 0)
+        {
+            hit = Raycast(ray, mask);
+        }
+        else
+        {
+            hit = new RaycastHit2D();
+        }
+
+        if (hit && hit.transform.gameObject.CompareTag("Wood"))
+        {
+            Vector2 midPoint = hit.transform.gameObject.transform.position;
+            
+            Vector2 futurePoint = position + movement;
+            
+            Bounds bound = hit.transform.gameObject.GetComponent<Collider2D>().bounds;
+            float distance = (bound.max.y - bound.min.y) / 2 - (futurePoint - midPoint).magnitude + rayon;
+            //Debug.Log(distance + ";     " + (futurePoint - midPoint).normalized.x + ";      " + (futurePoint - midPoint).normalized.y);
+
+            movement = futurePoint + (futurePoint - midPoint).normalized * distance - position;
+
+            collisionTest = true;
+
+            return true;
+        }
+        return false;
     }
 
     private Vector2 DetectCollision(Vector2 origin, Vector2 direction, Vector2 movement){

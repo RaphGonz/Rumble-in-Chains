@@ -9,6 +9,8 @@ public class ExpelAction : Action
 
     [SerializeField] private float positionDisplacement;
 
+    [SerializeField] private float maxExpelDistance = 10;
+
     [SerializeField] private float expelFreezeTime;
     [SerializeField] private float expelMovementTime;
     [SerializeField] private float expelDecelerationTime;
@@ -37,6 +39,11 @@ public class ExpelAction : Action
         timer1.start();
         cooldown.start();
         dashDirection /= weight;
+
+        if (dashDirection.magnitude > maxExpelDistance)
+        {
+            dashDirection = maxExpelDistance * dashDirection.normalized;
+        }
     }
 
     // Start is called before the first frame update
