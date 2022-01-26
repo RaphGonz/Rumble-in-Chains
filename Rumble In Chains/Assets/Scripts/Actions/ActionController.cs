@@ -103,8 +103,26 @@ public class ActionController : MonoBehaviour
 
         if (joystickDirection.x != 0)
         {
+            
             MoveX();
         }
+
+        //Pour les particules au sol
+        if (playerCollider.IsGrounded() && !Mathf.Approximately(joystickDirection.x, 0) )
+        {
+            if (!movingOnGround)
+            {
+                movingOnGround = true;
+                dustParticles.Play();
+            }
+        }
+        else
+        {
+            movingOnGround = false;
+            dustParticles.Stop();
+        }
+
+
         if (joystick.getFilter4().y < 0)
         {
             MoveDown(true);
@@ -235,20 +253,7 @@ public class ActionController : MonoBehaviour
     {
         if (playerState == PlayerState.NORMAL || playerState == PlayerState.JUMP || playerState == PlayerState.ATTACK && attackAction.InPostLag())
         {
-            if (playerCollider.IsGrounded() && !Mathf.Approximately(playerController.velocity.x,0) )
-            {
-                if (!movingOnGround)
-                {
-                    movingOnGround = true;
-                    dustParticles.Play();
-                }
-                
-            }
-            else
-            {
-                movingOnGround = false;
-                dustParticles.Stop();
-            }
+            
             
             playerController.MoveX(joystickDirection.x);
         }
@@ -513,7 +518,6 @@ public class ActionController : MonoBehaviour
                 playerController.SetDecelerationActive(false);
                 shieldActive = false;
                 invincible = true;
-                //print("Yo je suis stun mec");
                 stunParticles1.Play(); //On est stun donc on lance les particules
                 stunParticles2.Play();
                 break;

@@ -49,6 +49,11 @@ public class GameManager : MonoBehaviour
         {
             GameObject.FindGameObjectWithTag("Player1").GetComponent<SpriteRenderer>().sprite = character1.spriteNormal;
             GameObject.FindGameObjectWithTag("Player2").GetComponent<SpriteRenderer>().sprite = character2.spriteNormal;
+            MusicPlayer.Instance.chooseInstruments(new List<Instruments>() { Instruments.Trumpet, Instruments.BassDrums, Instruments.Guitare, Instruments.Handclaps});
+        }
+        else
+        {
+            MusicPlayer.Instance.chooseInstruments(new List<Instruments>() { Instruments.BassDrums, Instruments.Guitare, Instruments.Handclaps, Instruments.Maracas, Instruments.Castanets });
         }
     }
 
