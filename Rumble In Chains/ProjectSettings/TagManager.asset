@@ -9,6 +9,7 @@ TagManager:
   - Point2
   - Player1
   - Player2
+  - Wood
   layers:
   - Default
   - TransparentFX

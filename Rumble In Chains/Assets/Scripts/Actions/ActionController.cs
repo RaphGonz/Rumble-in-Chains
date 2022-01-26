@@ -523,7 +523,7 @@ public class ActionController : MonoBehaviour
                 break;
             case PlayerState.EXPEL:
                 playerController.SetGravityActive(false);
-                playerController.SetRopeActive(false);
+                playerController.SetRopeActive(true);
                 playerController.SetDecelerationActive(false);
                 shieldActive = false;
                 invincible = true;

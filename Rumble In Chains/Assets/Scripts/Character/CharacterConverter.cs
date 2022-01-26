@@ -109,7 +109,7 @@ public class CharacterConverter
                 distance = 5;
                 break;
             case DashDistance.HIGH:
-                distance = 7;
+                distance = 6;
                 break;
         }
 
