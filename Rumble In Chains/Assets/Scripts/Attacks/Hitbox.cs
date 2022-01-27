@@ -16,6 +16,7 @@ public abstract class Hitbox : ScriptableObject //!!!
     protected Vector2 _expulsion;
     [SerializeField]
     protected int _particleSystemId;
+    [SerializeField]
     protected bool _firstLoop = true;
     public float Damage { get => _damage; }
     public float StunFactor { get => _stunFactor; }
@@ -33,6 +34,7 @@ public abstract class Hitbox : ScriptableObject //!!!
         _startUpTiming = startUpTiming;
         _durationOfHitbox = durationOfHitbox;
         _expulsion = expulsion;
+        _firstLoop = true;
     }
     protected Hitbox(Hitbox hitbox)
     {
@@ -41,5 +43,6 @@ public abstract class Hitbox : ScriptableObject //!!!
         _startUpTiming = hitbox.StartUpTiming;
         _durationOfHitbox = hitbox.DurationOfHitbox;
         _expulsion = hitbox.Expulsion;
+        _firstLoop = true;
     }
 }

@@ -13,9 +13,11 @@ MonoBehaviour:
   m_Name: VDP-Jab-1
   m_EditorClassIdentifier: 
   _damage: 15
-  _stunFactor: 0.5
+  _stunFactor: 1
   _startUpTiming: 0
   _durationOfHitbox: 2
   _expulsion: {x: 1, y: 0}
+  _particleSystemId: 0
+  _firstLoop: 1
   _center: {x: 1.8, y: 0.2}
   _radius: 1

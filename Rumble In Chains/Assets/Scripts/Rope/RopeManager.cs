@@ -109,7 +109,7 @@ public class RopeManager : MonoBehaviour
         }
 
 
-        Character character = AssetDatabase.LoadAssetAtPath<Character>("Assets/Characters/" + (this.gameObject.layer == 17 ? GameManager.Instance.characterPlayer1 : GameManager.Instance.characterPlayer2) + ".asset");
+        Character character = (Character)Resources.Load("Characters/" + (this.gameObject.layer == 17 ? GameManager.Instance.characterPlayer1 : GameManager.Instance.characterPlayer2));
         moduloRatio = character.characterConverter.convertWeightRope(character.weight);
     }
 

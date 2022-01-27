@@ -562,6 +562,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerController: {fileID: 2966433189847347344}
   positionDisplacement: 3
+  maxExpelDistance: 10
   expelFreezeTime: 0
   expelMovementTime: 0.1
   expelDecelerationTime: 0.05

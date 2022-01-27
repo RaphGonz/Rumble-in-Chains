@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f34ecc6ee9aaf84e80e70f80ffc33ca, type: 3}
   m_Name: JDLM-Ftilt-1
   m_EditorClassIdentifier: 
-  _damage: 1
+  _damage: 15
   _stunFactor: 1.5
   _startUpTiming: 0
   _durationOfHitbox: 4
   _expulsion: {x: 1, y: 1}
   _particleSystemId: 1
+  _firstLoop: 0
   _center: {x: 2.4, y: 0.2}
   _radius: 1

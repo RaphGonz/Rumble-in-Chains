@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f34ecc6ee9aaf84e80e70f80ffc33ca, type: 3}
   m_Name: JDLM-Uptilt-4
   m_EditorClassIdentifier: 
-  _damage: 1
+  _damage: 20
   _stunFactor: 1.5
   _startUpTiming: 6
   _durationOfHitbox: 2
   _expulsion: {x: 0, y: 0}
   _particleSystemId: 0
+  _firstLoop: 0
   _center: {x: 0.8, y: 2.3}
   _radius: 0.4

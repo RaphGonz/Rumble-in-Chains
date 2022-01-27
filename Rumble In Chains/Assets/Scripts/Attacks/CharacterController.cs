@@ -27,6 +27,8 @@ public class CharacterController : MonoBehaviour //!!!
     GamePadState state1;
     GamePadState state2;
 
+    private bool attackAlreadyHit = false; //permet d'appliquer les dommages seulement avec une seule des hitbox.
+
     
 
     //private int _framesCounterForShieldStun = 0;
@@ -94,7 +96,7 @@ public class CharacterController : MonoBehaviour //!!!
         lastCircleRadius = new List<float>();//DEBUG 
         
         Character character = this.gameObject.layer == 17 ? GameManager.Instance.Character1: GameManager.Instance.Character2;
-        print(character.name);
+        //print(character.name);
         Jab = character.attacks[0];
         SideTilt = character.attacks[1];
         UpTilt = character.attacks[2];
@@ -189,22 +191,25 @@ public class CharacterController : MonoBehaviour //!!!
                         //FOR DEBUGGING PURPOSES
                         if (hitboxSphere.FirstLoop)
                         {
+                            //print("firstLoop azerty");
                             EventManager.Instance.OnEventSpawnParticles(hitboxSphere.ParticleSystemName, transform.position + new Vector3(myPlayerController.facing * hitboxSphere.Center.x, hitboxSphere.Center.y), myPlayerController.facing >= 0);
                             hitboxSphere.FirstLoop = false;
                         }
+
+                        //print("still In loop");
                         lastCircleRadius.Add(hitboxSphere.Radius);
                         lastCircleCenter.Add(new Vector2(myPlayerController.facing * hitboxSphere.Center.x, hitboxSphere.Center.y) + new Vector2(transform.position.x, transform.position.y));
                         //Si j'ai touché quelque chose et que je n'avais rien touché avant
-                        if (collider != null && !hit && lastHitbox != thisHitbox)
+                        if (collider != null && !hit && lastHitbox != thisHitbox && !attackAlreadyHit)
                         {
-                            lastHitbox = thisHitbox;
-                            hit = true;
-                            collider.gameObject.GetComponent<CharacterController>().TakePourcentages(hitboxSphere.Damage); // changer le get component : l'adversaire est unique on peut donc le faire au start
-
                             if (!opponentActionController.isInvincible() && !opponentActionController.isShieldActive())
                             {
+                                lastHitbox = thisHitbox;
+                                hit = true;
+                                attackAlreadyHit = true;
+                                collider.gameObject.GetComponent<CharacterController>().TakePourcentages(hitboxSphere.Damage); // changer le get component : l'adversaire est unique on peut donc le faire au start
                                 float multiplier = (1 + opponentController.gameObject.GetComponent<CharacterController>().Pourcentages / 100);
-                                opponentActionController.ExpelAndStun(new Vector2(hitbox.Expulsion.x*myPlayerController.facing, hitbox.Expulsion.y) * multiplier, (int)(hitbox.StunFactor * multiplier * 20));
+                                opponentActionController.ExpelAndStun(new Vector2(hitbox.Expulsion.x*myPlayerController.facing, hitbox.Expulsion.y) * multiplier * 2, (int)(hitbox.StunFactor * multiplier * 20));
                             }
                             
                             // en vrai, vu qu'il y a un seul character controller adverse, il suffit de get en début de partie le character controller de l'adversaire
@@ -224,6 +229,7 @@ public class CharacterController : MonoBehaviour //!!!
             CurrentAttack = null;
             _attackFrame = 0;
             lastHitbox = 0;
+            attackAlreadyHit = false;
             foreach (var hitbox in attack.Hitboxes)
             {
                 hitbox.FirstLoop = true;
@@ -314,6 +320,14 @@ public class CharacterController : MonoBehaviour //!!!
             if (newValue > value)
             {
                 value = newValue;
+            }
+        }
+
+        if (CurrentAttack != null)
+        {
+            foreach (var hitbox in CurrentAttack.Hitboxes)
+            {
+                hitbox.FirstLoop = true;
             }
         }
 

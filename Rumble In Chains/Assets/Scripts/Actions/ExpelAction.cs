@@ -28,7 +28,7 @@ public class ExpelAction : Action
         timer3.setDuration(expelDecelerationTime);
         cooldown.setDuration(expelCooldown);
 
-        Character character = AssetDatabase.LoadAssetAtPath<Character>("Assets/Characters/" + (this.gameObject.layer == 17 ? GameManager.Instance.characterPlayer1 : GameManager.Instance.characterPlayer2) + ".asset");
+        Character character = (Character)Resources.Load("Characters/" + (this.gameObject.layer == 17 ? GameManager.Instance.characterPlayer1 : GameManager.Instance.characterPlayer2));
         weight = character.characterConverter.convertWeight(character.weight);
         positionDisplacement = positionDisplacement / weight;
     }

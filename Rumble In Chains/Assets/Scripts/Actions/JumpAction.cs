@@ -22,7 +22,7 @@ public class JumpAction : Action
         cooldown.setDuration(jumpCooldown);
 
 
-        Character character = AssetDatabase.LoadAssetAtPath<Character>("Assets/Characters/" + (this.gameObject.layer == 17 ? GameManager.Instance.characterPlayer1 : GameManager.Instance.characterPlayer2) + ".asset");
+        Character character = (Character)Resources.Load("Characters/" + (this.gameObject.layer == 17 ? GameManager.Instance.characterPlayer1 : GameManager.Instance.characterPlayer2));
         float jumpDistance = character.characterConverter.convertJumpHeight(character.jumpHeight);
         jumpVelocity = jumpDistance / (jumpMovementTime + 0.5f * jumpAccelerationTime);
     }

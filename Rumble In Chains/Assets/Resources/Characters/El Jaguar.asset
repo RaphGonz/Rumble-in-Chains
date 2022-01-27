@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40619c0555b6540469ba85374b7a3c48, type: 3}
+  m_Name: El Jaguar
+  m_EditorClassIdentifier: 
+  characterName: El Jaguar
+  speed: 2
+  weight: 1
+  jumpHeight: 2
+  dashActivation: 0
+  dashDistance: 0
+  ropePulling: 0
+  spriteNormal: {fileID: 21300000, guid: a37384f6d05ccef4897e7208c50fb404, type: 3}
+  spriteAttacked: {fileID: 21300000, guid: 4ba6b45250e3d7743b142b70ab4a5e4a, type: 3}
+  attacks:
+  - {fileID: 11400000, guid: f364f96eb29f6dd4e849a2c227c13dec, type: 2}
+  - {fileID: 11400000, guid: de2fbd6bff8c2b544b311ad5c16c1461, type: 2}
+  - {fileID: 11400000, guid: 58858939e00dc7047ba692d495c74ec1, type: 2}
+  - {fileID: 11400000, guid: 29b19242f424e4141ae8af2e12d40929, type: 2}
+  - {fileID: 11400000, guid: 08ed159fd66a9f14a9eb86b9a056d6ed, type: 2}
+  ouch: 8

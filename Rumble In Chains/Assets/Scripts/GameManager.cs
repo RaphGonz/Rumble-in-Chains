@@ -29,8 +29,8 @@ public class GameManager : MonoBehaviour
         }
         Instance = this;
         DontDestroyOnLoad(this.gameObject);
-        character1 = AssetDatabase.LoadAssetAtPath<Character>("Assets/Characters/" + characterPlayer1 + ".asset");
-        character2 = AssetDatabase.LoadAssetAtPath<Character>("Assets/Characters/" + characterPlayer2 + ".asset");
+        character1 = (Character)Resources.Load("Characters/" + characterPlayer1);
+        character2 = (Character)Resources.Load("Characters/" + characterPlayer2);
         //FOR DEBUGGING PURPOSES
     }
 

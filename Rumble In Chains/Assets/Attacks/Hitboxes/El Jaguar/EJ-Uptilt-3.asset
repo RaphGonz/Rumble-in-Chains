@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: EJ-Uptilt-3
   m_EditorClassIdentifier: 
   _damage: 15
-  _stunFactor: 0.5
+  _stunFactor: 1
   _startUpTiming: 0
   _durationOfHitbox: 8
   _expulsion: {x: -1, y: 1}
   _particleSystemId: 3
+  _firstLoop: 1
   _center: {x: -1.5, y: 0.8}
   _radius: 0.6

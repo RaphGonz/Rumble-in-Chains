@@ -66,20 +66,20 @@ public class UIController : MonoBehaviour
 
         player1Character.SetText(GameManager.Instance.characterPlayer1);
         player2Character.SetText(GameManager.Instance.characterPlayer2);
-        print(char1Image);
-        print((Sprite)AssetDatabase.LoadAssetAtPath("Assets/Graphics/Perso/El Jaguar/El-Jaguar_Open_Boder.png", typeof(Sprite)));
+        //print(char1Image);
+        //print((Sprite)Resources.Load("Graphics/Perso/El Jaguar/El-Jaguar_Open_Boder", typeof(Sprite)));
 
         switch (GameManager.Instance.characterPlayer1)
         {
-            case "El Jaguar": char1Image.sprite = (Sprite)AssetDatabase.LoadAssetAtPath("Assets/Graphics/Perso/El Jaguar/El-Jaguar_Open_Boder.png", typeof(Sprite)); break;
-            case "José de la Muerte": char1Image.sprite = (Sprite)AssetDatabase.LoadAssetAtPath("Assets/Graphics/Perso/Jose de la Muerte/Jose-de-la-Muerte_Open_Border.png", typeof(Sprite)); break;
-            case "Vaquero Del Paso": char1Image.sprite = (Sprite)AssetDatabase.LoadAssetAtPath("Assets/Graphics/Perso/Vaquero Del Paso/Vaquero-Del-Paso_Open_Border.png", typeof(Sprite)); break;
+            case "El Jaguar": char1Image.sprite = (Sprite)Resources.Load("Graphics/Perso/El Jaguar/El-Jaguar_Open_Boder", typeof(Sprite)); break;
+            case "José de la Muerte": char1Image.sprite = (Sprite)Resources.Load("Graphics/Perso/Jose de la Muerte/Jose-de-la-Muerte_Open_Border", typeof(Sprite)); break;
+            case "Vaquero Del Paso": char1Image.sprite = (Sprite)Resources.Load("Graphics/Perso/Vaquero Del Paso/Vaquero-Del-Paso_Open_Border", typeof(Sprite)); break;
         }
         switch (GameManager.Instance.characterPlayer2)
         {
-            case "El Jaguar": char2Image.sprite = (Sprite)AssetDatabase.LoadAssetAtPath("Assets/Graphics/Perso/El Jaguar/El-Jaguar_Open_Boder.png", typeof(Sprite)); break;
-            case "José de la Muerte": char2Image.sprite = (Sprite)AssetDatabase.LoadAssetAtPath("Assets/Graphics/Perso/Jose de la Muerte/Jose-de-la-Muerte_Open_Border.png", typeof(Sprite)); break;
-            case "Vaquero Del Paso": char2Image.sprite = (Sprite)AssetDatabase.LoadAssetAtPath("Assets/Graphics/Perso/Vaquero Del Paso/Vaquero-Del-Paso_Open_Border.png", typeof(Sprite)); break;
+            case "El Jaguar": char2Image.sprite = (Sprite)Resources.Load("Graphics/Perso/El Jaguar/El-Jaguar_Open_Boder", typeof(Sprite)); break;
+            case "José de la Muerte": char2Image.sprite = (Sprite)Resources.Load("Graphics/Perso/Jose de la Muerte/Jose-de-la-Muerte_Open_Border", typeof(Sprite)); break;
+            case "Vaquero Del Paso": char2Image.sprite = (Sprite)Resources.Load("Graphics/Perso/Vaquero Del Paso/Vaquero-Del-Paso_Open_Border", typeof(Sprite)); break;
         }
 
         //blueBarre.maxValue = mandatoryPoints;

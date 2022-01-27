@@ -38,7 +38,7 @@ public class RopegrabAction : Action
 
     private void Start()
     {
-        Character character = AssetDatabase.LoadAssetAtPath<Character>("Assets/Characters/" + (this.gameObject.layer == 17 ? GameManager.Instance.characterPlayer1 : GameManager.Instance.characterPlayer2) + ".asset");
+        Character character = (Character)Resources.Load("Characters/" + (this.gameObject.layer == 17 ? GameManager.Instance.characterPlayer1 : GameManager.Instance.characterPlayer2));
         maxGrabAngle = character.characterConverter.convertRopegrabAngle(character.ropePulling);
         maxGrabRelativeDistance = character.characterConverter.convertRopegrabDistance(character.ropePulling);
         
