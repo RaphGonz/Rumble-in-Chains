@@ -19,7 +19,7 @@ struct InputTime
 public class BufferManager : MonoBehaviour
 {
     int bufferLength = 5;
-    private float lifeTime = 0.2f;
+    private float lifeTime = 0.25f;
     InputTime[] buffer;
     public bool shieldButton = false;
 
