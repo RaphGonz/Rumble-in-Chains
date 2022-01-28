@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEditor;
 
+
 public class UIController : MonoBehaviour
 {
     [SerializeField]
@@ -84,6 +85,7 @@ public class UIController : MonoBehaviour
 
         blueBarre.maxValue = mandatoryPoints;
         redBarre.maxValue = mandatoryPoints;
+        Time.timeScale = 1;
     }
     // Start is called before the first frame update
 
@@ -149,18 +151,13 @@ public class UIController : MonoBehaviour
     {
         if (!won)
         {
-            gameOver.SetActive(true);
+            
             won = true;
             GameManager.Instance.winner = player;
-            StartCoroutine(ChangeScene());
+            gameOver.SetActive(true);
+            Time.timeScale = 0;
         }
         SoundPlayer.Instance.PlaySound(5);
-    }
-
-    IEnumerator ChangeScene()
-    {
-        yield return new WaitForSeconds(2);
-        GameManager.Instance.LoadScene("WinnerScene");
     }
 
     void ShowPlus(int player, float points)
