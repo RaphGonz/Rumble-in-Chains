@@ -82,7 +82,7 @@ public class UIController : MonoBehaviour
             case "Vaquero Del Paso": char2Image.sprite = (Sprite)Resources.Load("Graphics/Perso/Vaquero Del Paso/Vaquero-Del-Paso_Open_Border", typeof(Sprite)); break;
         }
 
-        //blueBarre.maxValue = mandatoryPoints;
+        blueBarre.maxValue = mandatoryPoints;
         redBarre.maxValue = mandatoryPoints;
     }
     // Start is called before the first frame update
@@ -95,8 +95,22 @@ public class UIController : MonoBehaviour
 
     public void ChangePoints(int player, float points)
     {
-        if(points > mandatoryPoints)
+        float pointDiff = 1;
+
+        if(points >= mandatoryPoints)
         {
+            if (player == 1)
+            {
+                blueBarre.value = mandatoryPoints;
+                pointDiff = points - points1;
+                points1 = mandatoryPoints;
+            }
+            else
+            {
+                redBarre.value = mandatoryPoints;
+                pointDiff = points - points2;
+                points2 = mandatoryPoints;
+            }
             Win(player);
         }
         else
@@ -106,11 +120,14 @@ public class UIController : MonoBehaviour
             
             if(player == 1)
             {
-                blueBarre.value += points;
+                blueBarre.value = pourcentageOfMaxPoints * mandatoryPoints;
+                pointDiff = points - points1;
                 points1 = points;
+
             }
             else {
-                redBarre.value += points;
+                redBarre.value = pourcentageOfMaxPoints * mandatoryPoints;
+                pointDiff = points - points2;
                 points2 = points;
             }
         }
@@ -126,7 +143,7 @@ public class UIController : MonoBehaviour
         {
             MusicPlayer.Instance.chooseInstruments(instrumentsQuarter);
         }
-        ShowPlus(player, points);
+        ShowPlus(player, pointDiff);
     }
     public void Win(int player)
     {
