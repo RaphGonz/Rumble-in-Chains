@@ -156,7 +156,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -262,6 +262,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -3414843495647307070, guid: 360e08196e2cc1142982da7688613d12, type: 3}
+      propertyPath: playerNumber
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: -3414843495647307070, guid: 360e08196e2cc1142982da7688613d12, type: 3}
       propertyPath: enemyMask.m_Bits
       value: 131072
@@ -22361,7 +22365,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &911003457
 RectTransform:
   m_ObjectHideFlags: 0
@@ -23075,7 +23079,7 @@ MonoBehaviour:
   redBarre: {fileID: 1941531887}
   blueBarre: {fileID: 668784683}
   gameOver: {fileID: 668912371}
-  mandatoryPoints: 10
+  mandatoryPoints: 25
   baseWidth: 100
   plusRed:
   - {fileID: 888873858}
@@ -34188,7 +34192,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}

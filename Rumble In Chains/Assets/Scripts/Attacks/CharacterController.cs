@@ -57,6 +57,8 @@ public class CharacterController : MonoBehaviour //!!!
     public bool SoundIsPlayed { get => _soundIsPlayed; private set { _soundIsPlayed = value; } }
     public int Ouch { get => _ouch; private set { _ouch = value; } }
 
+    [SerializeField] int playerNumber = 1;
+    int pointStreak = 0;
 
     #region Attacks
     public int AttackFrame { get; set; }
@@ -104,6 +106,8 @@ public class CharacterController : MonoBehaviour //!!!
         DownAir = character.attacks[4];
         enemyMask = gameObject.layer == 17 ? LayerMask.GetMask("PlayerRight") : LayerMask.GetMask("PlayerLeft");
         Ouch = character.ouch;
+
+        EventManager.Instance.eventPlayerInZone += OnEventInZone;
     }
 
     // Update is called once per frame
@@ -347,6 +351,23 @@ public class CharacterController : MonoBehaviour //!!!
         GamePad.SetVibration(PlayerIndex.One, 0, 0);
         GamePad.SetVibration(PlayerIndex.Two, 0, 0);
 
+    }
+
+    private void OnEventInZone(int i, bool b)
+    {
+        if (playerNumber == i)
+        {
+            if (!b)
+            {
+                pointStreak = 0;
+            }
+        }
+    }
+
+    public void GainPoint()
+    {
+        pointStreak++;
+        Points += pointStreak;
     }
 
     

@@ -85,7 +85,7 @@ public class PublicAction : Action
 
     private void gainPoint()
     {
-        characterController.Points++;
+        characterController.GainPoint();
     }
 
 
