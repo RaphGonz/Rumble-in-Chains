@@ -16,7 +16,7 @@ public class Pause : MonoBehaviour
     {
         if (Input.GetButtonDown("START1"))
         {
-            if (!paused) { Time.timeScale = 0; paused = true; }
+            if (!paused) { }//Time.timeScale = 0; paused = true; }
             else { Time.timeScale = 1; paused = false; }
         }
     }
