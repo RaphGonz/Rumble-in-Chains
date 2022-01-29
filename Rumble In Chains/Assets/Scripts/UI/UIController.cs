@@ -15,6 +15,8 @@ public class UIController : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI player1Character;
     [SerializeField]
+    TextMeshProUGUI playerXWins;
+    [SerializeField]
     TextMeshProUGUI player2Character;
     [SerializeField]
     TextMeshProUGUI player1Percentages;
@@ -62,8 +64,8 @@ public class UIController : MonoBehaviour
     void Start()
     {
         instrumentsQuarter = new List<Instruments>() { Instruments.Trumpet, Instruments.BassDrums, Instruments.Guitare, Instruments.Handclaps, Instruments.Maracas };
-        instrumentsHalf = new List<Instruments>() { Instruments.Trumpet, Instruments.BassDrums, Instruments.Guitare, Instruments.Handclaps, Instruments.Maracas, Instruments.Trombone};
-        instrumentsQuarterTo = new List<Instruments>() { Instruments.BassDrums, Instruments.Castanets, Instruments.Guitare,Instruments.Handclaps, Instruments.Maracas, Instruments.Trombone, Instruments.Trumpet};
+        instrumentsHalf = new List<Instruments>() { Instruments.Trumpet, Instruments.BassDrums, Instruments.Guitare, Instruments.Handclaps, Instruments.Maracas, Instruments.Trombone };
+        instrumentsQuarterTo = new List<Instruments>() { Instruments.BassDrums, Instruments.Castanets, Instruments.Guitare, Instruments.Handclaps, Instruments.Maracas, Instruments.Trombone, Instruments.Trumpet };
 
         player1Character.SetText(GameManager.Instance.characterPlayer1);
         player2Character.SetText(GameManager.Instance.characterPlayer2);
@@ -99,7 +101,7 @@ public class UIController : MonoBehaviour
     {
         float pointDiff = 1;
 
-        if(points >= mandatoryPoints)
+        if (points >= mandatoryPoints)
         {
             if (player == 1)
             {
@@ -119,15 +121,16 @@ public class UIController : MonoBehaviour
         {
             float pourcentageOfMaxPoints = points / (float)mandatoryPoints;
             float newWidth = pourcentageOfMaxPoints * baseWidth;
-            
-            if(player == 1)
+
+            if (player == 1)
             {
                 blueBarre.value = pourcentageOfMaxPoints * mandatoryPoints;
                 pointDiff = points - points1;
                 points1 = points;
 
             }
-            else {
+            else
+            {
                 redBarre.value = pourcentageOfMaxPoints * mandatoryPoints;
                 pointDiff = points - points2;
                 points2 = points;
@@ -151,11 +154,11 @@ public class UIController : MonoBehaviour
     {
         if (!won)
         {
-            
+            playerXWins.text = "PLAYER " + player + " WINS !";
             won = true;
             GameManager.Instance.winner = player;
             gameOver.SetActive(true);
-            Time.timeScale = 0;
+            StartCoroutine(WaitAndStop(2));
         }
         SoundPlayer.Instance.PlaySound(5);
     }
@@ -168,8 +171,8 @@ public class UIController : MonoBehaviour
         plus.color = new Color(plus.color.r, plus.color.g, plus.color.b, 1);
         text.color = Color.white;
         StartCoroutine(Disappear(plus, text));
-    }  
-    
+    }
+
     IEnumerator Disappear(Image plus, TextMeshProUGUI text)
     {
         float countdown = .7f;
@@ -180,6 +183,12 @@ public class UIController : MonoBehaviour
             countdown -= Time.deltaTime;
             yield return null;
         }
-        
+
+    }
+
+    IEnumerator WaitAndStop(int seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        Time.timeScale = 0;
     }
 }
