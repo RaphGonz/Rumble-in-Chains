@@ -82,18 +82,18 @@ public class SelectorTwo : MonoBehaviour
             ChangeSelected(selected2.Value, 1);
             selectionIsDone = true;
         }
-        else if (selectionIsDone && (Input.GetAxis("Horizontal1") < .5 && Input.GetAxis("Horizontal2") < .5) && Input.GetAxis("Vertical1") < .5 && Input.GetAxis("Vertical2") < .5 && Input.GetAxis("Horizontal1") > -.5 && Input.GetAxis("Horizontal2") > -.5 && Input.GetAxis("Vertical1") > -.5 && Input.GetAxis("Vertical2") > -.5)
+        else if (selectionIsDone && Input.GetAxis("Horizontal1") < .5 && Input.GetAxis("Horizontal2") < .5 && Input.GetAxis("Vertical1") < .5 && Input.GetAxis("Vertical2") < .5 && Input.GetAxis("Horizontal1") > -.5 && Input.GetAxis("Horizontal2") > -.5 && Input.GetAxis("Vertical1") > -.5 && Input.GetAxis("Vertical2") > -.5 && !selectionIsFinished1 && !selectionIsFinished2)
         {
             selectionIsDone = false;
         }
 
-        if (Input.GetButtonDown("A1"))
+        if (Input.GetButtonDown("A1") && !selectionIsFinished1)
         {
             selected1.Value.execute();
             selectionIsFinished1 = true;
             Validate(selected1.Value);
         }
-        if (Input.GetButtonDown("A2"))
+        if (Input.GetButtonDown("A2") && !selectionIsFinished2)
         {
             selected2.Value.execute();
             selectionIsFinished2 = true;

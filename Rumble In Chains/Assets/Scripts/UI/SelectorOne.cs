@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using XInputDotNetPure;
 
 public class SelectorOne : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public class SelectorOne : MonoBehaviour
         CommanderLinkedList = new LinkedList<Commander>(CommanderList);
         selected = CommanderLinkedList.First;
         ChangeSelected(selected.Value);
+        GamePad.SetVibration(PlayerIndex.One, 0, 0);
+        GamePad.SetVibration(PlayerIndex.Two, 0, 0);
 
     }
     private void Update()

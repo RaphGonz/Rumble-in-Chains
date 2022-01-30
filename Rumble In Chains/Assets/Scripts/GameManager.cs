@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        LoadScene("FightScene");
+        //LoadScene("FightScene");
     }
 
     public void LoadScene(string sceneName)
