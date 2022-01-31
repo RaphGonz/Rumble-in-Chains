@@ -103,13 +103,13 @@ public class CharacterConverter
         switch (force)
         {
             case DashDistance.LOW:
-                distance = 3;
+                distance = 2.5f;
                 break;
             case DashDistance.MEDIUM:
-                distance = 5;
+                distance = 3.5f;
                 break;
             case DashDistance.HIGH:
-                distance = 6;
+                distance = 4.5f;
                 break;
         }
 
