@@ -28,15 +28,15 @@ public class GameManager : MonoBehaviour
             Destroy(this.gameObject);
         }
         Instance = this;
+        print(Instance);
         DontDestroyOnLoad(this.gameObject);
-        character1 = (Character)Resources.Load("Characters/" + characterPlayer1);
-        character2 = (Character)Resources.Load("Characters/" + characterPlayer2);
+        
         //FOR DEBUGGING PURPOSES
     }
 
     private void Start()
     {
-        //LoadScene("FightScene");
+        LoadScene("MenuScene");
     }
 
     public void LoadScene(string sceneName)
@@ -46,7 +46,9 @@ public class GameManager : MonoBehaviour
     private void OnLevelWasLoaded(int level)
     {        
         if (level == SceneManager.GetSceneByName("FightScene").buildIndex)
-        {
+        {         
+            character1 = (Character)Resources.Load("Characters/" + characterPlayer1);
+            character2 = (Character)Resources.Load("Characters/" + characterPlayer2);
             GameObject.FindGameObjectWithTag("Player1").GetComponent<SpriteRenderer>().sprite = character1.spriteNormal;
             GameObject.FindGameObjectWithTag("Player2").GetComponent<SpriteRenderer>().sprite = character2.spriteNormal;
             MusicPlayer.Instance.chooseInstruments(new List<Instruments>() { Instruments.Trumpet, Instruments.BassDrums, Instruments.Guitare, Instruments.Handclaps});
@@ -59,7 +61,7 @@ public class GameManager : MonoBehaviour
 
     public void setCharacter(string myCharacter, int player)
     {
-        if (player == 1)
+        if (player == 0)
         {
             characterPlayer1 = myCharacter;
         }

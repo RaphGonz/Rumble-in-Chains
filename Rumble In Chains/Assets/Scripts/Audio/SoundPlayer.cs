@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SoundPlayer : MonoBehaviour // Allows to choose which instruments to play from the main theme and to synchronize voices
 {
@@ -27,8 +28,29 @@ public class SoundPlayer : MonoBehaviour // Allows to choose which instruments t
         DontDestroyOnLoad(this.gameObject); 
     }
 
+    private void Start()
+    {
+        
+    }
+
+    private void OnEnable()
+    {
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+    }
+
     public void PlaySound(int numberOfTheSound)
     {
+
+        print(audioSource);
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+        print(audioSource);
+
         int zero = 0;
         for(int i = 0; i<numberOfTheSound; i++)
         {

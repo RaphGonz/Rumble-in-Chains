@@ -5,8 +5,11 @@ using UnityEngine;
 public class SelectorTwo : MonoBehaviour
 {
     [SerializeField]
-    Commander[] CommanderList;
-    LinkedList<Commander> CommanderLinkedList;
+    Commander[] CommanderList1;
+    [SerializeField]
+    Commander[] CommanderList2;
+    LinkedList<Commander> CommanderLinkedList1;
+    LinkedList<Commander> CommanderLinkedList2;
     LinkedListNode<Commander> selected1;
     LinkedListNode<Commander> selected2;
     bool selectionIsDone = false;
@@ -16,9 +19,10 @@ public class SelectorTwo : MonoBehaviour
     float bTimer2 = 0;
     private void Start()
     {
-        CommanderLinkedList = new LinkedList<Commander>(CommanderList);
-        selected1 = CommanderLinkedList.First;
-        selected2 = CommanderLinkedList.First;
+        CommanderLinkedList1 = new LinkedList<Commander>(CommanderList1);
+        CommanderLinkedList2 = new LinkedList<Commander>(CommanderList2);
+        selected1 = CommanderLinkedList1.First;
+        selected2 = CommanderLinkedList2.First;
         ChangeSelected(selected1.Value, 0);
         ChangeSelected(selected2.Value, 1);
         //Faire en sorte que le selected de base soit visible ;
@@ -30,7 +34,7 @@ public class SelectorTwo : MonoBehaviour
             ChangeSelected(selected1.Value, 0);
             if (selected1.Next == null)
             {
-                selected1 = CommanderLinkedList.First;
+                selected1 = CommanderLinkedList1.First;
             }
             else
             {
@@ -44,7 +48,7 @@ public class SelectorTwo : MonoBehaviour
             ChangeSelected(selected2.Value, 1);
             if (selected2.Next == null)
             {
-                selected2 = CommanderLinkedList.First;
+                selected2 = CommanderLinkedList2.First;
             }
             else
             {
@@ -58,7 +62,7 @@ public class SelectorTwo : MonoBehaviour
             ChangeSelected(selected1.Value, 0);
             if (selected1.Previous == null)
             {
-                selected1 = CommanderLinkedList.Last;
+                selected1 = CommanderLinkedList1.Last;
             }
             else
             {
@@ -73,7 +77,7 @@ public class SelectorTwo : MonoBehaviour
             ChangeSelected(selected2.Value, 1);
             if (selected2.Previous == null)
             {
-                selected2 = CommanderLinkedList.Last;
+                selected2 = CommanderLinkedList2.Last;
             }
             else
             {
@@ -82,7 +86,9 @@ public class SelectorTwo : MonoBehaviour
             ChangeSelected(selected2.Value, 1);
             selectionIsDone = true;
         }
-        else if (selectionIsDone && Input.GetAxis("Horizontal1") < .5 && Input.GetAxis("Horizontal2") < .5 && Input.GetAxis("Vertical1") < .5 && Input.GetAxis("Vertical2") < .5 && Input.GetAxis("Horizontal1") > -.5 && Input.GetAxis("Horizontal2") > -.5 && Input.GetAxis("Vertical1") > -.5 && Input.GetAxis("Vertical2") > -.5 && !selectionIsFinished1 && !selectionIsFinished2)
+        else if (selectionIsDone && Input.GetAxis("Horizontal1") < .5 && Input.GetAxis("Horizontal2") < .5 && Input.GetAxis("Vertical1") < .5 
+            && Input.GetAxis("Vertical2") < .5 && Input.GetAxis("Horizontal1") > -.5 && Input.GetAxis("Horizontal2") > -.5 && Input.GetAxis("Vertical1") > -.5 
+            && Input.GetAxis("Vertical2") > -.5)
         {
             selectionIsDone = false;
         }
@@ -102,12 +108,12 @@ public class SelectorTwo : MonoBehaviour
         if (Input.GetButtonDown("B1"))
         {
             selectionIsFinished1 = false;
-            Validate(selected1.Value);
+            Validate(selected1.Value, false);
         }
         if (Input.GetButtonDown("B2"))
         {
             selectionIsFinished2 = false;
-            Validate(selected1.Value);
+            Validate(selected2.Value, false);
         }
         if (Input.GetButton("B1"))
         {
@@ -146,9 +152,9 @@ public class SelectorTwo : MonoBehaviour
         go.SetActive(!go.activeSelf);
     }
 
-    private void Validate(Commander commander)
+    private void Validate(Commander commander, bool isValid = true)
     {
         GameObject go = commander.transform.GetChild(2).gameObject;
-        go.SetActive(!go.activeSelf);
+        go.SetActive(isValid);
     }
 }

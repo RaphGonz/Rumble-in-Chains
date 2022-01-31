@@ -69,8 +69,8 @@ public class UIController : MonoBehaviour
 
         player1Character.SetText(GameManager.Instance.characterPlayer1);
         player2Character.SetText(GameManager.Instance.characterPlayer2);
-        //print(char1Image);
-        //print((Sprite)Resources.Load("Graphics/Perso/El Jaguar/El-Jaguar_Open_Boder", typeof(Sprite)));
+        print(GameManager.Instance.characterPlayer1);
+        print(GameManager.Instance.characterPlayer2);
 
         switch (GameManager.Instance.characterPlayer1)
         {

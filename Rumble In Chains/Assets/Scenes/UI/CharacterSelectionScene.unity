@@ -179,7 +179,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: 1
-  character: "Jos\xE9 de la muerte"
+  character: "Jos\xE9 de la Muerte"
 --- !u!114 &25488631
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -275,7 +275,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: 0
-  character: "Jos\xE9 de la muerte"
+  character: "Jos\xE9 de la Muerte"
 --- !u!1 &28578528
 GameObject:
   m_ObjectHideFlags: 0
@@ -521,10 +521,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ee4f085b487d134bbd65031fc2ac908, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CommanderList:
+  CommanderList1:
   - {fileID: 1735997431}
   - {fileID: 25488635}
   - {fileID: 2138967984}
+  CommanderList2:
+  - {fileID: 1735997427}
+  - {fileID: 25488630}
+  - {fileID: 2138967980}
 --- !u!4 &634151013
 Transform:
   m_ObjectHideFlags: 0
